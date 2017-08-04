@@ -1,0 +1,4 @@
+eclipse.preferences.version=1
+externalMigrateFromAuthorizationDatabase/isMigrated=true
+migrateFromAuthorizationDatabase/isMigrated=true
+repositories/10bab890e775001710ef83f0fc69f62f=10bab890e775001710ef83f0fc69f62f;svn+ssh\://desenv/fontes/java;svn+ssh\://desenv/fontes/java;branches;tags;trunk;true;bd5b1181-2342-4b39-8d45-0e57d89e4a3d;svn+ssh\://desenv/fontes/java;;false;;;0

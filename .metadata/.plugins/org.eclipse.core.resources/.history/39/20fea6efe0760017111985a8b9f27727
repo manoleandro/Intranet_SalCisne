@@ -1,0 +1,7 @@
+package br.com.sp.intranet.util;
+
+public class ConstantWS {
+
+	public static final String URL = "http://192.168.74.174:8099/";
+	/*public static final String URL = "http://192.168.2.10:8099/";*/
+}

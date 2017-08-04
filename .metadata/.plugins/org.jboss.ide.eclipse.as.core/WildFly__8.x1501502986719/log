@@ -1,0 +1,111 @@
+!SESSION 
+
+!ENTRY org.jboss.ide.eclipse.as.core 4 1644298244 2017-07-31 09:11:26.027
+!MESSAGE Full publish failed for module intranet
+!SUBENTRY 1 org.jboss.ide.eclipse.as.wtp.core 4 1644298251 2017-07-31 09:11:26.027
+!MESSAGE Error reading file C:\Users\jde.proj3\.m2\repository\com\google\code\gson\gson\2.8.1\gson-2.8.1.jar
+!SUBENTRY 1 org.jboss.ide.eclipse.as.wtp.core 4 1644298251 2017-07-31 09:11:26.027
+!MESSAGE Error reading file C:\Users\jde.proj3\.m2\repository\org\apache\commons\commons-lang3\3.4\commons-lang3-3.4.jar
+
+!ENTRY org.jboss.ide.eclipse.as.core 4 1644298244 2017-07-31 09:11:33.278
+!MESSAGE Full publish failed for module intranet
+!SUBENTRY 1 org.jboss.ide.eclipse.as.wtp.core 4 1644298251 2017-07-31 09:11:33.278
+!MESSAGE Error reading file C:\Users\jde.proj3\.m2\repository\com\google\code\gson\gson\2.8.1\gson-2.8.1.jar
+!SUBENTRY 1 org.jboss.ide.eclipse.as.wtp.core 4 1644298251 2017-07-31 09:11:33.278
+!MESSAGE Error reading file C:\Users\jde.proj3\.m2\repository\org\apache\commons\commons-lang3\3.4\commons-lang3-3.4.jar
+!SESSION 
+
+!ENTRY org.jboss.ide.eclipse.as.core 1 16842760 2017-07-31 09:52:18.586
+!MESSAGE Server Starting
+
+!ENTRY org.jboss.ide.eclipse.as.core 1 16842769 2017-07-31 09:52:23.503
+!MESSAGE Server Startup Succeeded
+
+!ENTRY org.jboss.ide.eclipse.as.core 4 16973826 2017-07-31 14:28:28.555
+!MESSAGE The server was shutdown forcefully. All processes were terminated.
+
+!ENTRY org.jboss.ide.eclipse.as.core 1 16842760 2017-07-31 14:28:58.805
+!MESSAGE Server Starting
+
+!ENTRY org.jboss.ide.eclipse.as.core 1 16842769 2017-07-31 14:29:01.015
+!MESSAGE Server Startup Succeeded
+
+!ENTRY org.jboss.ide.eclipse.as.wtp.core 1 16973825 2017-07-31 15:50:06.139
+!MESSAGE Server processes have been terminated.
+
+!ENTRY org.jboss.ide.eclipse.as.core 1 16842760 2017-07-31 15:50:51.245
+!MESSAGE Server Starting
+
+!ENTRY org.jboss.ide.eclipse.as.core 1 16842769 2017-07-31 15:50:53.659
+!MESSAGE Server Startup Succeeded
+
+!ENTRY org.jboss.ide.eclipse.as.wtp.core 1 16973825 2017-07-31 16:58:57.199
+!MESSAGE Server processes have been terminated.
+
+!ENTRY org.jboss.ide.eclipse.as.core 1 16842760 2017-07-31 16:59:16.301
+!MESSAGE Server Starting
+
+!ENTRY org.jboss.ide.eclipse.as.core 1 16842769 2017-07-31 16:59:18.605
+!MESSAGE Server Startup Succeeded
+
+!ENTRY org.jboss.ide.eclipse.as.core 4 16973826 2017-08-01 14:44:01.488
+!MESSAGE The server was shutdown forcefully. All processes were terminated.
+
+!ENTRY org.jboss.ide.eclipse.as.core 1 16842760 2017-08-01 14:44:34.900
+!MESSAGE Server Starting
+
+!ENTRY org.jboss.ide.eclipse.as.core 1 16842769 2017-08-01 14:44:37.226
+!MESSAGE Server Startup Succeeded
+
+!ENTRY org.jboss.ide.eclipse.as.core 1 0 2017-08-01 14:44:37.278
+!MESSAGE Module intranet on WildFly  8.x not yet fully deployed. Waiting...
+
+!ENTRY org.jboss.ide.eclipse.as.core 2 0 2017-08-01 14:44:57.347
+!MESSAGE Module intranet on WildFly  8.x still not ready to be shown in browser. Aborting delay.
+
+!ENTRY org.jboss.ide.eclipse.as.wtp.core 1 16973825 2017-08-01 14:47:02.026
+!MESSAGE Server processes have been terminated.
+
+!ENTRY org.jboss.ide.eclipse.as.core 1 16842760 2017-08-01 14:47:11.068
+!MESSAGE Server Starting
+
+!ENTRY org.jboss.ide.eclipse.as.core 1 16842769 2017-08-01 14:47:13.481
+!MESSAGE Server Startup Succeeded
+
+!ENTRY org.jboss.ide.eclipse.as.wtp.core 1 16973825 2017-08-01 14:49:47.617
+!MESSAGE Server processes have been terminated.
+
+!ENTRY org.jboss.ide.eclipse.as.core 1 16842760 2017-08-01 14:49:55.646
+!MESSAGE Server Starting
+
+!ENTRY org.jboss.ide.eclipse.as.core 1 16842769 2017-08-01 14:49:58.054
+!MESSAGE Server Startup Succeeded
+
+!ENTRY org.jboss.ide.eclipse.as.core 4 16973826 2017-08-02 10:21:38.433
+!MESSAGE The server was shutdown forcefully. All processes were terminated.
+
+!ENTRY org.jboss.ide.eclipse.as.core 1 16842760 2017-08-02 10:21:44.774
+!MESSAGE Server Starting
+
+!ENTRY org.jboss.ide.eclipse.as.core 1 16842769 2017-08-02 10:21:47.937
+!MESSAGE Server Startup Succeeded
+
+!ENTRY org.jboss.ide.eclipse.as.wtp.core 1 16973825 2017-08-02 15:37:59.112
+!MESSAGE Server processes have been terminated.
+!SESSION 
+
+!ENTRY org.jboss.ide.eclipse.as.core 1 16842760 2017-08-02 16:04:18.140
+!MESSAGE Server Starting
+
+!ENTRY org.jboss.ide.eclipse.as.core 1 16842769 2017-08-02 16:04:21.137
+!MESSAGE Server Startup Succeeded
+
+!ENTRY org.jboss.ide.eclipse.as.wtp.core 1 16973825 2017-08-02 16:04:50.498
+!MESSAGE Server processes have been terminated.
+!SESSION 
+
+!ENTRY org.jboss.ide.eclipse.as.core 1 16842760 2017-08-02 16:46:08.216
+!MESSAGE Server Starting
+
+!ENTRY org.jboss.ide.eclipse.as.core 1 16842769 2017-08-02 16:46:11.279
+!MESSAGE Server Startup Succeeded

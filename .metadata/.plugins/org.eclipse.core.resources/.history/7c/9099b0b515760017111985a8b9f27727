@@ -1,0 +1,83 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:c="http://java.sun.com/jsp/jstl/core" xmlns:h="http://java.sun.com/jsf/html" xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets" xmlns:p="http://primefaces.org/ui">
+
+<h:head>
+	<f:facet name="first">
+		<meta name="keywords"
+			content="Sal, sal marinho, marinho, Cisne, Cliper, sal industrial, sal indústria, mesa, cozinha, evaporação, moagem, hidromecânica, refinaria, refino, refinaria nacional, salinas, cabo frio, araruama, lagoa araruama, refinado, saleiro, sal light, salinidade, pureza, churrasco, cloreto, sódio, NaCl, comida, sal, cosinha, desidratação, soro, soro caseiro, sais minerais, OMS, reidratação, iodo, DDI, sais, banho, sabor, comida, saches, ovinho, teor, sódio reduzido, sal liquido, liquido, cristais, pureza , granulometria, hipossódico, ph, controlado, pho, granulado, micronizado, iodado, baixa dureza, ponta do costa, ponta, costa, paulista" />
+		<meta name="robots" content="index, follow" />
+		<meta name="description"
+			content="Esse Projeto tem como objetivo facilitar a troca de informações internas e prestar novas funcionalidades e serviços com base nas necessidades da RNS e seus clientes." />
+		<meta name="author" content="rafael.nakano@salcisne.com.br" />
+
+		<f:loadBundle basename="messages_pt_BR" var="msg" />
+
+		<title><h:outputText value="#{msg['titulo']}" /></title>
+
+	</f:facet>
+
+	<script src='https://www.google.com/recaptcha/api.js'></script>
+
+	<h:outputScript name="js/login.js" library="sentinel-layout" />
+	<h:outputStylesheet name="css/font-icon-layout.css" library="sentinel-layout" />
+	<h:outputStylesheet name="css/sentinel-layout.css" library="sentinel-layout" />
+	<h:outputStylesheet name="css/core-layout.css" library="sentinel-layout" />
+	<h:outputStylesheet name="estilo.css" library="css" />
+
+	<script>
+  		(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+		  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  			m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  		})(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+
+  		ga('create', 'UA-102425208-1', 'auto');
+  		ga('send', 'pageview');
+
+	</script>
+
+</h:head>
+<h:body id="panel">
+	<div class="hardblue Fright MarRight10 button">
+		<h:outputText value="|" />
+		<i class="icon-user" />
+		<p:commandLink styleClass="commandLinkIcone button" action="#{loginController.abrirPaginaLogin}" value="Login" />
+	</div>
+	<div class="Container80 MaxWid500 Fnone MarAuto TexAlCenter">
+		<a href="" id="login-logo"> <h:graphicImage name="images/LOGO.svg" styleClass="Fleft" library="sentinel-layout" /> <span class="Fs30 FontTitilliumSemiBoldItalic Fleft"><span
+				class="hardblue"> I N T R A N E T </span><span class="softblue Fs40">2.0</span></span>
+		</a>
+		<div class="EmptyBox10" />
+	</div>
+
+	<p:tabView id="tab" dynamic="true" cache="true">
+		<p:ajax event="tabChange" listener="#{loginController.onTabChange}" />
+		<p:tab title="Principal">
+			<ui:include src="principal.xhtml" />
+		</p:tab>
+
+		<p:tab title="Manuais" id="manuais">
+			<ui:include src="manuais.xhtml" />
+		</p:tab>
+
+		<p:tab title="Fale Conosco" id="faleConosTab">
+			<ui:include src="faleconosco.xhtml" />
+		</p:tab>
+	</p:tabView>
+</h:body>
+<p:dialog id="dialogEsqueciSenha" header="Gerar nova senha" widgetVar="dialogEsqueciSenha" width="500" height="280" modal="true" showEffect="puff" hideEffect="puff">
+	<h:form id="formDialog" prependId="false">
+		<h:panelGrid columns="1" styleClass="center" width="100%">
+
+
+			<p:inputText value="#{loginController.usuario.username}" placeholder="Usuário" styleClass="Container80 Fnone MarAuto Fs18" required="true"
+				requiredMessage="É necessário preencher o campo de usuário" />
+			<div class="EmptyBox60"></div>
+			<p:commandButton id="button" value="Enviar Email" ajax="false" actionListener="#{loginController.gerarNovaSenha}" oncomplete="PF('dialogEsqueciSenha').hide();" update="messages">
+				<f:setPropertyActionListener value="#{loginController.usuario.username}" target="#{loginController.usuario.username}" />
+			</p:commandButton>
+		</h:panelGrid>
+	</h:form>
+</p:dialog>
+</html>
