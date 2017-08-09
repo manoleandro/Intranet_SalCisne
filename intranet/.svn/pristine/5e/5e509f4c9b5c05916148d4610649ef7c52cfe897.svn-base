@@ -1,0 +1,74 @@
+{
+ "category": "imagemcardapios",
+  "fotos": [
+   {
+    "labelFoto" : "ALMÔNDEGA",
+    "nomeFoto": "almondega.jpg"
+   },
+   {
+    "labelFoto" : "BIFE",
+    "nomeFoto": "bife.jpg"
+   },
+   {
+    "labelFoto" : "CARNE",
+    "nomeFoto": "carne.jpg"
+   },
+   {
+    "labelFoto" : "CARNE SECA",
+    "nomeFoto": "carneseca.jpg"
+   },
+   {
+    "labelFoto" : "CARNE - FILÉ",
+    "nomeFoto": "file.jpg"
+   },
+   {
+    "labelFoto" : "CASSOULET",
+    "nomeFoto": "cassoulet.jpg"
+   },
+   {
+    "labelFoto" : "FEIJOADA",
+    "nomeFoto": "feijoada.jpg"
+   },
+   {
+    "labelFoto" : "FRANGO - FILÉ",
+    "nomeFoto": "frango.jpg"
+   },
+   {
+    "labelFoto" : "FRANGO - COXA",
+    "nomeFoto": "coxa.jpg"
+   },
+   {
+    "labelFoto" : "LASANHA",
+    "nomeFoto": "lasanha.jpg"
+   },
+   {
+    "labelFoto" : "LINGUIÇA",
+    "nomeFoto": "linguica.jpg"
+   },
+   {
+    "labelFoto" : "LOMBO",
+    "nomeFoto": "lombo.jpg"
+   },
+   {
+    "labelFoto" : "PANQUECA",
+    "nomeFoto": "panqueca.jpg"
+   },
+   {
+    "labelFoto" : "PEIXE",
+    "nomeFoto": "peixe.jpg"
+   },
+   {
+    "labelFoto" : "PICADINHO",
+    "nomeFoto": "picadinho.jpg"
+   },
+   {
+    "labelFoto" : "RABADA",
+    "nomeFoto": "rabada.jpg"
+   },
+   {
+    "labelFoto" : "STROGONOFF",
+    "nomeFoto": "strogonoff.jpg"
+   }
+   
+  ]
+ }

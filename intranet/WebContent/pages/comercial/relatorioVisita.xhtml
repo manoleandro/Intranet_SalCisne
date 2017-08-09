@@ -1,0 +1,208 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:h="http://java.sun.com/jsf/html" xmlns:ui="http://java.sun.com/jsf/facelets" xmlns:f="http://java.sun.com/jsf/core" xmlns:p="http://primefaces.org/ui">
+
+<h:head>
+	<f:loadBundle basename="messages_pt_BR" var="msg" />
+</h:head>
+<h:body>
+	<f:metadata>
+		<f:viewAction action="#{relatorioVisitaController.init}" />
+	</f:metadata>
+
+	<ui:composition template="../../template/commonLayout.xhtml">
+		<ui:define name="content">
+			<div class="ContainerIndent">
+				<h:form id="form">
+					<style>
+						.ui-panelgrid>*>tr, .ui-panelgrid>*>tr>td.ui-panelgrid-cell {
+							border: none !important;
+						}
+						
+						.ui-panelgrid{
+							border: none !important;
+						}
+					</style>
+					
+					<p:confirmDialog global="true" showEffect="puff" hideEffect="puff" appendTo="@(body)">
+						<p:commandButton value="Sim" type="button" styleClass="ui-confirmdialog-yes" icon="fa fa-check Fs18 white" />
+						<p:commandButton value="Não" type="button" styleClass="ui-confirmdialog-no" icon="fa fa-times Fs18 white" />
+					</p:confirmDialog>
+
+					<p:panel styleClass="panel">
+						<p:growl id="messages" autoUpdate="false" />
+						<div class="container">
+							<h:outputText value="Relatório de Visita" styleClass="title-page hardblue" />
+
+							<div style="text-align: right">
+								<h:outputText value="#{relatorioVisitaController.vendedorSelecionado.codZonaVendas} - #{relatorioVisitaController.vendedorSelecionado.nomeVendedor}" styleClass="Fs16 FontBold" />
+								<p:commandLink styleClass="commandLinkIcone" title="#{msg['pesquisar.vendedor']}" action="#{relatorioVisitaController.prepararVendedores}" update=":assistenteVendedoresForm">
+									<i class="icon-user-male title-page button" />
+								</p:commandLink>
+							</div>
+						</div>
+						<p:separator />
+						<div class="container">
+							<p:panelGrid columns="4" styleClass="sem-borda">
+								<p:selectOneMenu value="#{relatorioVisitaController.mesAnoUtil.mes}">
+			                		<f:selectItem itemLabel="Selecione" itemValue=""/>
+			    					<f:selectItems value="#{relatorioVisitaController.mesAnoUtil.getMeses()}" var="mes" itemValue="#{mes}" itemLabel="#{mes.descricao}"/>
+			    				</p:selectOneMenu>
+			    				
+			    				<h:outputText value="/" styleClass="Fs24"/>
+			    				
+			    				<p:selectOneMenu value="#{relatorioVisitaController.mesAnoUtil.ano}">
+			                		<f:selectItem itemLabel="Selecione" itemValue=""/>
+			    					<f:selectItems value="#{relatorioVisitaController.mesAnoUtil.anos}"/>
+			    				</p:selectOneMenu>
+			    				
+			    				<p:commandLink styleClass="commandLinkIcone" action="#{relatorioVisitaController.carregarRelatorioVisita}" 
+										   	update=":form:tableRegistroVisita">
+									<i class="icon-search title-page button" />
+								</p:commandLink>
+			    			</p:panelGrid>
+							
+							<p:panelGrid columns="2" styleClass="sem-borda">
+								<p:inputText value="#{relatorioVisitaController.filtro}" placeholder="Filtro (Cod. ou Nome)">
+										<p:ajax event="keyup" delay="300" listener="#{relatorioVisitaController.filtrar}" update=":form:tableRegistroVisita"/>
+								</p:inputText>
+							
+								<p:calendar id="data" pattern="dd/MM/yyyy" showOn="button" value="#{relatorioVisitaController.data}" styleClass="centralizar" locale="pt" effect="puff"
+											placeholder="Filtro (Data)">
+									<p:ajax event="dateSelect" listener="#{relatorioVisitaController.filtrarByData}" update=":form:tableRegistroVisita"/>
+								</p:calendar>
+							</p:panelGrid>	
+						
+							<div style="text-align: right">
+								<p:commandLink styleClass="commandLinkIcone" title="#{msg['atualizar']}" action="#{relatorioVisitaController.carregarRelatorioVisita}" update=":form :form:tableRegistroVisita">
+									<i class="icon-arrows-cw-1 title-page button" />
+								</p:commandLink>
+							</div>
+						</div>
+						<p:separator />
+						<p:dataTable id="tableRegistroVisita" widgetVar="tableRegistroVisita" var="registro" value="#{relatorioVisitaController.registrosVisita}" emptyMessage="#{msg['sem.registro']}">
+
+							<p:columnGroup type="header">
+								<p:row>
+									<p:column colspan="2" headerText="Data da Visita" />
+									<p:column colspan="2" headerText="Cliente" />
+									<p:column colspan="2" headerText="Venda Tradicionais" />
+									<p:column rowspan="2" headerText="Venda Especial" />
+									<p:column colspan="2" headerText="Venda Total" />
+									<p:column colspan="2" headerText="Aumento/Redução" />
+								</p:row>
+
+								<p:row>
+									<p:column headerText="Real" />
+									<p:column headerText="Spv" />
+									<p:column headerText="Cód. Cliente" />
+									<p:column headerText="Cliente" />
+									<p:column headerText="Prevista" />
+									<p:column headerText="Real" />
+									<p:column headerText="Nº Pedido" />
+									<p:column headerText="Valor R$" />
+									<p:column headerText="Consumo" />
+									<p:column headerText="Dias Estoque" />
+								</p:row>
+							</p:columnGroup>
+
+							<p:column styleClass="centraliar">
+								<h:outputText value="#{registro.pk.dataVisitaReal}" >
+									<f:convertDateTime pattern="dd/MM/yyyy" />
+								</h:outputText>
+							</p:column>
+
+							<p:column styleClass="centralizar">
+								<h:outputText value="#{registro.dataSpv}" >
+									<f:convertDateTime pattern="dd/MM/yyyy" />
+								</h:outputText>
+							</p:column>
+
+							<p:column styleClass="centralizar">
+								<h:outputText value="#{registro.pk.idCliente}" />
+							</p:column>
+
+							<p:column styleClass="centralizar">
+								<h:outputText value="#{registro.nomeCliente}" />
+							</p:column>
+
+							<p:column styleClass="centralizar">
+								<h:outputText value="#{registro.previsaoCompraKg}" >
+									<f:convertNumber />
+								</h:outputText>
+							</p:column>
+
+							<p:column styleClass="centralizar">
+								<h:outputText value="#{registro.vendaCompraKg}" >
+									<f:convertNumber />
+								</h:outputText>
+							</p:column>
+
+							<p:column styleClass="centralizar">
+								<h:outputText value="#{registro.compraRsEspecial}" >
+									<f:convertNumber minFractionDigits="2" maxFractionDigits="2" />
+								</h:outputText>
+							</p:column>
+
+							<p:column styleClass="centralizar">
+								<h:outputText value="" />
+							</p:column>
+
+							<p:column styleClass="centralizar">
+								<h:outputText value="#{registro.valorTotalPedido}" >
+									<f:convertNumber minFractionDigits="2" maxFractionDigits="2" />
+								</h:outputText>
+							</p:column>
+
+							<p:column styleClass="centralizar">
+								<h:outputText value="#{registro.variacaoConsumo}" >
+									<f:convertNumber />
+								</h:outputText>
+							</p:column>
+
+							<p:column styleClass="centralizar">
+								<h:outputText value="#{registro.variacaoDiasEmEstoque}" >
+									<f:convertNumber />
+								</h:outputText>
+							</p:column>
+
+							<p:columnGroup type="footer">
+								<p:row>
+									<p:column colspan="4" style="text-align:right" footerText="Total:" styleClass="Fs16 FontBold" />
+									<p:column footerText="#{relatorioVisitaController.totalQuantidadePrevisao}" />
+									<p:column footerText="#{relatorioVisitaController.totalQuantidadeReal}" />
+									<p:column footerText="#{relatorioVisitaController.totalQuantidadeEspecial}" />
+									<p:column footerText="" />
+									<p:column footerText="#{relatorioVisitaController.totalValorTotal}" />
+									<p:column colspan="2"/>
+								</p:row>
+							</p:columnGroup>
+						</p:dataTable>
+					</p:panel>
+				</h:form>
+
+				<p:dialog header="Assistente Vendedores" focus="assistenteVendedoresForm" widgetVar="dialogAssistenteVendedores" modal="true" showEffect="puff" hideEffect="puff" width="60vw" appendTo="@(body)">
+					<h:form id="assistenteVendedoresForm">
+						<p:dataTable id="tableVendedores" widgetVar="tableVendedores" var="vendedor" value="#{relatorioVisitaController.vendedores}" filteredValue="#{relatorioVisitaController.vendedoresFiltro}" 
+							emptyMessage="#{msg['sem.registro']}" selectionMode="single"
+							selection="#{relatorioVisitaController.vendedorSelecionado}" rowKey="#{vendedor.idVendedor}" paginator="true" rows="10" paginatorPosition="bottom">
+
+							<p:ajax event="rowSelect" listener="#{relatorioVisitaController.carregarRelatorioVisita}" update=":form" oncomplete="PF('dialogAssistenteVendedores').hide();" />
+
+							<p:column headerText="Cód. Zona" sortBy="#{vendedor.codZonaVendas}" filterBy="#{vendedor.codZonaVendas}" styleClass="centralizar" priority="1">
+								<h:outputText value="#{vendedor.codZonaVendas}" />
+							</p:column>
+
+							<p:column headerText="Vendedor" sortBy="#{vendedor.nomeVendedor}" filterBy="#{vendedor.nomeVendedor}" priority="2">
+								<h:outputText value="#{vendedor.nomeVendedor}" />
+							</p:column>
+						</p:dataTable>
+						<p:spacer width="100%" height="5"/>
+						<p:commandButton value="Cancelar" icon="fa fa-times Fs18 white" onclick="PF('dialogAssistenteVendedores').hide();" id="btnCancelar"/>
+					</h:form>
+				</p:dialog>
+			</div>
+		</ui:define>
+	</ui:composition>
+</h:body>
+</html>

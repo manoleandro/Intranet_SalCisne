@@ -1,0 +1,140 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.org/ui">
+<h:head>
+	<f:loadBundle basename="messages_pt_BR" var="msg" />
+</h:head>
+
+
+
+<h:body>
+	<f:metadata>
+		<f:event listener="#{externoController.init()}" type="preRenderView"></f:event>
+	</f:metadata>
+	<ui:composition template="../../template/commonLayout.xhtml">
+		<ui:define name="content">
+			<div class="ContainerIndent">
+				<h:form id="form">
+					<p:confirmDialog global="true" showEffect="puff" hideEffect="puff"
+						appendTo="@(body)">
+						<p:commandButton value="Sim" type="button"
+							styleClass="ui-confirmdialog-yes" icon="fa fa-check Fs18 white" />
+						<p:commandButton value="Não" type="button"
+							styleClass="ui-confirmdialog-no" icon="fa fa-times Fs18 white" />
+					</p:confirmDialog>
+
+					<p:panel styleClass="panel">
+						<p:growl id="messages" autoUpdate="false" />
+						<div class="container">
+							<h:outputText value="Gerênciar Contato"
+								styleClass="title-page hardblue" />
+
+							<div class="right" style="text-align: right">
+								<p:commandLink styleClass="commandLinkIcone"
+									title="#{msg['incluir']}"
+									action="#{externoController.prepararIncluir()}"
+									update=":menuForm, :dialog-contato">
+									<i class="icon-plus title-page button" />
+								</p:commandLink>
+
+								<p:commandLink styleClass="commandLinkIcone"
+									title="#{msg['alterar']}"
+									action="#{externoController.prepararAlterar()}"
+									update=":menuForm :form:messages, :dialog-contato">
+									<i class="icon-pencil title-page button" />
+								</p:commandLink>
+
+								<p:commandLink styleClass="commandLinkIcone"
+									title="#{msg['excluir']}"
+									action="#{externoController.remover()}"
+									update=":form:messages, :form:tableMenu"
+									oncomplete="PF('tableMenu').clearFilters(); location.reload();">
+									<p:confirm header="Atenção"
+										message="#{msg['excluir.registro']}" icon="fa fa-info Fs18" />
+									<i class="icon-trash title-page button" />
+								</p:commandLink>
+							</div>
+						</div>
+						<p:separator />
+
+						<p:dataTable id="tableMenu" widgetVar="tableMenu" var="con"
+							value="#{externoController.listContatos}"
+							emptyMessage="#{msg['sem.registro']}" selectionMode="single"
+							selection="#{externoController.contatoSelecionado}"
+							rowKey="#{con.email}" scrollHeight="600" paginator="true"
+							rows="14" paginatorPosition="bottom">
+
+							<p:column filterBy="#{con.nome}" sortBy="#{con.nome}"
+								headerText="Nome" styleClass="centralizar"
+								filterStyleClass="filtro" priority="1">
+								<h:outputText value="#{con.nome}" />
+							</p:column>
+
+							<p:column filterBy="#{con.email}" sortBy="#{con.email}"
+								headerText="Email" styleClass="centralizar"
+								filterStyleClass="filtro" priority="2">
+								<h:outputText value="#{con.email}" />
+							</p:column>
+
+							<p:column filterBy="#{con.ramal}" sortBy="#{con.ramal}"
+								headerText="Ramal" styleClass="centralizar"
+								filterStyleClass="filtro" width="17%" priority="4">
+								<h:outputText value="#{con.ramal}" />
+
+							</p:column>
+
+							<p:column filterBy="#{con.telefone}" sortBy="#{con.telefone}"
+								headerText="Telefône" styleClass="centralizar"
+								filterStyleClass="filtro" width="17%" priority="4">
+								<h:outputText value="#{con.telefone}" />
+
+							</p:column>
+						</p:dataTable>
+					</p:panel>
+				</h:form>
+
+				<p:dialog header="#{externoController.inclusao == 'true' ? 'Incluir' : 'Editar'} Contato" widgetVar="dialog-contato" modal="true"
+					showEffect="puff" hideEffect="puff" appendTo="@(body)" width="40%" id="dialog-contato">
+					<h:form id="menuForm">
+						<h:panelGrid columns="2">
+							<h:outputText value="Nome" id="text" />
+							<p:inputText value="#{externoController.contato.nome}" size="60"/>
+
+							<h:outputText value="Cidade" />
+							<p:inputText value="#{externoController.contato.cidade}"
+								size="60" />
+
+							<h:outputText value="Setor" />
+							<p:inputText value="#{externoController.contato.setor}" size="60" />
+
+							<h:outputText value="Email" />
+							<p:inputText value="#{externoController.contato.email}"
+								readonly="#{externoController.inclusao == 'true' ? 'false' : 'true'}"
+								size="60" />
+
+							<h:outputText value="Ramal" />
+							<p:inputText value="#{externoController.contato.ramal}" onkeypress="validateNumericInput(event, this.text)" maxlength="4"/>
+
+							<h:outputText value="Telefône" />
+							<p:inputText value="#{externoController.contato.telefone}" onkeypress="validateNumericInput(event, this.text)"/>
+
+							<h:outputText value="Nascimento" />
+							<p:inputMask mask="99/99/9999" value="#{externoController.contato.date}" />
+						</h:panelGrid>
+						<p:spacer height="20" width="100%" />
+
+						<p:commandButton value="Salvar" icon="fa fa-check Fs18 white" actionListener="#{externoController.salvar()}" update=":form, :form:tableMenu">
+						</p:commandButton>
+						<p:commandButton value="Cancelar" icon="fa fa-times Fs18 white"
+							onclick="PF('dialog-contato').hide();" />
+					</h:form>
+				</p:dialog>
+			</div>
+		</ui:define>
+	</ui:composition>
+</h:body>
+</html>

@@ -1,0 +1,75 @@
+{
+ "category": "teste",
+  "cardapios": [
+   {
+    "diaSemana": "Segunda - feira",
+    "salada": "Mix de folhas,Salpicão e molho rosé",
+    "sobremesa": "Gelatina",
+    "acompanhamento": "Arroz Branco e Feijão Preto",
+    "titulo": "Filé de Coxa grelhado",
+    "diaNumero": 2,
+    "guarnicao": "Espaguete ao molho branco/Farofa de banana",
+    "nomeFoto": "frango.jpg" 
+   },
+   {
+    "diaSemana": "Terça - feira  ",
+    "salada": "Mix de folhas,Pepino e beterraba",
+    "sobremesa": "Fruta",
+    "acompanhamento": "Arroz Branco e Feijão Preto",
+    "titulo": "Carne assada recheada ao molho",
+    "diaNumero": 3,
+    "guarnicao": "Aipim frito/Farofa",
+    "nomeFoto": "bife.jpg"
+   },
+   {
+    "diaSemana": "Quarta - feira ",
+    "salada": "Alface , jiló e Berinjela",
+    "sobremesa": "Fruta",
+    "acompanhamento": "Arroz Branco e Feijão Preto",
+    "titulo": "Cozido",
+    "diaNumero": 4,
+    "guarnicao": "Legumes/Pirão",
+    "nomeFoto": "cassoulet.jpg" 
+   },
+   {
+    "diaSemana": "Quinta - feira",
+    "salada": "Mix de folhas,Tomate e Tabule",
+    "sobremesa": "fruta",
+    "acompanhamento": "Arroz Branco e Feijão Preto",
+    "titulo": "Frango xadrez",
+    "diaNumero": 5,
+    "guarnicao": "Repolho refogado/ Abobrinha refogada",
+    "nomeFoto": "frango.jpg"
+   },
+   {
+    "diaSemana": "Sexta - feira",
+    "salada": "Mix de folhas, pepino e cenoura com abobrinha",
+    "sobremesa": "Fruta",
+    "acompanhamento": "Arroz Branco e Feijão Preto",
+    "titulo": "Bife de panela",
+    "diaNumero": 6,
+    "guarnicao": "Arrozà Piamontese/ Chuchu refogado",
+    "nomeFoto": "bife.jpg"
+   },
+   {
+    "diaSemana": "Sábado",
+    "salada": "Mix de folhas ,Vinagrete e Batata calabresa",
+    "sobremesa": "Fruta",
+    "acompanhamento": "Arroz Branco e Feijão Preto",
+    "titulo": "Carré grelhado",
+    "diaNumero": 7,
+    "guarnicao": "Feijão tropeiro/Couve a mineira",
+    "nomeFoto": "lombo.jpg"
+   },
+   {
+    "diaSemana": "Domingo",
+    "salada": "Mix de folhas,Tomate e salpicão",
+    "sobremesa": "Fruta",
+    "acompanhamento": "Arroz Branco e Feijão Preto",
+    "titulo": "Churrasco misto",
+    "diaNumero": 8,
+    "guarnicao": "farofa/Purê de batata",
+    "nomeFoto": "picadinho.jpg"
+   }
+  ]
+ }

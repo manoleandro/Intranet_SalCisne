@@ -1,0 +1,77 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	  xmlns:h="http://java.sun.com/jsf/html"
+	  xmlns:ui="http://java.sun.com/jsf/facelets"
+	  xmlns:f="http://java.sun.com/jsf/core"
+	  xmlns:p="http://primefaces.org/ui">
+<h:head>
+	<f:loadBundle basename="messages_pt_BR" var="msg" />
+</h:head>
+<h:body>
+	<f:metadata>
+		<f:event listener="#{veiculoTransportadoraController.init()}" type="preRenderView"></f:event>
+	</f:metadata>
+	<ui:composition template="../../template/commonLayout.xhtml">
+		<ui:define name="content">
+			<div class="ContainerIndent">
+				<h:form id="form">
+					<p:confirmDialog global="true" showEffect="puff" hideEffect="puff" widgetVar="dialogExcluir" appendTo="@(body)">
+						<p:commandButton value="Sim" type="button" styleClass="ui-confirmdialog-yes" icon="fa fa-check Fs18 white" />
+						<p:commandButton value="Não" type="button" styleClass="ui-confirmdialog-no" icon="fa fa-times Fs18 white" />
+					</p:confirmDialog>
+
+					<p:panel styleClass="panel">
+						<p:growl id="messages" autoUpdate="false" />
+						<div class="container">
+							<h:outputText value="Gerenciar Veículos" styleClass="title-page hardblue" />
+
+							<div class="right" style="text-align: right">
+								<p:commandLink styleClass="commandLinkIcone" title="#{msg['incluir']}" action="#{veiculoTransportadoraController.prepararInclusao()}" update=":menuForm, :dialog-transportadora">
+									<i class="icon-plus title-page button" />
+								</p:commandLink>
+								<p:commandLink styleClass="commandLinkIcone" title="#{msg['alterar']}" action="#{veiculoTransportadoraController.prepararAlteracao()}" update=":menuForm :form:messages, :dialog-transportadora">
+									<i class="icon-pencil title-page button" />
+								</p:commandLink>
+								<p:commandLink styleClass="commandLinkIcone" title="#{msg['excluir']}" action="#{veiculoTransportadoraController.remover}" update=":form, :form:messages, :form:tableMenu" oncomplete="PF('tableMenu').clearFilters();">
+									<p:confirm header="Atenção" message="#{msg['excluir.registro']}" icon="fa fa-info Fs18" />
+									<i class="icon-trash title-page button" />
+								</p:commandLink>
+								
+								<p:commandLink styleClass="commandLinkIcone"
+									title="Atualizar"
+									onclick="location.reload();"
+									update="@form">
+									<i class="fa icon-arrows-cw title-page button" />
+								</p:commandLink>
+							</div>
+						</div>
+						<p:separator />
+
+						<p:dataTable id="tableMenu" widgetVar="tableMenu" var="vei" value="#{veiculoTransportadoraController.listVeiculo}" emptyMessage="#{msg['sem.registro']}"  selectionMode="single" selection="#{veiculoTransportadoraController.veiculoPortariaSelecionada}" rowKey="#{vei.idVeiculo}" scrollHeight="600" paginator="true" rows="14" paginatorPosition="bottom">
+							<p:column filterBy="#{vei.idVeiculo}" sortBy="#{vei.idVeiculo}" headerText="Código" styleClass="centralizar" style="width:20%" filterStyleClass="filtro" priority="1">
+								<h:outputText value="#{vei.idVeiculo}" />
+							</p:column>
+							<p:column filterBy="#{vei.descricao}" sortBy="#{vei.descricao}" headerText="Descrição" styleClass="centralizar" filterStyleClass="filtro" priority="2">
+								<h:outputText value="#{vei.descricao}" />
+							</p:column>
+						</p:dataTable>
+					</p:panel>
+				</h:form>
+				
+				<p:dialog header="#{veiculoTransportadoraController.inclusao == 'true' ? 'Incluir' : 'Editar'} Veículo" widgetVar="dialog-transportadora" modal="true" showEffect="puff" hideEffect="puff" appendTo="@(body)"  id="dialog-transportadora">
+					<h:form id="menuForm">
+					<h:panelGrid columns="2">
+						<h:outputText value="Descrição: " id="text" />
+						<p:inputText value="#{veiculoTransportadoraController.veiculoPortaria.descricao}" />
+						<p:spacer height="20" width="100%" />
+					</h:panelGrid>
+					<p:commandButton value="Salvar" icon="fa fa-check Fs18 white" actionListener="#{veiculoTransportadoraController.salvar()}" update=":form, :form:tableMenu"></p:commandButton>
+					<p:commandButton value="Cancelar" icon="fa fa-times Fs18 white" onclick="PF('dialog-transportadora').hide();" />
+					</h:form>
+				</p:dialog>
+			</div>
+		</ui:define>
+	</ui:composition>
+</h:body>
+</html>

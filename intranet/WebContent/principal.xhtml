@@ -1,0 +1,138 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" 
+	xmlns:h="http://java.sun.com/jsf/html" xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets" xmlns:c="http://java.sun.com/jsp/jstl/core" xmlns:p="http://primefaces.org/ui">
+
+<h:head>
+	<f:facet name="first">
+		<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" />
+		<meta name="apple-mobile-web-app-capable" content="yes" />
+	</f:facet>
+	<f:loadBundle basename="messages_pt_BR" var="msg" />
+	
+	<style>
+		.ui-datalist {
+			border: none !important;
+		}
+	</style>
+</h:head>
+
+<body>
+	<f:metadata>
+		<f:event listener="#{loginController.init()}" type="preRenderView"></f:event>
+	</f:metadata>
+	<div class="container">
+		<div>
+			<h:form prependId="false">
+			<p:panel styleClass="largura-inicio-responsivo">
+				<f:facet name="header">
+					<i class="fa fa-birthday-cake fa-lg white" />
+					<p:spacer width="10px" />
+					<h:outputText value="Aniversariantes do Mês" />
+				</f:facet>
+
+				<p:dataList value="#{loginController.montarAniversariantes()}"
+					var="item" type="none" styleClass="transparente">
+					<h:outputText id="slide" value="#{item.date.substring(0,5)} - #{item.nome}" />
+					<br/>
+					<p:overlayPanel id="regraSlide" for="slide" hideEffect="slide" showEffect="slide" showEvent="mouseover" hideEvent="mouseout" my="right bottom" at="left bottom">
+   						<h:outputText value="#{item.setor} #{item.cidade}"/>
+   					</p:overlayPanel>
+				</p:dataList>
+			</p:panel>
+			</h:form>
+		</div>
+
+		<div>
+			<p:imageSwitch effect="fade" slideshowSpeed="18000" widgetVar="switcher" style="width:300px">
+				<ui:repeat value="#{loginController.montarGaleria()}" var="image">
+					<p:panel style="text-align:center;" styleClass="largura-inicio-responsivo">
+						<p:graphicImage value="/temp/#{image.idFoto}" height="200px" styleClass="largura-inicio-foto-responsivo"
+							alt="#{image.descricao.length() gt 400 ? image.descricao.substring(0,398).concat('...') : image.descricao}"/>
+						<p:separator />
+						<h:outputText id="descricao" value="#{image.descricao.length() gt 300 ? image.descricao.substring(0,298).concat('...') : image.descricao}" />
+						<p:overlayPanel id="descricaoDespesa" for="descricao" hideEffect="clip" showEffect="clip" showEvent="mouseover" hideEvent="mouseout" styleClass="hardblue largura-inicio-label-responsivo">
+							<h:outputText value="#{image.descricao}" />
+						</p:overlayPanel>
+						<p:separator />
+						
+						<p:commandLink styleClass="commandLinkIcone" onclick="PF('switcher').previous();">
+							<i class="icon-left-circled title-page button" />
+						</p:commandLink>
+						
+						<p:commandLink styleClass="commandLinkIcone" onclick="PF('switcher').next();">
+							<i class="icon-right-circled title-page button" />
+						</p:commandLink>
+					</p:panel>
+				</ui:repeat>
+			</p:imageSwitch>
+		</div>
+
+		<div>
+			<h:form prependId="false">
+				<p:panel styleClass="largura-inicio-responsivo">
+					<f:facet name="header">
+						<i class="fa fa-user fa-lg white" />
+						<p:spacer width="10px" />
+						<h:outputText value="Lista de Contato" />
+						<p:spacer width="10px" />
+						<p:inputText value="#{loginController.strFiltro}">
+							<p:ajax listener="#{loginController.filtrador}" update=":tab:contatos" event="keyup" />
+						</p:inputText>
+					</f:facet>
+					<p:dataList style="align:center;height:200;background:none" value="#{loginController.contatos}" var="contato" id="contatos" rows="2"
+						effectSpeed="fast" type="none" styleClass="transparente" paginator="true" paginatorPosition="top"
+						paginatorTemplate="{FirstPageLink} {PreviousPageLink} {NextPageLink} {LastPageLink}">
+
+						<h:outputText value="#{contato.nome}" style="font-style: italic;" />
+						<br />
+						<h:outputText value="E-mail: " style="font-weight: bold;" rendered="#{contato.email != ''}" />
+						<h:outputLink value="mailto:#{contato.email}" styleClass="leaden">#{contato.email}</h:outputLink>
+						<h:outputText value="&lt;br/&gt;" rendered="#{contato.email != ''}" escape="false" />
+						<h:outputText value="Telefone(s): " style="font-weight: bold;" rendered="#{contato.telefone != ''}" />
+						<h:outputText value="#{contato.telefone}" escape="false" />
+						<h:outputText value="&lt;br/&gt;" rendered="#{contato.telefone != ''}" escape="false" />
+						<h:outputText value="Ramal(ais): " style="font-weight: bold;" rendered="#{contato.ramal != ''}" />
+						<h:outputText value="#{contato.ramal}" escape="false" />
+						<h:outputText value="&lt;br/&gt;" rendered="#{contato.ramal != ''}" escape="false" />
+						<h:outputText value="Setor: " style="font-weight: bold;" rendered="#{contato.setor != ''}" />
+						<h:outputText style="align:center;" value="#{contato.setor}" escape="false" />
+						<h:outputText value="&lt;br/&gt;" rendered="#{contato.setor != ''}" escape="false" />
+						<h:outputText value="Local: " style="font-weight: bold;" rendered="#{contato.cidade != ''}" />
+						<h:outputText style="align:center;" value="#{contato.cidade}" />
+						<br />
+						<p:separator />
+					</p:dataList>
+				</p:panel>
+
+				<p:spacer height="1px" />
+
+				<p:panel styleClass="largura-inicio-responsivo">
+					<f:facet name="header">
+						<i class="fa fa-cutlery fa-lg white" />
+						<p:spacer width="10px" />
+						<h:outputText value="Cardápio da Fábrica" />
+					</f:facet>
+					<h:panelGrid columns="2">
+						
+						<img src="/imagem/#{loginController.cardapioDia.nomeFoto}" style="width:68px;height:68px;"></img>
+						<h:panelGroup>
+							<p:outputLabel value="#{loginController.cardapioDia.titulo}: " style="font-weight:bold !important;" />
+							<p:outputLabel value="#{loginController.cardapioDia.acompanhamento}, #{loginController.cardapioDia.guarnicao},#{loginController.cardapioDia.salada}, #{loginController.cardapioDia.sobremesa}."/>
+						</h:panelGroup>
+					</h:panelGrid>
+					<p:separator />
+					<p:dataList id="datalist-cardapio" value="#{loginController.montarCardapio()}" var="prato" type="none" style="border:none !important;background:none;"
+						styleClass="transparente">
+						<h:outputText style="#{prato.pratoDoDia == 'true' ? '!important;font-weight: bold; color: blue;' : ''}" value="#{prato.diaSemana}"/> : <h:outputText value="#{prato.titulo}" style="#{prato.pratoDoDia == 'true' ? '!important;font-weight: bold;font-style: italic;color:black;' : ''}"/>
+						<br />
+					</p:dataList>
+				</p:panel>
+			</h:form>
+		</div>
+	</div>
+</body>
+</html>

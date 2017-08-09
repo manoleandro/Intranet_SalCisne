@@ -1,0 +1,207 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- <persistence xmlns="http://java.sun.com/xml/ns/persistence"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://java.sun.com/xml/ns/persistence
+    http://java.sun.com/xml/ns/persistence/persistence_1_0.xsd" version="1.0">
+  -->
+<persistence version="2.0"
+    xmlns="http://java.sun.com/xml/ns/persistence" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://java.sun.com/xml/ns/persistence http://java.sun.com/xml/ns/persistence/persistence_2_0.xsd">
+ 
+	 <persistence-unit name="csecurity" transaction-type="RESOURCE_LOCAL">
+			<provider>org.hibernate.ejb.HibernatePersistence</provider>
+			<jta-data-source>java:/DDSecurityDS</jta-data-source>
+			<!-- 
+				<exclude-unlisted-classes>false</exclude-unlisted-classes>
+			 -->
+			<class>br.com.sp.sic.model.vo.GenericEntity</class>
+			<class>br.com.sp.sic.model.vo.cs.Agenda</class>
+	        <class>br.com.sp.sic.model.vo.cs.CsSetor</class>
+	        <class>br.com.sp.sic.model.vo.cs.CsAut</class> 
+	        <class>br.com.sp.sic.model.vo.cs.CsCampo</class>
+	        <class>br.com.sp.sic.model.vo.cs.CsGrupo</class>
+	        <class>br.com.sp.sic.model.vo.cs.CsGrupoServico</class>
+	        <class>br.com.sp.sic.model.vo.cs.CsGrupoServicoId</class>
+	        <class>br.com.sp.sic.model.vo.cs.CsMenu</class>
+	        <class>br.com.sp.sic.model.vo.cs.CsServico</class>
+	        <class>br.com.sp.sic.model.vo.cs.CsUsuario</class>
+	        <class>br.com.sp.sic.model.vo.cs.CsUsuarioCampo</class>
+	        <class>br.com.sp.sic.model.vo.cs.CsUsuarioCampoId</class>
+	        <class>br.com.sp.sic.model.vo.cs.CsUsuarioGrupo</class>
+	        <class>br.com.sp.sic.model.vo.cs.CsUsuarioGrupoId</class>
+	        <class>br.com.sp.sic.model.vo.cs.CsUsuarioServico</class>
+	        <class>br.com.sp.sic.model.vo.cs.CsUsuarioServicoId</class>			
+	        <shared-cache-mode>ENABLE_SELECTIVE</shared-cache-mode>
+			<validation-mode>CALLBACK</validation-mode>
+
+	        <properties>
+	            <!-- <property name="hibernate.hbm2ddl.auto" value="update"/> -->
+	            <!-- <property name="hibernate.archive.autodetection" value="class" /> -->
+	            <property name = "hibernate.dialect"  value = "org.hibernate.dialect.OracleDialect"/>
+	            <!-- <property name="hibernate.dialect" value="org.hibernate.dialect.MySQLDialect" /> -->
+				
+				<!-- <property name="hibernate.c3p0.validate" value="true" />
+				<property name="hibernate.connection.provider_class" value="org.hibernate.service.jdbc.connections.internal.C3P0ConnectionProvider" /> -->
+				<!-- <property name = "hibernate.connection.driver_class" value = "oracle.jdbc.driver.OracleDriver"/> -->
+				<!-- <property name = "hibernate.connection.datasource" value = "java:/CisneDS"/> -->
+				
+				<!-- <property name = "hibernate.connection.driver_class" value = "oracle.jdbc.driver.OracleDriver"/>
+				<property name = "hibernate.connection.url" value = "jdbc:oracle:thin:@192.168.74.53:1521:MANUT"/>
+				<property name = "hibernate.connection.username" value = "csecurity"/>
+				<property name = "hibernate.connection.password" value = "1q2w3e4r"/> -->
+			
+			
+				<!-- <property name="hibernate.c3p0.validate" value="true" /> -->
+				
+				<!-- <property name="hibernate.connection.provider_class" value="org.hibernate.service.jdbc.connections.internal.C3P0ConnectionProvider" />
+				<property name="hibernate.c3p0.driverClass" value="oracle.jdbc.driver.OracleDriver" />
+        		<property name="hibernate.c3p0.acquireIncrement" value="5" />        		
+        		<property name="hibernate.c3p0.max_statements" value="0" />
+        		<property name="hibernate.c3p0.min_size" value="5" />
+        		<property name="hibernate.c3p0.max_size" value="100" />
+        		<property name="hibernate.c3p0.timeout" value="100" />
+        		<property name="hibernate.c3p0.idle_test_period" value="300" />
+        		<property name="hibernate.c3p0.numHelperThreads" value="10" />
+        		<property name="hibernate.use_sql_comments" value="false" />
+        		<property name="hibernate.show_sql" value="true"/>
+				<property name="hibernate.format_sql" value="true"/> 
+				
+				<property name="hibernate.connection.autocommit" value="false" />
+				<property name="hibernate.default_schema" value="tradeprod" />
+				<property name="hibernate.max_fetch_depth" value="5" />
+				<property name="hibernate.show_sql" value="true"/>
+				<property name="hibernate.format_sql" value="true"/>
+				-->
+				
+				<!-- <property name="hibernate.generate_statistics" value="true"/>
+				<property name="hibernate.current_session_context_class" value="thread" />
+                <property name="hibernate.c3p0.acquireRetryAttempts" value="10"/>
+                <property name="hibernate.c3p0.acquireRetryDelay" value="250" />
+				<property name="hibernate.c3p0.breakAfterAcquireFailure" value="true"/>
+				
+				<property name="hibernate.c3p0.debugUnreturnedConnectionStackTraces" value="true"/>
+				<property name="hibernate.c3p0.unreturnedConnectionTimeout" value="60"/>
+				<property name="hibernate.c3p0.max_statements" value="50" />
+				
+				<property name="hibernate.c3p0.preferredTestQuery" value="select 1 from dual;" />
+				<property name="hibernate.c3p0.testConnectionOnCheckin" value="true"/>
+				<property name="hibernate.c3p0.testConnectionOnCheckout" value="true"/>
+				 -->
+				<!-- <property name="hibernate.c3p0.maxConnectionAge" value="0"/>
+  				<property name="hibernate.c3p0.maxIdleTimeExcessConnections" value="300"/> -->
+
+				<!-- CACHE  				
+  				<property name="hibernate.cache.provider_class" value="org.hibernate.cache.NoCacheProvider"/>
+        		<property name="hibernate.cache.provider_class" value="org.hibernate.cache.OSCacheProvider"/>
+        		<property name="hibernate.cache.use_second_level_cache" value="true"/> 
+        		
+        		<property name="hibernate.connection.characterEncoding" value="UTF-8" />
+				<property name="hibernate.connection.useUnicode" value="true" />
+        		-->
+
+	        </properties>
+	</persistence-unit>
+	<persistence-unit name="sic" transaction-type="RESOURCE_LOCAL">
+			<provider>org.hibernate.ejb.HibernatePersistence</provider>
+			<jta-data-source>java:/SicDS</jta-data-source>
+			<class>br.com.sp.sic.model.vo.GenericEntity</class>
+			<class>br.com.sp.sic.model.vo.Evento</class>
+			<!-- <class>br.com.sp.sic.model.vo.UploadArquivo</class> -->
+			<class>br.com.sp.sic.model.vo.Foto</class>
+			<class>br.com.sp.sic.model.vo.Arquivo</class>
+			<class>br.com.sp.sic.model.vo.ArqLaudo</class>
+			<class>br.com.sp.sic.model.vo.Pessoa</class>
+			<class>br.com.sp.sic.model.vo.Cliente</class>
+			<class>br.com.sp.sic.model.vo.cq.AnaliseProducao</class>
+			<class>br.com.sp.sic.model.vo.cq.Amostra</class>
+			<class>br.com.sp.sic.model.vo.cq.AmostraResultado</class>
+			<class>br.com.sp.sic.model.vo.cq.AmostraResultadoFormula</class>
+			<class>br.com.sp.sic.model.vo.cq.Lote</class>
+			<class>br.com.sp.sic.model.vo.cq.LoteLaudo</class>
+			<class>br.com.sp.sic.model.vo.cq.LoteLaudoAmostra</class>
+			<class>br.com.sp.sic.model.vo.cq.LoteResultadoLaudo</class>
+			<class>br.com.sp.sic.model.vo.cq.LoteResultadoFnLaudo</class>
+			<class>br.com.sp.sic.model.vo.cq.ModeloLaudo</class>
+			<class>br.com.sp.sic.model.vo.cq.ModeloLaudoItem</class>
+			<class>br.com.sp.sic.model.vo.cq.Pallet</class>
+			<class>br.com.sp.sic.model.vo.cq.ParamFisicoQuimico</class>
+			<class>br.com.sp.sic.model.vo.cq.ParamFisicoQuimicoElemento</class>
+			<class>br.com.sp.sic.model.vo.cq.ParamFisicoQuimicoFormula</class>
+			<class>br.com.sp.sic.model.vo.cq.ParamFisicoQuimicoItem</class>
+			<class>br.com.sp.sic.model.vo.cq.ParamFisQuimTpResultado</class>
+			<class>br.com.sp.sic.model.vo.cq.Produto</class>
+			<class>br.com.sp.sic.model.vo.cq.TipoTurno</class>
+			<class>br.com.sp.sic.model.vo.cq.Turno</class>
+			<class>br.com.sp.sic.model.vo.cq.UnidadeMedida</class>
+			<class>br.com.sp.sic.model.vo.cq.UsinaProdutiva</class>
+			<class>br.com.sp.sic.model.vo.cq.MovimentacaoPallet</class>
+			
+			<class>br.com.sp.sic.model.vo.datamace.Colaborador</class>
+			<class>br.com.sp.sic.model.vo.datamace.Cargo</class>
+			<class>br.com.sp.sic.model.vo.datamace.Departamento</class>
+			<class>br.com.sp.sic.model.vo.datamace.Ferias</class>
+			<class>br.com.sp.sic.model.vo.datamace.HistoricoAfastamento</class>
+			<class>br.com.sp.sic.model.vo.datamace.HistoricoSalario</class>
+			<class>br.com.sp.sic.model.vo.pedido.VwTabelaPreco</class>
+			<class>br.com.sp.sic.model.vo.pedido.VwPedido</class>
+			<class>br.com.sp.sic.model.vo.pedido.VwProduto</class>
+			<class>br.com.sp.sic.model.vo.pedido.VwNaturezaOperacao</class>
+			<class>br.com.sp.sic.model.vo.pedido.VwCondicaoPagamento</class>
+			<class>br.com.sp.sic.model.vo.pedido.MvTbCliente</class>
+			<class>br.com.sp.sic.model.vo.pedido.MvTbClienteItem</class>
+			<!-- 
+				<exclude-unlisted-classes>false</exclude-unlisted-classes>
+			 -->
+
+	        <properties>
+	        	<!--
+	            <property name="hibernate.hbm2ddl.auto" value="update"/>-->
+	            <property name="hibernate.archive.autodetection" value="class" />
+	            <property name="hibernate.dialect" value="org.hibernate.dialect.OracleDialect"/>
+	            <!-- <property name="hibernate.dialect" value="org.hibernate.dialect.MySQLDialect" /> -->
+	            <!-- <property name="hibernate.c3p0.validate" value="true" />
+				<property name="hibernate.connection.provider_class" value="org.hibernate.service.jdbc.connections.internal.C3P0ConnectionProvider" /> -->
+	            
+				<!-- <property name = "hibernate.connection.driver_class" value = "oracle.jdbc.driver.OracleDriver"/> -->
+				<!-- <property name = "hibernate.connection.datasource" value = "java:/CisneDS"/> -->
+				<!-- <property name = "hibernate.connection.driver_class" value = "oracle.jdbc.driver.OracleDriver"/>
+				<property name = "hibernate.connection.url" value = "jdbc:oracle:thin:@192.168.74.53:1521:MANUT"/>
+				<property name = "hibernate.connection.username" value = "desenv"/>
+				<property name = "hibernate.connection.password" value = "1q2w3e4r"/> -->
+
+				<!-- <property name="hibernate.connection.provider_class" value="org.hibernate.service.jdbc.connections.internal.C3P0ConnectionProvider" />
+				<property name="hibernate.c3p0.driverClass" value="oracle.jdbc.driver.OracleDriver" />
+        		<property name="hibernate.c3p0.acquireIncrement" value="10" />        		
+        		<property name="hibernate.c3p0.max_statements" value="1000" />
+        		<property name="hibernate.c3p0.min_size" value="10" />
+        		<property name="hibernate.c3p0.max_size" value="100" />
+        		<property name="hibernate.c3p0.timeout" value="100" />
+        		<property name="hibernate.c3p0.idle_test_period" value="300" />
+        		<property name="hibernate.c3p0.numHelperThreads" value="10" />
+        		
+        		<property name="hibernate.show_sql" value="true"/>
+				<property name="hibernate.format_sql" value="true"/>
+				
+				<property name="hibernate.generate_statistics" value="true"/>
+				<property name="hibernate.current_session_context_class" value="thread" />
+                <property name="hibernate.c3p0.acquireRetryAttempts" value="20"/>
+                <property name="hibernate.c3p0.acquireRetryDelay" value="250" />
+				<property name="hibernate.c3p0.breakAfterAcquireFailure" value="true"/>
+				<property name="hibernate.c3p0.preferredTestQuery" value="select 1 from dual;" />
+				<property name="hibernate.c3p0.testConnectionOnCheckin" value="true"/>
+				<property name="hibernate.c3p0.testConnectionOnCheckout" value="true"/>
+				
+				<property name="hibernate.c3p0.maxConnectionAge" value="0"/>
+  				<property name="hibernate.c3p0.maxIdleTimeExcessConnections" value="300"/>
+  				<property name="hibernate.cache.provider_class" value="org.hibernate.cache.NoCacheProvider"/> -->
+  				
+        		<!-- <property name="hibernate.cache.provider_class" value="org.hibernate.cache.OSCacheProvider"/>
+        		<property name="hibernate.cache.use_second_level_cache" value="true"/> 
+        		
+        		<property name="hibernate.connection.characterEncoding" value="UTF-8" />
+				<property name="hibernate.connection.useUnicode" value="true" />
+        		-->
+
+	        </properties>
+	</persistence-unit>
+</persistence>

@@ -1,0 +1,134 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	  xmlns:h="http://java.sun.com/jsf/html"
+	  xmlns:ui="http://java.sun.com/jsf/facelets"
+	  xmlns:f="http://java.sun.com/jsf/core"
+	  xmlns:p="http://primefaces.org/ui">
+<h:head>
+	<f:loadBundle basename="messages_pt_BR" var="msg" />
+</h:head>
+<h:body>
+	<f:metadata>
+		<f:event listener="#{contaCorrenteCaixaController.init()}" type="preRenderView"></f:event>
+	</f:metadata>
+	<ui:composition template="../../template/commonLayout.xhtml">
+		<ui:define name="content">
+			<div class="ContainerIndent">
+				<h:form id="form">
+					<p:confirmDialog global="true" showEffect="puff" hideEffect="puff" widgetVar="dialogExcluir" appendTo="@(body)">
+						<p:commandButton value="Sim" type="button" styleClass="ui-confirmdialog-yes" icon="fa fa-check Fs18 white" />
+						<p:commandButton value="Não" type="button" styleClass="ui-confirmdialog-no" icon="fa fa-times Fs18 white" />
+					</p:confirmDialog>
+
+					<p:panel styleClass="panel">
+						<p:growl id="messages" autoUpdate="false" />
+						<div class="container">
+							<h:outputText value="Gerenciar Conta Corrente" styleClass="title-page hardblue" />
+							<div class="right" style="text-align: right">
+								<p:commandButton value="Nova Conta" oncomplete="PF('dialogIncludAltContas').show();"  update=":manterIncludAltContas:gridIncludAltContas" icon="fa fa-plus Fs14 white" actionListener="#{contaCorrenteCaixaController.prepararInclusaoContas()}"/>
+										 <p:spacer width="5"></p:spacer>
+								<p:commandLink styleClass="commandLinkIcone" title="Atualizar" onclick="location.reload();" update="@form">
+									<i class="fa icon-arrows-cw title-page button" />
+								</p:commandLink>
+							</div>
+						</div>
+						<p:separator />
+
+						<p:dataTable id="tabelaContas" var="contas"
+					value="#{contaCorrenteCaixaController.listaContas}" paginator="true" paginatorPosition="bottom"
+					rows="7" filteredValue="#{contaCorrenteCaixaController.listaContasFiltro}"
+					rowsPerPageTemplate="5,10,15" emptyMessage="Não há Contas" style="overflow:auto"  scrollable="true">
+					
+					
+												
+					<p:column headerText="Código" sortBy="#{contas.idConta}" filterBy="#{contas.idConta}" style="width:11%;" filterStyle="width:80%"  priority="6">
+						<h:outputText value="#{contas.idConta}" />
+					</p:column>
+					
+					<p:column headerText="Conta" sortBy="#{contas.conta}" filterBy="#{contas.conta}"  priority="1">
+						<h:outputText value="#{contas.conta}" />
+					</p:column>
+
+					<p:column headerText="Descrição" sortBy="#{contas.descricao}" filterBy="#{contas.descricao}" priority="6">
+						<h:outputText value="#{contas.descricao}" />
+					</p:column>
+
+					<p:column headerText="Compõe Saldo" sortBy="#{contas.compSaldo}" filterBy="#{contas.compSaldo}" style="text-align:center;width:18% !important;" filterStyle="width:80%"  priority="1">
+						<h:outputText value= "#{contas.compSaldo == 1 ? 'Sim':'Não'}  "/>
+					</p:column>
+
+					<p:column headerText="Tipo" sortBy="#{contas.tpConta.descricao}" filterBy="#{contas.tpConta.descricao}"  priority="1">
+						<h:outputText value="#{contas.tpConta.descricao}" />
+					</p:column>
+
+					<p:column headerText="Banco" sortBy="#{contas.banco.descricao}" filterBy="#{contas.banco.descricao}"  priority="1">
+						<h:outputText value="#{contas.banco.descricao}" />
+					</p:column>
+					
+					<p:column style="text-align:center;width:15%;" >
+						<p:commandButton title="Alterar" icon="fa fa-pencil  Fs14 white" action="#{contaCorrenteCaixaController.prepararAlteracaoContas}" update=":manterIncludAltContas:gridIncludAltContas"
+										 oncomplete="PF('dialogIncludAltContas').show();">
+							<f:setPropertyActionListener target="#{contaCorrenteCaixaController.contaSelecionada}" value="#{contas}"/>
+						</p:commandButton>
+						<p:spacer width="5"></p:spacer>
+						<p:commandButton title="Excluir" icon="fa fa-trash Fs14 white" action="#{contaCorrenteCaixaController.excluirConta}" update=":form:messages :form:tabelaContas :form">
+						<p:confirm header="Atenção" message="#{msg['excluir.registro']}" icon="fa fa-info Fs18" />
+							<f:setPropertyActionListener target="#{contaCorrenteCaixaController.contaSelecionada}" value="#{contas}" />
+						</p:commandButton>
+					</p:column>
+					
+						
+						
+				</p:dataTable>
+					</p:panel>
+				</h:form>
+							
+			</div>
+		
+			
+			<p:dialog widgetVar="dialogIncludAltContas" header="Contas" modal="true" appendToBody="true" width="480" height="275" showEffect="fade" hideEffect="fade">
+			<h:form id="manterIncludAltContas">
+				<style>
+					.semBorda tr, .semBorda td {  
+  						border:	none !important;  
+					}
+			  	</style>	
+			<h:panelGrid id="gridIncludAltContas" columns="2" styleClass="semBorda">
+				<h:outputText value="Conta:"/>
+				<p:inputText value="#{contaCorrenteCaixaController.contas.conta}" maxlength="20"/>
+				
+				<h:outputText value="Descrição:"/>
+				<p:inputText id="descricao" value="#{contaCorrenteCaixaController.contas.descricao}" size="50" required="true"/>
+				
+				<h:outputText value="Compõe Saldo:"/>
+				<p:selectBooleanCheckbox id="compSaldo" value="#{contaCorrenteCaixaController.compSaldo}"/>
+				
+				<h:outputText value="Tipo:"/>
+				<p:selectOneMenu value="#{contaCorrenteCaixaController.contas.tpConta.id}" effect="fade" effectSpeed="500">
+					<f:selectItem itemLabel="Selecione" itemValue="" />  
+            		<f:selectItems value="#{contaCorrenteCaixaController.listTpContas}" var="tpContas" itemLabel="#{tpContas.descricao}" itemValue="#{tpContas.id}"/>   
+				</p:selectOneMenu>
+				
+				<h:outputText value="Banco:"/>
+				<p:selectOneMenu value="#{contaCorrenteCaixaController.contas.banco.id}" effect="fade" effectSpeed="500">
+					<f:selectItem itemLabel="Selecione" itemValue="" />  
+            		<f:selectItems value="#{contaCorrenteCaixaController.listBancos}" var="bancos" itemLabel="#{bancos.descricao}" itemValue="#{bancos.id}"/>   
+				</p:selectOneMenu>
+				
+			</h:panelGrid>
+			<p:separator></p:separator>
+			<h:panelGrid columns="2">
+				<p:commandButton value="Salvar" action="#{contaCorrenteCaixaController.salvarConta}" update=":form:messages :form:tabelaContas" 
+							 oncomplete="PF('dialogIncludAltContas').hide();" icon="fa fa-floppy-o Fs14 white">
+					<f:setPropertyActionListener target="#{contaCorrenteCaixaController.contaSelecionada}" value="#{contaCorrenteCaixaController.contas}" />
+				</p:commandButton>
+				<p:commandButton value="Cancelar" oncomplete="PF('dialogIncludAltContas').hide();" icon="fa fa-times Fs14 white"/>
+			</h:panelGrid>
+			</h:form>
+		</p:dialog>
+			
+		</ui:define>
+	</ui:composition>
+</h:body>
+</html>

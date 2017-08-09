@@ -1,0 +1,225 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:h="http://java.sun.com/jsf/html" xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core" xmlns:p="http://primefaces.org/ui"
+>
+
+<h:head>
+	<f:loadBundle basename="messages_pt_BR" var="msg" />
+</h:head>
+<h:body>
+	<ui:composition template="../../template/commonLayout.xhtml">
+		<ui:define name="content">
+			<div class="ContainerIndent">
+				<h:form id="form">
+					<p:confirmDialog global="true" showEffect="puff" hideEffect="puff" appendTo="@(body)">
+        				<p:commandButton value="Sim" type="button" styleClass="ui-confirmdialog-yes" icon="fa fa-check Fs18 white" />
+        				<p:commandButton value="Não" type="button" styleClass="ui-confirmdialog-no" icon="fa fa-times Fs18 white" />
+    				</p:confirmDialog>
+			    		
+					<p:panel styleClass="panel">
+						<p:growl id="messages" autoUpdate="false" />
+						<div class="container">
+							<div class="left">
+								<h:outputText value="Gerênciar Grupo" styleClass="title-page hardblue" />
+							</div>
+							<div class="right" style="text-align: right">
+								<p:commandLink styleClass="commandLinkIcone" title="#{msg['incluir']}" action="#{grupoController.prepararIncluir}" update=":grupoForm">
+									<i class="icon-plus title-page button" />
+								</p:commandLink>
+
+								<p:commandLink styleClass="commandLinkIcone" title="#{msg['alterar']}" action="#{grupoController.prepararAlterar}" update=":grupoForm :form:messages">
+									<i class="icon-pencil title-page button" />
+								</p:commandLink>
+
+								<p:commandLink styleClass="commandLinkIcone" title="#{msg['excluir']}" action="#{grupoController.excluir}" update=":form:messages :form:tableGrupo"
+											 oncomplete="PF('tableGrupo').clearFilters();">
+									<p:confirm header="Atenção" message="#{msg['excluir.registro']}" icon="fa fa-info Fs18"/>
+									<i class="icon-trash title-page button" />
+								</p:commandLink>
+							</div>
+						</div>
+						<p:separator />
+
+						<p:dataTable id="tableGrupo" widgetVar="tableGrupo" var="grupo" value="#{grupoController.grupos}" emptyMessage="#{msg['sem.registro']}"
+							 selectionMode="single" selection="#{grupoController.grupoSelecionado}" rowKey="#{grupo.id}" paginatorPosition="bottom" paginator="true"
+							 rows="14">
+
+							<p:column filterBy="#{grupo.id}" sortBy="#{grupo.id}" headerText="Código" styleClass="centralizar" filterStyleClass="filtro" width="10%" priority="3">
+								<h:outputText value="#{grupo.id}" />
+							</p:column>
+
+							<p:column filterBy="#{grupo.nome}" sortBy="#{grupo.nome}" headerText="Nome" styleClass="centralizar" filterStyleClass="filtro" priority="1">
+								<h:outputText value="#{grupo.nome}" />
+							</p:column>
+
+							<p:column filterBy="#{grupo.descricao}" sortBy="#{grupo.descricao}" headerText="Descrição" filterStyleClass="filtro" priority="2">
+								<h:outputText value="#{grupo.descricao}" />
+							</p:column>
+
+							<p:column headerText="Serviços" styleClass="centralizar" width="10%" priority="4">
+								<p:commandLink action="#{grupoController.prepararServicos}" update=":assistenteServicoForm" 
+											   oncomplete="PF('dialogAssistenteServico').show();">
+									<f:setPropertyActionListener value="#{grupo}" target="#{grupoController.grupoSelecionado}"/>
+									<i class="icon-link Fs26 button" />
+								</p:commandLink>
+							</p:column>
+
+							<p:column headerText="Autorizações" styleClass="centralizar" width="10%" priority="5">
+								<p:commandLink action="#{grupoController.prepararAutorizacoes}" update=":assistenteAutorizacaoForm"
+											   oncomplete="PF('dialogAssistenteAutorizacao').show();" >
+									<f:setPropertyActionListener value="#{grupo}" target="#{grupoController.grupoSelecionado}"/>
+									<i class="icon-lock Fs26 button" />
+								</p:commandLink>
+							</p:column>
+							
+							<p:column headerText="Serviços App" styleClass="centralizar" width="10%" priority="4">
+								<p:commandLink action="#{grupoController.prepararServicosApp}" update=":assistenteServicoAppForm" 
+											   oncomplete="PF('dialogAssistenteServicoApp').show();">
+									<f:setPropertyActionListener value="#{grupo}" target="#{grupoController.grupoSelecionado}"/>
+									<i class="icon-link-1 Fs26 button" />
+								</p:commandLink>
+							</p:column>
+
+							<p:column headerText="Autorizações App" styleClass="centralizar" width="10%" priority="5">
+								<p:commandLink action="#{grupoController.prepararAutorizacoesApp}" update=":assistenteAutorizacaoAppForm"
+											   oncomplete="PF('dialogAssistenteAutorizacaoApp').show();" >
+									<f:setPropertyActionListener value="#{grupo}" target="#{grupoController.grupoSelecionado}"/>
+									<i class="icon-lock-filled Fs26 button" />
+								</p:commandLink>
+							</p:column>
+						</p:dataTable>
+					</p:panel>
+				</h:form>
+
+				<p:dialog header="Grupo" widgetVar="dialogGrupo" modal="true" showEffect="puff" hideEffect="puff" appendTo="@(body)">
+					<h:form id="grupoForm">
+						<h:panelGrid columns="2">
+							<h:outputText value="Nome:" />
+							<p:inputText value="#{grupoController.grupo.nome}" rendered="#{grupoController.inclusao}" />
+							<h:outputText value="#{grupoController.grupo.nome}" rendered="#{!grupoController.inclusao}" />
+
+							<h:outputText value="Descrição:" />
+							<p:inputText value="#{grupoController.grupo.descricao}" size="35"/>
+						</h:panelGrid>
+						<p:spacer height="20" width="100%" />
+						<p:commandButton value="Salvar" icon="fa fa-check Fs18 white" action="#{grupoController.salvar}" update=":form"
+							oncomplete="PF('dialogGrupo').hide(); PF('tableGrupo').clearFilters();">
+							<f:setPropertyActionListener value="#{grupoController.grupo}" target="#{grupoController.grupoSelecionado}" />
+						</p:commandButton>
+						<p:commandButton value="Cancelar" icon="fa fa-times Fs18 white" onclick="PF('dialogGrupo').hide();" />
+					</h:form>
+				</p:dialog>
+				
+				<p:dialog header="Assistente Autorização" widgetVar="dialogAssistenteAutorizacao" modal="true" showEffect="puff" hideEffect="puff" width="40%" appendTo="@(body)"
+						  onHide="PF('tableAutorizacao').clearFilters();">
+	            	<h:form id="assistenteAutorizacaoForm">
+	            		<p:dataTable id="tableAutorizacao" widgetVar="tableAutorizacao" var="autorizacao" value="#{grupoController.autorizacoes}" emptyMessage="#{msg['sem.registro']}"
+							selection="#{grupoController.autorizacoesSelecionadas}" rowKey="#{autorizacao.id}" scrollable="true" scrollHeight="400"
+							rowSelectMode="checkbox" >
+							
+							<p:column selectionMode="multiple" styleClass="centralizar" width="5%"/>
+							
+							<p:column headerText="Serviço" sortBy="#{autorizacao.servico.descricao}" filterBy="#{autorizacao.servico.descricao}">
+                				<h:outputText value="#{autorizacao.servico.descricao}"/>
+            				</p:column>
+            				
+            				<p:column headerText="Autorização" sortBy="#{autorizacao.descricao}" filterBy="#{autorizacao.descricao}">
+                				<h:outputText value="#{autorizacao.descricao}"/>
+            				</p:column>
+	                	</p:dataTable>
+	                	
+	                	<p:spacer width="100%" height="3"/>
+	                	
+	                	<p:commandButton value="Salvar" icon="fa fa-check Fs18 white" action="#{grupoController.salvarAutorizacoes}" update=":form"
+										 oncomplete="PF('dialogAssistenteAutorizacao').hide(); PF('tableGrupo').clearFilters();  PF('tableAutorizacao').clearFilters();">
+							<f:setPropertyActionListener value="#{grupoController.grupo}" target="#{grupoController.grupoSelecionado}" />
+						</p:commandButton>
+						<p:commandButton value="Cancelar" icon="fa fa-times Fs18 white" onclick="PF('dialogAssistenteAutorizacao').hide();  PF('tableAutorizacao').clearFilters();" />
+        			</h:form>
+			    </p:dialog>
+			    
+			    <p:dialog header="Assistente Autorização App" widgetVar="dialogAssistenteAutorizacaoApp" modal="true" showEffect="puff" hideEffect="puff" width="40%" appendTo="@(body)"
+						  onHide="PF('tableAutorizacaoApp').clearFilters();">
+	            	<h:form id="assistenteAutorizacaoAppForm">
+	            		<p:dataTable id="tableAutorizacaoApp" widgetVar="tableAutorizacao" var="autorizacao" value="#{grupoController.autorizacoesApp}" emptyMessage="#{msg['sem.registro']}"
+							selection="#{grupoController.autorizacoesAppSelecionadas}" rowKey="#{autorizacao.id}" scrollable="true" scrollHeight="400"
+							rowSelectMode="checkbox" >
+							
+							<p:column selectionMode="multiple" styleClass="centralizar" width="5%"/>
+							
+							<p:column headerText="Autorização" sortBy="#{autorizacao.descricao}" filterBy="#{autorizacao.descricao}">
+                				<h:outputText value="#{autorizacao.descricao}"/>
+            				</p:column>
+	                	</p:dataTable>
+	                	
+	                	<p:spacer width="100%" height="3"/>
+	                	
+	                	<p:commandButton value="Salvar" icon="fa fa-check Fs18 white" action="#{grupoController.salvarAutorizacoesApp}" update=":form"
+										 oncomplete="PF('dialogAssistenteAutorizacaoApp').hide(); PF('tableGrupo').clearFilters();  PF('tableAutorizacaoApp').clearFilters();">
+							<f:setPropertyActionListener value="#{grupoController.grupo}" target="#{grupoController.grupoSelecionado}" />
+						</p:commandButton>
+						<p:commandButton value="Cancelar" icon="fa fa-times Fs18 white" onclick="PF('dialogAssistenteAutorizacaoApp').hide();  PF('tableAutorizacaoApp').clearFilters();" />
+        			</h:form>
+			    </p:dialog>
+
+				<p:dialog header="Assistente Serviço" widgetVar="dialogAssistenteServico" modal="true" showEffect="puff" hideEffect="puff" width="40%" appendTo="@(body)"
+						  onHide="PF('tableServico').clearFilters();">
+	            	<h:form id="assistenteServicoForm">
+	            		<p:dataTable id="tableServico" widgetVar="tableServico" var="servico" value="#{grupoController.servicos}" emptyMessage="#{msg['sem.registro']}"
+							selection="#{grupoController.servicosSelecionados}" rowKey="#{servico.id}" scrollable="true" scrollHeight="400"
+							rowSelectMode="checkbox" >
+							
+							<p:column selectionMode="multiple" styleClass="centralizar" width="5%"/>
+							
+							<p:column headerText="Menu" sortBy="#{servico.menu.descricao}" filterBy="#{servico.menu.descricao}">
+                				<h:outputText value="#{servico.menu.descricao}" />
+            				</p:column>
+            				
+            				<p:column headerText="Serviço" sortBy="#{servico.descricao}" filterBy="#{servico.descricao}">
+                				<h:outputText value="#{servico.descricao}"/>
+            				</p:column>
+	                	</p:dataTable>
+	                	
+	                	<p:spacer width="100%" height="3"/>
+	                	
+	                	<p:commandButton value="Salvar" icon="fa fa-check Fs18 white" action="#{grupoController.salvarServicos}" update=":form"
+										 oncomplete="PF('dialogAssistenteServico').hide(); PF('tableGrupo').clearFilters();  PF('tableServico').clearFilters();">
+							<f:setPropertyActionListener value="#{grupoController.grupo}" target="#{grupoController.grupoSelecionado}" />
+						</p:commandButton>
+						<p:commandButton value="Cancelar" icon="fa fa-times Fs18 white" onclick="PF('dialogAssistenteServico').hide();  PF('tableServico').clearFilters();" />
+        			</h:form>
+			    </p:dialog>
+			    
+			    <p:dialog header="Assistente Serviço App" widgetVar="dialogAssistenteServicoApp" modal="true" showEffect="puff" hideEffect="puff" width="50%" appendTo="@(body)"
+						  onHide="PF('tableServicoApp').clearFilters();">
+	            	<h:form id="assistenteServicoAppForm">
+	            		<p:dataTable id="tableServicoApp" widgetVar="tableServicoApp" var="servico" value="#{grupoController.servicosApp}" emptyMessage="#{msg['sem.registro']}"
+							selection="#{grupoController.servicosAppSelecionados}" rowKey="#{servico.id}" scrollable="true" scrollHeight="400"
+							rowSelectMode="checkbox" >
+							
+							<p:column selectionMode="multiple" styleClass="centralizar" width="5%"/>
+							
+							<p:column headerText="Serviço" sortBy="#{servico.descricao}" filterBy="#{servico.descricao}">
+                				<h:outputText value="#{servico.descricao}"/>
+            				</p:column>
+            				
+            				<p:column headerText="Regra" sortBy="#{servico.regra}" filterBy="#{servico.regra}">
+                				<h:outputText value="#{servico.regra}"/>
+            				</p:column>
+	                	</p:dataTable>
+	                	
+	                	<p:spacer width="100%" height="3"/>
+	                	
+	                	<p:commandButton value="Salvar" icon="fa fa-check Fs18 white" action="#{grupoController.salvarServicosApp}" update=":form"
+										 oncomplete="PF('dialogAssistenteServicoApp').hide(); PF('tableGrupo').clearFilters();  PF('tableServicoApp').clearFilters();">
+							<f:setPropertyActionListener value="#{grupoController.grupo}" target="#{grupoController.grupoSelecionado}" />
+						</p:commandButton>
+						<p:commandButton value="Cancelar" icon="fa fa-times Fs18 white" onclick="PF('dialogAssistenteServicoApp').hide();  PF('tableServicoApp').clearFilters();" />
+        			</h:form>
+			    </p:dialog>
+			</div>
+		</ui:define>
+	</ui:composition>
+</h:body>
+</html>

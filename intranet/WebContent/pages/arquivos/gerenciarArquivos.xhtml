@@ -1,0 +1,342 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" 
+xmlns:h="http://java.sun.com/jsf/html" 
+xmlns:ui="http://java.sun.com/jsf/facelets" 
+xmlns:f="http://java.sun.com/jsf/core" 
+xmlns:p="http://primefaces.org/ui">
+<h:head>
+	<f:loadBundle basename="messages_pt_BR" var="msg" />
+	
+	<style>
+		.ui-panelgrid > * > tr, .ui-panelgrid > * > tr > td.ui-panelgrid-cell {
+    	border: none; !important;
+	  }
+	</style>
+
+</h:head>
+
+
+
+<h:body>
+	<f:metadata>
+		<f:event listener="#{sistemaDeArquivosController.init()}" type="preRenderView"></f:event>
+	</f:metadata>
+	<ui:composition template="../../template/commonLayout.xhtml">
+		<ui:define name="content">
+		
+			<div class="ContainerIndent">
+			<p:panel styleClass="panel">
+				<h:form id="itens">
+					<p:confirmDialog global="true" showEffect="puff" hideEffect="puff" appendTo="@(body)">
+						<p:commandButton value="Sim" type="button" styleClass="ui-confirmdialog-yes" icon="fa fa-check Fs18 white" />
+						<p:commandButton value="Não" type="button" styleClass="ui-confirmdialog-no" icon="fa fa-times Fs18 white" />
+					</p:confirmDialog>
+
+					
+						<p:growl id="messages" autoUpdate="true" escape="false" life="1500" />
+						<div class="container">
+							<h:outputText value="Gerenciar Arquivos" styleClass="title-page hardblue" />
+						<div class="right" style="text-align: right">
+								
+								<p:commandLink styleClass="commandLinkIcone" title="Atualizar" update=":tree:docTree" onclick="location.reload();">
+									<i class="fa icon-arrows-cw title-page button" />
+								</p:commandLink>
+
+								<p:commandLink styleClass="commandLinkIcone" title="Pastas" disabled="#{sistemaDeArquivosController.bloqueiaPasta}" action="#{sistemaDeArquivosController.prepararPastas}" update=":manterPastasArquivo" oncomplete="PF('dialogPastas').show();" >
+									<i class="fa  icon-folder-open title-page button" />
+								</p:commandLink>
+								
+
+								<p:commandLink styleClass="commandLinkIcone" title="Incluir Arquivo" disabled="#{sistemaDeArquivosController.bloqueiaArquivo}" actionListener="#{sistemaDeArquivosController.prepararInclusaoArquivo}"  update=":itens:messages :manterUploadArquivo" id="btnIncludArq" onsuccess="PF('dialogUp').show();">
+									<i class="fa icon-doc title-page button" />
+								</p:commandLink>
+								
+							</div>
+						</div>	
+						<p:separator />
+				</h:form>
+				
+				
+				<table style="width: 100%">
+					<tr>
+						<td valign="top">
+							<div>
+								<h:form id="tree">
+									<p:tree id="docTree" value="#{sistemaDeArquivosController.root}"
+										var="doc" animate="true" dynamic="true" cache="true"
+										selectionMode="single" style="width:370px;important;"
+										selection="#{sistemaDeArquivosController.selectedNode}">
+										<p:ajax event="select" update=":itens:btnIncludArq :dadosArquivo:tabelaArquivo" listener="#{sistemaDeArquivosController.onSelectPasta}"/>
+										<p:treeNode expandedIcon="ui-icon-folder-open" collapsedIcon="ui-icon-folder-collapsed">
+											<h:outputText value="#{doc}" />
+										</p:treeNode>
+									</p:tree>
+								</h:form>
+							</div>
+						</td>
+						<td valign="top" width="100%">
+							<div>
+								<p:panel>
+									<h:form id="dadosArquivo">
+										<p:dataTable id="tabelaArquivo" var="arquivos" paginatorPosition="bottom"
+											value="#{sistemaDeArquivosController.listaArquivo}" paginator="true"
+											rows="7" filteredValue="#{sistemaDeArquivosController.listaArquivoFiltro}" scrollable="true"
+											rowsPerPageTemplate="5,10,15" emptyMessage="Não há arquivos" style="overflow:auto" scrollWidth="100%">
+											
+											<p:column headerText="Código" sortBy="#{arquivos.idArquivo}" filterBy="#{arquivos.idArquivo}" filterStyle="width:70%" style="text-align:left;width: 12%;important;" priority="6" width="12%">
+												<h:outputText value="#{arquivos.idArquivo}" />
+											</p:column>
+
+											<p:column headerText="Descrição" sortBy="#{arquivos.descricao}" filterBy="#{arquivos.descricao}" filterMatchMode="contains" filterStyle="width:70%" priority="6" width="20%">
+												<h:outputText value="#{arquivos.descricao}" />
+											</p:column>
+
+											<p:column headerText="Inclusão" sortBy="#{arquivos.dtInclusao}" filterBy="#{arquivos.dtInclusao}" filterStyle="width:70%" priority="6" width="16%">
+												<h:outputText value="#{arquivos.dtInclusao}">
+												<f:convertDateTime pattern="dd/MM/yyyy" />
+												</h:outputText>
+											</p:column>
+
+											<p:column headerText="Arquivo" sortBy="#{arquivos.nomeArquivo}" filterBy="#{arquivos.nomeArquivo}" filterMatchMode="contains" filterStyle="width:70%" priority="1" width="27%">
+												<h:outputText value="#{arquivos.nomeArquivo}" />
+											</p:column>
+											
+											<p:column headerText="Abrir" style="text-align:center;" priority="6">
+												<p:commandButton id="btnVisualizar" onclick="target='_blank';" title="Visualizar" 
+													actionListener="#{sistemaDeArquivosController.visualizarPDFDb(arquivos)}"
+													update=":manterVisualizarPDF"
+												    icon="fa fa-folder-open  Fs16 white" ajax="false">
+													<p:fileDownload contentDisposition="inline" value="#{sistemaDeArquivosController.imagemArquivo}" />
+												<p:overlayPanel appendToBody="true" id="regraVisualizar" for="btnVisualizar" hideEffect="clip" showEffect="clip" showEvent="mouseover" hideEvent="mouseout">
+  													Caso o arquivo não seja exibido na nova aba, tecle F5!
+												</p:overlayPanel>		
+												</p:commandButton>
+											</p:column>
+											
+											<p:column headerText="Excluir" style="text-align:center;" priority="6">
+												<p:commandButton action="#{sistemaDeArquivosController.excluirArquivo(arquivos)}"
+													title="Excluir" update=":dadosArquivo:tabelaArquivo"
+													icon="fa fa-trash Fs16 white" disabled="#{sistemaDeArquivosController.bloqueiaArquivo}">
+													<p:confirm header="Atenção" message="#{msg['excluir.registro']}" icon="fa fa-info Fs18" />
+													</p:commandButton>
+											</p:column>
+											
+											<p:column headerText="Alterar" style="text-align:center;" priority="6">
+												<p:commandButton 
+													title="Alterar" icon="fa fa-check Fs16 white" disabled="#{sistemaDeArquivosController.bloqueiaArquivo}"
+													action="#{sistemaDeArquivosController.prepararAlteracaoArquivo}" 
+													update=":itens:messages :dadosArquivo:tabelaArquivo :manterUploadArquivo" oncomplete="PF('dialogUp').show();">
+													<f:setPropertyActionListener target="#{sistemaDeArquivosController.arquivoSelecionado}" value="#{arquivos}"/>
+												</p:commandButton>	
+											</p:column>
+										</p:dataTable>
+										
+									</h:form>
+								</p:panel>
+							</div>
+						</td>
+					</tr>
+				</table>
+				
+				<p:dialog header="Pastas" widgetVar="dialogPastas" width="850" showEffect="slide" modal="true" appendToBody="true">
+			<h:form id="manterPastasArquivo">
+				<p:commandButton value="Incluir Pasta" icon="fa fa-folder-open  Fs16 white"  actionListener="#{sistemaDeArquivosController.prepararInclusao}" 
+								 update=":manterInclusaoPasta:dadosInclusaoPasta" oncomplete="PF('dialogIncludPastas').show();"/>
+				<p:separator></p:separator>
+				
+				<p:dataTable id="tabelaPastas" var="pastas" value="#{sistemaDeArquivosController.listaPasta}" paginator="true" rows="10"
+						selection="#{sistemaDeArquivosController.listaPastaSelecionada}"
+						selectionMode="multiple" paginatorPosition="bottom"
+						filteredValue="#{sistemaDeArquivosController.listaPastaFiltro}"
+						paginatorTemplate="{CurrentPageReport}  {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}">
+
+					<p:column headerText="Código" sortBy="#{pastas.idPasta}" filterBy="#{pastas.idPasta}" style="text-align:center;width:12%;important;" filterStyle="width:70%;">
+						<h:outputText value="#{pastas.idPasta}" />
+					</p:column>
+
+					<p:column headerText="Descrição" sortBy="#{pastas.descricao}" filterBy="#{pastas.descricao}">
+						<h:outputText value="#{pastas.descricao}" />
+					</p:column>
+
+					<p:column headerText="Setor" sortBy="#{pastas.csSetor.idSetor}" filterBy="#{pastas.csSetor}">
+						<h:outputText value="#{pastas.csSetor.idSetor} - #{pastas.csSetor.descricao}" />
+					</p:column>
+
+					<p:column headerText="Pasta Superior" sortBy="#{pastas.superior}" filterBy="#{pastas.superior}" style="text-align:center;width:20%;important;" filterStyle="width:70%;">
+						<h:outputText value="#{pastas.superior}" />
+					</p:column>
+					
+					<p:column headerText="Alterar" style="text-align:center;width:8%;important;">
+						<p:commandButton title="Alterar" update=":itens:messages :tree:docTree :manterPastasArquivo:tabelaPastas :manterInclusaoPasta:dadosInclusaoPasta"
+										 action="#{sistemaDeArquivosController.prepararAlteracao}" 
+										 oncomplete="PF('dialogIncludPastas').show();" icon="fa fa-check Fs16 white">
+							<f:setPropertyActionListener target="#{sistemaDeArquivosController.uploadPastaSelecionada}" value="#{pastas}"/>
+						</p:commandButton>				 
+					</p:column>
+
+					<p:column headerText="Excluir" style="text-align:center;width:8%;important;">
+						<p:commandButton title="Excluir" actionListener="#{sistemaDeArquivosController.excluirPasta(pastas)}"  icon="fa fa-trash Fs16 white"
+										 update=":itens:messages :tree:docTree :manterPastasArquivo:tabelaPastas :dadosArquivo:tabelaArquivo"
+										 onclick="return confirm('Deseja realmente excluir o registro?');"/>
+					</p:column>
+				</p:dataTable>
+			</h:form>
+		</p:dialog>
+		
+		<p:dialog header=" Upload de Arquivo" widgetVar="dialogUp" resizable="true" width="600" height="280" showEffect="slide" modal="true" appendToBody="true">
+			<h:form id="manterUploadArquivo" enctype="multipart/form-data">
+				<h:panelGrid id="dadosUploadArquivo" columns="2" style="margin-bottom:10px">
+					<h:outputLabel for="descricao" value="Descrição:" />
+					<p:inputText id="descricao" size="60" value="#{sistemaDeArquivosController.uploadArquivo.descricao}" maxlength="200" >
+						<f:validateLength for="descricao" minimum="3" maximum="200"/>
+					</p:inputText>	
+				</h:panelGrid>
+
+				<h:panelGrid columns="1">
+					<p:fileUpload
+						fileUploadListener="#{sistemaDeArquivosController.salvarArquivo}"
+						mode="advanced" dragDropSupport="false" label="Selecionar"
+						Label="Enviar" cancelLabel="Cancelar"
+						update="nomeArquivo" sizeLimit="4194304"
+						fileLimit="1" allowTypes="/(\.|\/)(pdf|xls|xlsx|doc|docx|txt|ppt|pptx)$/" 
+						invalidSizeMessage="O tamanho máximo permitido é de 4 MB !"
+						invalidFileMessage="Permitido somente o upload de Arquivos com extensão pdf, xls, xlsx, doc, docx, txt, ppt e pptx"/>
+					
+				</h:panelGrid>
+
+				<h:panelGrid columns="2">
+					<h:outputText id="lblArquivo" value="Arquivo:" />
+					<h:outputText id="nomeArquivo" value="#{sistemaDeArquivosController.uploadArquivo.nomeArquivo}" style="font-weight: bold;"/>
+				</h:panelGrid>
+
+				<p:spacer height="45" />
+
+				<h:panelGrid columns="3" style="position:relative;bottom:0">
+					
+					<p:commandButton action="#{sistemaDeArquivosController.salvarInformacoes}" update=":dadosArquivo:tabelaArquivo :itens:messages :manterUploadArquivo" value="Salvar">
+						<f:setPropertyActionListener target="#{sistemaDeArquivosController.arquivoSelecionado}" value="#{sistemaDeArquivosController.uploadArquivo}"/>
+					</p:commandButton>
+					<p:commandButton id="userComp" actionListener="#{sistemaDeArquivosController.prepararUsuariosComp}" disabled="#{sistemaDeArquivosController.bloqueiaArquivoSalvo}"
+									 update=":manterUsuarioComp :itens:messages " oncomplete="PF('dialogUsuarioComp').show();" value="Usuários Compartilhados" >
+					</p:commandButton>
+					<p:commandButton update=":manterSetorComp :itens:messages " oncomplete="PF('dialogSetorComp').show();" 
+									 value="Setores Compartilhados" disabled="#{sistemaDeArquivosController.bloqueiaArquivoSalvo}" 
+									 actionListener="#{sistemaDeArquivosController.prepararSetoresComp}">
+						
+					</p:commandButton>				 
+				</h:panelGrid>
+
+			</h:form>
+		</p:dialog>
+		
+		<p:dialog header="Pasta" widgetVar="dialogIncludPastas" resizable="true" width="520" height="190" showEffect="slide" modal="true" appendToBody="true">
+			<h:form id="manterInclusaoPasta">
+				<p:panelGrid id="dadosInclusaoPasta" >
+					<p:row>
+						<p:column>
+							<h:outputLabel value="Decrição:" />
+						</p:column>
+						<p:column>
+							<p:inputText id="descricao" value="#{sistemaDeArquivosController.uploadPasta.descricao}" size="50" maxlength="200">
+								<f:validateLength for="descricao" minimum="3" maximum="200"/>
+							</p:inputText>
+						</p:column>
+					</p:row>
+					<p:row>
+						<p:column>
+							<h:outputLabel value="Setor:" />
+						</p:column>
+						<p:column>
+							<p:inputText id="setor" value="#{sistemaDeArquivosController.uploadPasta.csSetor.idSetor}" maxlength="19" readonly="#{sistemaDeArquivosController.bloqueiaSetor}">
+								<f:validateLength for="setor" maximum="19"/>
+							</p:inputText>
+							<p:spacer width="2"/>
+							<p:commandButton icon="ui-icon-search" />
+						</p:column>
+					</p:row>
+					<p:row>
+						<p:column>
+							<h:outputLabel value="Pasta Superior:" />
+						</p:column>
+						<p:column>
+							<p:inputText id="superior" value="#{sistemaDeArquivosController.uploadPasta.superior}" maxlength="25">
+								<f:validateLength for="superior" maximum="25"/>
+								<f:validator validatorId="custom.sistemaArquivosValidator"/>
+							</p:inputText>	
+							<p:spacer width="2"/>
+							<p:commandButton  icon="ui-icon-search" action="#{sistemaDeArquivosController.prepararAssistenteSuperior}" update=":manterAssistentePasta" 
+											 oncomplete="PF('dialogAssistSuperior').show();"/>
+						</p:column>
+					</p:row>
+				</p:panelGrid>
+				<p:separator></p:separator>
+				<p:commandButton value="Salvar" action="#{sistemaDeArquivosController.salvar}" icon="ui-icon-disk"
+									 update=":itens:messages :tree:docTree :manterPastasArquivo:tabelaPastas :manterInclusaoPasta:dadosInclusaoPasta" 
+									 onsuccess="dialogIncludPastas.hide();">
+					<f:setPropertyActionListener target="#{sistemaDeArquivosController.uploadPastaSelecionada}" value="#{sistemaDeArquivosController.uploadPasta}"/>
+				</p:commandButton>		
+				<p:spacer width="7"></p:spacer>			 
+				<p:commandButton value="Cancelar" oncomplete="dialogIncludPastas.hide();" icon="ui-icon-cancel"/>
+			
+			</h:form>
+		</p:dialog>
+		
+		<p:dialog header="Compartilhar arquivo com Usuário" widgetVar="dialogUsuarioComp" resizable="false" modal="true" appendToBody="true">
+			<h:form id="manterUsuarioComp">
+				<p:pickList id="pickListUsuarioComp" value="#{sistemaDeArquivosController.usuariosComp}" var="usuariosComp"   
+                			itemLabel="#{usuariosComp}" itemValue="#{usuariosComp}" showSourceFilter="true" showTargetFilter="true">
+                	<f:facet name="sourceCaption">Usuários</f:facet>  
+        			<f:facet name="targetCaption">Compartilhados</f:facet>
+        			
+                </p:pickList>
+                <p:separator></p:separator>
+                <p:commandButton value="Salvar" actionListener="#{sistemaDeArquivosController.salvarUsuariosComp}" update=":itens:messages"/>
+                 <p:spacer width="8"></p:spacer>				
+                <p:commandButton value="Cancelar" onclick="dialogUsuarioComp.hide();"/>
+			</h:form>
+		</p:dialog>
+		
+		<p:dialog widgetVar="dialogSetorComp" header="Compartilhar arquivo com Setor" modal="true" appendToBody="true">
+			<h:form id="manterSetorComp">
+				<p:pickList id="pickListSetorComp" value="#{sistemaDeArquivosController.setoresComp}" var="setoresComp"   
+                			itemLabel="#{setoresComp}" itemValue="#{setoresComp}" showSourceFilter="true" showTargetFilter="true">
+                	<f:facet name="sourceCaption">Setores</f:facet>  
+        			<f:facet name="targetCaption">Compartilhados</f:facet>
+        			
+                </p:pickList>
+                <p:separator></p:separator>
+                <p:commandButton value="Salvar" actionListener="#{sistemaDeArquivosController.salvarSetoresComp}" update=":itens:messages"/>	
+                <p:spacer width="8"></p:spacer>		
+                <p:commandButton value="Cancelar" onclick="dialogSetorComp.hide();"/>
+			</h:form>
+		</p:dialog>
+			
+			<p:dialog header="Assistente de Pastas Superiores" widgetVar="dialogAssistSuperior" resizable="false" width="400" height="450" showEffect="explode" modal="true" appendToBody="true">
+			<h:form id="manterAssistentePasta">
+				<p:dataList value="#{sistemaDeArquivosController.listaPasta}" var="pastas" id="assistPastasSup"
+					paginator="true" rows="10"
+					rowsPerPageTemplate="5,10,15" type="none">
+
+					<f:facet name="header">  
+                		Pastas  
+            		</f:facet>
+            		
+					<p:commandButton icon="ui-icon-check" actionListener="#{sistemaDeArquivosController.atualizaPastaSuperior(pastas)}" 
+									 oncomplete="dialogAssistSuperior.hide();" update=":manterInclusaoPasta:dadosInclusaoPasta">
+						<f:setPropertyActionListener value="#{pastas}" target="#{sistemaDeArquivosController.uploadPastaSelecionada}" />
+					</p:commandButton>
+					
+					<h:outputText value="#{pastas.idPasta} - #{pastas.descricao}" style="margin-left:10px"/>
+					<br />
+					
+				</p:dataList>
+			</h:form>
+		</p:dialog>	
+				</p:panel>
+			</div>
+			
+		</ui:define>
+	</ui:composition>
+</h:body>
+</html>

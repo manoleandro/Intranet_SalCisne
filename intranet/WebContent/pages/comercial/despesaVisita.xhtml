@@ -1,0 +1,171 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:h="http://java.sun.com/jsf/html" xmlns:ui="http://java.sun.com/jsf/facelets" xmlns:f="http://java.sun.com/jsf/core" xmlns:p="http://primefaces.org/ui">
+
+<h:head>
+	<f:loadBundle basename="messages_pt_BR" var="msg" />
+</h:head>
+<h:body>
+	<f:metadata>
+		<f:viewAction action="#{despesaVisitaController.init}" />
+	</f:metadata>
+
+	<ui:composition template="../../template/commonLayout.xhtml">
+		<ui:define name="content">
+			<div class="ContainerIndent">
+				<h:form id="form" prependId="false">
+					<style>
+						.ui-panelgrid>*>tr, .ui-panelgrid>*>tr>td.ui-panelgrid-cell {
+							border: none !important;
+						}
+						
+						.ui-panelgrid{
+							border: none !important;
+						}
+					</style>
+					
+					<p:confirmDialog global="true" showEffect="puff" hideEffect="puff" appendTo="@(body)">
+						<p:commandButton value="Sim" type="button" styleClass="ui-confirmdialog-yes" icon="fa fa-check Fs18 white" />
+						<p:commandButton value="Não" type="button" styleClass="ui-confirmdialog-no" icon="fa fa-times Fs18 white" />
+					</p:confirmDialog>
+
+					<p:panel styleClass="panel">
+						<p:growl id="message" autoUpdate="false" />
+						<div class="container">
+							<h:outputText value="Despesa de Visita" styleClass="title-page hardblue" />
+
+							<div class="right" style="text-align: right">
+								<h:outputText value="#{despesaVisitaController.vendedorSelecionado.codZonaVendas} - #{despesaVisitaController.vendedorSelecionado.nomeVendedor}" styleClass="Fs16 FontBold" />
+								<p:commandLink styleClass="commandLinkIcone" title="#{msg['pesquisar.vendedor']}" action="#{despesaVisitaController.prepararVendedores}" update=":assistenteVendedoresForm">
+									<i class="icon-user-male title-page button" />
+								</p:commandLink>
+							</div>
+						</div>
+						<p:separator />
+						
+						<div class="container">
+							<p:panelGrid columns="4" styleClass="sem-borda">
+								<p:selectOneMenu value="#{despesaVisitaController.mesAnoUtil.mes}">
+			                		<f:selectItem itemLabel="Selecione" itemValue=""/>
+			    					<f:selectItems value="#{despesaVisitaController.mesAnoUtil.getMeses()}" var="mes" itemValue="#{mes}" itemLabel="#{mes.descricao}"/>
+			    				</p:selectOneMenu>
+			    				
+			    				<h:outputText value="/" styleClass="Fs24"/>
+			    				
+			    				<p:selectOneMenu value="#{despesaVisitaController.mesAnoUtil.ano}">
+			                		<f:selectItem itemLabel="Selecione" itemValue=""/>
+			    					<f:selectItems value="#{despesaVisitaController.mesAnoUtil.anos}"/>
+			    				</p:selectOneMenu>
+			    				
+			    				<p:commandLink styleClass="commandLinkIcone" action="#{despesaVisitaController.carregarDespesas}" 
+										   	update=":tableDespesaVisita">
+									<i class="icon-search title-page button" />
+								</p:commandLink>
+			    			</p:panelGrid>
+			    			
+							<p:panelGrid columns="5" styleClass="sem-borda">
+								<p:inputText value="#{despesaVisitaController.filtro}" placeholder="Filtro (Cod. ou Nome)">
+									<p:ajax event="keyup" delay="300" listener="#{despesaVisitaController.filtrar}" update=":tableDespesaVisita"/>
+								</p:inputText>
+							
+								<p:calendar id="data" pattern="dd/MM/yyyy" showOn="button" value="#{despesaVisitaController.data}" styleClass="centralizar" locale="pt" effect="puff"
+										placeholder="Filtro (Data)">
+								<p:ajax event="dateSelect" listener="#{despesaVisitaController.filtrarByData}" update=":tableDespesaVisita"/>
+								</p:calendar>
+							</p:panelGrid>
+						
+							<div style="text-align: right">
+								<p:commandLink styleClass="commandLinkIcone" title="#{msg['atualizar']}" action="#{despesaVisitaController.carregarDespesas}" update=":form :tableDespesaVisita">
+									<i class="icon-arrows-cw-1 title-page button" />
+								</p:commandLink>
+							</div>
+						</div>
+						
+						<p:separator />
+						
+						<p:dataTable id="tableDespesaVisita" widgetVar="tableDespesaVisita" var="despesa" value="#{despesaVisitaController.despesas}" 
+									 emptyMessage="#{msg['sem.registro']}" filteredValue="#{despesaVisitaController.despesasFiltro}"
+									 selectionMode="single" selection="#{despesaVisitaController.despesaSelecionada}" rowKey="#{despesa.id}" paginator="true" rows="12"
+									 paginatorPosition="bottom">
+							
+							<p:ajax event="rowSelect" listener="#{despesaVisitaController.prepararDespesa}" />		 
+
+							<p:column styleClass="centralizar" headerText="Data" filterBy="#{despesa.data}" sortBy="#{despesa.data}" filterStyleClass="filtro">
+								<h:outputText value="#{despesa.data}" >
+									<f:convertDateTime pattern="dd/MM/yyyy" />
+								</h:outputText>
+							</p:column>
+
+							<p:column styleClass="centralizar" headerText="Deslocamento" filterBy="#{despesa.deslocamento}" sortBy="#{despesa.deslocamento}" filterStyleClass="filtro">
+								<h:outputText value="#{despesa.deslocamento}" />
+							</p:column>
+
+							<p:column styleClass="centralizar" headerText="KM" filterBy="#{despesa.quantidadeKm}" sortBy="#{despesa.quantidadeKm}" filterStyleClass="filtro">
+								<h:outputText value="#{despesa.quantidadeKm}" >
+									<f:convertNumber />
+								</h:outputText>
+							</p:column>
+
+							<p:column styleClass="centralizar" headerText="Estada Dias" filterBy="#{despesa.quantidadeDiarias}" sortBy="#{despesa.quantidadeDiarias}" filterStyleClass="filtro">
+								<h:outputText value="#{despesa.quantidadeDiarias}" >
+									<f:convertNumber />
+								</h:outputText>
+							</p:column>
+
+							<p:column styleClass="centralizar" headerText="Qtd. Refeicções" filterBy="#{despesa.quantidadeRefeicoes}" sortBy="#{despesa.quantidadeRefeicoes}" filterStyleClass="filtro">
+								<h:outputText value="#{despesa.quantidadeRefeicoes}" >
+									<f:convertNumber />
+								</h:outputText>
+							</p:column>
+
+							<p:column styleClass="centralizar" headerText="Outros Gastos" filterBy="#{despesa.outrosGastos}" sortBy="#{despesa.outrosGastos}" filterStyleClass="filtro">
+								<h:outputText value="#{despesa.outrosGastos}" >
+									<f:convertNumber minFractionDigits="2" maxFractionDigits="2" />
+								</h:outputText>
+							</p:column>
+
+							<p:column styleClass="centralizar" headerText="Despesa Total" filterBy="#{despesa.totalDespesa}" sortBy="#{despesa.totalDespesa}" filterStyleClass="filtro">
+								<h:outputText value="#{despesa.totalDespesa}" >
+									<f:convertNumber minFractionDigits="2" maxFractionDigits="2" />
+								</h:outputText>
+							</p:column>
+							
+							<p:columnGroup type="footer">
+								<p:row>
+									<p:column colspan="2" style="text-align:right" footerText="Totais:" styleClass="Fs16 FontBold" />
+									<p:column footerText="#{despesaVisitaController.totalKm}" />
+									<p:column footerText="#{despesaVisitaController.totalDiarias}" />
+									<p:column footerText="#{despesaVisitaController.totalRefeicoes}" />
+									<p:column footerText="#{despesaVisitaController.totalOutrosGastos}" />
+									<p:column footerText="#{despesaVisitaController.totalDespesa}" />
+								</p:row>
+							</p:columnGroup>
+						</p:dataTable>
+					</p:panel>
+				</h:form>
+
+				<p:dialog header="Assistente Vendedores" focus="assistenteVendedoresForm" widgetVar="dialogAssistenteVendedores" modal="true" showEffect="puff" hideEffect="puff" width="60vw" appendTo="@(body)">
+					<h:form id="assistenteVendedoresForm">
+						<p:dataTable id="tableVendedores" widgetVar="tableVendedores" var="vendedor" value="#{despesaVisitaController.vendedores}" filteredValue="#{despesaVisitaController.vendedoresFiltro}" 
+							emptyMessage="#{msg['sem.registro']}" selectionMode="single"
+							selection="#{despesaVisitaController.vendedorSelecionado}" rowKey="#{vendedor.idVendedor}" paginator="true" rows="10" paginatorPosition="bottom">
+
+							<p:ajax event="rowSelect" listener="#{despesaVisitaController.carregarDespesas}" update=":form" oncomplete="PF('dialogAssistenteVendedores').hide();" />
+
+							<p:column headerText="Cód. Zona" sortBy="#{vendedor.codZonaVendas}" filterBy="#{vendedor.codZonaVendas}" styleClass="centralizar" priority="1">
+								<h:outputText value="#{vendedor.codZonaVendas}" />
+							</p:column>
+
+							<p:column headerText="Vendedor" sortBy="#{vendedor.nomeVendedor}" filterBy="#{vendedor.nomeVendedor}" priority="2">
+								<h:outputText value="#{vendedor.nomeVendedor}" />
+							</p:column>
+						</p:dataTable>
+						<p:spacer width="100%" height="5"/>
+						<p:commandButton value="Cancelar" icon="fa fa-times Fs18 white" onclick="PF('dialogAssistenteVendedores').hide();" id="btnCancelar"/>
+					</h:form>
+				</p:dialog>
+			</div>
+		</ui:define>
+	</ui:composition>
+</h:body>
+</html>

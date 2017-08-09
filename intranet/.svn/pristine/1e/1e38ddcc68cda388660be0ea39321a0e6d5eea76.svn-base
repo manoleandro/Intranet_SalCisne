@@ -1,0 +1,11 @@
+# XX urls que não passam pelo teste de usuário logado. Pode-se usar apenas a extensão
+urls.livres=inicio.xhtml,template.xhtml,exemplo.xhtml,logoff.xhtml,menu.xhtml,autorizacao.xhtml,.png,.gif,principal.xhtml,erro.xhtml,erroInterno.xhtml,erro404.xhtml,default.css,gerarTurnoProducao
+#
+atributo.sessao=usuario
+#
+url.autenticacao=/
+#
+url.semPermissao=/pages/commons/autorizacao.jsf
+#
+ips.livres=192.168.74.,187.33.32.252,192.168.2.10,187.33.32.250,187.33.39.,189.127.75.218,189.39.241.51,189.2.130.98,189.19.95.209,127.0.0.1,177.32.172.2,200.223.139.122,189.39.255.98
+

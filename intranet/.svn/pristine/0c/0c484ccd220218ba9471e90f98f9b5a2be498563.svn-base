@@ -1,0 +1,161 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	  xmlns:h="http://java.sun.com/jsf/html" 
+	  xmlns:ui="http://java.sun.com/jsf/facelets" 
+	  xmlns:f="http://java.sun.com/jsf/core" 
+	  xmlns:p="http://primefaces.org/ui">
+<h:head>
+	<f:loadBundle basename="messages_pt_BR" var="msg" />
+	
+	<style>
+		.ui-panelgrid > * > tr, .ui-panelgrid > * > tr > td.ui-panelgrid-cell {
+    	border: none; !important;
+	  }
+	</style>
+
+</h:head>
+
+
+
+<h:body>
+	<f:metadata>
+		<f:event listener="#{sistemaDeArquivosController.init()}" type="preRenderView"></f:event>
+	</f:metadata>
+	<ui:composition template="../../template/commonLayout.xhtml">
+		<ui:define name="content">
+		<div class="ContainerIndent">
+	<p:panel styleClass="panel">
+		<h:form id="itens">
+		<p:growl id="messages" autoUpdate="false" escape="false" life="1000" />
+		<div class="container">
+			<h:outputText value="Envio de arquivos por email" styleClass="title-page hardblue" />
+			
+			<div class="right" style="text-align: right">
+								
+								<p:commandLink styleClass="commandLinkIcone" title="Atualizar" onclick="location.reload();">
+									<i class="fa icon-arrows-cw title-page button" />
+								</p:commandLink>
+
+								<p:commandLink styleClass="commandLinkIcone" title="Selecionar Arquivos para Envio de E-mail" oncomplete="PF('dialogSelecionaArquivo').show();" actionListener="#{sistemaDeArquivosController.prepararMail}" update=":dadosMail">
+									<i class="fa icon-mail-alt title-page button" />
+								</p:commandLink>
+								
+								
+							
+								
+			</div>
+				
+		</div>
+		
+		<p:separator />
+		</h:form>
+
+		<p:layoutUnit position="center">
+			<h:form id="dadosEditor">
+			
+				<h:panelGrid columns="2">
+
+					<p:commandButton icon="fa fa-user Fs16 white" value="Para..." actionListener="#{sistemaDeArquivosController.prepararDestinatarioPara}" oncomplete="PF('dialogDestinatario').show();"  update=":assistenteDestinatario"/>
+					<p:inputText size="100" value="#{sistemaDeArquivosController.emailArquivo.destinatario}"/>
+
+					<p:commandButton icon="fa fa-users  Fs16 white" value="CC..." actionListener="#{sistemaDeArquivosController.prepararDestinatarioCC}" oncomplete="PF('dialogDestinatario').show();"  update=":assistenteDestinatario"/>
+					<p:inputText size="100" value="#{sistemaDeArquivosController.emailArquivo.cc}"/>
+
+					<p:commandButton value="Assunto" readonly="true" icon="fa fa-comment Fs16 white"/>
+					<p:inputText size="100" value="#{sistemaDeArquivosController.emailArquivo.assunto}"/>
+					
+					
+				
+				    <p:commandButton value="Enviar E-mail" icon="fa fa-envelope Fs16 white" action="#{sistemaDeArquivosController.enviarEmail}"  update=":itens:messages">
+					<f:setPropertyActionListener target="#{sistemaDeArquivosController.emailArquivoSelecionado}" value="#{sistemaDeArquivosController.emailArquivo}" />		
+					</p:commandButton>		 	
+				</h:panelGrid>
+				<p:separator></p:separator>
+				<p:editor id="editor" widgetVar="editorWidget" value="#{sistemaDeArquivosController.emailArquivo.corpoEmail}" style="width:100%"/>
+			</h:form>
+		</p:layoutUnit>
+		
+		
+		<p:dialog widgetVar="dialogDestinatario" header="Enviar Para" modal="true" appendToBody="true" showEffect="fade" hideEffect="fade">
+			<h:form id="assistenteDestinatario">
+			<p:tabView id="tabView" dynamic="true" >
+				<p:tab id="tabSetor" title="Setores">
+					<h:form id="manterSetorDestino">
+						<p:pickList id="pickListSetorDestino"
+							value="#{sistemaDeArquivosController.setoresDestino}"
+							var="setoresDestino" itemLabel="#{setoresDestino}"
+							itemValue="#{setoresDestino}" showSourceFilter="true" showTargetFilter="true">
+							<f:facet name="sourceCaption">Setores</f:facet>
+							<f:facet name="targetCaption">Selecionados</f:facet>
+
+						</p:pickList>
+						<p:separator></p:separator>
+						<p:commandButton id="btnSelecionarSetor" value="Salvar" actionListener="#{sistemaDeArquivosController.selecionarDestinatarioSetor}" update=":dadosEditor"  oncomplete="PF('dialogDestinatario').hide();"  process=":assistenteDestinatario:tabView:tabSetor" />
+						<p:spacer width="7"></p:spacer>
+						<p:commandButton value="Cancelar" onclick="PF('dialogDestinatario').hide();" />
+					</h:form>
+				</p:tab>
+				<p:tab id="tabUsuario" title="Usuários" >
+					<h:form id="manterUsuarioDestino">
+						<p:pickList id="pickListUsuarioDestino"
+							value="#{sistemaDeArquivosController.usuariosDestino}"
+							var="usuariosDestino" itemLabel="#{usuariosDestino}"
+							itemValue="#{usuariosDestino}" showSourceFilter="true" showTargetFilter="true">
+							<f:facet name="sourceCaption">Usuários</f:facet>
+							<f:facet name="targetCaption">Selecionados</f:facet>
+
+						</p:pickList>
+						<p:separator></p:separator>
+						<p:commandButton id="bntSelecionarUsuario" value="Salvar" actionListener="#{sistemaDeArquivosController.selecionarDestinatarioUsuario}" update=":dadosEditor"  oncomplete="PF('dialogDestinatario').hide();" process=":assistenteDestinatario:tabView:tabUsuario" />
+						<p:spacer width="7"></p:spacer>
+						<p:commandButton value="Cancelar" onclick="PF('dialogDestinatario').hide();" />
+					</h:form>
+				</p:tab>
+			</p:tabView>
+			</h:form>	  
+		</p:dialog>
+		
+		<p:dialog header="Arquivos adicionados no período" widgetVar="dialogSelecionaArquivo" appendToBody="true" modal="true" width="750" resizable="true">
+			<p:panel>
+				<h:form id="dadosMail">
+					<h:panelGrid columns="5">
+						<p:outputLabel for="dataInicio" value="Arquivos incluidos de:" />
+						<p:calendar mask="99/99/9999" locale="pt" pattern="dd/MM/yyyy" id="dataInicio" value="#{sistemaDeArquivosController.dataInicio}"  effect="slideDown" />
+						<p:outputLabel for="dataFim" value="Até:" />
+						<p:calendar locale="pt" mask="99/99/9999" pattern="dd/MM/yyyy" id="dataFim" value="#{sistemaDeArquivosController.dataFim}"  effect="slideDown" />
+						<p:commandButton value="Pesquisar" icon="fa fa-search Fs16 white" actionListener="#{sistemaDeArquivosController.pesquisarArquivosData}" update=":dadosMail:tabelaArquivo"/>
+					</h:panelGrid>
+					<p:separator></p:separator>
+					<p:dataTable id="tabelaArquivo" var="arquivo" value="#{sistemaDeArquivosController.listaArquivo}" selection="#{sistemaDeArquivosController.arquivosSelecionados}"
+								 rows="10" paginator="true" emptyMessage="Não há arquivos Adicionados no período" paginatorPosition="bottom" rowKey="#{arquivo.idArquivo}"
+								 filteredValue="#{sistemaDeArquivosController.listaArquivoFiltro}">
+						<p:column selectionMode="multiple" width="30" />
+						
+						<p:column headerText="Descrição" width="70%" sortBy="#{arquivo.descricao}" filterBy="#{arquivo.descricao}" filterStyle="width:90%;!important;">
+							#{arquivo.descricao}
+						</p:column>
+						
+						<p:column headerText="Inclusão" width="20%" sortBy="#{arquivo.dtInclusao}" filterBy="#{arquivo.dtInclusao}" style="text-align:center;!important;">
+							<h:outputText value="#{arquivo.dtInclusao}">
+								<f:convertDateTime pattern="dd/MM/yyyy" />
+							</h:outputText>
+						</p:column>
+						
+					</p:dataTable>
+					<p:separator></p:separator>
+						<p:commandButton value="Selecionar" actionListener="#{sistemaDeArquivosController.selecionarArquivosMail}" icon="ui-icon-check" update=":dadosEditor"
+									 	 oncomplete="PF('dialogSelecionaArquivo').hide();">
+						</p:commandButton>
+				</h:form>
+			</p:panel>							 	
+				
+		</p:dialog>
+				</p:panel>
+				</div>
+	</ui:define>
+			
+
+	</ui:composition>
+</h:body>
+</html>

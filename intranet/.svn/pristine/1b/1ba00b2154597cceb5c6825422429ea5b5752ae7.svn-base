@@ -1,0 +1,110 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:c="http://java.sun.com/jsp/jstl/core"
+	xmlns:p="http://primefaces.org/ui">
+
+
+<ui:composition template="../../pages/template/principal.xhtml">
+	<ui:define name="contentCadastro">
+		<h:form id="itens">
+			<style>
+				.center{
+					text-align:center !important
+				}
+			</style>
+			<p:growl id="messages" autoUpdate="false" escape="false" />
+			<p:toolbar id="toolbar">
+				<p:toolbarGroup align="left" style="margin-left: 10px; margin-top: 4px;">
+					<h:outputText value="Usuários" style="font-size:16px !important"/>	
+				</p:toolbarGroup>
+				<p:toolbarGroup align="right" >
+					<p:commandButton value="Voltar" icon="ui-icon-arrowreturnthick-1-w" action="#{manterUsuarioController.voltar}" />
+				</p:toolbarGroup>
+			</p:toolbar>
+		</h:form>
+		<p:spacer width="0" height="5"/>
+		<h:form id="form">
+			<p:tabView id="info2" dynamic="true" cache="true" activeIndex="0">
+			        <p:tab id="personal" title="Pessoal" titleStyle="font-size:10px">
+			            <p:panel header="Dados Pessoais"> 
+		                	<h:panelGrid columns="2" columnClasses="label, value" styleClass="grid">  
+		                    	<h:outputLabel for="usuario" value="Usuário:" />
+			                    <p:inputText id="usuario" value="#{manterUsuarioController.entity.usuario}" disabled="#{!manterUsuarioController.inclusao}"/>
+			                    
+			                    <h:outputLabel for="idColaborador" value="ID do Colaborador:" />
+			                    <p:inputText id="idColaborador" value="#{manterUsuarioController.entity.idColaborador}"/>
+										
+								<h:outputLabel for="documento" value="Documento (CPF/CNPJ):" />
+			                    <p:inputText id="documento" value="#{manterUsuarioController.entity.documento}"/>
+			                    
+			                    <h:outputLabel for="nome" value="Nome:" />
+			                    <p:inputText id="nome" value="#{manterUsuarioController.entity.nome}" size="60"/>
+			                    
+			                    <h:outputLabel for="email" value="E-mail:" />
+			                    <p:inputText id="email" value="#{manterUsuarioController.entity.email}" size="50"/>
+			                    
+			                    <h:outputLabel for="nascimento" value="Data de Nascimento:" />
+			                    <p:inputMask id="nascimento" value="#{manterUsuarioController.entity.dataNascimento}" mask="99/99/9999">
+			                    	<f:convertDateTime pattern="dd/MM/yyyy" />
+			                    </p:inputMask>
+		   
+		   						<h:outputLabel for="telefone" value="Telefone:" />
+			                    <p:inputMask id="telefone" value="#{manterUsuarioController.entity.telefone}" mask="(999) 9999-9999"/>
+			                    
+			                    <h:outputLabel for="celular" value="Celular:" />
+			                    <p:inputMask id="celular" value="#{manterUsuarioController.entity.celular}" mask="(999) 99999-9999"/>
+			                    
+			                    	
+								<p:outputLabel for="setor" value="Setor:" />
+			                    <p:inputText id="setor" value="#{manterUsuarioController.entity.idSetor}"/>
+			                    
+			                    <p:outputLabel for="gestor" value="Gestor:" />
+			                    <p:selectBooleanCheckbox id="gestor" value="#{manterUsuarioController.gestor}" />
+			                    
+			                    <h:outputLabel for="idConta" value="Código da Conta" title="Para emissão de relatório do saldo do Caixa"/>
+			                    <p:inputText id="idConta" value="#{manterUsuarioController.entity.idConta}"/>
+			                    
+			                    <h:outputLabel for="session" value="Tempo Sessão:" />
+			                    <p:inputText id="session" value="#{manterUsuarioController.entity.tempoLimite}"/>
+					      	</h:panelGrid>  
+            			</p:panel>
+	        		</p:tab> 
+	        		 
+			        <p:tab id="grupos" title="Grupo(s)" titleStyle="font-size:10px">
+			        	<p:panel header="Grupo(s)"> 
+		                    <p:selectManyCheckbox id="grupo" layout="pageDirection" value="#{manterUsuarioController.listaUsuarioGrupoSelecionado}" converter="grupoConverter" >
+		                        <f:selectItems  value="#{manterUsuarioController.listaUsuarioGrupo}" var="grupo" itemValue="#{grupo}" itemLabel="#{grupo.descricao}"/>
+		                    </p:selectManyCheckbox>
+		                </p:panel>
+			        </p:tab>
+			        
+			        <p:tab id="servicos" title="Serviço(s)" titleStyle="font-size:10px">
+			        	<p:panel header="Serviço(s)">
+			        		<p:scrollPanel style="width:100%;height:400px">
+			                	<p:selectManyCheckbox id="servico" layout="pageDirection" value="#{manterUsuarioController.listaUsuarioServicoSelecionado}" converter="servicoConverter" >
+			                    	<f:selectItems value="#{manterUsuarioController.listaUsuarioServico}" var="servico" itemValue="#{servico}" 
+			                    				itemLabel="#{servico.csMenu.descricao} - #{servico.descricao}" />
+			                	</p:selectManyCheckbox>
+			                </p:scrollPanel>
+			        	</p:panel>
+			        </p:tab>
+			        
+			        <p:tab id="campos" title="Campo(s)" titleStyle="font-size:10px">
+			        	<p:selectManyCheckbox id="campo" layout="pageDirection" value="#{manterUsuarioController.listaUsuarioCampoSelecionado}" converter="campoConverter">
+							<f:selectItems value="#{manterUsuarioController.listaUsuarioCampo}" var="campo" itemValue="#{campo}" itemLabel="#{campo.descricao}" />
+		                 </p:selectManyCheckbox>
+			        </p:tab>
+				</p:tabView>
+				<p:spacer width="100%" height="5"/>
+				<p:commandButton update=":itens:messages :form" action="#{manterUsuarioController.salvar}" value="Salvar" icon="ui-icon-disk">
+	        		<f:setPropertyActionListener value="#{manterUsuarioController.entity}" target="#{manterUsuarioController.usuarioSelecionado}"/>
+	        	</p:commandButton>
+	        	<p:commandButton value="Cancelar" icon="ui-icon-cancel" action="#{manterUsuarioController.voltar}"/>
+		</h:form>
+	</ui:define>
+</ui:composition>
+</html>

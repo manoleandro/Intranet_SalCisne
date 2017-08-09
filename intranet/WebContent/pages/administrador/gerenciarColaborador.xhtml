@@ -1,0 +1,256 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:h="http://java.sun.com/jsf/html" xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core" xmlns:p="http://primefaces.org/ui">
+
+<h:head>
+	<f:loadBundle basename="messages_pt_BR" var="msg" />
+	<style>
+		.ui-datatable .ui-column-filter {
+        border-radius: 4px;
+		}
+	</style>
+</h:head>
+<h:body>
+<f:metadata>
+		<f:event listener="#{colaboradorController.init()}" type="preRenderView"></f:event>
+	</f:metadata>
+	<ui:composition template="../../template/commonLayout.xhtml">
+		<ui:define name="content">
+			<div class="ContainerIndent">
+				<h:form id="itens">
+					<style>
+					</style>
+					
+					<p:confirmDialog global="true" showEffect="puff" hideEffect="puff" appendTo="@(body)">
+						<p:commandButton value="Sim" type="button" styleClass="ui-confirmdialog-yes" icon="fa fa-check Fs18 white" />
+						<p:commandButton value="Não" type="button" styleClass="ui-confirmdialog-no" icon="fa fa-times Fs18 white" />
+					</p:confirmDialog>
+
+					<p:panel styleClass="panel">
+						<p:growl id="messages" autoUpdate="false" />
+						
+						<div class="container">
+							<h:outputText value="Gerênciar Colaborador" styleClass="title-page hardblue"/>
+							<div class="right" style="text-align: right"></div>
+						</div>
+						<p:separator />
+	
+						<p:dataTable var="col" 
+							         value="#{colaboradorController.lazyModel}"
+							         paginator="true"
+							         paginatorPosition="bottom"
+							         rows="10" 
+							         lazy="true"
+									 scrollWidth="100%"
+									 scrollable="true"
+							         widgetVar="colaboradorTable"
+                 					 emptyMessage="No cars found with given criteria" 
+                 					 paginatorTemplate="{CurrentPageReport}  {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}" 
+									 currentPageReportTemplate="({currentPage} de {totalPages})"
+									 rowsPerPageTemplate="5,10,15,18,40">		
+
+					    <p:column id="filial" filterBy="#{col.filial}" filterStyle="border-radius:4px !important;" style="text-align:center;" styleClass="center" headerText="Filial" filterOptions="#{colaboradorController.filial}">
+					    	<h:outputText value="#{col.uf}" style="font-size: 12px;color:black;"/>  
+						</p:column>
+						  
+					    <p:column filterBy="#{col.matricula}" styleClass="center" filterStyle="width:90%;" filterMatchMode="exact" >
+                            <f:facet name="header">
+                                <h:outputText value="Matrícula"/>
+                            </f:facet>
+                            <h:outputText value="#{col.matricula}" style="font-size: 12px;color:black;"/>
+                        </p:column>
+                        
+					    <p:column filterBy="#{col.nome}" style="width:20% !important;" filterStyle="width:90%;text-transform: uppercase" >
+                            <f:facet name="header">
+                                <h:outputText value="Nome"/>
+                            </f:facet>
+                            <h:outputText value="#{col.nome}" style="font-size: 12px;color:black;"/>
+                        </p:column>
+                        
+                        <p:column filterBy="#{col.cargo.descricao}" styleClass="center" style="width:20% !important;" filterStyle="width:90%;text-transform: uppercase" filterMatchMode="exact">
+                            <f:facet name="header">
+                                <h:outputText value="Cargo"/>
+                            </f:facet>
+                            <h:outputText value="#{col.cargo.descricao}" style="font-size: 12px;color:black;" />
+                        </p:column>
+                        
+                        <p:column filterBy="#{col.departamento.descricao}" styleClass="center" style="width:15% !important;" filterStyle="width:90%;text-transform: uppercase">
+                            <f:facet name="header">
+                                <h:outputText value="Departamento"/>
+                            </f:facet>
+                            <h:outputText value="#{col.departamento.descricao}" style="font-size: 12px;color:black;"/>
+                        </p:column>
+                        
+                        <p:column styleClass="center" filterBy="#{col.status}" style="text-align:center;" filterOptions="#{colaboradorController.ativos}" filterStyle="width:90%;">
+                            <f:facet name="header">
+                                <h:outputText for="dem" value="Demissão"/>
+                            </f:facet>
+                            <h:outputText id="dem" value="#{col.demissao}" style="font-size: 12px;color:black;">
+			            	 	<f:convertDateTime dateStyle="short" pattern="dd/MM/yyyy" locale="pt" />
+			            	</h:outputText>
+                        </p:column>
+                        
+                        <p:column styleClass="center" style="text-align:center;">
+                            <f:facet name="header">
+                                <h:outputText value="Histórico"/>
+                            </f:facet>
+							<p:commandLink styleClass="commandLinkIcone" title="Exibir" action="#{colaboradorController.redirecionaHistoricoColaborador(col.id)}">
+							<i class="icon-info-circled-1 Fs22 gray" />
+							</p:commandLink>
+                        </p:column>
+					</p:dataTable>
+					</p:panel>
+				</h:form>
+
+				   <p:dialog header="Histórico do Colaborador" appendToBody="true" modal="true" widgetVar="dialogGer" resizable="false" showEffect="slide" position="center">
+						<h:form id="manter">            
+			            	<p:tabView id="info2" dynamic="true" cache="true" binding="#{colaboradorController.tabView}">
+						        <p:tab id="personal" title="Pessoal" titleStyle="font-size:10px">  
+						  			<p:panel header="Dados Pessoais"> 
+					            		<h:panelGrid columns="2">
+						        			<!--  <p:graphicImage value="#{colaboradorController.colaborador.foto}" width="80" height="100" />-->
+											<h:panelGrid columns="2" columnClasses="label, value" styleClass="grid" style="text-align: left;">  
+												<h:outputLabel for="matricula" value="Matrícula:" />
+							                    <h:outputText  id="matricula" value="#{colaboradorController.colaborador.matricula}" size="60"/>
+							                    
+							                    <h:outputLabel for="nome" value="Nome:" />
+							                    <h:outputText  id="nome" value="#{colaboradorController.colaborador.nome}" size="60"/>
+							                    
+							                    <h:outputLabel for="diretoria" value="Diretoria:" />
+							                    <h:outputText  id="diretoria" value="#{colaboradorController.colaborador.diretoria.descricao}" />
+							                    
+							                    <h:outputLabel for="dept" value="Departamento:" />
+							                    <h:outputText  id="dept" value="#{colaboradorController.colaborador.departamento.descricao}" />
+							                    
+							                    <h:outputLabel for="setor" value="Setor:" />
+							                    <h:outputText  id="setor" value="#{colaboradorController.colaborador.setor.descricao}" />
+							                    
+							                    <h:outputLabel for="secao" value="Seção:" />
+							                    <h:outputText  id="secao" value="#{colaboradorController.colaborador.secao.descricao}" />
+							                    
+							                    <h:outputLabel for="cargo" value="Cargo:" />
+							                    <h:outputText  id="cargo" value="#{colaboradorController.colaborador.cargo.descricao}" />
+							                    
+							                    <h:outputLabel for="tipoFuncionario" value="Tipo Funcionário:" />
+							                    <h:outputText  id="tipoFuncionario" value="#{colaboradorController.colaborador.tipoFuncionario.descricao}" />
+				
+							                    <h:outputLabel for="admitido" value="Admitido em:" />
+							                    <h:outputText id="admitido" value="#{colaboradorController.colaborador.admissao}">
+							                    	<f:convertDateTime dateStyle="short" pattern="dd/MM/yyyy" locale="pt" />
+							                    </h:outputText>
+							                    
+							                    <h:outputLabel for="demitido" value="Demitido em:" rendered="#{colaboradorController.colaborador.demissao != null}"/>
+							                    <h:outputText id="demitido" value="#{colaboradorController.colaborador.demissao}">
+								            	 	<f:convertDateTime dateStyle="short" pattern="dd/MM/yyyy" locale="pt" />
+								            	</h:outputText>
+									      	</h:panelGrid>						      	
+										</h:panelGrid>   	
+			            			</p:panel>
+				        		</p:tab>  
+						        <p:tab id="histsalario" title="Histórico de Salário" titleStyle="font-size:10px">
+						        	<p:panel header="Histórico de Salário"> 
+							        	<p:dataTable var="salario"  
+							        				 id="tabelaSalario"
+							        				 emptyMessage="Não há registro de salário de férias..." 
+												     paginator="true" 
+												     rows="15"   
+												     value="#{colaboradorController.listaHistSal}"
+						                		     paginatorTemplate="{CurrentPageReport}  {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
+						                			 rowsPerPageTemplate="5,10,15,20,40" 
+						                			 paginatorAlwaysVisible="false">  
+						  			
+						  				<p:column headerText="Data Aumento" styleClass="center">  
+								            <h:outputText value="#{salario.dataAumento}" >
+								            	<f:convertDateTime dateStyle="short" pattern="dd/MM/yyyy" locale="pt" />
+								            </h:outputText>
+								        </p:column>
+								        
+								        <p:column headerText="Motivo" styleClass="center">  
+								            <h:outputText value="#{salario.motivo.descricao}"/>
+										</p:column>
+								        
+								        <p:column headerText="Percentual" styleClass="center">
+								        	<h:outputText value="#{salario.percentual}"/>
+								        </p:column>
+								        
+								        <p:column headerText="Salário" styleClass="center">  
+								            <h:outputText value="#{salario.salario}" rendered="#{colaboradorController.exibeSalario}">
+								            	<f:convertNumber type="currency"  minFractionDigits="2" locale="pt_BR"/>
+								            </h:outputText>
+								        </p:column>
+								        </p:dataTable>
+									</p:panel>
+						        </p:tab>
+						        <p:tab id="histafastamento" title="Histórico de Afastamento" titleStyle="font-size:10px">
+						        	<p:panel header="Histórico de Salário"> 
+					                    <p:dataTable var="afastamento" 
+					                    			 id="tabelaAfastamento"
+					                    			 emptyMessage="Não há registro de afastamento de férias..." 
+													 paginator="true" 
+													 rows="15" 
+													 value="#{colaboradorController.listaHistAfas}"
+						                			 paginatorTemplate="{CurrentPageReport}  {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
+						                			 rowsPerPageTemplate="5,10,15,20,40" 
+						                			 paginatorAlwaysVisible="false">  
+						  			
+										<p:column headerText="Afastamento" style="width:14%;">  
+								            <h:outputText value="#{afastamento.dataAfastamento}" >
+								            	<f:convertDateTime dateStyle="short" pattern="dd/MM/yyyy" locale="pt" />
+								            </h:outputText>
+								        </p:column>
+								        
+								        <p:column headerText="Retorno" style="width:14%;">  
+								            <h:outputText value="#{afastamento.dataRetorno}" >
+								            	<f:convertDateTime dateStyle="short" pattern="dd/MM/yyyy" locale="pt" />
+								            </h:outputText>
+								        </p:column>
+								        </p:dataTable>
+					                </p:panel>
+						        </p:tab>
+						        <p:tab id="histFerias" title="Histórico de Férias" titleStyle="font-size:10px">
+						        	<p:panel header="Histórico de Férias"> 
+					                    <p:dataTable var="ferias"  
+					                    			 id="tabelaFerias"
+								                     emptyMessage="Não há registro de histórico de férias..." 
+												     paginator="true" 
+												     rows="15"  
+												     value="#{colaboradorController.listaFerias}"
+									                 paginatorTemplate="{CurrentPageReport}  {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
+									                 rowsPerPageTemplate="5,10,15,20,40" 
+									                 paginatorAlwaysVisible="false">  
+			
+										<p:column headerText="Início" styleClass="center">
+								        	<h:outputText value="#{ferias.inicio}" >
+								        		<f:convertDateTime dateStyle="short" pattern="dd/MM/yyyy" locale="pt" />
+								        	</h:outputText>  
+								        </p:column>
+								        
+								        <p:column headerText="Fim" styleClass="center">
+								        	<h:outputText value="#{ferias.fim}" >
+								        		<f:convertDateTime dateStyle="short" pattern="dd/MM/yyyy" locale="pt" />
+								        	</h:outputText>  
+								        </p:column>
+				
+										<p:column headerText="Início do Período Aquisitivo" styleClass="center">  
+								            <h:outputText value="#{ferias.inicioPrdAquisitivo}" >
+								            	<f:convertDateTime dateStyle="short" pattern="dd/MM/yyyy" locale="pt" />
+								            </h:outputText>
+								        </p:column>
+						  			
+										<p:column headerText="Fim do Período Aquisitivo" styleClass="center">  
+								            <h:outputText value="#{ferias.fimPrdAquisitivo}" >
+								            	<f:convertDateTime dateStyle="short" pattern="dd/MM/yyyy" locale="pt" />
+								            </h:outputText>
+								        </p:column>
+								        </p:dataTable>
+					                </p:panel>
+						        </p:tab>
+						   	</p:tabView>
+			            	</h:form>  
+			        </p:dialog>
+			</div>
+		</ui:define>
+	</ui:composition>
+</h:body>
+</html>

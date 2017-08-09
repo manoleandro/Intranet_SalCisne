@@ -1,0 +1,64 @@
+{
+  "category": "teste",
+  "galerias": [
+   {
+    "idEvento": "181",
+	"titulo": "Quadro XXVIII",
+	"idFoto": "180.png",
+	"descricao": "Completamos dois anos de operação do sistema JD Edwards em nossa companhia. Mesmo com pouco tempo de uso,  muito já foi feito e aprimorado: migramos de versão (inicialmente usamos a versão 9.1.2 e hoje já estamos na versão 9.1.5), desenvolvemos novos relatórios, integramos o sistema a outros sistemas de apoio validação cadastral de clientes e fornecedores, criamos um processo de fluxo de caixa de acordo com nossas necessidades, entre outros.  Somos referência para a Oracle no uso da versão padrão deste sistema, exemplo de sucesso de implantação e agora estamos inovando novamente na adoção de outras soluções integradas ao JD Edwards como, por exemplo, o sistema Hyperion-PBCS também da Oracle - o Hyperion, em fase final de validação apoiará o departamento de Controle e Gestão no planejamento e na apuração de resultados da companhia.",
+	"ordem": "1",
+	"data":"08/04/2016",
+	"exibe": "1"
+   },
+   
+   {
+    "idEvento": "182",
+	"titulo": "Quadro XXVIII",
+	"idFoto": "181.png",
+	"descricao": "Com o objetivo de melhorar a velocidade de análise das diretrizes e decisões estratégicas da empresa, implantamos novos processos de planejamento financeiro e controles operacionais utilizando a ferramenta da Oracle: Oracle PBCS (Planning Budget Cloud Service), uma ferramenta em nuvem (cloud) tecnologia  que a empresa utiliza pela primeira vez. O PBCS será utilizado pra apoiar decisões estratégicas e o dia-a-dia das áreas financeira, controladoria, comercial e produção. ",
+	"ordem": "2",
+	"data":"08/04/2016",
+	"exibe": "1"
+   },
+   
+   {
+    "idEvento": "183",	
+	"titulo": "Quadro XXVIII",
+	"idFoto": "182.png",
+	"descricao": "As origens da Páscoa remetem às festividades judaico-cristãs, celebrando a libertação do povo judeu e a ressurreição de Jesus Cristo. A figura do coelho, trazido para a América pelos imigrantes alemães entre o final do século XVII e início do XVIII, está simbolicamente relacionada à data comemorativa pois este animal representa a fertilidade e a vida.  Os ovos de Páscoa (de chocolate, enfeites, joias), também estão neste contexto de multiplicação da vida. Neste período em que a indústria mais comercializa o Chocolate, destacamos  o nosso cliente Nestlé. Além dos tradicionais produtos salgados, a Nestlé utiliza o Sal Cisne em toda a sua linha de produtos doces, tais como: chocolates, sorvetes e biscoitos. Por possuir o poder de realçar o sabor dos alimentos, o uso do sal em doces é muito comum e tornou-se a moda dos chefs de alta gastronomia.",
+	"ordem": "3",
+	"data":"08/04/2016",
+	"exibe": "1"
+   },
+   
+   {
+    "idEvento": "184",
+	"titulo": "Quadro XXVIII",
+	"idFoto": "183.png",
+	"descricao": "O projeto de  inclusão social, Meu Novo Mundo, em parceria com a FIESP, Sesi-SP e Senai-SP entra no oitavo mês de existência na RNS. Na primeira fase, o objetivo foi  treinamento e desenvolvimento dos novos profissionais, discutindo e realizando trabalhos específicos sobre o ambiente de trabalho, auxiliando para que  consigam entender um pouco mais sobre o dia a dia da empresa. Na próxima fase, será realizada uma palestra pelo Sesi / Senai para os gestores responsáveis em  multiplicar a ação em cada departamento",
+	"ordem": "4",
+	"data":"08/04/2016",
+	"exibe": "1"
+   },
+   
+   {
+    "idEvento": "185",
+	"titulo": "Quadro XXVIII",
+	"idFoto": "184.png",
+	"descricao": "Após quase 20 anos de atividade desenvolvida no imóvel da Av. Guilherme Giorgi, 1017, o depósito da RNS mudou-se para um novo endereço, em Guarulhos. O motivo da mudança foi o processo de desapropriação feito pela Companhia Metropolitana de São Paulo (Metrô) para a construção da futura Estação Guilherme Giorgi.    Já em funcionamento no novo endereço, a RNS conta com uma estrutura moderna voltada para esta finalidade.  Avenida Carmela Dutra, S/N - Galpão 37 Jd. Presidente Dutra - Guarulhos",
+	"ordem": "5",
+	"data":"08/04/2016",
+	"exibe": "1"
+   },
+   
+   {
+    "idEvento": "186",
+	"titulo": "Quadro XXVIII",
+	"idFoto": "185.png",
+	"descricao": "No ano de 2015, as empresas sofreram bastante com os efeitos da crise econômica no Brasil. A concorrência se  tornou cada dia mais acirrada e no intuito de estreitar o relacionamento e preservar a performance comercial, foram desenvolvidas Campanhas de Vendas ao longo do ano com ações que variavam de acordo com o perfil do cliente.  Campanha Específica: Destinada à clientes de médio a grande porte. Define-se um objetivo mensal de compra e ao final do mês, caso o objetivo seja alcançado, o cliente é bonificado. Campanha do Distribuidor: Destinada aos distribuidores de menor porte. Neste formato de campanha, o cliente tem direito a um desconto comercial concedido direto no pedido.  Campanha Prêmio de Fidelidade: Destinada aos clientes que não participaram de outras campanhas. ",
+	"ordem": "5",
+	"data":"08/04/2016",
+	"exibe": "1"
+   }
+  ]
+}

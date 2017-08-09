@@ -1,0 +1,264 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.org/ui">
+
+<h:head>
+	<f:loadBundle basename="messages_pt_BR" var="msg" />
+</h:head>
+<h:body>
+	<f:metadata>
+		<f:viewAction action="#{roteiroVisitaEfetivoController.init}"/>
+	</f:metadata>
+	
+	<ui:composition template="../../template/commonLayout.xhtml">
+		<ui:define name="content">
+			<div class="ContainerIndent">
+				<h:form id="form">
+					<style>
+						.ui-datatable .ui-datagrid-header, .ui-datatable .ui-datatable-header, .ui-datatable .ui-datatable-subtable-header, .ui-datatable .ui-datatable-summaryrow{
+							border: none! important;
+							background: none !important;
+							background-color: #dae8ef !important;
+							text-shadow: none !important;
+						}
+						
+						.ui-panelgrid>*>tr, .ui-panelgrid>*>tr>td.ui-panelgrid-cell {
+							border: none !important;
+						}
+						
+						.ui-panelgrid{
+							border: none !important;
+						}
+					</style>
+					
+					<p:confirmDialog global="true" showEffect="puff" hideEffect="puff" appendTo="@(body)">
+						<p:commandButton value="Sim" type="button" styleClass="ui-confirmdialog-yes" icon="fa fa-check Fs18 white" />
+						<p:commandButton value="Não" type="button" styleClass="ui-confirmdialog-no" icon="fa fa-times Fs18 white" />
+					</p:confirmDialog>
+
+					<p:panel styleClass="panel">
+						<p:growl id="messages" autoUpdate="false" />
+						<div class="container">
+							<h:outputText value="Roteiro de Visita Efetivo" styleClass="title-page hardblue" />
+							
+							<div class="right" style="text-align: right">
+								<h:outputText value="#{roteiroVisitaEfetivoController.vendedorSelecionado.nomeVendedor}" styleClass="Fs16 FontBold"/>
+								<p:commandLink styleClass="commandLinkIcone" title="#{msg['pesquisar.vendedor']}" action="#{roteiroVisitaEfetivoController.prepararVendedores}" 
+											   update=":assistenteVendedoresForm">
+									<i class="icon-user-male title-page button" />
+								</p:commandLink>
+							</div>	
+						</div>
+						<p:separator />
+						
+						<div class="container">
+							<p:panelGrid columns="3" styleClass="sem-borda">
+								<h:outputText value="Mês e Ano:" styleClass="Fs18 FontBold"/>
+								<p:inputMask mask="99/9999" value="#{roteiroVisitaEfetivoController.mesAno}" styleClass="centralizar"/>
+								<p:commandLink styleClass="commandLinkIcone" action="#{roteiroVisitaEfetivoController.carregarRoteiroSugerido}" 
+										   update=":form:tableRoteiroVisita">
+									<i class="icon-search title-page button" />
+								</p:commandLink>
+							</p:panelGrid>
+							<div class="right">
+								<p:commandLink styleClass="commandLinkIcone" title="#{msg['incluir']}" action="#{roteiroVisitaEfetivoController.prepararIncluir}" update=":roteiroVisita">
+									<i class="icon-plus title-page button" />
+								</p:commandLink>
+								
+								<p:commandLink styleClass="commandLinkIcone" title="#{msg['alterar']}" action="#{roteiroVisitaEfetivoController.prepararAlterar}" update=":roteiroVisita :form:messages">
+									<i class="icon-pencil title-page button" />
+								</p:commandLink>
+
+								<p:commandLink styleClass="commandLinkIcone" title="#{msg['excluir']}" action="#{roteiroVisitaEfetivoController.excluir}" 
+											   update=":form:messages :form:tableRoteiroVisita">
+									<p:confirm header="Atenção" message="#{msg['excluir.registro']}" icon="fa fa-info Fs18" />
+									<i class="icon-trash title-page button"/>
+								</p:commandLink>
+							</div>
+						</div>
+						
+						<p:separator />
+						
+						<p:dataTable id="tableRoteiroVisita" widgetVar="tableRoteiroVisita" var="roteiro"
+									 value="#{roteiroVisitaEfetivoController.listRoteiroVisitaEfetivo}" emptyMessage="#{msg['sem.registro']}"
+									 selectionMode="single" selection="#{roteiroVisitaEfetivoController.roteiroVisitaSelecionado}" rowKey="#{roteiro.id}" paginator="true" rows="12"
+									 paginatorPosition="bottom">
+
+							<p:columnGroup type="header">
+								<p:row>
+									<p:column rowspan="2" headerText="Data da Visita" />
+									<p:column colspan="2" headerText="Cliente" />
+									<p:column rowspan="2" headerText="Consumo Progressivo" />
+									<p:column rowspan="2" headerText="Dias Cobertura" />
+									<p:column rowspan="2" headerText="Estoque mes Ant." />
+									<p:column colspan="3" headerText="Previsão Venda SPV" />
+									<p:column rowspan="2" headerText="Previsão Especial" />
+									<p:column rowspan="2" headerText="Previsão de Venda no mês" />
+								</p:row>
+
+								<p:row>
+									<p:column headerText="Código" />
+									<p:column headerText="Nome" />
+									<p:column headerText="Qtd." />
+									<p:column headerText="Preço" />
+									<p:column headerText="Valor R$" />
+								</p:row>
+							</p:columnGroup>
+
+							<p:column styleClass="centralizar">
+								<h:outputText value="#{roteiro.dataVisita}" >
+									<f:convertDateTime pattern="dd/MM/yyyy" />
+								</h:outputText>
+							</p:column>
+
+							<p:column styleClass="centralizar">
+								<h:outputText value="#{roteiro.idCliente}" />
+							</p:column>
+
+							<p:column styleClass="centralizar">
+								<h:outputText value="#{roteiro.nomeCliente}" />
+							</p:column>
+
+							<p:column styleClass="centralizar">
+								<h:outputText value="#{roteiro.consumoProgressivo}" >
+									<f:convertNumber />
+								</h:outputText>
+							</p:column>
+
+							<p:column styleClass="centralizar">
+								<h:outputText value="#{roteiro.diasCobertura}" >
+									<f:convertNumber />
+								</h:outputText>
+							</p:column>
+
+							<p:column styleClass="centralizar">
+								<h:outputText value="#{roteiro.quantidadeEstoque}" >
+									<f:convertNumber />
+								</h:outputText>
+							</p:column>
+
+							<p:column styleClass="centralizar">
+								<h:outputText value="#{roteiro.quantidadePrevisao}" >
+									<f:convertNumber />
+								</h:outputText>
+							</p:column>
+
+							<p:column styleClass="centralizar">
+								<h:outputText value="#{roteiro.precoMedio}" >
+									<f:convertNumber type="currency" pattern="###,##0.00" minFractionDigits="2" />
+								</h:outputText>
+							</p:column>
+
+							<p:column styleClass="centralizar">
+								<h:outputText value="#{roteiro.valorPrevisao}" >
+									<f:convertNumber type="currency" pattern="###,##0.00" minFractionDigits="2" />
+								</h:outputText>
+							</p:column>
+
+							<p:column styleClass="centralizar">
+								<h:outputText value="#{roteiro.valorPrevisaoEspecial}" >
+									<f:convertNumber type="currency" pattern="###,##0.00" minFractionDigits="2" />
+								</h:outputText>
+							</p:column>
+
+							<p:column styleClass="centralizar">
+								<h:outputText value="#{roteiro.valorPrevisaoTotal}" >
+									<f:convertNumber type="currency" pattern="###,##0.00" minFractionDigits="2" />
+								</h:outputText>	
+							</p:column>
+
+							<p:columnGroup type="footer">
+								<p:row>
+									<p:column colspan="3" style="text-align:right" footerText="Totais:" styleClass="Fs16 FontBold" />
+									<p:column footerText="#{roteiroVisitaEfetivoController.totalConsumoProgressivo}" />
+									<p:column footerText="" />
+									<p:column footerText="#{roteiroVisitaEfetivoController.totalEstoqueMesAnterior}" />
+									<p:column footerText="#{roteiroVisitaEfetivoController.totalQuantidadePrevista}" />
+									<p:column footerText="#{roteiroVisitaEfetivoController.totalPrecoPrevisao}" />
+									<p:column footerText="#{roteiroVisitaEfetivoController.totalValorPrevisao}" />
+									<p:column footerText="#{roteiroVisitaEfetivoController.totalValorPrevisaoEspecial}" />
+									<p:column footerText="#{roteiroVisitaEfetivoController.totalValorTotalPrevisao}" />
+								</p:row>
+							</p:columnGroup>
+						</p:dataTable>
+					</p:panel>
+				</h:form>
+				
+				<p:dialog header="Assistente Vendedores" widgetVar="dialogAssistenteVendedores" focus="assistenteVendedoresForm" modal="true" showEffect="puff" hideEffect="puff" width="60vw" appendTo="@(body)">
+	            	<h:form id="assistenteVendedoresForm">
+	                	<p:dataTable id="tableVendedores" widgetVar="tableVendedores" var="vendedor" value="#{roteiroVisitaEfetivoController.vendedores}" emptyMessage="#{msg['sem.registro']}"
+							selectionMode="single" selection="#{roteiroVisitaEfetivoController.vendedorSelecionado}" rowKey="#{vendedor.idVendedor}" paginator="true" rows="10"
+							paginatorPosition="bottom">
+							
+							<p:ajax event="rowSelect" listener="#{roteiroVisitaEfetivoController.carregarRoteiroEfetivo}" update=":form" oncomplete="PF('dialogAssistenteVendedores').hide();"/>
+							
+							<p:column headerText="Cód. Zona" sortBy="#{vendedor.codZonaVendas}" filterBy="#{vendedor.codZonaVendas}" styleClass="centralizar" priority="1">
+                				<h:outputText value="#{vendedor.codZonaVendas}" />
+            				</p:column>
+            				
+            				<p:column headerText="Vendedor" sortBy="#{vendedor.nomeVendedor}" filterBy="#{vendedor.nomeVendedor}" priority="2">
+                				<h:outputText value="#{vendedor.nomeVendedor}"/>
+            				</p:column>
+	                	</p:dataTable>
+        			</h:form>
+			    </p:dialog>
+			    
+			    <p:dialog header="Roteiro de Visita" widgetVar="dialogRoteiroVisita" modal="true" focus="roteiroVisita" showEffect="puff" hideEffect="puff" width="50vw" appendTo="@(body)">
+	            	<h:form id="roteiroVisita">
+	                	<p:panelGrid columns="2">
+	                		<h:outputText value="Cód. Cliente:" id="idCliente"/>
+	                		<h:panelGroup>
+	                			<p:inputText value="#{roteiroVisitaEfetivoController.roteiroVisita.idCliente}" disabled="#{!roteiroVisitaEfetivoController.inclusao}" tabindex="100"/>
+	                			<p:commandLink styleClass="commandLinkIcone" title="#{msg['assistente']}" action="#{roteiroVisitaEfetivoController.prepararClientes}" update=":assistenteClientesForm">
+									<i class="icon-search button" style="font-size: 1.5rem;" />
+								</p:commandLink>
+	                		</h:panelGroup>
+	                		
+	                		<h:outputText value="Nome:"/>
+	                		<h:outputText value="#{roteiroVisitaEfetivoController.roteiroVisita.nomeCliente}"/>
+	                		
+	                		<h:outputText value="Valor Previsão Especial:"/>
+	                		<p:inputNumber value="#{roteiroVisitaEfetivoController.roteiroVisita.valorPrevisaoEspecial}"
+	                					   decimalPlaces="2" decimalSeparator="," thousandSeparator="."/>
+	                		
+	                		<h:outputText value="Data de Visita:"/>
+	                		<p:calendar id="dtSaidaPrev" pattern="dd/MM/yyyy" showOn="button" value="#{roteiroVisitaEfetivoController.roteiroVisita.dataVisita}" 
+	                					locale="pt" effect="puff"/>
+	                	</p:panelGrid>
+	                	<p:spacer height="20" width="100%" />
+					
+						<p:commandButton value="Salvar" icon="fa fa-check Fs18 white" action="#{roteiroVisitaEfetivoController.salvar}" update=":form"
+										 oncomplete="PF('dialogRoteiroVisita').hide();">
+							<f:setPropertyActionListener value="#{roteiroVisitaEfetivoController.roteiroVisita}" target="#{roteiroVisitaEfetivoController.roteiroVisitaSelecionado}" />
+						</p:commandButton>
+						<p:commandButton value="Cancelar" icon="fa fa-times Fs18 white" onclick="PF('dialogRoteiroVisita').hide();" id="btnCancelar"/>
+        			</h:form>
+			    </p:dialog>
+			    
+			    <p:dialog header="Assistente Clientes" widgetVar="dialogAssistenteClientes" focus="assistenteClientesForm" modal="true" showEffect="puff" hideEffect="puff" width="60vw" appendTo="@(body)">
+	            	<h:form id="assistenteClientesForm">
+	                	<p:dataTable id="tableClientes" widgetVar="tableClientes" var="cliente" value="#{roteiroVisitaEfetivoController.clientes}" emptyMessage="#{msg['sem.registro']}"
+							selectionMode="single" selection="#{roteiroVisitaEfetivoController.clienteSelecionado}" rowKey="#{cliente.idCliente}" paginator="true" rows="10"
+							paginatorPosition="bottom">
+							
+							<p:ajax event="rowSelect" listener="#{roteiroVisitaEfetivoController.selecionarCliente}" update=":roteiroVisita" oncomplete="PF('dialogAssistenteClientes').hide();"/>
+							
+							<p:column headerText="Cód. Cliente" sortBy="#{cliente.idCliente}" filterBy="#{cliente.idCliente}" styleClass="centralizar" priority="1">
+                				<h:outputText value="#{cliente.idCliente}" />
+            				</p:column>
+            				
+            				<p:column headerText="Nome" sortBy="#{cliente.nomeFantasia}" filterBy="#{cliente.nomeFantasia}" priority="2">
+                				<h:outputText value="#{cliente.nomeFantasia}"/>
+            				</p:column>
+	                	</p:dataTable>
+        			</h:form>
+			    </p:dialog>
+			</div>
+		</ui:define>
+	</ui:composition>
+</h:body>
+</html>

@@ -1,0 +1,109 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:h="http://java.sun.com/jsf/html" xmlns:ui="http://java.sun.com/jsf/facelets" xmlns:f="http://java.sun.com/jsf/core" xmlns:p="http://primefaces.org/ui">
+
+<h:head>
+	<f:loadBundle basename="messages_pt_BR" var="msg" />
+</h:head>
+<h:body>
+	<f:metadata>
+		<f:viewAction action="#{despesaVisitaController.initAlteracao}" />
+	</f:metadata>
+
+	<ui:composition template="../../template/commonLayout.xhtml">
+		<ui:define name="content">
+			<div class="ContainerIndent">
+				<h:form id="form" prependId="false">
+					<style>
+						.ui-panelgrid>*>tr, .ui-panelgrid>*>tr>td.ui-panelgrid-cell {
+							border: none !important;
+						}
+						
+						.ui-panelgrid{
+							border: none !important;
+						}
+					</style>
+					
+					<script type="text/javascript">
+						// Faz com que a tecla enter tenha efeito de TAB pulando de campo em campo
+						function gerenciaTeclaEnter() {
+							$(document).ready(function() {
+					        	
+								$('input').keypress(function(e) {
+									var code = null;
+					            	code = (e.keyCode ? e.keyCode : e.which);
+					            	return (code === 13) ? false : true;
+					 			});
+					 
+					        	$('input[type=text]').keydown(function(e) {
+					            	// Obter o próximo índice do elemento de entrada de texto
+					            	var next_idx = $('input[type=text]').index(this) + 1;
+					 
+					            	// Obter o número de elemento de entrada de texto em um documento html
+					            	var tot_idx = $('body').find('input[type=text]').length;
+					 
+					            	// Entra na tecla no código ASCII
+					            	if (e.keyCode === 13) {
+					                	if (tot_idx === next_idx){
+					                    	// Vá para o último elemento que é um textarea
+					                    	$("#comentarios").focus();
+					                	}else{
+					                    	// Vá para o elemento de entrada de texto seguinte
+					                    	$('input[type=text]:eq(' + next_idx + ')').focus();
+					                	}	
+					            	}
+					        	});
+					    	});
+						}
+					</script>
+					
+					<p:confirmDialog global="true" showEffect="puff" hideEffect="puff" appendTo="@(body)">
+						<p:commandButton value="Sim" type="button" styleClass="ui-confirmdialog-yes" icon="fa fa-check Fs18 white" />
+						<p:commandButton value="Não" type="button" styleClass="ui-confirmdialog-no" icon="fa fa-times Fs18 white" />
+					</p:confirmDialog>
+
+					<p:panel styleClass="panel">
+						<p:growl id="message" autoUpdate="false" />
+						<div class="container">
+							<h:outputText value="Alteração de Despesa de Visita" styleClass="title-page hardblue" />
+						</div>
+						<p:separator />
+						<p:panelGrid columns="2">
+	                		<h:outputText value="Data:"/>
+	                		<h:outputText value="#{despesaVisitaController.despesa.data}">
+	                			<f:convertDateTime pattern="dd/MM/yyyy" />
+	                		</h:outputText>
+	                		
+	                		<h:outputText value="Deslocamento:"/>
+	                		<h:outputText value="#{despesaVisitaController.despesa.deslocamento}"/>
+	                		
+	                		<h:outputText value="Quantidade Km:"/>
+	                		<p:inputText value="#{despesaVisitaController.despesa.quantidadeKm}" onkeydown="gerenciaTeclaEnter()" tabindex="1"/>
+	                		
+	                		<h:outputText value="Estada Dias:"/>
+	                		<p:inputText value="#{despesaVisitaController.despesa.quantidadeDiarias}" onkeydown="gerenciaTeclaEnter()" tabindex="2"/>
+	                		
+	                		<h:outputText value="Quantidade Refeições:"/>
+	                		<p:inputText value="#{despesaVisitaController.despesa.quantidadeRefeicoes}" onkeydown="gerenciaTeclaEnter()" tabindex="3"/>
+	                		
+	                		<h:outputText value="Outros gastos:"/>
+	                		<p:inputNumber value="#{despesaVisitaController.despesa.outrosGastos}"
+	                					    decimalPlaces="2" decimalSeparator="," thousandSeparator="." onkeydown="gerenciaTeclaEnter()" tabindex="4"/>
+	                		
+	                		<h:outputText value="Comentarios:"/>
+	                		<p:inputTextarea id="comentarios" style="width:99%" value="#{despesaVisitaController.despesa.comentarios}"/>
+	                		
+	                	</p:panelGrid>
+	                	<p:spacer height="20" width="100%" />
+					
+						<p:commandButton id="btnSalvar" value="Salvar" icon="fa fa-check Fs18 white" action="#{despesaVisitaController.salvar}">
+							<f:setPropertyActionListener value="#{despesaVisitaController.despesa}" target="#{despesaVisitaController.despesaSelecionada}" />
+						</p:commandButton>
+						<p:commandButton value="Cancelar" icon="fa fa-times Fs18 white" action="#{despesaVisitaController.voltar}" id="btnCancelar"/>
+					</p:panel>
+				</h:form>	
+			</div>
+		</ui:define>
+	</ui:composition>
+</h:body>
+</html>

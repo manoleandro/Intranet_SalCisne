@@ -1,0 +1,49 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:h="http://java.sun.com/jsf/html" xmlns:ui="http://java.sun.com/jsf/facelets" xmlns:f="http://java.sun.com/jsf/core" xmlns:p="http://primefaces.org/ui">
+
+<h:head>
+	<f:loadBundle basename="messages_pt_BR" var="msg" />
+</h:head>
+<h:body>
+	<ui:composition template="../../template/commonLayout.xhtml">
+		<ui:define name="content">
+			<div class="ContainerIndent">
+				<h:form id="form">
+					<style>
+					</style>
+
+					<p:confirmDialog global="true" showEffect="puff" hideEffect="puff" appendTo="@(body)">
+						<p:commandButton value="Sim" type="button" styleClass="ui-confirmdialog-yes" icon="fa fa-check Fs18 white" />
+						<p:commandButton value="Não" type="button" styleClass="ui-confirmdialog-no" icon="fa fa-times Fs18 white" />
+					</p:confirmDialog>
+
+					<p:panel styleClass="panel">
+						<p:growl id="messages" autoUpdate="false" />
+						<div class="container">
+							<h:outputText value="Gerênciar Configurações" styleClass="title-page hardblue" />
+						</div>
+						<p:separator />
+
+						<h:panelGrid columns="2">
+							<h:outputText value="Valor da Km:" />
+							<p:inputNumber decimalPlaces="2" decimalSeparator="," thousandSeparator="." value="#{configuracaoController.configuracao.valorKm}" styleClass="centralizar"/>
+
+							<h:outputText value="Valor da Diária de Hospedagem:" />
+							<p:inputNumber decimalPlaces="2" decimalSeparator="," thousandSeparator="." value="#{configuracaoController.configuracao.valorDiaria}" styleClass="centralizar"/>
+							
+							<h:outputText value="Valor da Refeição:" />
+							<p:inputNumber decimalPlaces="2" decimalSeparator="," thousandSeparator="." value="#{configuracaoController.configuracao.valorRefeicao}" styleClass="centralizar"/>
+						</h:panelGrid>
+						<p:spacer height="20" width="100%" />
+
+						<p:commandButton value="Salvar" icon="fa fa-check Fs18 white" action="#{configuracaoController.salvar}" update=":form">
+							<f:setPropertyActionListener value="#{configuracaoController.configuracao}" target="#{configuracaoController.configuracao}" />
+						</p:commandButton>
+					</p:panel>
+				</h:form>
+			</div>
+		</ui:define>
+	</ui:composition>
+</h:body>
+</html>

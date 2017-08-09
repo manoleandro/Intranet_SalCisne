@@ -1,0 +1,133 @@
+
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:security="http://www.springframework.org/schema/security"
+	xmlns:jee="http://www.springframework.org/schema/jee" xmlns:tx="http://www.springframework.org/schema/tx"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:context="http://www.springframework.org/schema/context"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans
+http://www.springframework.org/schema/beans/spring-beans-3.1.xsd
+http://www.springframework.org/schema/jee
+http://www.springframework.org/schema/jee/spring-jee-3.0.xsd
+http://www.springframework.org/schema/tx 
+http://www.springframework.org/schema/tx/spring-tx.xsd
+http://www.springframework.org/schema/security
+http://www.springframework.org/schema/security/spring-security-3.2.xsd
+http://www.springframework.org/schema/context
+http://www.springframework.org/schema/context/spring-context-3.1.xsd">
+
+	<security:http auto-config="true" use-expressions="true">
+		<security:intercept-url pattern="/index.xhtml" access="hasRole('PG_HOME')" />
+		<security:intercept-url pattern="/pages/administrador/gerenciarAutorizacao.xhtml" access="hasRole('PG_AUTORIZACAO')" />
+		<security:intercept-url pattern="/pages/administrador/gerenciarGrupo.xhtml" access="hasRole('PG_GRUPO')" />
+		<security:intercept-url pattern="/pages/administrador/gerenciarMenu.xhtml" access="hasRole('PG_MENU')" />
+		<security:intercept-url pattern="/pages/administrador/gerenciarServico.xhtml" access="hasRole('PG_SERVICO')" />
+		<security:intercept-url pattern="/pages/administrador/gerenciarUsuario.xhtml" access="hasRole('PG_USUARIO')" />
+		<security:intercept-url pattern="/pages/administrador/gerenciarColaborador.xhtml" access="hasRole('PG_COLABORADOR')" />
+		<security:intercept-url pattern="/pages/administrador/historicoColaborador.xhtml" access="hasRole('PG_COLABORADOR')" />
+		
+		<security:intercept-url pattern="/pages/administrador/app/gerenciarAutorizacaoApp.xhtml" access="hasRole('PG_AUTORIZACAO_APP')" />
+		<security:intercept-url pattern="/pages/administrador/app/gerenciarServicoApp.xhtml" access="hasRole('PG_SERVICO_APP')" />
+		
+		<security:intercept-url pattern="/pages/arquivos/gerenciarArquivos.xhtml" access="hasRole('PG_SISTEMA_ARQUIVO')" />
+		<security:intercept-url pattern="/pages/arquivos/gerenciarEmail.xhtml" access="hasRole('PG_SISTEMA_ARQUIVO')" />
+		
+		<security:intercept-url pattern="/pages/caixa/gerenciarBanco.xhtml" access="hasRole('PG_CAIXA')" />
+		<security:intercept-url pattern="/pages/caixa/gerenciarCaixa.xhtml" access="hasRole('PG_CAIXA')" />
+		<security:intercept-url pattern="/pages/caixa/gerenciarContaCorrente.xhtml" access="hasRole('PG_CAIXA')" />
+		<security:intercept-url pattern="/pages/caixa/gerenciarHistoricoPadrao.xhtml" access="hasRole('PG_CAIXA')" />
+		<security:intercept-url pattern="/pages/caixa/gerenciarTipoDeConta.xhtml" access="hasRole('PG_CAIXA')" />
+
+		<security:intercept-url pattern="/pages/externo/gerenciarCardapio.xhtml" access="hasRole('PG_CARDAPIO')" />
+		<security:intercept-url pattern="/pages/externo/gerenciarContatos.xhtml" access="hasRole('PG_CONTATO')" />
+		<security:intercept-url pattern="/pages/externo/gerenciarGaleria.xhtml" access="hasRole('PG_GALERIA')" />
+		
+		<security:intercept-url pattern="/pages/comercial/registroVisita.xhtml" access="hasRole('PG_REGISTRO_VISITA')" />
+		<security:intercept-url pattern="/pages/comercial/detalheRegistroVisita.xhtml" access="hasRole('PG_DETALHE_REGISTRO_VISITA')" />
+		
+		<security:intercept-url pattern="/pages/portaria/gerenciarPortaria.xhtml" access="hasRole('PG_PORTARIA')" />
+		<security:intercept-url pattern="/pages/portaria/consultarPortaria.xhtml" access="hasRole('PG_CONSULTA_PORTARIA')" />
+		<security:intercept-url pattern="/pages/portaria/apresentacaoPortaria.xhtml" access="hasRole('PG_APRESENTACAO_PORTARIA')" />
+		<security:intercept-url pattern="/pages/portaria/historicoPortaria.xhtml" access="hasRole('PG_HISTORICO_PORTARIA')" />
+		<security:intercept-url pattern="/pages/portaria/gerenciarTransportaria.xhtml" access="hasRole('PG_TRANSPORTADORA')" />
+		<security:intercept-url pattern="/pages/portaria/gerenciarVeiculo.xhtml" access="hasRole('PG_VEICULO')" />
+		<security:intercept-url pattern="/pages/portaria/relatorios.xhtml" access="hasRole('PG_RELATORIOS_PORTARIA')" />
+		
+		
+		<security:intercept-url pattern="/pages/comercial/roteiroVisitaSugerido.xhtml" access="hasRole('PG_ROTEIRO_VISITA_SUGERIDO')" />
+		<security:intercept-url pattern="/pages/comercial/registroVisita.xhtml" access="hasRole('PG_REGISTRO_VISITA')" />
+		<security:intercept-url pattern="/pages/comercial/detalheRegistroVisita.xhtml" access="hasRole('PG_DETALHE_REGISTRO_VISITA')" />
+		<security:intercept-url pattern="/pages/comercial/relatorioVisita.xhtml" access="hasRole('PG_RELATORIO_VISITA')" />
+		<security:intercept-url pattern="/pages/comercial/despesaVisita.xhtml" access="hasRole('PG_DESPESA_VISITA')" />
+		<security:intercept-url pattern="/pages/comercial/despesaVisitaAlteracao.xhtml" access="hasRole('PG_DESPESA_VISITA_ALTERACAO')" />
+		<security:intercept-url pattern="/pages/comercial/gerenciarConfiguracao.xhtml" access="hasRole('PG_CONFIGURACAO')" />
+		
+		
+		<security:form-login login-page="/inicio.xhtml" authentication-failure-url="/login.xhtml?erro=true" />
+		<security:access-denied-handler error-page="/access-denied.xhtml" />
+		<security:http-basic />
+	</security:http>
+
+	<security:authentication-manager>
+		<security:authentication-provider>
+			<security:jdbc-user-service data-source-ref="sicDataSource"
+               	
+               	group-authorities-by-username-query="SELECT U.USERNAME, G.ID_GRUPO, S.REGRA AS AUTHORITY
+													 FROM CS_USUARIO U, CS_USUARIO_GRUPO G, CS_GRUPO_SERVICO GS, CS_SERVICO S
+													 WHERE U.USERNAME = G.USUARIO
+													 AND G.ID_GRUPO = GS.ID_GRUPO
+													 AND GS.ID_SERVICO = S.ID
+													 AND U.USERNAME = ?"
+																					
+				users-by-username-query="SELECT USERNAME, PASSWORD, CASE WHEN ENABLE = 'T' THEN 1 ELSE 0 END FROM CS_USUARIO WHERE USERNAME= ?"
+				
+				authorities-by-username-query="SELECT U.USERNAME, S.REGRA AS AUTHORITY
+											   FROM CS_USUARIO U, CS_USUARIO_SERVICO US, CS_SERVICO S
+											   WHERE U.USERNAME = US.USUARIO
+											   AND US.ID_SERVICO = S.ID
+											   AND U.USERNAME = ?"/>
+																					
+            <security:password-encoder hash="bcrypt" />
+		</security:authentication-provider>
+	</security:authentication-manager>
+
+	<context:component-scan base-package="br.com.sp.intranet, wsr" />
+	
+	<!-- ======SIC====== -->	
+	<jee:jndi-lookup expected-type="javax.sql.DataSource" id="sicDataSource" jndi-name="java:/sicDS" />
+	
+	<bean id="sessionFactorySic" class="org.springframework.orm.hibernate4.LocalSessionFactoryBean">
+		<property name="dataSource" ref="sicDataSource" />
+		<property name="configLocation" value="classpath:hibernate-sic.cfg.xml" />
+	</bean>
+
+	<tx:annotation-driven transaction-manager="transactionManager" />
+	<bean id="transactionManagerSic" class="org.springframework.orm.hibernate4.HibernateTransactionManager">
+		<property name="sessionFactory" ref="sessionFactorySic" />
+		<qualifier value="sic"/>
+	</bean>
+	<!-- ============== -->
+	
+	<!-- ======ANALISTA====== -->	
+	<jee:jndi-lookup expected-type="javax.sql.DataSource" id="analistaDataSource" jndi-name="java:/analistaDS" />
+	
+	<bean id="sessionFactoryAnalista" class="org.springframework.orm.hibernate4.LocalSessionFactoryBean">
+		<property name="dataSource" ref="analistaDataSource" />
+		<property name="configLocation" value="classpath:hibernate-analista.cfg.xml" />
+	</bean>
+
+	<tx:annotation-driven transaction-manager="transactionManager" />
+	<bean id="transactionManagerAnalista" class="org.springframework.orm.hibernate4.HibernateTransactionManager">
+		<property name="sessionFactory" ref="sessionFactoryAnalista" />
+		<qualifier value="analista"/>
+	</bean>
+	<!-- ============== -->
+	
+	<bean class="org.springframework.beans.factory.config.CustomScopeConfigurer">
+	    <property name="scopes">
+	        <map>
+	            <entry key="view">
+	                <bean class="br.com.sp.intranet.spring.ViewScope"/>
+	            </entry>
+	        </map>
+	    </property>
+	</bean>
+</beans>

@@ -1,0 +1,54 @@
+<?xml version='1.0' encoding='utf-8'?>
+<!DOCTYPE hibernate-configuration PUBLIC
+        "-//Hibernate/Hibernate Configuration DTD 3.0//EN"
+        "http://hibernate.sourceforge.net/hibernate-configuration-3.0.dtd">
+<hibernate-configuration>
+	<session-factory>
+		<property name="dialect">org.hibernate.dialect.Oracle10gDialect</property>
+		
+		<mapping class="br.com.sp.intranet.model.administrador.CsUsuario" />
+		<mapping class="br.com.sp.intranet.model.administrador.CsServico" />
+		<mapping class="br.com.sp.intranet.model.administrador.CsGrupo" />
+		<mapping class="br.com.sp.intranet.model.administrador.CsMenu" />
+		<mapping class="br.com.sp.intranet.model.administrador.CsSetor" />
+		<mapping class="br.com.sp.intranet.model.administrador.CsAutorizacao" />
+		<mapping class="br.com.sp.intranet.model.administrador.app.CsAutorizacaoApp" />
+		<mapping class="br.com.sp.intranet.model.administrador.app.CsServicoApp" />
+		
+		
+		<mapping class="br.com.sp.intranet.model.portaria.MovPortaria"/>
+		<mapping class="br.com.sp.intranet.model.portaria.HistMovPortaria"/>
+		<mapping class="br.com.sp.intranet.model.portaria.TransportadoraPortaria"/>
+		<mapping class="br.com.sp.intranet.model.portaria.Veiculo"/>
+		
+		<mapping class="br.com.sp.intranet.model.caixa.Bancos" />
+		<mapping class="br.com.sp.intranet.model.caixa.Contas" />
+		<mapping class="br.com.sp.intranet.model.caixa.Fechamento" />
+		<mapping class="br.com.sp.intranet.model.caixa.HistoricoPadrao" />
+		<mapping class="br.com.sp.intranet.model.caixa.Lancamentos" />
+		<mapping class="br.com.sp.intranet.model.caixa.ParametrosRelatorio" />
+		<mapping class="br.com.sp.intranet.model.caixa.SaldoConta" />
+		<mapping class="br.com.sp.intranet.model.caixa.SaldoContaPK" />
+		<mapping class="br.com.sp.intranet.model.caixa.SaldoInicialConta" />
+		<mapping class="br.com.sp.intranet.model.caixa.TpConta" />
+		
+		<mapping class="br.com.sp.intranet.model.upload.UploadPasta" />
+		<mapping class="br.com.sp.intranet.model.upload.UploadArquivo" />
+		
+		<mapping class="br.com.sp.intranet.model.administrador.vo.rh.Cargo" />
+		<mapping class="br.com.sp.intranet.model.administrador.vo.rh.Colaborador" />
+		<mapping class="br.com.sp.intranet.model.administrador.vo.rh.Departamento" />
+		<mapping class="br.com.sp.intranet.model.administrador.vo.rh.Diretoria" />
+		<mapping class="br.com.sp.intranet.model.administrador.vo.rh.Ferias" />
+		<mapping class="br.com.sp.intranet.model.administrador.vo.rh.Filial" />
+		<mapping class="br.com.sp.intranet.model.administrador.vo.rh.HistoricoAfastamento" />
+		<mapping class="br.com.sp.intranet.model.administrador.vo.rh.HistoricoSalario" />
+		<mapping class="br.com.sp.intranet.model.administrador.vo.rh.Secao" />
+		<mapping class="br.com.sp.intranet.model.administrador.vo.rh.Setor" />
+		<mapping class="br.com.sp.intranet.model.administrador.vo.rh.TipoAfastamento" />
+		
+		
+		
+		
+	</session-factory>
+</hibernate-configuration>

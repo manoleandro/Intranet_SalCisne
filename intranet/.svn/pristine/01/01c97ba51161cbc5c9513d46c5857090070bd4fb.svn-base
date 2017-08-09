@@ -1,0 +1,336 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:h="http://java.sun.com/jsf/html" xmlns:ui="http://java.sun.com/jsf/facelets" xmlns:f="http://java.sun.com/jsf/core" xmlns:p="http://primefaces.org/ui">
+
+<h:head>
+	<f:loadBundle basename="messages_pt_BR" var="msg" />
+</h:head>
+<h:body>
+	<ui:composition template="../../template/commonLayout.xhtml">
+		<ui:define name="content">
+			<div class="ContainerIndent">
+				<h:form id="form" prependId="false">
+					<style>
+					</style>
+
+					<p:panel styleClass="panel">
+						<div class="container">
+							<h:outputText value="Relatórios Portaria" styleClass="title-page hardblue" />
+
+							<div class="right" style="text-align: right"></div>
+						</div>
+						<p:separator />
+
+						<h:panelGrid columns="2">
+							<h:outputText value="Relatório:" />
+							<p:selectOneMenu id="relatorio" value="#{portariaConsultaController.relatorio}" effect="fade" effectSpeed="2000" filter="true"  
+									filterMatchMode="contains" var="r">
+								
+								<f:selectItem itemLabel="Selecione" itemValue="" />
+								<f:selectItems value="#{portariaConsultaController.listRelatorios}" var="relatorio" itemValue="#{relatorio}" itemLabel="#{relatorio.descricao}" />
+								
+								<p:ajax event="change" update=":form"/>
+								
+								<p:column style="width:10%">
+									<i class="#{r.icone}" />
+								</p:column>
+								
+								<p:column>
+									<h:outputText value="#{r.descricao}"/>
+								</p:column>
+							</p:selectOneMenu>
+							<h:outputText value="Data Inicio:" />
+							<p:calendar locale="pt" pattern="dd/MM/yyyy" size="11" effect="fade" value="#{portariaConsultaController.dtInicio}" mask="99/99/9999" />
+
+							<h:outputText value="Data Fim:" />
+							<p:calendar locale="pt" pattern="dd/MM/yyyy" size="11" effect="fade" value="#{portariaConsultaController.dtFim}" mask="99/99/9999" />
+							
+							<p:commandButton id="xls" widgetVar="xls" value="Emitir" icon="fa fa-print white Fs16" action="#{portariaConsultaController.emitirRelatorios}"
+								update=":formFaixaCarregamento :formPesoCarregadoTurno :formQuantidadeVeiculosTurnoDetalhe :formTempoCarregTurno :formTotalPeso"
+								rendered="#{portariaConsultaController.relatorio.icone !='icon-file-pdf' }"/>
+								
+							<p:commandButton id="pdf" widgetVar="pdf" value="Emitir" icon="fa fa-print white Fs16" action="#{portariaConsultaController.emitirRelatorios}" onclick="target='_blank'"
+								rendered="#{portariaConsultaController.relatorio.icone =='icon-file-pdf' }" ajax="false">
+								<p:fileDownload value="#{portariaConsultaController.relatorioStream}" contentDisposition="inline"/>
+							</p:commandButton>	
+						</h:panelGrid>
+					</p:panel>
+				</h:form>	
+				
+				<p:dialog widgetVar="dialogFaixaCarregamento" header="Total de Veículos carregados" width="800" height="600" modal="true" appendToBody="true" showEffect="fade" hideEffect="fade">
+					<h:form id="formFaixaCarregamento">
+						<p:commandButton value="Exportar" ajax="false">
+							<p:dataExporter type="xls" target="tabFaixaCarregamento" fileName="TotalPeso" />
+						</p:commandButton>
+						<p:separator></p:separator>
+						<p:dataTable id="tabFaixaCarregamento" value="#{portariaConsultaController.listFaixaHorarioCarregamento}" var="faixaHorarioCarregamento" emptyMessage="Não há registros">
+
+							<f:facet name="header">
+
+							</f:facet>
+							<p:columnGroup type="header">
+								<p:row>
+									<p:column colspan="4" headerText="Quantidade por Turno" />
+									<p:column colspan="2" headerText="% Por turno" />
+									<p:column rowspan="2" headerText="Qtd. Dias Mês" />
+									<p:column colspan="2" headerText="Média Veículos dia/Turno" />
+								</p:row>
+								<p:row>
+									<p:column headerText="Mês" />
+									<p:column headerText="1º Turno" />
+									<p:column headerText="2º Turno" />
+									<p:column headerText="Total" />
+									<p:column headerText="1º Turno" />
+									<p:column headerText="2º Turno" />
+									<p:column headerText="1º Turno" />
+									<p:column headerText="2º Turno" />
+								</p:row>
+							</p:columnGroup>
+
+							<p:column styleClass="center">
+								<h:outputText value="#{faixaHorarioCarregamento.mes}" />
+							</p:column>
+
+							<p:column styleClass="center">
+								<h:outputText value="#{faixaHorarioCarregamento.qtd1Turno}" />
+							</p:column>
+
+							<p:column styleClass="center">
+								<h:outputText value="#{faixaHorarioCarregamento.qtd2Turno}" />
+							</p:column>
+
+							<p:column styleClass="center">
+								<h:outputText id="qtdTotal" value="#{faixaHorarioCarregamento.qtdTotal}" />
+
+								<p:overlayPanel for="qtdTotal" hideEffect="clip" showEffect="clip" hideEvent="mouseout" my="right bottom" at="left bottom" appendToBody="true">
+									<h:outputText id="notas" value="#{faixaHorarioCarregamento.detalhe}" escape="false" />
+								</p:overlayPanel>
+							</p:column>
+
+							<p:column styleClass="center">
+								<h:outputText value="#{faixaHorarioCarregamento.perc1Turno}" />
+							</p:column>
+
+							<p:column styleClass="center">
+								<h:outputText value="#{faixaHorarioCarregamento.perc2Turno}" />
+							</p:column>
+
+							<p:column styleClass="center">
+								<h:outputText value="#{faixaHorarioCarregamento.qtdDiasMes}" />
+							</p:column>
+
+							<p:column styleClass="center">
+								<h:outputText value="#{faixaHorarioCarregamento.med1Turno}">
+									<f:convertNumber maxFractionDigits="2" pattern="#,##0" />
+								</h:outputText>
+							</p:column>
+
+							<p:column styleClass="center">
+								<h:outputText value="#{faixaHorarioCarregamento.med2Turno}">
+									<f:convertNumber maxFractionDigits="2" pattern="#,##0" />
+								</h:outputText>
+							</p:column>
+						</p:dataTable>
+					</h:form>
+				</p:dialog>
+				
+				<p:dialog widgetVar="dialogPesoCarregadoTurno" header="Quantidade de Peso Carregado por Turno" width="1000" height="600" modal="true" appendToBody="true" showEffect="fade" hideEffect="fade">
+					<h:form id="formPesoCarregadoTurno">
+						<p:commandButton value="Exportar" ajax="false">
+							<p:dataExporter type="xls" target="tabPesoCarregadoTurno" fileName="TotalPeso" />
+						</p:commandButton>
+						<p:separator></p:separator>
+						<p:dataTable id="tabPesoCarregadoTurno" value="#{portariaConsultaController.listPesoCarregadoTurno}" var="peso" emptyMessage="Não há registros">
+
+							<p:columnGroup type="header">
+								<p:row>
+									<p:column rowspan="2" headerText="Tipo de Carga" />
+									<p:column colspan="3" headerText="1º Turno" />
+									<p:column colspan="3" headerText="2º Turno" />
+									<p:column rowspan="2" headerText="Total Geral" />
+									<p:column rowspan="2" headerText="1º Turno" />
+									<p:column rowspan="2" headerText="2º Turno" />
+								</p:row>
+								<p:row>
+									<p:column headerText="CIF" />
+									<p:column headerText="FOB" />
+									<p:column headerText="Total" />
+									<p:column headerText="CIF" />
+									<p:column headerText="FOB" />
+									<p:column headerText="Total" />
+								</p:row>
+							</p:columnGroup>
+
+							<p:column styleClass="center">
+								<h:outputText value="#{peso.tipoCarga}">
+									<f:convertNumber maxFractionDigits="2" pattern="#,##0" />
+								</h:outputText>
+							</p:column>
+
+							<p:column styleClass="center">
+								<h:outputText value="#{peso.qtd1CIF}">
+									<f:convertNumber maxFractionDigits="2" pattern="#,##0" />
+								</h:outputText>
+							</p:column>
+
+							<p:column styleClass="center">
+								<h:outputText value="#{peso.qtd1FOB}">
+									<f:convertNumber maxFractionDigits="2" pattern="#,##0" />
+								</h:outputText>
+							</p:column>
+
+							<p:column styleClass="center">
+								<h:outputText value="#{peso.qtd1Total}">
+									<f:convertNumber maxFractionDigits="2" pattern="#,##0" />
+								</h:outputText>
+							</p:column>
+
+							<p:column styleClass="center">
+								<h:outputText value="#{peso.qtd2CIF}">
+									<f:convertNumber maxFractionDigits="2" pattern="#,##0" />
+								</h:outputText>
+							</p:column>
+
+							<p:column styleClass="center">
+								<h:outputText value="#{peso.qtd2FOB}">
+									<f:convertNumber maxFractionDigits="2" pattern="#,##0" />
+								</h:outputText>
+							</p:column>
+
+							<p:column styleClass="center">
+								<h:outputText value="#{peso.qtd2Total}">
+									<f:convertNumber maxFractionDigits="2" pattern="#,##0" />
+								</h:outputText>
+							</p:column>
+
+							<p:column styleClass="center">
+								<h:outputText value="#{peso.totalGeral}">
+									<f:convertNumber maxFractionDigits="2" pattern="#,##0" />
+								</h:outputText>
+							</p:column>
+
+							<p:column styleClass="center">
+								<h:outputText value="#{peso.percTurno1}" />
+							</p:column>
+
+							<p:column styleClass="center">
+								<h:outputText value="#{peso.percTurno2}" />
+							</p:column>
+						</p:dataTable>
+					</h:form>
+				</p:dialog>
+				
+				<p:dialog widgetVar="dialogQuantidadeVeiculosTurnoDetalhe" header="Quantidade de Veículos por turno" width="600" height="400" modal="true" appendToBody="true" showEffect="fade" hideEffect="fade">
+					<h:form id="formQuantidadeVeiculosTurnoDetalhe">
+						<p:commandButton value="Exportar" ajax="false">
+							<p:dataExporter type="xls" target="tabQuantidadeVeiculosTurnoDetalhe" fileName="QuantidadeVeiculosTurnoDetalhe" />
+						</p:commandButton>
+						<p:separator></p:separator>
+						<p:dataTable id="tabQuantidadeVeiculosTurnoDetalhe" value="#{portariaConsultaController.listQuantidadeVeiculosDetalhados}" var="list" emptyMessage="Não há registros">
+
+							<p:column headerText="Tipo de Carregamento" styleClass="center">
+								<h:outputText value="#{list.tipoCarregamento}" />
+							</p:column>
+
+							<p:column headerText="Turno" styleClass="center">
+								<h:outputText value="#{list.turno}" />
+							</p:column>
+
+							<p:column headerText="CIF" styleClass="center">
+								<h:outputText value="#{list.qtdCIF}" />
+							</p:column>
+
+							<p:column headerText="FOB" styleClass="center">
+								<h:outputText value="#{list.qtdFOB}" />
+							</p:column>
+
+							<p:column headerText="Total" styleClass="center">
+								<h:outputText value="#{list.qtdTotal}" />
+							</p:column>
+						</p:dataTable>
+					</h:form>
+				</p:dialog>
+				
+				<p:dialog widgetVar="dialogTempoCarregTurno" header="Tempo de Carregamento por Turno" width="700" height="400" modal="true" appendToBody="true" showEffect="fade" hideEffect="fade">
+					<h:form id="formTempoCarregTurno">
+						<p:commandButton value="Exportar" ajax="false">
+							<p:dataExporter type="xls" target="tabTempoCarregTurno" fileName="TempoCarregadoTurno" />
+						</p:commandButton>
+						<p:separator></p:separator>
+						<p:dataTable id="tabTempoCarregTurno" value="#{portariaConsultaController.listTempoCarregamentoTurno}" var="list" emptyMessage="Não há registros">
+
+							<p:column headerText="Tipo de Carregamento" styleClass="center">
+								<h:outputText value="#{list.tipoCarga}" />
+							</p:column>
+
+							<p:column headerText="Turno" styleClass="center">
+								<h:outputText value="#{list.turno}" />
+							</p:column>
+
+							<p:column headerText="CIF" styleClass="center">
+								<h:outputText value="#{list.tempoCIF}" />
+							</p:column>
+
+							<p:column headerText="FOB" styleClass="center">
+								<h:outputText value="#{list.tempoFOB}" />
+							</p:column>
+
+							<p:column headerText="Média Turno" styleClass="center">
+								<h:outputText value="#{list.mediaTurno}" />
+							</p:column>
+
+							<p:column headerText="Media Tipo Carga" styleClass="center">
+								<h:outputText value="#{list.mediaTipoCarga}" />
+							</p:column>
+						</p:dataTable>
+					</h:form>
+				</p:dialog>
+				
+				<p:dialog widgetVar="dialogTotalPeso" header="Total de Peso" width="650" height="400" modal="true" appendToBody="true" showEffect="fade" hideEffect="fade">
+					<h:form id="formTotalPeso">
+						<p:commandButton value="Exportar" ajax="false">
+							<p:dataExporter type="xls" target="tabTotalPeso" fileName="TotalPeso" />
+						</p:commandButton>
+						<p:separator></p:separator>
+						<p:dataTable id="tabTotalPeso" value="#{portariaConsultaController.listTotalPeso}" var="totalPeso" emptyMessage="Não há registros">
+
+							<p:column headerText="Mês" styleClass="center">
+								<h:outputText value="#{totalPeso.mes}" />
+							</p:column>
+
+							<p:column headerText="FOB" styleClass="center">
+								<h:outputText value="#{totalPeso.qtdFOB}">
+									<f:convertNumber maxFractionDigits="3" pattern="#,##0" />
+								</h:outputText>
+							</p:column>
+
+							<p:column headerText="CIF" styleClass="center">
+								<h:outputText value="#{totalPeso.qtdCIF}">
+									<f:convertNumber maxFractionDigits="3" pattern="#,##0" />
+								</h:outputText>
+							</p:column>
+
+							<p:column headerText="Paletizado" styleClass="center">
+								<h:outputText value="#{totalPeso.qtdPalet}">
+									<f:convertNumber maxFractionDigits="3" pattern="#,##0" />
+								</h:outputText>
+							</p:column>
+
+							<p:column headerText="Manual" styleClass="center">
+								<h:outputText value="#{totalPeso.qtdManual}">
+									<f:convertNumber maxFractionDigits="3" pattern="#,##0" />
+								</h:outputText>
+							</p:column>
+
+							<p:column headerText="Total" styleClass="center">
+								<h:outputText value="#{totalPeso.qtdTotal}">
+									<f:convertNumber maxFractionDigits="3" pattern="#,##0" />
+								</h:outputText>
+							</p:column>
+						</p:dataTable>
+					</h:form>
+				</p:dialog>
+			</div>
+		</ui:define>
+	</ui:composition>
+</h:body>
+</html>

@@ -1,0 +1,177 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:h="http://java.sun.com/jsf/html" xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core" xmlns:p="http://primefaces.org/ui">
+
+<h:head>
+	<f:loadBundle basename="messages_pt_BR" var="msg" />
+	<style>
+		.ui-datatable .ui-column-filter {
+        border-radius: 4px;
+		}
+	</style>
+</h:head>
+<h:body>
+<f:metadata>
+		<f:event listener="#{colaboradorController.initHistorico()}" type="preRenderView"></f:event>
+	</f:metadata>
+	<ui:composition template="../../template/commonLayout.xhtml">
+		<ui:define name="content">
+			<div class="ContainerIndent">
+			<p:panel styleClass="panel">
+			<div class="container">
+				<h:outputText value="Histórico do Colaborador" styleClass="title-page hardblue"/>
+				<div class="right" style="text-align: right">
+				
+				<p:commandLink styleClass="commandLinkIcone" title="Voltar" action="#{colaboradorController.redirecionaPaginaPrincipal}">
+					<i class="fa icon-left-big title-page button" />
+				</p:commandLink>
+				
+				<p:commandLink styleClass="commandLinkIcone" title="Atualizar" onclick="location.reload();">
+									<i class="fa icon-arrows-cw title-page button" />
+				</p:commandLink>
+				
+				</div>
+			</div>
+			<p:separator />
+			
+			
+			<h:form id="manter">   
+		            	<p:tabView id="info2" dynamic="true" cache="true" binding="#{colaboradorController.tabView}">
+					        <p:tab id="personal" title="Pessoal" >  
+					  			<p:panel header="Dados Pessoais"> 
+				            		<h:panelGrid columns="2">
+					        			
+										<h:panelGrid columns="2" columnClasses="label, value" styleClass="grid" style="text-align: left;">  
+											<h:outputLabel for="matricula" value="Matrícula:" />
+						                    <h:outputText  id="matricula" value="#{colaboradorController.colaborador.matricula}" size="60"/>
+						                    
+						                    <h:outputLabel for="nome" value="Nome:" />
+						                    <h:outputText  id="nome" value="#{colaboradorController.colaborador.nome}" size="60"/>
+						                    
+						                    <h:outputLabel for="diretoria" value="Diretoria:" />
+						                    <h:outputText  id="diretoria" value="#{colaboradorController.colaborador.diretoria.descricao}" />
+						                    
+						                    <h:outputLabel for="dept" value="Departamento:" />
+						                    <h:outputText  id="dept" value="#{colaboradorController.colaborador.departamento.descricao}" />
+						                    
+						                    <h:outputLabel for="setor" value="Setor:" />
+						                    <h:outputText  id="setor" value="#{colaboradorController.colaborador.setor.descricao}" />
+						                    
+						                    <h:outputLabel for="secao" value="Seção:" />
+						                    <h:outputText  id="secao" value="#{colaboradorController.colaborador.secao.descricao}" />
+						                    
+						                    <h:outputLabel for="cargo" value="Cargo:" />
+						                    <h:outputText  id="cargo" value="#{colaboradorController.colaborador.cargo.descricao}" />
+						                    
+						                    <h:outputLabel for="tipoFuncionario" value="Tipo Funcionário:" />
+						                    <h:outputText  id="tipoFuncionario" value="#{colaboradorController.colaborador.tipoFuncionario.descricao}" />
+			
+						                    <h:outputLabel for="admitido" value="Admitido em:" />
+						                    <h:outputText id="admitido" value="#{colaboradorController.colaborador.admissao}">
+						                    	<f:convertDateTime dateStyle="short" pattern="dd/MM/yyyy" locale="pt" />
+						                    </h:outputText>
+						                    
+						                    <h:outputLabel for="demitido" value="Demitido em:" rendered="#{colaboradorController.colaborador.demissao != null}"/>
+						                    <h:outputText id="demitido" value="#{colaboradorController.colaborador.demissao}">
+							            	 	<f:convertDateTime dateStyle="short" pattern="dd/MM/yyyy" locale="pt" />
+							            	</h:outputText>
+								      	</h:panelGrid>						      	
+									</h:panelGrid>   	
+		            			</p:panel>
+			        		</p:tab>  
+					        <p:tab id="histsalario" title="Histórico de Salário" >
+					        	<p:panel header="Histórico de Salário"> 
+						        	<p:dataTable var="salario"  id="tabelaSalario"
+						        	emptyMessage="Não há registro de histórico de salário..." 
+									paginator="true" rows="15"   value="#{colaboradorController.listaHistSal}"
+					                paginatorTemplate="{CurrentPageReport}  {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
+					                rowsPerPageTemplate="5,10,15,20,40" paginatorAlwaysVisible="false">  
+					  			
+					  				<p:column headerText="Data Aumento" styleClass="center">  
+							            <h:outputText value="#{salario.dataAumento}" >
+							            	<f:convertDateTime dateStyle="short" pattern="dd/MM/yyyy" locale="pt" />
+							            </h:outputText>
+							        </p:column>
+							        
+							        <p:column headerText="Motivo" styleClass="center">  
+							            <h:outputText value="#{salario.motivo.descricao}"/>
+									</p:column>
+							        
+							        <p:column headerText="Percentual" styleClass="center">
+							        	<h:outputText value="#{salario.percentual}"/>
+							        </p:column>
+							        
+							        <p:column headerText="Salário" styleClass="center">  
+							            <h:outputText value="#{salario.salario}" rendered="#{colaboradorController.exibeSalario}">
+							            	<f:convertNumber type="currency"  minFractionDigits="2" locale="pt_BR"/>
+							            </h:outputText>
+							        </p:column>
+							        </p:dataTable>
+								</p:panel>
+					        </p:tab>
+					        <p:tab id="histafastamento" title="Histórico de Afastamento" >
+					        	<p:panel header="Histórico de Salário"> 
+				                    <p:dataTable var="afastamento" id="tabelaAfastamento"
+				                    emptyMessage="Não há registro de afastamentos..." 
+									paginator="true" rows="15" value="#{colaboradorController.listaHistAfas}"
+					                paginatorTemplate="{CurrentPageReport}  {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
+					                rowsPerPageTemplate="5,10,15,20,40" paginatorAlwaysVisible="false">  
+					  			
+									<p:column headerText="Afastamento" style="width:14%;">  
+							            <h:outputText value="#{afastamento.dataAfastamento}" >
+							            	<f:convertDateTime dateStyle="short" pattern="dd/MM/yyyy" locale="pt" />
+							            </h:outputText>
+							        </p:column>
+							        
+							        <p:column headerText="Retorno" style="width:14%;">  
+							            <h:outputText value="#{afastamento.dataRetorno}" >
+							            	<f:convertDateTime dateStyle="short" pattern="dd/MM/yyyy" locale="pt" />
+							            </h:outputText>
+							        </p:column>
+							        </p:dataTable>
+				                </p:panel>
+					        </p:tab>
+					        <p:tab id="histFerias" title="Histórico de Férias" >
+					        	<p:panel header="Histórico de Férias"> 
+				                    <p:dataTable var="ferias"  id="tabelaFerias"
+				                    emptyMessage="Não há registro de férias..." 
+									paginator="true" rows="15"  value="#{colaboradorController.listaFerias}"
+					                paginatorTemplate="{CurrentPageReport}  {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
+					                rowsPerPageTemplate="5,10,15,20,40" paginatorAlwaysVisible="false">  
+		
+									<p:column headerText="Início" styleClass="center">
+							        	<h:outputText value="#{ferias.inicio}" >
+							        		<f:convertDateTime dateStyle="short" pattern="dd/MM/yyyy" locale="pt" />
+							        	</h:outputText>  
+							        </p:column>
+							        
+							        <p:column headerText="Fim" styleClass="center">
+							        	<h:outputText value="#{ferias.fim}" >
+							        		<f:convertDateTime dateStyle="short" pattern="dd/MM/yyyy" locale="pt" />
+							        	</h:outputText>  
+							        </p:column>
+			
+									<p:column headerText="Início do Período Aquisitivo" styleClass="center">  
+							            <h:outputText value="#{ferias.inicioPrdAquisitivo}" >
+							            	<f:convertDateTime dateStyle="short" pattern="dd/MM/yyyy" locale="pt" />
+							            </h:outputText>
+							        </p:column>
+					  			
+									<p:column headerText="Fim do Período Aquisitivo" styleClass="center">  
+							            <h:outputText value="#{ferias.fimPrdAquisitivo}" >
+							            	<f:convertDateTime dateStyle="short" pattern="dd/MM/yyyy" locale="pt" />
+							            </h:outputText>
+							        </p:column>
+							        </p:dataTable>
+				                </p:panel>
+					        </p:tab>
+					   	</p:tabView>
+			         </h:form>  
+				
+				</p:panel>
+			</div>
+		</ui:define>
+	</ui:composition>
+</h:body>
+</html>

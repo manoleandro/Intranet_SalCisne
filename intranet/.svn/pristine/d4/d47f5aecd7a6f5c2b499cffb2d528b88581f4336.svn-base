@@ -1,0 +1,350 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:h="http://java.sun.com/jsf/html" xmlns:ui="http://java.sun.com/jsf/facelets" xmlns:f="http://java.sun.com/jsf/core" xmlns:p="http://primefaces.org/ui">
+
+<h:head>
+	<f:loadBundle basename="messages_pt_BR" var="msg" />
+</h:head>
+<h:body>
+	<f:metadata>
+		<f:viewAction action="#{registroVisitaDetalheController.init}" />
+	</f:metadata>
+
+	<ui:composition template="../../template/commonLayout.xhtml">
+		<ui:define name="content">
+			<div class="ContainerIndent">
+				<h:form id="form" prependId="false">
+					<style>
+						.ui-inputnumber .ui-widget {
+							width: 10vw !important;
+						}
+					</style>
+					
+					<script type="text/javascript">
+						// Faz com que a tecla enter tenha efeito de TAB pulando de campo em campo
+						function gerenciaTeclaEnter() {
+							$(document).ready(function() {
+					        	
+								$('input').keypress(function(e) {
+									var code = null;
+					            	code = (e.keyCode ? e.keyCode : e.which);
+					            	return (code === 13) ? false : true;
+					 			});
+					 
+					        	$('input[type=text]').keydown(function(e) {
+					            	// Obter o próximo índice do elemento de entrada de texto
+					            	var next_idx = $('input[type=text]').index(this) + 1;
+					 
+					            	// Obter o número de elemento de entrada de texto em um documento html
+					            	var tot_idx = $('body').find('input[type=text]').length;
+					 
+					            	// Entra na tecla no código ASCII
+					            	if (e.keyCode === 13) {
+					                	if (tot_idx === next_idx){
+					                    	// Vá para o último elemento que é um textarea
+					                    	$("#comentarios").focus();
+					                	}else{
+					                    	// Vá para o elemento de entrada de texto seguinte
+					                    	$('input[type=text]:eq(' + next_idx + ')').focus();
+					                	}	
+					            	}
+					        	});
+					    	});
+						}
+					</script>
+
+					<p:confirmDialog global="true" showEffect="puff" hideEffect="puff" appendTo="@(body)">
+						<p:commandButton value="Sim" type="button" styleClass="ui-confirmdialog-yes" icon="fa fa-check Fs18 white" />
+						<p:commandButton value="Não" type="button" styleClass="ui-confirmdialog-no" icon="fa fa-times Fs18 white" />
+					</p:confirmDialog>
+
+					<p:panel styleClass="panel">
+						<p:growl id="messages2" autoUpdate="false" />
+						<div class="container">
+							<h:outputText value="Detalhe Registro Visita" styleClass="title-page hardblue" />
+							<div class="right" style="text-align: right">
+								<p:commandLink styleClass="commandLinkIcone" title="Apresentação para carregamento" action="#{registroVisitaDetalheController.voltar}">
+									<i class="fa icon-left-bold title-page button" />
+								</p:commandLink>
+							</div>
+						</div>
+						<p:separator />
+
+						<p:panelGrid style="width:100%" styleClass="centralizar font-responsive">
+							<f:facet name="header">
+								<p:row>
+									<p:column>Zona</p:column>
+									<p:column>Vendedor</p:column>
+									<p:column colspan="2">Dia da Visita</p:column>
+								</p:row>
+							</f:facet>
+
+							<p:row>
+								<p:column rowspan="2">
+									<h:outputText value="#{registroVisitaDetalheController.vo.zona}" />
+								</p:column>
+
+								<p:column rowspan="2">
+									<h:outputText value="#{registroVisitaDetalheController.vo.nomeVendedor}" />
+								</p:column>
+
+								<p:column styleClass="FontBold">SPV</p:column>
+								<p:column styleClass="FontBold">Real</p:column>
+							</p:row>
+
+							<p:row>
+								<p:column>
+									<h:outputText value="#{registroVisitaDetalheController.vo.dataVisitaSpv}" title="Data informada no SPV" >
+										<f:convertDateTime pattern="dd/MM/yyyy" />
+									</h:outputText>
+								</p:column>
+
+								<p:column styleClass="centralizar">
+									<p:calendar id="dtVisita" pattern="dd/MM/yyyy" showOn="button" value="#{registroVisitaDetalheController.vo.pk.dataVisitaReal}" 
+	                							locale="pt" effect="puff"/>
+								</p:column>
+							</p:row>
+
+							<p:row>
+								<p:column colspan="4" style="border:none !important;" />
+							</p:row>
+							<p:row>
+								<p:column styleClass="titulo">Cod. JDE</p:column>
+								<p:column styleClass="titulo">Nome do Cliente</p:column>
+								<p:column styleClass="titulo" colspan="2">Praça</p:column>
+							</p:row>
+
+							<p:row>
+								<p:column rowspan="2">
+									<h:outputText value="#{registroVisitaDetalheController.vo.pk.idCliente}" />
+								</p:column>
+
+								<p:column rowspan="2">
+									<h:outputText value="#{registroVisitaDetalheController.vo.nomeCliente}" />
+								</p:column>
+
+								<p:column styleClass="FontBold">Reposição</p:column>
+								<p:column styleClass="FontBold">Data SPV</p:column>
+							</p:row>
+
+							<p:row>
+								<p:column>
+									<h:outputText value="#{registroVisitaDetalheController.vo.diasReposicao}" title="Prazo de reposição do SPV" />
+								</p:column>
+
+								<p:column>
+									<h:outputText value="#{registroVisitaDetalheController.vo.dataSpv}" title="Campo última data do pedido SPV" >
+										<f:convertDateTime pattern="dd/MM/yyyy" />
+									</h:outputText>
+								</p:column>
+							</p:row>
+						</p:panelGrid>
+
+						<br />
+
+						<div class="container">
+							<p:panelGrid styleClass="centralizar font-responsive" style="width:100%; border:none !important">
+								<f:facet name="header">
+									<p:row>
+										<p:column colspan="2">Previsão</p:column>
+										<p:column style="border:none !important; background-color:transparent !important; " />
+										<p:column colspan="2">Venda</p:column>
+									</p:row>
+								</f:facet>
+
+								<p:row>
+									<p:column>Preço de Compra</p:column>
+									<p:column>
+										<h:outputText value="#{registroVisitaDetalheController.vo.previsaoPrecoCompra}" title="Preço kg do SPV">
+											<f:convertNumber minFractionDigits="2" maxFractionDigits="2" />
+										</h:outputText>
+									</p:column>
+
+									<p:column style="border:none !important;" />
+
+									<p:column>Compra Kg</p:column>
+									<p:column>
+										<p:inputNumber decimalPlaces="0" decimalSeparator="," thousandSeparator="." id="comprakg" 
+											value="#{registroVisitaDetalheController.vo.vendaCompraKg}"
+											title="Incluído no dia da visita(Retira do Pedido de venda)" styleClass="centralizar"
+											onkeydown="gerenciaTeclaEnter();" tabindex="1">
+											<p:ajax event="blur" listener="#{registroVisitaDetalheController.calcularPrecoCompra}" update=":precoCompra" process=":form"/>
+										</p:inputNumber>
+									</p:column>
+								</p:row>
+
+								<p:row>
+									<p:column>Estoque mês Findo</p:column>
+									<p:column>
+										<h:outputText value="#{registroVisitaDetalheController.vo.estoqueMesFindo}" title="Estoque do final do Mês SPV">
+											<f:convertNumber />
+										</h:outputText>
+									</p:column>
+
+									<p:column style="border:none !important;" />
+
+									<p:column>Compra R$</p:column>
+									<p:column>
+										<p:inputNumber decimalPlaces="2" decimalSeparator="," thousandSeparator="." id="comprars" value="#{registroVisitaDetalheController.vo.vendaCompraRs}"
+											title="Incluído no dia da visita(Retira do Pedido de venda)" styleClass="centralizar"
+											onkeydown="gerenciaTeclaEnter();" tabindex="2">
+											<p:ajax event="blur" listener="#{registroVisitaDetalheController.calcularPrecoCompra}" update=":precoCompra" />
+										</p:inputNumber>
+									</p:column>
+								</p:row>
+
+								<p:row>
+									<p:column>Estoque Projetado para o Dia da Visita</p:column>
+									<p:column>
+										<h:outputText value="#{registroVisitaDetalheController.vo.estoqueProjetado}" title="Estoque Projetado do SPV">
+											<f:convertNumber />
+										</h:outputText>
+									</p:column>
+
+									<p:column style="border:none !important;" />
+
+									<p:column>Preço de Compra</p:column>
+									<p:column>
+										<h:outputText id="precoCompra" value="#{registroVisitaDetalheController.vo.vendaPrecoCompra}" title="Fórmula: Compra R$ / Compra Kg">
+											<f:convertNumber minFractionDigits="2" maxFractionDigits="2" />
+										</h:outputText>
+									</p:column>
+								</p:row>
+
+								<p:row>
+									<p:column>Entregas Pendentes</p:column>
+									<p:column>
+										<h:outputText value="#{registroVisitaDetalheController.vo.entregasPendentes}" title="Notas Fiscais sem data de canhoto do SPV">
+											<f:convertNumber />
+										</h:outputText>
+									</p:column>
+
+									<p:column style="border:none !important;" />
+									<p:column>Compra R$ Espec.</p:column>
+									<p:column>
+										<p:inputNumber decimalPlaces="2" decimalSeparator="," thousandSeparator="." id="compraRsEspec" value="#{registroVisitaDetalheController.vo.compraRsEspecial}"
+											title="Incluído no dia da visita(Retira do Pedido de venda)" styleClass="centralizar"
+											onkeydown="gerenciaTeclaEnter();" tabindex="3"/>
+									</p:column>
+								</p:row>
+
+								<p:row>
+									<p:column>Consumo Kg/dia</p:column>
+									<p:column>
+										<h:outputText value="#{registroVisitaDetalheController.vo.consumoKgDia}" title="Consumo Progressivo do SPV">
+											<f:convertNumber />
+										</h:outputText>
+									</p:column>
+									
+									<p:column style="border:none !important;" />
+									
+									<p:column>Estoque dia Visita</p:column>
+									<p:column>
+										<p:inputNumber id="estoqueDiaVisita" decimalPlaces="0" thousandSeparator="." value="#{registroVisitaDetalheController.vo.estoqueDiaVisita}"
+											title="Estoque Real Informado no dia da visita" styleClass="centralizar"
+											onkeydown="gerenciaTeclaEnter();" tabindex="4">
+											<p:ajax event="blur" listener="#{registroVisitaDetalheController.calcularConsumoKgDia}"
+												update=":messages2 :estoqueDiaVisita 
+													:vendaConsumoKgDia :dataProximaVisita :variacaoConsumo :variacaoEstoque" />
+										</p:inputNumber>
+									</p:column>
+								</p:row>
+
+								<p:row>
+									<p:column>Dias de Cobertura</p:column>
+									<p:column>
+										<h:outputText value="#{registroVisitaDetalheController.vo.diasCobertura}" title="Dias de cobertura do SPV">
+											<f:convertNumber />
+										</h:outputText>
+									</p:column>
+
+									<p:column style="border:none !important;" />
+									<p:column>Consumo Kg/dia</p:column>
+									<p:column>
+										<h:outputText id="vendaConsumoKgDia" value="#{registroVisitaDetalheController.vo.vendasConsumoKgDia}"
+													  title="Fórmula: (Estoque mêa findo - Estoque dia visita) / (Data de visita Real - Data de visita SPV)" >
+											<f:convertNumber />
+										</h:outputText>	
+									</p:column>
+								</p:row>
+								
+								<p:row>
+									<p:column>Necessidade do Mês</p:column>
+									<p:column>
+										<h:outputText value="#{registroVisitaDetalheController.vo.necessidadeMes}" title="Fórmula: Consumo Kg/dia * (Dias cobertura + 30)">
+											<f:convertNumber />
+										</h:outputText>
+									</p:column>
+									
+									<p:column style="border:none !important;" />
+									<p:column>Data Próx. Visita</p:column>
+									<p:column>
+										<h:outputText id="dataProximaVisita" value="#{registroVisitaDetalheController.vo.dataProximaVisita}" style="width: 10vw"
+											title="Fórmula: ((Estoque dia Visita + Compra Kg Venda) / Consumo Kg/dia ) - Prazo Reposição" >
+											<f:convertDateTime pattern="dd/MM/yyyy" />
+										</h:outputText>	
+									</p:column>
+									
+								</p:row>
+
+								<p:row>
+									<p:column>Compra Kg</p:column>
+									<p:column>
+										<h:outputText value="#{registroVisitaDetalheController.vo.previsaoCompraKg}" title="Fórmula: Necessidades do mes - Estoque mês findo">
+											<f:convertNumber />
+										</h:outputText>
+									</p:column>
+								</p:row>
+
+								<p:row>
+									<p:column>Compra R$</p:column>
+									<p:column>
+										<h:outputText value="#{registroVisitaDetalheController.vo.previsaoCompraRs}" title="Fórmula: Compra Kg * Preço de Compra">
+											<f:convertNumber minFractionDigits="2" maxFractionDigits="2" />
+										</h:outputText>
+									</p:column>
+									
+									<p:column style="border:none !important;" />
+								</p:row>
+
+								<p:row>
+									<p:column>Última Data de Compra</p:column>
+									<p:column>
+										<h:outputText value="#{registroVisitaDetalheController.vo.ultimaDataCompra}" title="Data último pedido de venda do SPV" >
+											<f:convertDateTime pattern="dd/MM/yyyy" />
+										</h:outputText>
+									</p:column>
+								</p:row>
+							</p:panelGrid>
+						</div>
+						<br />
+						
+						<p:fieldset legend="Notas" toggleable="false" styleClass="font-responsive">
+							<p:panelGrid columns="2">
+								<h:outputText id="ultimo" value="1 - Aumento / Queda de consumo:" title="Fórmula:() Consumo Kg/dia Venda - Consumo Kg/dia previsao) / Consumo Kg/dia previsao" />
+								<h:outputText id="variacaoConsumo" value="#{registroVisitaDetalheController.vo.variacaoConsumo}" />
+
+								<h:outputText value="2 - Aumento de dias em estoque / Redução de dias em estoque:" title="((Compra Kg Venda + Estoque dia Visita) / Consumo Kg/dia Venda) + Dias de cobertura + 30" />
+								<h:outputText id="variacaoEstoque" value="#{registroVisitaDetalheController.vo.variacaoDiasEmEstoque}" />
+							</p:panelGrid>
+						</p:fieldset>
+
+						<br />
+
+						<p:fieldset legend="Comentarios" toggleable="false" styleClass="font-responsive">
+							<p:inputTextarea id="comentarios" style="width:99%" value="#{registroVisitaDetalheController.vo.comentarios}" tabindex="5"/>
+						</p:fieldset>
+						
+						<p:spacer width="100%" height="5" />
+
+						<p:commandButton value="Salvar" icon="fa fa-check Fs18 white" styleClass="commandLinkIcone" title="#{msg['salvar']}" action="#{registroVisitaDetalheController.salvar}" 
+										 update=":form" process=":form">
+							<f:setPropertyActionListener value="#{registroVisitaDetalheController.vo}" target="#{registroVisitaDetalheController.vo}" />
+						</p:commandButton>
+					</p:panel>
+				</h:form>
+			</div>
+		</ui:define>
+	</ui:composition>
+</h:body>
+</html>

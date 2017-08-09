@@ -1,0 +1,121 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:h="http://java.sun.com/jsf/html" xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core" xmlns:p="http://primefaces.org/ui">
+
+<h:head>
+	<f:loadBundle basename="messages_pt_BR" var="msg" />
+</h:head>
+<h:body>
+	<ui:composition template="../../template/commonLayout.xhtml">
+		<ui:define name="content">
+			<div class="ContainerIndent">
+				<h:form id="form">
+					<style>
+					</style>
+
+					<p:confirmDialog global="true" showEffect="puff" hideEffect="puff" appendTo="@(body)">
+						<p:commandButton value="Sim" type="button" styleClass="ui-confirmdialog-yes" icon="fa fa-check Fs18 white" />
+						<p:commandButton value="Não" type="button" styleClass="ui-confirmdialog-no" icon="fa fa-times Fs18 white" />
+					</p:confirmDialog>
+
+					<p:panel styleClass="panel">
+						<p:growl id="messages" autoUpdate="false" />
+						<div class="container">
+							<h:outputText value="Gerênciar Autorização" styleClass="title-page hardblue"/>
+
+							<div class="right" style="text-align: right">
+								<p:commandLink styleClass="commandLinkIcone" title="#{msg['incluir']}" action="#{autorizacaoController.prepararIncluir}" update=":autorizacaoForm">
+									<i class="icon-plus title-page button" />
+								</p:commandLink>
+
+								<p:commandLink styleClass="commandLinkIcone" title="#{msg['alterar']}" action="#{autorizacaoController.prepararAlterar}" update=":form:messages :autorizacaoForm">
+									<i class="icon-pencil title-page button"/>
+								</p:commandLink>
+
+								<p:commandLink styleClass="commandLinkIcone" title="#{msg['excluir']}" action="#{autorizacaoController.excluir}" update=":form:messages :form:tableAutorizacao"
+									oncomplete="PF('tableAutorizacao').clearFilters();">
+									<p:confirm header="Atenção" message="#{msg['excluir.registro']}" icon="fa fa-info Fs18" />
+									<i class="icon-trash title-page button"/>
+								</p:commandLink>
+							</div>
+						</div>
+						<p:separator />
+
+						<p:dataTable id="tableAutorizacao" widgetVar="tableAutorizacao" var="autorizacao" value="#{autorizacaoController.autorizacoes}" emptyMessage="#{msg['sem.registro']}"
+							selectionMode="single" selection="#{autorizacaoController.autorizacaoSelecionada}" rowKey="#{autorizacao.id}" scrollHeight="600" paginator="true" rows="14"
+							paginatorPosition="bottom">
+
+							<p:column filterBy="#{autorizacao.id}" sortBy="#{autorizacao.id}" headerText="Código" styleClass="centralizar" filterStyleClass="filtro" width="10%" priority="4">
+								<h:outputText value="#{autorizacao.id}" />
+							</p:column>
+
+							<p:column filterBy="#{autorizacao.servico.descricao}" sortBy="#{autorizacao.servico.descricao}" headerText="Serviço" filterStyleClass="filtro" priority="1"
+									  styleClass="centralizar">
+								<h:outputText value="#{autorizacao.servico.descricao}"/>
+							</p:column>
+							
+							<p:column filterBy="#{autorizacao.descricao}" sortBy="#{autorizacao.descricao}" headerText="Descricão" filterStyleClass="filtro" priority="3">
+								<h:outputText value="#{autorizacao.descricao}" />
+							</p:column>
+							
+							<p:column filterBy="#{autorizacao.autorizacao}" sortBy="#{autorizacao.autorizacao}" headerText="Autorização" filterStyleClass="filtro" priority="2"
+									  styleClass="centralizar">
+								<h:outputText value="#{autorizacao.autorizacao}"/>
+							</p:column>
+
+						</p:dataTable>
+					</p:panel>
+				</h:form>
+
+				<p:dialog header="Autorização" widgetVar="dialogAutorizacao" modal="true" showEffect="puff" hideEffect="puff" appendTo="@(body)">
+					<h:form id="autorizacaoForm"> 
+						<h:panelGrid columns="2">
+							<h:outputText value="Serviço:" />
+							<h:panelGroup>
+								<p:inputText value="#{autorizacaoController.autorizacao.servico.descricao}" readonly="true"/>
+								<p:commandLink styleClass="commandLinkIcone" title="#{msg['assistente']}" action="#{autorizacaoController.carregarServicos}" update=":assistenteServicosForm"
+											   oncomplete="PF('dialogAssistenteServicos').show();">
+									<i class="icon-search button" style="font-size: 1.5rem;" />
+								</p:commandLink>
+							</h:panelGroup>
+							
+							<h:outputText value="Descrição:" />
+							<p:inputText value="#{autorizacaoController.autorizacao.descricao}" />
+	
+							<h:outputText value="Autorização:" />
+							<p:inputText value="#{autorizacaoController.autorizacao.autorizacao}" />
+						</h:panelGrid>
+						<p:spacer height="20" width="100%" />
+					
+						<p:commandButton value="Salvar" icon="fa fa-check Fs18 white" action="#{autorizacaoController.salvar}" update=":form"
+										 oncomplete="PF('dialogAutorizacao').hide(); PF('tableAutorizacao').clearFilters();">
+							<f:setPropertyActionListener value="#{autorizacaoController.autorizacao}" target="#{autorizacaoController.autorizacaoSelecionada}" />
+						</p:commandButton>
+						<p:commandButton value="Cancelar" icon="fa fa-times Fs18 white" onclick="PF('dialogAutorizacao').hide();" />
+					</h:form>
+				</p:dialog>
+				
+				<p:dialog header="Assistente Serviços" widgetVar="dialogAssistenteServicos" modal="true" showEffect="puff" hideEffect="puff" width="40%" appendTo="@(body)">
+	            	<h:form id="assistenteServicosForm">
+	                	<p:dataTable id="tableServicos" widgetVar="tableServicos" var="servico" value="#{autorizacaoController.servicos}" emptyMessage="#{msg['sem.registro']}"
+							selectionMode="single" selection="#{autorizacaoController.servicoSelecionado}" rowKey="#{servico.id}" paginator="true" rows="10"
+							paginatorPosition="bottom">
+							
+							<p:ajax event="rowSelect" listener="#{autorizacaoController.setarServico}" update=":autorizacaoForm" oncomplete="PF('dialogAssistenteServicos').hide();"/>
+							
+							<p:column headerText="Menu" sortBy="#{servico.menu.descricao}" filterBy="#{servico.menu.descricao}">
+                				<h:outputText value="#{servico.menu.descricao}" />
+            				</p:column>
+            				
+            				<p:column headerText="Serviço" sortFunction="#{servico.descricao}" filterBy="#{servico.descricao}">
+                				<h:outputText value="#{servico.descricao}"/>
+            				</p:column>
+	                	</p:dataTable>
+        			</h:form>
+			    </p:dialog>
+			</div>
+		</ui:define>
+	</ui:composition>
+</h:body>
+</html>

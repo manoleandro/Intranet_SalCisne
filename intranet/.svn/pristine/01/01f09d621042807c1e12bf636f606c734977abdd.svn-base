@@ -1,0 +1,90 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	  xmlns:h="http://java.sun.com/jsf/html"
+	  xmlns:ui="http://java.sun.com/jsf/facelets"
+	  xmlns:f="http://java.sun.com/jsf/core"
+	  xmlns:p="http://primefaces.org/ui">
+<h:head>
+	<f:loadBundle basename="messages_pt_BR" var="msg" />
+</h:head>
+<h:body>
+	<f:metadata>
+		<f:event listener="#{historicoPortariaController.init()}" type="preRenderView"></f:event>
+	</f:metadata>
+	<ui:composition template="../../template/commonLayout.xhtml">
+		<ui:define name="content">
+			<div class="ContainerIndent">
+				<h:form id="form">
+					<p:confirmDialog global="true" showEffect="puff" hideEffect="puff" widgetVar="dialogExcluir" appendTo="@(body)">
+						<p:commandButton value="Sim" type="button" styleClass="ui-confirmdialog-yes" icon="fa fa-check Fs18 white" />
+						<p:commandButton value="Não" type="button" styleClass="ui-confirmdialog-no" icon="fa fa-times Fs18 white" />
+					</p:confirmDialog>
+
+					<p:panel styleClass="panel">
+						<p:growl id="messages" autoUpdate="false" />
+						<div class="container">
+							<h:outputText value="Histórico de Alterações Portaria" styleClass="title-page hardblue" />
+							<div class="right" style="text-align: right">
+								<p:commandLink styleClass="commandLinkIcone" title="Atualizar" onclick="location.reload();" update="@form">
+									<i class="fa icon-arrows-cw title-page button" />
+								</p:commandLink>
+							</div>
+						</div>
+						<p:separator />
+						<p:panelGrid>
+						<h:outputText value="Inicio: "/>
+						<p:calendar id="dt-inicio" value="#{historicoPortariaController.dataInicio}" pattern="dd/MM/yyyy" size="11"></p:calendar>
+						<p:spacer width="7"></p:spacer>
+						<h:outputText value="Fim: "/>
+						<p:calendar id="dt-fim" value="#{historicoPortariaController.dataFim}" pattern="dd/MM/yyyy" size="11"></p:calendar>
+						<p:spacer width="7"></p:spacer>
+						<p:commandLink styleClass="commandLinkIcone" title="Pesquisar" action="#{historicoPortariaController.listarHistorico()}" update=":form">
+						<i class="icon-search  button" />
+						</p:commandLink>
+						</p:panelGrid>
+						
+						<p:spacer width="2"></p:spacer>
+						<p:dataTable id="tableMenu" widgetVar="tableMenu" var="his"
+							value="#{historicoPortariaController.listHistMovPortaria}"
+							emptyMessage="#{msg['sem.registro']}" paginator="true" rows="12"
+							paginatorPosition="bottom" scrollable="true" scrollWidth="100%" style="overflow:auto">
+							<p:column filterBy="#{his.data}" sortBy="#{his.data}" headerText="Dia" styleClass="centralizar"  filterStyleClass="filtro" priority="1" width="14%">
+								<h:outputText value="#{his.data}">
+									<f:convertDateTime pattern="dd/MM/yyyy" />
+								</h:outputText>
+							</p:column>
+							<p:column filterBy="#{his.usuario}" sortBy="#{his.usuario}" width="12%"
+								headerText="Usuário" styleClass="centralizar"
+								filterStyleClass="filtro" priority="3">
+								<h:outputText value="#{his.usuario}" />
+							</p:column>
+							<p:column filterBy="#{his.coluna}" sortBy="#{his.coluna}" width="25%"
+								headerText="Coluna" styleClass="centralizar"
+								filterStyleClass="filtro" priority="2">
+								<h:outputText value="#{his.coluna}" />
+							</p:column>
+							<p:column filterBy="#{his.de}" sortBy="#{his.de}" width="25%"
+								headerText="Alterado De" styleClass="centralizar"
+								filterStyleClass="filtro" priority="3">
+								<h:outputText value="#{his.de}" />
+							</p:column>
+							<p:column filterBy="#{his.para}" sortBy="#{his.para}" width="20%"
+								headerText="Para" styleClass="centralizar"
+								filterStyleClass="filtro" priority="3">
+								<h:outputText value="#{his.para}" />
+							</p:column>
+							<p:column filterBy="#{his.justificativa}" width="30%"
+								sortBy="#{his.justificativa}" headerText="Justificativa"
+								styleClass="centralizar" filterStyleClass="filtro" priority="4">
+								<h:outputText value="#{his.justificativa}" />
+							</p:column>
+						</p:dataTable>
+					</p:panel>
+				</h:form>
+							
+			</div>
+		</ui:define>
+	</ui:composition>
+</h:body>
+</html>

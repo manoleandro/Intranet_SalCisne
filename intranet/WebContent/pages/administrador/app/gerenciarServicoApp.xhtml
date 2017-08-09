@@ -1,0 +1,123 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:h="http://java.sun.com/jsf/html" xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core" xmlns:p="http://primefaces.org/ui">
+
+<h:head>
+	<f:loadBundle basename="messages_pt_BR" var="msg" />
+</h:head>
+<h:body>
+	<ui:composition template="../../../template/commonLayout.xhtml">
+		<ui:define name="content">
+			<div class="ContainerIndent">
+				<h:form id="form">
+					<style>
+					</style>
+					
+					<p:confirmDialog global="true" showEffect="puff" hideEffect="puff" appendTo="@(body)">
+						<p:commandButton value="Sim" type="button" styleClass="ui-confirmdialog-yes" icon="fa fa-check Fs18 white" />
+						<p:commandButton value="Não" type="button" styleClass="ui-confirmdialog-no" icon="fa fa-times Fs18 white" />
+					</p:confirmDialog>
+
+					<p:panel styleClass="panel">
+						<p:growl id="messages" autoUpdate="false" />
+						<div class="container">
+							<h:outputText value="Gerênciar Serviço App" styleClass="title-page hardblue"/>
+
+							<div class="right" style="text-align: right">
+								<p:commandLink styleClass="commandLinkIcone" title="#{msg['incluir']}" action="#{servicoAppController.prepararIncluir}" update=":servicoForm">
+									<i class="icon-plus title-page button" />
+								</p:commandLink>
+
+								<p:commandLink styleClass="commandLinkIcone" title="#{msg['alterar']}" action="#{servicoAppController.prepararAlterar}" update=":servicoForm :form:messages">
+									<i class="icon-pencil title-page button" />
+								</p:commandLink>
+
+								<p:commandLink styleClass="commandLinkIcone" title="#{msg['excluir']}" action="#{servicoAppController.excluir}" update=":form:messages :form:tableServico"
+									oncomplete="PF('tableServico').clearFilters();">
+									<p:confirm header="Atenção" message="#{msg['excluir.registro']}" icon="fa fa-info Fs18" />
+									<i class="icon-trash title-page button"/>
+								</p:commandLink>
+							</div>
+						</div>
+						<p:separator />
+
+						<p:dataTable id="tableServico" widgetVar="tableServico" var="servico" value="#{servicoAppController.servicos}" emptyMessage="#{msg['sem.registro']}"
+							selectionMode="single" selection="#{servicoAppController.servicoSelecionado}" rowKey="#{servico.id}" scrollHeight="600" paginator="true" rows="13"
+							paginatorPosition="bottom">
+
+							<p:column filterBy="#{servico.id}" sortBy="#{servico.id}" headerText="Código" styleClass="centralizar" filterStyleClass="filtro" priority="4" width="10%">
+								<h:outputText value="#{servico.id}" />
+							</p:column>
+
+							<p:column filterBy="#{servico.descricao}" sortBy="#{servico.descricao}" headerText="Descrição" filterStyleClass="filtro" priority="1">
+								<h:outputText value="#{servico.descricao}" id="servico" />
+							</p:column>
+							
+							<p:column filterBy="#{servico.regra}" sortBy="#{servico.regra}" headerText="Regra" filterStyleClass="filtro" priority="2" styleClass="truncate-250">
+								<div>
+									<h:outputText value="#{servico.regra}" id="regra" />
+									<p:overlayPanel id="descricaoRegra" for="regra" hideEffect="clip" showEffect="clip" showEvent="mouseover" hideEvent="mouseout" my="left bottom"
+										at="right bottom" styleClass="hardblue">
+										<h:outputText value="#{servico.regra}" />
+									</p:overlayPanel>
+								</div>
+							</p:column>
+							
+							<p:column filterBy="#{servico.mapeamento}" sortBy="#{servico.mapeamento}" headerText="Mapeamento" filterStyleClass="filtro" priority="3" styleClass="truncate-200">
+								<div>
+									<h:outputText value="#{servico.mapeamento}" id="mapeamento" />
+									<p:overlayPanel id="descricaoMapeamento" for="mapeamento" hideEffect="clip" showEffect="clip" showEvent="mouseover" hideEvent="mouseout" my="left bottom"
+										at="right bottom" styleClass="hardblue">
+										<h:outputText value="#{servico.mapeamento}" />
+									</p:overlayPanel>
+								</div>
+							</p:column>
+							
+							<p:column filterBy="#{servico.tipoPermissao.descricao}" sortBy="#{servico.tipoPermissao.descricao}" headerText="Permissão" filterStyleClass="filtro" priority="3"
+									styleClass="centralizar">
+								<h:outputText value="#{servico.tipoPermissao.descricao}"/>
+							</p:column>
+						</p:dataTable>
+					</p:panel>
+				</h:form>
+
+				<p:dialog header="Serviço" widgetVar="dialogServico" modal="true" showEffect="puff" hideEffect="puff" appendTo="@(body)">
+					<h:form id="servicoForm"> 
+						<h:panelGrid columns="2">
+							<h:outputText value="Código:" rendered="#{!servicoAppController.inclusao}"/>
+							<h:outputText value="#{servicoAppController.servico.id}" rendered="#{!servicoAppController.inclusao}"/>
+							
+							<h:outputText value="Descrição:"/>
+							<p:inputText value="#{servicoAppController.servico.descricao}"/>
+							
+							<h:outputText value="Regra:"/>
+							<p:inputText value="#{servicoAppController.servico.regra}" rendered="#{servicoAppController.inclusao}"/>
+							<h:outputText value="#{servicoAppController.servico.regra}" rendered="#{!servicoAppController.inclusao}"/>
+							
+							<h:outputText value="Aplicativo:"/>
+							<p:inputText value="#{servicoAppController.servico.aplicativo}"/>
+							
+							<h:outputText value="Tipo de Permissão:"/>
+							<p:selectOneMenu value="#{servicoAppController.servico.tipoPermissao}">
+			                	<f:selectItem itemLabel="Selecione" itemValue=""/>
+			    				<f:selectItems value="#{servicoAppController.permissoes}" var="permissao" itemValue="#{permissao}" itemLabel="#{permisao.descricao}"/>
+			    			</p:selectOneMenu>
+			    			
+			    			<h:outputText value="Mapeamento:"/>
+							<p:inputText value="#{servicoAppController.servico.mapeamento}"/>
+						</h:panelGrid>
+						<p:spacer height="20" width="100%" />
+					
+						<p:commandButton value="Salvar" icon="fa fa-check Fs18 white" action="#{servicoAppController.salvar}" update=":form"
+										 oncomplete="PF('dialogServico').hide(); PF('tableServico').clearFilters();">
+							<f:setPropertyActionListener value="#{servicoAppController.servico}" target="#{servicoAppController.servicoSelecionado}" />
+						</p:commandButton>
+						<p:commandButton value="Cancelar" icon="fa fa-times Fs18 white" onclick="PF('dialogServico').hide();" />
+					</h:form>
+				</p:dialog>
+			</div>
+		</ui:define>
+	</ui:composition>
+</h:body>
+</html>

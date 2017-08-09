@@ -1,0 +1,441 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:h="http://java.sun.com/jsf/html" xmlns:ui="http://java.sun.com/jsf/facelets" xmlns:f="http://java.sun.com/jsf/core" xmlns:p="http://primefaces.org/ui">
+<h:head>
+	<f:loadBundle basename="messages_pt_BR" var="msg" />
+
+</h:head>
+
+
+
+<h:body>
+	<f:metadata>
+		<f:event listener="#{portariaController.init()}" type="preRenderView"></f:event>
+	</f:metadata>
+	<ui:composition template="../../template/commonLayout.xhtml">
+		<ui:define name="content">
+			<div class="ContainerIndent">
+				<h:form id="form">
+					<p:confirmDialog global="true" showEffect="puff" hideEffect="puff" appendTo="@(body)">
+						<p:commandButton value="Sim" type="button" styleClass="ui-confirmdialog-yes" icon="fa fa-check Fs18 white" />
+						<p:commandButton value="Não" type="button" styleClass="ui-confirmdialog-no" icon="fa fa-times Fs18 white" />
+					</p:confirmDialog>
+
+					<p:panel styleClass="panel">
+						<p:growl id="messages" autoUpdate="true" escape="false" life="1500" />
+						<div class="container">
+							<h:outputText value="Controle de Portaria" styleClass="title-page hardblue" />
+
+							<div class="right" style="text-align: right">
+
+								<p:clock pattern="HH:mm:ss" mode="server" />
+
+								<p:commandLink styleClass="commandLinkIcone" title="Apresentação para carregamento" action="#{portariaController.redirecionaApresentacao}">
+									<i class="fa icon-truck title-page button" />
+								</p:commandLink>
+
+								<p:commandLink styleClass="commandLinkIcone" title="Atualizar" onclick="location.reload();" update="@form">
+									<i class="fa icon-arrows-cw title-page button" />
+								</p:commandLink>
+							</div>
+						</div>
+						<p:separator />
+
+
+						<p:tabView dynamic="true" cache="false" id="tab" activeIndex="#{portariaController.tabIndex}">
+							<p:ajax event="tabChange" listener="#{portariaController.onTabChange}" update=":form:tab, :form:tab:dataTableEntrada, :form:tab:dataTableEntradaCarregamento, :form:tab:tabEspera" />
+							<p:tab title="Aguardando ordem de carregamento" id="ordem" disabled="#{portariaController.isSetorPortaria}">
+
+								<p:dataTable id="tabOrdem" var="portaria" paginatorPosition="bottom" value="#{portariaController.listMovimentacoes}" paginator="true" rows="8" scrollWidth="100%" scrollable="true"
+									widgetVar="tabOrdem" filteredValue="#{portariaController.filteredMovimentacoes}" emptyMessage="Não há veículos aguardando Ordem" style="overflow:auto">
+
+									<p:column headerText="Data" filterBy="#{portaria.data}" styleClass="center" style="text-align:center;!important" priority="1">
+										<p:outputLabel value="#{portaria.data}" mask="99/99/9999 99:99:99" readonly="true" styleClass="center">
+											<f:convertDateTime pattern="dd/MM/yyyy HH:mm:ss" />
+										</p:outputLabel>
+									</p:column>
+
+									<p:column headerText="Placa" filterBy="#{portaria.placa}" filterMatchMode="contains" styleClass="center" priority="2">
+										<h:outputText value="#{portaria.placa}" style="text-transform: uppercase;!important;" />
+									</p:column>
+
+									<p:column headerText="Motorista" priority="3" filterBy="#{portaria.nomeMotorista}" filterMatchMode="contains">
+										<h:outputText value="#{portaria.nomeMotorista}" />
+									</p:column>
+
+									<p:column headerText="Transportadora" priority="4" filterBy="#{portaria.transportadoraPortaria.descricao}" filterMatchMode="contains">
+										<h:outputText value="#{portaria.transportadoraPortaria.descricao}" />
+									</p:column>
+
+									<p:column headerText="Ordem Carregamento *" priority="5" filterBy="#{portaria.numeroOrdem}" filterMatchMode="contains" styleClass="center">
+										<p:inputText id="ordemCarregamento" onkeypress="validateNumericInput(event, this.text)" value="#{portaria.numeroOrdem}" />
+									</p:column>
+
+									<p:column styleClass="center" priority="6">
+
+										<p:commandLink styleClass="commandLinkIcone" title="Salvar" action="#{portariaController.salvar}" update=":form:messages">
+											<i class="icon-ok-circled Fs22 blue" />
+											<f:setPropertyActionListener target="#{portariaController.movPortariaSelecionado}" value="#{portaria}" />
+										</p:commandLink>
+
+										<p:commandLink styleClass="commandLinkIcone" title="Detalhes / Editar" disabled="#{portariaController.isDetalhePortaria}" action="#{portariaController.redirecionaPagina}">
+											<i class="icon-info-circled-1 Fs22 gray" />
+											<f:setPropertyActionListener target="#{portariaController.idMovimentacao}" value="#{portaria.idMov}" />
+										</p:commandLink>
+
+										<p:commandLink styleClass="commandLinkIcone" title="Excluir" action="#{portariaController.remover}" update=":form:messages, :form, :form:tab, :form:tab:ordem"
+											disabled="#{portariaController.isExcluirMovPortaria}">
+											<p:confirm header="Atenção" message="#{msg['excluir.registro']}" icon="fa fa-info Fs18" />
+											<i class="icon-cancel-circled-2 Fs22 red" />
+											<f:setPropertyActionListener target="#{portariaController.movPortariaSelecionado}" value="#{portaria}" />
+										</p:commandLink>
+
+										<p:spacer width="9"></p:spacer>
+
+
+										<p:commandLink styleClass="commandLinkIcone" title="Liberar" action="#{portariaController.liberarOrdem}" value="Liberar" style="font-size: 17px;font-weight: bold;"
+											update=":form:messages, :form, :form:tab, :form:tab:dataTableEntrada">
+											<p:confirm header="Atenção" message="Deseja realmente liberar?" icon="fa fa-info Fs18" />
+
+											<f:setPropertyActionListener target="#{portariaController.movPortariaSelecionado}" value="#{portaria}" />
+										</p:commandLink>
+
+
+									</p:column>
+
+
+								</p:dataTable>
+
+							</p:tab>
+
+							<p:tab title="Em espera" id="espera">
+
+								<p:dataTable id="tabEspera" var="portaria" paginatorPosition="bottom" value="#{portariaController.listMovimentacoes}" paginator="true" rows="9" scrollWidth="100%" scrollable="true"
+									widgetVar="tabEspera" filteredValue="#{portariaController.filteredMovimentacoes}" emptyMessage="Não há veículos em espera..." style="overflow:auto">
+									<p:column headerText="Data" filterBy="#{portaria.data}" styleClass="center" priority="1" style="width:16%;text-align:center;!important">
+										<p:outputLabel value="#{portaria.data}" mask="99/99/9999 99:99:99" readonly="true" styleClass="center">
+											<f:convertDateTime pattern="dd/MM/yyyy HH:mm:ss" />
+										</p:outputLabel>
+									</p:column>
+
+									<p:column headerText="Placa" filterBy="#{portaria.placa}" filterMatchMode="contains" style="text-transform: uppercase;text-align:center;!important;" priority="2">
+										<h:outputText value="#{portaria.placa}" />
+									</p:column>
+
+									<p:column headerText="Motorista" priority="3" filterBy="#{portaria.nomeMotorista}" filterMatchMode="contains" style="text-align:center;!important;">
+										<h:outputText value="#{portaria.nomeMotorista}" />
+									</p:column>
+
+									<p:column headerText="Transportadora" priority="2" style="text-align:center;!important;" filterBy="#{portaria.transportadoraPortaria.descricao}" filterMatchMode="contains">
+										<h:outputText value="#{portaria.transportadoraPortaria.descricao}" />
+									</p:column>
+
+									<p:column headerText="Veículo" priority="3" filterBy="#{portaria.veiculo.descricao}" filterMatchMode="contains" styleClass="center">
+										<h:outputText id="veiculo" value="#{portaria.veiculo.descricao}" />
+									</p:column>
+
+									<p:inputTextarea id="fmensagem" rows="2" cols="50" counter="counter" maxlength="250" label="mensagem" readonly="true" counterTemplate="{0} caracteres permitidos." autoResize="false"
+										value="#{portaria.movPortaria.obsPortaria}" />
+									<br />
+									<h:outputText id="counter" />
+
+									<p:column styleClass="center" priority="4" style="width:9%;text-align:center;!important">
+
+										<p:commandLink styleClass="commandLinkIcone" title="Detalhes / Editar" disabled="#{portariaController.isDetalhePortaria}" action="#{portariaController.redirecionaPagina}">
+											<i class="icon-info-circled-1 Fs22 gray" />
+											<f:setPropertyActionListener target="#{portariaController.idMovimentacao}" value="#{portaria.idMov}" />
+										</p:commandLink>
+										<p:commandLink styleClass="commandLinkIcone" title="Excluir" style="font-size: 17px;font-weight: bold;" action="#{portariaController.remover}" update=":form:messages, :form, :form:tab"
+											disabled="#{portariaController.isExcluirMovPortaria}">
+											<p:confirm header="Atenção" message="#{msg['excluir.registro']}" icon="fa fa-info Fs18" />
+											<i class="icon-cancel-circled-2 Fs22 red" />
+											<p:ajax event="click" update="@form" global="false" process="@this"></p:ajax>
+											<f:setPropertyActionListener target="#{portariaController.movPortariaSelecionado}" value="#{portaria}" />
+										</p:commandLink>
+
+
+									</p:column>
+
+
+								</p:dataTable>
+
+
+							</p:tab>
+
+							<p:tab title="Entrada" id="entrada">
+
+								<p:dataTable id="dataTableEntrada" var="portaria" paginatorPosition="bottom" value="#{portariaController.listMovimentacoes}" paginator="true" rows="3" scrollWidth="135%" scrollable="true"
+									widgetVar="dataTableEntrada" filteredValue="#{portariaController.filteredMovimentacoes}" emptyMessage="Não há entrada de veículos..." style="overflow:auto">
+
+									<p:column headerText="Data" filterBy="#{portaria.data}" styleClass="center" priority="1" style="text-align:center;!important" filterStyle="width:90%">
+										<p:outputLabel value="#{portaria.data}" mask="99/99/9999 99:99:99" readonly="true" styleClass="center">
+											<f:convertDateTime pattern="dd/MM/yyyy HH:mm:ss" />
+										</p:outputLabel>
+									</p:column>
+
+									<p:column headerText="Placa" filterBy="#{portaria.placa}" filterMatchMode="contains" styleClass="center" priority="2" style="text-align:center;!important" filterStyle="width:70%">
+										<h:outputText value="#{portaria.placa}" style="text-transform: uppercase;!important;" />
+									</p:column>
+
+									<p:column headerText="Motorista" filterBy="#{portaria.nomeMotorista}" priority="3" filterMatchMode="contains" filterStyle="width:90%">
+										<h:outputText value="#{portaria.nomeMotorista}" />
+									</p:column>
+
+									<p:column headerText="Ordem" filterBy="#{portaria.transportadoraPortaria.descricao}" filterMatchMode="contains" priority="4" filterStyle="width:85%">
+										<h:outputText value="#{portaria.transportadoraPortaria.descricao}" />
+									</p:column>
+
+
+
+									<p:column headerText="Veículo Limpo?*" priority="5">
+
+										<p:selectOneMenu id="veiculoLimpo" value="#{portaria.veiculoLimpo}" disabled="false" effectSpeed="500" style="width:12%;">
+											<f:selectItem itemLabel="Selecione" itemValue="" />
+											<f:selectItem itemLabel="Sim" itemValue="S" />
+											<f:selectItem itemLabel="Não" itemValue="N" />
+										</p:selectOneMenu>
+									</p:column>
+
+									<p:column headerText="Vestim. Adeq.?*" priority="6">
+
+
+
+
+										<p:selectOneMenu id="vestmAdq" style="width:12%;" value="#{portaria.vestimentaAdequada}" effectSpeed="500">
+											<f:selectItem itemLabel="Selecione" itemValue="" />
+											<f:selectItem itemLabel="Sim" itemValue="S" />
+											<f:selectItem itemLabel="Não" itemValue="N" />
+										</p:selectOneMenu>
+									</p:column>
+
+
+									<p:column headerText="Observação" priority="0" filterBy="#{portaria.obsPortaria}" style="text-align:center;!important" filterStyle="width:90%">
+										<p:inputTextarea id="observacao" rows="2" counter="counter" maxlength="250" label="mensagem" counterTemplate="{0} caracteres permitidos." autoResize="false" value="#{portaria.obsPortaria}" />
+										<br />
+										<h:outputText id="counter" />
+									</p:column>
+
+									<p:column styleClass="center" priority="8" style="text-align:center;!important">
+
+										<p:commandLink styleClass="commandLinkIcone" title="Salvar" action="#{portariaController.salvar}" update=":form:messages">
+											<i class="icon-ok-circled Fs22 blue" />
+											<f:setPropertyActionListener target="#{portariaController.movPortariaSelecionado}" value="#{portaria}" />
+										</p:commandLink>
+
+										<p:commandLink styleClass="commandLinkIcone" title="Detalhes / Editar" disabled="#{portariaController.isDetalhePortaria}" action="#{portariaController.redirecionaPagina}">
+											<i class="icon-info-circled-1 Fs22 gray" />
+											<f:setPropertyActionListener target="#{portariaController.idMovimentacao}" value="#{portaria.idMov}" />
+										</p:commandLink>
+
+										<p:commandLink styleClass="commandLinkIcone" title="Excluir" action="#{portariaController.remover}" update=":form:messages, :form, :form:tab"
+											disabled="#{portariaController.isExcluirMovPortaria}">
+											<p:confirm header="Atenção" message="#{msg['excluir.registro']}" icon="fa fa-info Fs18" />
+											<i class="icon-cancel-circled-2 Fs22 red" />
+											<f:setPropertyActionListener target="#{portariaController.movPortariaSelecionado}" value="#{portaria}" />
+										</p:commandLink>
+
+
+										<p:spacer width="9"></p:spacer>
+										<p:commandLink styleClass="commandLinkIcone" title="Autorizar" value="Autorizar" action="#{portariaController.autorizarEntrada}" style="font-size: 17px;font-weight: bold;"
+											update=":form:messages, :form, :form:tab">
+											<p:confirm header="Atenção" message="Deseja realmente liberar?" icon="fa fa-info Fs18" />
+											<f:setPropertyActionListener target="#{portariaController.movPortariaSelecionado}" value="#{portaria}" />
+										</p:commandLink>
+
+
+
+									</p:column>
+
+
+								</p:dataTable>
+
+
+							</p:tab>
+
+							<p:tab title="Carregamento" id="carregamento">
+
+								<p:dataTable id="dataTableEntradaCarregamento" var="portaria" paginatorPosition="bottom" scrollWidth="200%" scrollable="true" style="overflow:auto"
+									value="#{portariaController.listMovimentacoes}" paginator="true" rows="10" widgetVar="dataTableEntradaCarregamento" filteredValue="#{portariaController.filteredMovimentacoes}"
+									emptyMessage="Não há entrada para Carregamento...">
+
+									<p:column headerText="Data" filterBy="#{portaria.data}" style="width:12%;text-align:center;!important" priority="1">
+										<p:outputLabel value="#{portaria.data}" mask="99/99/9999 99:99:99" readonly="true" styleClass="center">
+											<f:convertDateTime pattern="dd/MM/yyyy HH:mm:ss" />
+										</p:outputLabel>
+									</p:column>
+
+									<p:column headerText="Hora Ini. Carreg.*" priority="2" style="width:13%;text-align:center;!important">
+										<p:calendar id="horaIniCarreg" value="#{portaria.horaInicioCarregamento}" pattern="dd/MM/yyyy HH:mm" locale="pt" />
+									</p:column>
+
+									<p:column headerText="Hora Fim Carreg.*" priority="2" style="width:13%;text-align:center;!important">
+										<p:calendar id="horaFimCarreg" value="#{portaria.horaTerminoCarregamento}" pattern="dd/MM/yyyy HH:mm" locale="pt" />
+									</p:column>
+
+
+									<p:column headerText="Placa" filterBy="#{portaria.placa}" priority="2" filterMatchMode="contains" style="width:9%;text-align:center;!important" filterStyle="width:70%">
+										<h:outputText value="#{portaria.placa}" style="text-transform: uppercase;!important;" />
+									</p:column>
+
+									<p:column headerText="Motorista" priority="2" filterBy="#{portaria.nomeMotorista}" filterMatchMode="contains" style="width:13%;text-align:center;!important">
+										<h:outputText value="#{portaria.nomeMotorista}" />
+									</p:column>
+
+									<p:column headerText="Transportadora" priority="2" filterBy="#{portaria.transportadoraPortaria.descricao}" style="width:13%;text-align:center;!important">
+										<h:outputText value="#{portaria.transportadoraPortaria.descricao}" />
+									</p:column>
+
+
+									<p:column headerText="Veículo" priority="2" filterBy="#{portaria.veiculo.descricao}" style="width:13%;text-align:center;!important">
+										<h:outputText value="#{portaria.veiculo.descricao}" />
+									</p:column>
+
+									<p:column headerText="Contr.*" priority="2" style="width:11%;text-align:center;!important">
+										<p:selectOneMenu id="contratacao" value="#{portaria.contratacao}" effect="fade" effectSpeed="500">
+											<f:selectItem itemLabel="Selecione" itemValue="" />
+											<f:selectItem itemLabel="CIF" itemValue="CIF" />
+											<f:selectItem itemLabel="FOB" itemValue="FOB" />
+										</p:selectOneMenu>
+									</p:column>
+
+									<p:column headerText="Tipo*" priority="2" style="width:11%;text-align:center;!important">
+										<p:selectOneMenu id="tipoCarga" value="#{portaria.tipoCarga}" effect="fade" effectSpeed="500">
+											<f:selectItem itemLabel="Selecione" itemValue="" />
+											<f:selectItem itemLabel="PALET" itemValue="PALET" />
+											<f:selectItem itemLabel="MANUAL" itemValue="MANUAL" />
+										</p:selectOneMenu>
+									</p:column>
+
+									<p:column headerText="Peso(Kg)*" styleClass="center" priority="2" style="width:13%;text-align:center;!important">
+										<p:inputText id="peso" value="#{portaria.peso}" dir="rtl" onkeypress="FormataValor(this,8,event,3); return CheckNumerico(this,8,event);"
+											onkeyup="FormataValor(this,8,event,3); return CheckNumerico(this,8,event);">
+											<f:convertNumber for="peso" locale="pt_BR" maxFractionDigits="3" maxIntegerDigits="20" pattern="###,##0.00" minFractionDigits="3" />
+										</p:inputText>
+									</p:column>
+
+									<p:column headerText="Peso(Kg) 2*" styleClass="center" style="width:13%;text-align:center;!important" priority="2">
+										<p:inputText id="peso2" value="#{portaria.peso2}" dir="rtl" onkeypress="FormataValor(this,8,event,3); return CheckNumerico(this,8,event);"
+											onkeyup="FormataValor(this,8,event,3); return CheckNumerico(this,8,event);">
+											<f:convertNumber for="peso2" locale="pt_BR" maxFractionDigits="3" maxIntegerDigits="20" pattern="###,##0.00" minFractionDigits="3" />
+										</p:inputText>
+									</p:column>
+
+									<p:column headerText="Observação" styleClass="center" style="width:13%;text-align:center;!important" priority="2">
+										<p:inputTextarea id="fmensagem" rows="2" cols="20" counter="counter" maxlength="250" label="mensagem" counterTemplate="{0} caracteres permitidos." autoResize="true"
+											value="#{portaria.obsFaturamento}" />
+										<br />
+										<h:outputText id="counter" />
+									</p:column>
+
+									<p:column style="width:14%;text-align:center;!important" priority="2">
+
+										<p:commandLink styleClass="commandLinkIcone" title="Salvar" action="#{portariaController.salvar}" update=", :form:messages">
+											<i class="icon-ok-circled Fs22 blue" />
+											<f:setPropertyActionListener target="#{portariaController.movPortariaSelecionado}" value="#{portaria}" />
+										</p:commandLink>
+
+										<p:commandLink styleClass="commandLinkIcone" title="Detalhes / Editar" disabled="#{portariaController.isDetalhePortaria}" action="#{portariaController.redirecionaPagina}">
+											<i class="icon-info-circled-1 Fs22 gray" />
+											<f:setPropertyActionListener target="#{portariaController.idMovimentacao}" value="#{portaria.idMov}" />
+										</p:commandLink>
+
+
+
+										<p:commandLink styleClass="commandLinkIcone" title="Excluir" action="#{portariaController.remover}" update=":form:messages, :form, :form:tab"
+											disabled="#{portariaController.isExcluirMovPortaria}">
+											<p:confirm header="Atenção" message="#{msg['excluir.registro']}" icon="fa fa-info Fs18" />
+											<i class="icon-cancel-circled-2 Fs22 red" />
+											<p:ajax event="click" update="@form" global="false" process="@this"></p:ajax>
+											<f:setPropertyActionListener target="#{portariaController.movPortariaSelecionado}" value="#{portaria}" />
+										</p:commandLink>
+
+
+										<p:spacer width="9"></p:spacer>
+										<p:commandLink styleClass="commandLinkIcone" title="Liberar" value="Liberar" action="#{portariaController.liberarCarregamento}" style="font-size: 17px;font-weight: bold;"
+											update=":form:messages, :form, :form:tab, :form:tab:carregamento">
+											<p:confirm header="Atenção" message="Deseja realmente liberar?" icon="fa fa-info Fs18" />
+											<f:setPropertyActionListener target="#{portariaController.movPortariaSelecionado}" value="#{portaria}" />
+										</p:commandLink>
+
+
+									</p:column>
+
+
+								</p:dataTable>
+
+
+							</p:tab>
+
+
+							<p:tab title="Saída" id="saida">
+
+								<p:dataTable id="dataTableSaida" var="portaria" paginatorPosition="bottom" value="#{portariaController.listMovimentacoes}" paginator="true" rows="10" scrollWidth="120%" scrollable="true"
+									widgetVar="dataTableSaida" filteredValue="#{portariaController.filteredMovimentacoes}" emptyMessage="Não há veículos para saída..." style="overflow:auto">
+
+									<p:column headerText="Data" filterBy="#{portaria.data}" style="text-align:center;!important" priority="1">
+										<p:outputLabel value="#{portaria.data}" mask="99/99/9999 99:99:99" readonly="true">
+											<f:convertDateTime pattern="dd/MM/yyyy HH:mm:ss" />
+										</p:outputLabel>
+									</p:column>
+
+									<p:column headerText="Placa" filterBy="#{portaria.placa}" filterMatchMode="contains" styleClass="center" style="text-align:center;!important" filterStyle="width:70%" priority="2">
+										<h:outputText value="#{portaria.placa}" style="text-transform: uppercase;!important;" />
+									</p:column>
+
+									<p:column headerText="Motorista" priority="3" filterBy="#{portaria.nomeMotorista}" filterMatchMode="contains" filterStyle="width:90%" style="text-align:center;!important">
+										<h:outputText value="#{portaria.nomeMotorista}" />
+									</p:column>
+
+									<p:column headerText="Nota Fiscal*" styleClass="center" priority="4" style="text-align:center;!important">
+										<p:inputText id="nota" value="#{portaria.numeroNf}" />
+									</p:column>
+
+
+									<p:column styleClass="center" style="text-align:center;!important" priority="5">
+
+										<p:commandLink styleClass="commandLinkIcone" title="Salvar" action="#{portariaController.salvar}" update=":form:messages, :form, :form:tab">
+											<i class="icon-ok-circled Fs22 blue" />
+											<f:setPropertyActionListener target="#{portariaController.movPortariaSelecionado}" value="#{portaria}" />
+										</p:commandLink>
+
+										<p:commandLink styleClass="commandLinkIcone" title="Detalhes / Editar" disabled="#{portariaController.isDetalhePortaria}" action="#{portariaController.redirecionaPagina}">
+											<i class="icon-info-circled-1 Fs22 gray" />
+											<f:setPropertyActionListener target="#{portariaController.idMovimentacao}" value="#{portaria.idMov}" />
+										</p:commandLink>
+
+
+										<p:commandLink styleClass="commandLinkIcone" title="Excluir" action="#{portariaController.remover}" update=":form:messages, :form, :form:tab"
+											disabled="#{portariaController.isExcluirMovPortaria}">
+											<p:confirm header="Atenção" message="#{msg['excluir.registro']}" icon="fa fa-info Fs18" />
+											<i class="icon-cancel-circled-2 Fs22 red" />
+											<p:ajax event="click" update="@form" global="false" process="@this"></p:ajax>
+											<f:setPropertyActionListener target="#{portariaController.movPortariaSelecionado}" value="#{portaria}" />
+										</p:commandLink>
+
+										<p:spacer width="9"></p:spacer>
+
+										<p:commandLink styleClass="commandLinkIcone" value="Liberar" title="Liberar" action="#{portariaController.liberarNotaFiscal}" update=":form:messages, :form, :form:tab"
+											style="font-size: 17px;font-weight: bold;">
+											<p:confirm header="Atenção" message="Deseja realmente liberar?" icon="fa fa-info Fs18" />
+											<f:setPropertyActionListener target="#{portariaController.movPortariaSelecionado}" value="#{portaria}" />
+										</p:commandLink>
+
+
+									</p:column>
+
+
+								</p:dataTable>
+
+							</p:tab>
+
+						</p:tabView>
+
+					</p:panel>
+				</h:form>
+
+
+			</div>
+		</ui:define>
+	</ui:composition>
+</h:body>
+</html>

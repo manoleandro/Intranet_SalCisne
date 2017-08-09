@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="quantidadePorTipoCarregamento" language="groovy" pageWidth="842" pageHeight="595" orientation="Landscape" columnWidth="802" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="4df76c62-4f49-49ec-a7eb-267ecf139b38">
+	<property name="ireport.zoom" value="1.0"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<parameter name="dataInicio" class="java.util.Date"/>
+	<parameter name="dataFim" class="java.util.Date"/>
+	<queryString>
+		<![CDATA[SELECT TO_CHAR(HORA_INICIO_CARREGAMENTO,'MM/yyyy') AS MES, TIPO_CARGA, COUNT(*) AS QTD
+FROM MOV_PORTARIA WHERE TRUNC(HORA_INICIO_CARREGAMENTO) BETWEEN TO_DATE(TO_CHAR($P{dataInicio},'dd/MM/yyyy'),'dd/MM/yyyy') AND
+TO_DATE(TO_CHAR($P{dataFim},'dd/MM/yyyy'),'dd/MM/yyyy') AND TIPO_CARGA IS NOT NULL
+AND CONTRATACAO IN ('CIF','FOB')
+GROUP BY (TIPO_CARGA, TO_CHAR(HORA_INICIO_CARREGAMENTO,'MM/yyyy'))
+ORDER BY TO_DATE(TO_CHAR(HORA_INICIO_CARREGAMENTO,'MM/yyyy'),'MM/yyyy')]]>
+	</queryString>
+	<field name="MES" class="java.lang.String"/>
+	<field name="TIPO_CARGA" class="java.lang.String"/>
+	<field name="QTD" class="java.math.BigDecimal"/>
+	<title>
+		<band height="79" splitType="Stretch">
+			<staticText>
+				<reportElement x="288" y="14" width="255" height="16" uuid="b617330c-1b48-49bf-a816-01567452be75"/>
+				<textElement textAlignment="Center">
+					<font fontName="SansSerif" size="12" isBold="true"/>
+				</textElement>
+				<text><![CDATA[REFINARIA NACIONAL DE SAL S.A.]]></text>
+			</staticText>
+			<image>
+				<reportElement x="4" y="3" width="29" height="35" forecolor="#000000" uuid="cfe38c0b-0699-49bc-88ba-776b5bdf375b">
+					<property name="ireport.layer" value="1"/>
+				</reportElement>
+				<imageExpression><![CDATA["http://192.168.2.10/lib/img/logoori.png"]]></imageExpression>
+			</image>
+			<staticText>
+				<reportElement x="250" y="36" width="330" height="20" uuid="573936b0-e54c-480b-9939-5c2caa2d601d"/>
+				<textElement textAlignment="Center">
+					<font fontName="SansSerif" size="12" isBold="true" isStrikeThrough="false"/>
+				</textElement>
+				<text><![CDATA[Quantidade por Tipo de Carregamento]]></text>
+			</staticText>
+		</band>
+	</title>
+	<summary>
+		<band height="369" splitType="Stretch">
+			<barChart>
+				<chart>
+					<reportElement x="4" y="0" width="798" height="369" uuid="76155d8a-ac47-4e0d-991a-b6774d4be146"/>
+					<chartTitle position="Top"/>
+					<chartSubtitle/>
+					<chartLegend position="Right"/>
+				</chart>
+				<categoryDataset>
+					<categorySeries>
+						<seriesExpression><![CDATA[$F{TIPO_CARGA}]]></seriesExpression>
+						<categoryExpression><![CDATA[$F{MES}]]></categoryExpression>
+						<valueExpression><![CDATA[$F{QTD}]]></valueExpression>
+						<labelExpression><![CDATA[$F{QTD}.toString()]]></labelExpression>
+					</categorySeries>
+				</categoryDataset>
+				<barPlot isShowLabels="true">
+					<plot/>
+					<itemLabel/>
+					<categoryAxisFormat>
+						<axisFormat/>
+					</categoryAxisFormat>
+					<valueAxisFormat>
+						<axisFormat/>
+					</valueAxisFormat>
+				</barPlot>
+			</barChart>
+		</band>
+	</summary>
+</jasperReport>

@@ -1,0 +1,135 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.org/ui">
+<h:head>
+	<f:loadBundle basename="messages_pt_BR" var="msg" />
+		<style>
+		.ui-selectonemenu {
+			display: flex !important;
+			}
+		</style>
+</h:head>
+
+<h:body>
+	<f:metadata>
+		<f:event listener="#{portariaController.initApresentacao()}" type="preRenderView"></f:event>
+	</f:metadata>
+
+	<ui:composition template="../../template/commonLayout.xhtml">
+		<ui:define name="content">
+			<div class="ContainerIndent">
+				<h:form id="form">
+					<p:confirmDialog global="true" showEffect="puff" hideEffect="puff"
+						appendTo="@(body)">
+						<p:commandButton value="Sim" type="button"
+							styleClass="ui-confirmdialog-yes" icon="fa fa-check Fs18 white" />
+						<p:commandButton value="Não" type="button"
+							styleClass="ui-confirmdialog-no" icon="fa fa-times Fs18 white" />
+					</p:confirmDialog>
+
+					<p:panel styleClass="panel">
+						<p:growl id="messages" autoUpdate="true" escape="false" life="1000" />
+						<div class="container">
+							<h:outputText value="Apresentação"
+								styleClass="title-page hardblue" />
+
+							<div class="right" style="text-align: right">
+							
+							
+
+								<p:commandLink styleClass="commandLinkIcone"
+									title="Voltar para página principal..."
+									action="#{portariaController.atualizaPaginaPrincipal()}">
+									<i class="fa icon-left-bold title-page button" />
+								</p:commandLink>
+								
+								<p:commandLink styleClass="commandLinkIcone"
+									title="Atualizar"
+									onclick="location.reload();"
+									update="@form">
+									<i class="fa icon-arrows-cw title-page button" />
+								</p:commandLink>
+								
+								<p:clock pattern="HH:mm:ss" mode="server" />
+
+							</div>
+
+						</div>
+						<p:separator />
+						
+						
+						<h:panelGrid columns="2">
+
+							<h:outputText value="Data:" />
+							<p:inputMask size="28"
+								value="#{portariaController.movPortariaApresentacao.data}"
+								mask="99/99/9999 99:99:99" readonly="true"
+								style="text-align:center">
+								<f:convertDateTime pattern="dd/MM/yyyy HH:mm:ss" />
+							</p:inputMask>
+
+							<h:outputLabel value="Placa:" />
+							<h:panelGroup>
+								<p:inputMask id="placa" size="28"
+									value="#{portariaController.movPortariaApresentacao.placa}"
+									style="text-transform:uppercase" mask="aa*-9999" />
+							</h:panelGroup>
+
+
+							<h:outputLabel value="Nome do Motorista:" />
+							<p:inputText value="#{portariaController.movPortariaApresentacao.nomeMotorista}" size="28" />
+
+							<h:outputLabel value="RG do Motorista:" />
+							<p:inputMask size="28"	
+								value="#{portariaController.movPortariaApresentacao.rgMotorista}"
+								mask="99.999.999-9" />
+
+							<h:outputLabel value="Transportadora:" />
+							<p:selectOneMenu autoWidth="false" style="width:186px;"
+								value="#{portariaController.movPortariaApresentacao.transportadoraPortaria.idTransportadora}"
+								effect="fade" effectSpeed="500">
+								<f:selectItem itemLabel="Selecione" itemValue="" />
+								<f:selectItems
+									value="#{portariaController.listTransportadora}"
+									var="transportadora" itemLabel="#{transportadora.descricao}"
+									itemValue="#{transportadora.idTransportadora}"
+									itemDescription="#{transportadora.descricao}" />
+							</p:selectOneMenu>
+
+							<h:outputLabel value="Tipo de Veiculo:" />
+							<p:selectOneMenu autoWidth="false" style="width:186px;"
+								value="#{portariaController.movPortariaApresentacao.veiculo.idVeiculo}"
+								effect="fade" effectSpeed="500">
+								<f:selectItem itemLabel="Selecione" itemValue="" />
+								<f:selectItems value="#{portariaController.listVeiculo}"
+									var="veiculo" itemLabel="#{veiculo.descricao}"
+									itemValue="#{veiculo.idVeiculo}"
+									itemDescription="#{veiculo.descricao}" />
+							</p:selectOneMenu>
+						</h:panelGrid>
+						<p:spacer height="20" width="100%" />
+						
+						<p:separator></p:separator>
+
+						<p:commandButton value="Salvar" icon="fa fa-check Fs18 white"
+							actionListener="#{portariaController.salvarApresentacao()}" update=":form:messages, :form">
+						</p:commandButton>
+						<p:spacer width="6" />
+						<p:commandButton value="Cancelar" icon="fa fa-times Fs18 white"
+							action="#{portariaController.atualizaPaginaPrincipal()}" />
+							</p:panel>
+				</h:form>
+
+			
+
+
+
+			</div>
+		</ui:define>
+	</ui:composition>
+</h:body>
+</html>

@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="faixaHorariaVeiculos" language="groovy" pageWidth="842" pageHeight="595" orientation="Landscape" columnWidth="802" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="b4fd2fc7-68e6-4c27-8b0b-3d4b22d5211f">
+	<property name="ireport.zoom" value="1.0263162364614136"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="23"/>
+	<parameter name="listaFaixaHorario" class="java.util.List"/>
+	<queryString>
+		<![CDATA[]]>
+	</queryString>
+	<field name="dia" class="java.util.Date"/>
+	<field name="horaInicio" class="java.sql.Time"/>
+	<field name="horaFim" class="java.util.Date"/>
+	<field name="quantidade" class="java.lang.Long"/>
+	<group name="mesGeracao">
+		<groupExpression><![CDATA[]]></groupExpression>
+	</group>
+	<title>
+		<band height="61" splitType="Stretch">
+			<staticText>
+				<reportElement x="236" y="25" width="330" height="20" uuid="10599527-a107-42e1-992a-19c9e84f894a"/>
+				<textElement textAlignment="Center">
+					<font fontName="SansSerif" size="12" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Apresentação de Veículos - Faixa Horária]]></text>
+			</staticText>
+			<image>
+				<reportElement x="0" y="0" width="29" height="35" forecolor="#000000" uuid="05a642d1-4a5d-47f9-8fea-5bfc9faff74c">
+					<property name="ireport.layer" value="1"/>
+				</reportElement>
+				<imageExpression><![CDATA["http://192.168.2.10/lib/img/logoori.png"]]></imageExpression>
+			</image>
+			<staticText>
+				<reportElement x="274" y="3" width="255" height="16" uuid="20948ff2-197a-4455-a9c8-710ab3a3fc7c"/>
+				<textElement textAlignment="Center">
+					<font fontName="SansSerif" size="12" isBold="true"/>
+				</textElement>
+				<text><![CDATA[REFINARIA NACIONAL DE SAL S.A.]]></text>
+			</staticText>
+		</band>
+	</title>
+	<summary>
+		<band height="430" splitType="Stretch">
+			<barChart>
+				<chart>
+					<reportElement x="0" y="54" width="802" height="323" uuid="1eb314d4-3fa4-4d82-b3b0-5eababe16753"/>
+					<chartTitle position="Top"/>
+					<chartSubtitle/>
+					<chartLegend position="Right"/>
+				</chart>
+				<categoryDataset>
+					<categorySeries>
+						<seriesExpression><![CDATA[$F{horaInicio}.toString() +" - " +$F{horaFim}.toString()]]></seriesExpression>
+						<categoryExpression><![CDATA[new SimpleDateFormat("MM/yyyy").format($F{dia})]]></categoryExpression>
+						<valueExpression><![CDATA[$F{quantidade}]]></valueExpression>
+						<labelExpression><![CDATA[$F{quantidade}.toString()]]></labelExpression>
+					</categorySeries>
+				</categoryDataset>
+				<barPlot isShowLabels="true" isShowTickLabels="true" isShowTickMarks="true">
+					<plot/>
+					<itemLabel color="#000000"/>
+					<categoryAxisFormat>
+						<axisFormat tickLabelMask="#"/>
+					</categoryAxisFormat>
+					<valueAxisFormat>
+						<axisFormat tickLabelMask="#" verticalTickLabels="false"/>
+					</valueAxisFormat>
+				</barPlot>
+			</barChart>
+		</band>
+	</summary>
+</jasperReport>

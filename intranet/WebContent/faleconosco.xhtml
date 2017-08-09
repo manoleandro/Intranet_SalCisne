@@ -1,0 +1,90 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:h="http://java.sun.com/jsf/html" xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets" xmlns:c="http://java.sun.com/jsp/jstl/core" xmlns:p="http://primefaces.org/ui">
+<h:head>
+	
+</h:head>
+<body>
+<h:form id="formFaleConosco" prependId="false" acceptcharset="ISO-8859-1">
+	<div class="container">
+		<div class="half">
+			<p:panel style="height:99%">
+				<p:outputLabel value="Contato" styleClass="FontBold Fs20 hardblue"/>
+				<br />
+				Através deste espaço, você poderá se comunicar com a equipe de desenvolvimento para fazer sugestões, críticas e até apresentar projetos que contenham idéias para melhorar cada vez mais o nosso dia a dia.
+				<p:separator />
+				<h:panelGrid columns="2" style="vertical-align: top;">
+					<h:outputLabel for="fnome" value="Nome:" />
+					<p:inputText value="#{logonController.faleConosco.nome}" id="fnome" required="true" label="nome" size="50" maxlength="50" />
+
+					<h:outputLabel for="femail" value="Email:" />
+					<p:inputText value="#{logonController.faleConosco.email}" id="femail" required="true" label="email" size="50" maxlength="50" />
+
+					<h:outputLabel for="fassunto" value="Assunto:" />
+					<p:inputText value="#{logonController.faleConosco.assunto}" id="fassunto" required="true" label="assunto" size="50" maxlength="50" />
+
+					<h:outputLabel for="fmensagem" value="Mensagem:" />
+					<h:panelGroup>
+						<p:inputTextarea id="fmensagem" rows="10" cols="68" counter="counter" maxlength="800" required="true" label="mensagem"
+							counterTemplate="{0} caracteres permitidos." autoResize="true" value="#{logonController.faleConosco.mensagem}" />
+						<br />
+						<h:outputText id="counter" />
+					</h:panelGroup>
+					<h:panelGroup />
+					<p:commandButton id="fbutton" value="Enviar Email" ajax="false" actionListener="#{logonController.enviaFaleConosco}" process="@form" />
+				</h:panelGrid>
+			</p:panel>
+		</div>
+
+		<div class="half2">
+			<p:panel id="filial1" style="width:400px;">
+				<f:facet name="header">
+					Refinaria Nacional de Sal S.A. - Fábrica - Cabo Frio - RJ
+				</f:facet>
+				Salinas Ponta do Costa, s/nº<br /> 
+				Cabo Frio - RJ<br /> 
+				CEP: 28909-971 - Caixa Postal: 112.031<br />
+			    Tel: (22) 2008-0300 - Fax: (22) 2008-0306<br />
+				<p:row rendered="#{sessionScope.valIp}">
+					Tie-Line: 7 + 14<br />
+					CNPJ: 60.560.349/0002-90 - IE: 80.951.876 <br />
+				</p:row>
+			</p:panel>
+			
+			<p:panel id="filial2" style="width:400px;">
+				<f:facet name="header">
+					Refinaria Nacional de Sal S.A. - Escritório Central - São Paulo - SP
+				</f:facet>	
+				Av. Paulista, 352 - 12º andar<br /> Bela Vista - São Paulo - SP<br /> CEP: 01310-000<br /> Atendimento ao consumidor: 0800-177667<br />
+			    Tel: (11) 3146-3000 - Fax: (11) 3146-3065<br />
+				<p:row rendered="#{sessionScope.valIp}">
+					Tie-Line: 874 + ramal<br />
+					CNPJ: 60.560.349/0001-00 - IE: 110.970.661.118 - IM: 1.016.024-8<br />
+				</p:row>
+			</p:panel>
+			
+			<p:panel id="filial3" style="width:400px;">
+				<f:facet name="header">
+					Refinaria Nacional de Sal S.A. - Depósito - São Paulo - SP
+				</f:facet>
+			    Av. Guilherme Giorgi, 1017<br /> Vila Carrão - São Paulo - SP<br /> CEP: 03422-000<br />
+			    Tel. 2673-3384 / 2673-2305<br />
+				<p:row rendered="#{sessionScope.valIp}">
+			    	Tie-line (Depósito Vila Carrão): 6 + 221 <br />
+			        Estando no Depósito para: Central (89074 + ramal) / Cabo Frio (7 + 74)
+				</p:row>
+			</p:panel>
+			<p:panel id="filial4" style="width:400px;">
+				<f:facet name="header">
+					Refinaria Nacional de Sal S.A. - Escritório - Rio de Janeiro - RJ
+				</f:facet>
+				Av. Marechal Câmara, 160/618<br /> 
+				Centro - Rio de Janeiro - RJ<br /> 
+				CEP: 20.020.907<br /> 
+				Telefax: (21) 2215-7222<br />
+			</p:panel>
+		</div>
+	</div>
+</h:form>
+</body>
+</html>

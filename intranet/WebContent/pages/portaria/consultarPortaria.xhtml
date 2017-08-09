@@ -1,0 +1,414 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:h="http://java.sun.com/jsf/html" xmlns:ui="http://java.sun.com/jsf/facelets" xmlns:f="http://java.sun.com/jsf/core" xmlns:p="http://primefaces.org/ui">
+<h:head>
+	<f:loadBundle basename="messages_pt_BR" var="msg" />
+	<style>
+		ul.ui-menu-child {
+			width: 460px !important;
+		}
+	</style>
+</h:head>
+<h:body>
+	<f:metadata>
+		<f:event listener="#{portariaConsultaController.init()}" type="preRenderView"></f:event>
+	</f:metadata>
+	<ui:composition template="../../template/commonLayout.xhtml">
+		<ui:define name="content">
+			<div class="ContainerIndent">
+				<h:form id="itens">
+					<p:confirmDialog global="true" showEffect="puff" hideEffect="puff" widgetVar="dialogExcluir" appendTo="@(body)">
+						<p:commandButton value="Sim" type="button" styleClass="ui-confirmdialog-yes" icon="fa fa-check Fs18 white" />
+						<p:commandButton value="Não" type="button" styleClass="ui-confirmdialog-no" icon="fa fa-times Fs18 white" />
+					</p:confirmDialog>
+
+					<p:panel styleClass="panel">
+						<p:growl id="messages" autoUpdate="false" />
+						<div class="container">
+							<h:outputText value="Consulta Movimentos da Portaria" styleClass="title-page hardblue" />
+							<p:spacer width="3"></p:spacer>
+							<div class="right" style="text-align: right">
+
+								<p:commandLink disabled="#{portariaConsultaController.listMovPortaria.size() > 0 ? 'false' : 'true'}" styleClass="commandLinkIcone" title="Tabela Exportação"
+									onclick="PF('dialogTabExport').show();" update=":formExport:tabExport">
+									<i class="fa icon-file-excel title-page button" />
+								</p:commandLink>
+								<p:spacer width="3"></p:spacer>
+								
+								<p:commandLink styleClass="commandLinkIcone" title="Atualizar" onclick="location.reload();" update="@form">
+									<i class="fa icon-arrows-cw title-page button" />
+								</p:commandLink>
+							</div>
+						</div>
+						<p:separator />
+
+						<p:panelGrid>
+							<h:outputText value="Inicio: " />
+							<p:calendar locale="pt" pattern="dd/MM/yyyy" size="11" effect="fade" value="#{portariaConsultaController.dtInicio}" mask="99/99/9999" />
+							<p:spacer width="7"></p:spacer>
+							<h:outputText value="Fim: " />
+							<p:calendar locale="pt" pattern="dd/MM/yyyy" size="11" effect="fade" value="#{portariaConsultaController.dtFim}" mask="99/99/9999">
+							</p:calendar>
+							<p:spacer width="7"></p:spacer>
+							<p:commandLink styleClass="commandLinkIcone" title="Pesquisar" action="#{portariaConsultaController.pesquisar}" update=":itens, :itens:messages :itens:tabConsultaPortaria">
+								<i class="icon-search  button" />
+								<f:setPropertyActionListener target="#{portariaConsultaController.dtInicio}" value="#{portariaConsultaController.dtInicio}" />
+								<f:setPropertyActionListener target="#{portariaConsultaController.dtFim}" value="#{portariaConsultaController.dtFim}" />
+							</p:commandLink>
+						</p:panelGrid>
+
+						<p:spacer width="1"></p:spacer>
+						<p:dataTable id="tabConsultaPortaria" var="portaria" value="#{portariaConsultaController.listMovPortaria}" filteredValue="#{portariaConsultaController.listMovPortariaFiltro}" scrollable="true"
+							scrollWidth="160%" paginator="true" rows="10" emptyMessage="Não há registros para serem exibidos..." paginatorPosition="bottom" style="overflow:auto">
+							<p:ajax event="rowToggle" />
+							<p:column style="width:5%" priority="2">
+								<p:rowToggler />
+							</p:column>
+
+							<p:column headerText="Detalhe" style="width:8%;text-align:center;important;" priority="1">
+								<p:commandLink styleClass="commandLinkIcone" title="Detalhes" disabled="#{portariaConsultaController.isDetalhePortaria}" action="#{portariaConsultaController.redirecionaPagina}"
+									update=":itens:messages :formDetalhe">
+									<i class="icon-info-circled-1 Fs22 gray" />
+									<f:setPropertyActionListener target="#{portariaConsultaController.idMovPortaria}" value="#{portaria.idMov}" />
+								</p:commandLink>
+
+							</p:column>
+
+							<p:column headerText="Código" filterStyle="width:70%" filterBy="#{portaria.idMov}" priority="1" style="width:9%;text-align:center;important;">
+								<h:outputText value="#{portaria.idMov}" />
+							</p:column>
+
+							<p:column headerText="Data" filterBy="#{portaria.data}" priority="1" style="width:15%;text-align:center;important;" filterStyle="width:70%">
+								<h:outputText value="#{portaria.data}">
+									<f:convertDateTime pattern="dd/MM/yyyy HH:mm:ss" />
+								</h:outputText>
+
+							</p:column>
+
+							<p:column headerText="Placa" filterBy="#{portaria.placa}" filterStyle="width:70%" priority="2" style="width:13%;text-align:center;important;">
+								<h:outputText value="#{portaria.placa}" />
+							</p:column>
+
+							<p:column headerText="Transportadora" style="width:16%;important;" priority="6" filterBy="#{portaria.transportadoraPortaria.descricao}" filterStyle="width:70%">
+								<h:outputText value="#{portaria.transportadoraPortaria.descricao}" />
+							</p:column>
+
+							<p:column headerText="Motorista" style="width:22%;important;" priority="6" filterBy="#{portaria.nomeMotorista}" filterStyle="width:70%">
+								<h:outputText value="#{portaria.nomeMotorista.length() > 10 ? portaria.nomeMotorista.substring(0,10)  : portaria.nomeMotorista}" title="#{portaria.nomeMotorista}" />
+							</p:column>
+
+							<p:column headerText="RG" style="width:12%;important;" priority="6" filterBy="#{portaria.rgMotorista}" filterStyle="width:70%">
+								<h:outputText value="#{portaria.rgMotorista}" />
+							</p:column>
+
+							<p:column headerText="Ordem Carreg." style="width:18%;important;text-align:center;" filterBy="#{portaria.numeroOrdem}" priority="2" filterStyle="width:70%">
+								<h:outputText value="#{portaria.numeroOrdem}" />
+							</p:column>
+
+							<p:column headerText="Peso(Kg)" filterBy="#{portaria.peso}" style="width:13%;important;" priority="6" filterStyle="width:70%">
+								<h:outputText value="#{portaria.peso}" dir="rtl">
+									<f:convertNumber minFractionDigits="3" />
+								</h:outputText>
+							</p:column>
+
+							<p:column headerText="Peso(Kg) 2" filterBy="#{portaria.peso2}" style="width:13%;important;" priority="6" filterStyle="width:70%">
+								<h:outputText value="#{portaria.peso2}" dir="rtl">
+									<f:convertNumber minFractionDigits="3" />
+								</h:outputText>
+							</p:column>
+
+							<p:column headerText="Tipo Carga" style="width:13%;important;" priority="6" filterStyle="width:70%" filterBy="#{portaria.tipoCarga}">
+								<h:outputText value="#{portaria.tipoCarga}" />
+							</p:column>
+
+							<p:column headerText="Nota Fiscal" filterBy="#{portaria.numeroNf}" style="width:14%;important;" priority="6" filterStyle="width:70%">
+								<h:outputText id="nota" value="#{portaria.numeroNf}" />
+							</p:column>
+
+							<p:column style="width:9%;important;text-align:center;" priority="6">
+								<p:commandLink styleClass="commandLinkIcone" title="Excluir" action="#{portariaConsultaController.excluir}" oncomplete="PF('confirmaExclusao').show" update=":itens:messages :itens"
+									disabled="#{portariaConsultaController.isExcluirMovPortaria}">
+									<p:confirm header="Atenção" message="#{msg['excluir.registro']}" icon="fa fa-info Fs18" />
+									<i class="icon-cancel-circled-2 Fs22 red" />
+									<f:setPropertyActionListener target="#{portariaConsultaController.movPortariaSelecionado}" value="#{portaria}" />
+								</p:commandLink>
+							</p:column>
+
+							<p:rowExpansion>
+								<table>
+									<tr>
+										<td width="22%" style="border: none"><h:panelGrid id="display" columns="2" style="width:450px" styleClass=" ui-widget-content grid">
+												<h:outputText value="Hora de Apresentação" />
+												<p:inputMask value="#{portaria.data}" mask="99/99/9999 99:99:99" readonly="true">
+													<f:convertDateTime pattern="dd/MM/yyyy HH:mm:ss" />
+												</p:inputMask>
+
+												<h:outputText value="Hora da Ordem de Carregamento:" />
+												<p:inputMask value="#{portaria.horaOrdemCarrega}" mask="99/99/9999 99:99:99" readonly="true">
+													<f:convertDateTime pattern="dd/MM/yyyy HH:mm:ss" />
+												</p:inputMask>
+
+												<h:outputText value="Hora de Entrada:" />
+												<p:inputMask value="#{portaria.horaEntrada}" mask="99/99/9999 99:99:99" readonly="true">
+													<f:convertDateTime pattern="dd/MM/yyyy HH:mm:ss" />
+												</p:inputMask>
+
+												<h:outputText value="Hora Inicio de Carregamento:" />
+												<p:inputMask value="#{portaria.horaInicioCarregamento}" mask="99/99/9999 99:99:99" readonly="true">
+													<f:convertDateTime pattern="dd/MM/yyyy HH:mm:ss" />
+												</p:inputMask>
+
+												<h:outputText value="Hora Fim de Carregamento:" />
+												<p:inputMask value="#{portaria.horaTerminoCarregamento}" mask="99/99/9999 99:99:99" readonly="true">
+													<f:convertDateTime pattern="dd/MM/yyyy HH:mm:ss" />
+												</p:inputMask>
+
+												<h:outputText value="Hora de Saída:" />
+												<p:inputMask value="#{portaria.horaSaida}" mask="99/99/9999 99:99:99" readonly="true">
+													<f:convertDateTime pattern="dd/MM/yyyy HH:mm:ss" />
+												</p:inputMask>
+											</h:panelGrid></td>
+										<td width="70%" style="border: none"><h:panelGrid columns="2" style="width:350px">
+												<h:outputText value="Tempo de Espera:" />
+												<h:outputText value="#{portaria.tempoEspera}" />
+
+												<h:outputText value="Tempo de Carregamento:" />
+												<h:outputText value="#{portaria.tempoCarregamento}" />
+
+												<h:outputText value="Tempo de Lonagem/Refeição:" />
+												<h:outputText value="#{portaria.tempoLonagem}" />
+
+												<h:outputText value="Tempo de Permanência:" />
+												<h:outputText value="#{portaria.tempoPermanencia}" />
+											</h:panelGrid></td>
+									</tr>
+								</table>
+							</p:rowExpansion>
+						</p:dataTable>
+					</p:panel>
+				</h:form>
+
+				<p:dialog widgetVar="dialogTabExport" header="Tabela para Exportação" width="1200" height="600" modal="true" appendToBody="true" showEffect="fade" hideEffect="fade">
+					<h:form id="formExport">
+						<p:commandButton value="Exportar" ajax="false" icon="fa icon-export Fs16 white">
+							<p:dataExporter type="xls" target="tabExport" fileName="Medias" />
+						</p:commandButton>
+						<p:separator></p:separator>
+						<p:dataTable id="tabExport" var="portaria" value="#{portariaConsultaController.listMovPortaria}" paginator="true" rows="12" paginatorPosition="bottom"
+							filteredValue="#{portariaConsultaController.listMovPortariaFiltro}" rowIndexVar="rowIndex" emptyMessage="Não há registros" scrollable="true" scrollWidth="180%" style="overflow:auto">
+							<p:ajax event="page" listener="#{portariaConsultaController.onPaginationConsultaExportacao}" />
+
+							<p:column filterBy="#{portaria.data}" styleClass="center" style="width:9%;important;text-align:center;">
+								<f:facet name="header">
+							Data
+							</f:facet>
+								<h:outputText value="#{portaria.data}" mask="99/99/9999 99:99:99" readonly="true" styleClass="center">
+									<f:convertDateTime pattern="dd/MM/yyyy HH:mm:ss" />
+								</h:outputText>
+							</p:column>
+
+							<p:column filterBy="#{portaria.placa}" style="width:8%;important;">
+								<f:facet name="header">
+	               			Placa
+	               		</f:facet>
+								<h:outputText value="#{portaria.placa}" />
+							</p:column>
+
+							<p:column filterBy="#{portaria.nomeMotorista}" style="width:15%;important;">
+								<f:facet name="header">
+	               			Motorista
+	               		</f:facet>
+								<h:outputText value="#{portaria.nomeMotorista}" />
+							</p:column>
+
+							<p:column filterBy="#{portaria.transportadoraPortaria.descricao}" style="width:11%;important;">
+								<f:facet name="header">
+	               			Transportadora
+	               		</f:facet>
+								<h:outputText value="#{portaria.transportadoraPortaria.descricao}" />
+							</p:column>
+
+							<p:column filterBy="#{portaria.numeroOrdem}" style="width:11%;important;">
+								<f:facet name="header">
+	        				Ordem Carregamento
+	        			</f:facet>
+								<h:outputText value="#{portaria.numeroOrdem}" />
+							</p:column>
+
+							<p:column filterBy="#{portaria.contratacao}" style="width:11%;important;">
+								<f:facet name="header">
+	                		Tipo de Contratação
+	                	</f:facet>
+								<h:outputText value="#{portaria.contratacao}" />
+							</p:column>
+
+							<p:column filterBy="#{portaria.peso}" style="width:11%;important;">
+								<f:facet name="header">
+	                		Peso(Kg)
+	                	</f:facet>
+								<h:outputText value="#{portaria.peso}" dir="rtl">
+									<f:convertNumber minFractionDigits="3" />
+								</h:outputText>
+							</p:column>
+
+							<p:column filterBy="#{portaria.peso2}" style="width:11%;important;">
+								<f:facet name="header">
+	                   		Peso(Kg) 2
+	                   	</f:facet>
+								<h:outputText value="#{portaria.peso2}" dir="rtl">
+									<f:convertNumber minFractionDigits="3" />
+								</h:outputText>
+							</p:column>
+
+							<p:column filterBy="#{portaria.tipoCarga}" style="width:9%;important;">
+								<f:facet name="header">
+							Tipo de Carga
+						</f:facet>
+								<h:outputText value="#{portaria.tipoCarga}" />
+							</p:column>
+
+							<p:column style="width:11%;important;">
+								<f:facet name="header">
+							Hora Ordem de carragamento
+						</f:facet>
+								<h:outputText value="#{portaria.horaOrdemCarrega}" mask="99/99/9999 99:99:99" readonly="true" styleClass="center">
+									<f:convertDateTime pattern="dd/MM/yyyy HH:mm:ss" />
+								</h:outputText>
+							</p:column>
+
+							<p:column style="width:11%;important;">
+								<f:facet name="header">
+							Hora Entrada
+						</f:facet>
+								<h:outputText value="#{portaria.horaEntrada}" mask="99/99/9999 99:99:99" readonly="true" styleClass="center">
+									<f:convertDateTime pattern="dd/MM/yyyy HH:mm:ss" />
+								</h:outputText>
+							</p:column>
+
+							<p:column style="width:11%;important;">
+								<f:facet name="header">
+							Hora entrada Carregamento
+						</f:facet>
+								<h:outputText value="#{portaria.horaInicioCarregamento}" mask="99/99/9999 99:99:99" readonly="true" styleClass="center">
+									<f:convertDateTime pattern="dd/MM/yyyy HH:mm:ss" />
+								</h:outputText>
+							</p:column>
+
+							<p:column styleClass="center">
+								<f:facet name="header">
+							Hora saída Carragamento
+						</f:facet>
+								<h:outputText value="#{portaria.horaTerminoCarregamento}" mask="99/99/9999 99:99:99" readonly="true" styleClass="center">
+									<f:convertDateTime pattern="dd/MM/yyyy HH:mm:ss" />
+								</h:outputText>
+							</p:column>
+
+							<p:column styleClass="center">
+								<f:facet name="header">
+							Hora saída
+						</f:facet>
+								<h:outputText value="#{portaria.horaSaida}" mask="99/99/9999 99:99:99" readonly="true" styleClass="center">
+									<f:convertDateTime pattern="dd/MM/yyyy HH:mm:ss" />
+								</h:outputText>
+							</p:column>
+
+							<p:column styleClass="center">
+								<f:facet name="header">
+							Tempo Espera
+						</f:facet>
+								<h:outputText value="#{portaria.tempoEspera}" />
+							</p:column>
+
+							<p:column styleClass="center">
+								<f:facet name="header">
+							Tempo Carregamento
+						</f:facet>
+								<h:outputText value="#{portaria.tempoCarregamento}" />
+							</p:column>
+
+							<p:column styleClass="center">
+								<f:facet name="header">
+							Tempo Lonagem/Refeição
+						</f:facet>
+								<h:outputText value="#{portaria.tempoLonagem}" />
+							</p:column>
+
+							<p:column styleClass="center">
+								<f:facet name="header">
+							Tempo de Permanência
+						</f:facet>
+								<h:outputText value="#{portaria.tempoPermanencia}" />
+							</p:column>
+						</p:dataTable>
+					</h:form>
+				</p:dialog>
+
+				<p:dialog widgetVar="dialogDetalhe" header="Detalhes para Alteração" modal="true" appendToBody="true" showEffect="fade" hideEffect="fade">
+					<h:form id="formDetalhe">
+						<p:fieldset legend="Campos para Alteração" toggleable="true" toggleSpeed="500">
+							<p:panelGrid columns="2">
+								<h:outputLabel value="Placa:" />
+								<h:panelGroup>
+									<p:inputText value="#{portariaConsultaController.movPortaria.placa}" style="text-transform:uppercase" />
+								</h:panelGroup>
+
+								<h:outputLabel value="Ordem de Carregamento" />
+								<p:inputText id="ordemCarregamento" value="#{portariaConsultaController.movPortaria.numeroOrdem}" />
+
+								<h:outputLabel value="Peso" />
+								<p:inputText id="peso" value="#{portariaConsultaController.movPortaria.peso}" dir="rtl" onkeypress="FormataValor(this,8,event,3); return CheckNumerico(this,8,event);"
+									onkeyup="FormataValor(this,8,event,3); return CheckNumerico(this,8,event);">
+									<f:convertNumber for="peso" locale="pt_BR" maxFractionDigits="3" maxIntegerDigits="20" pattern="###,##0.00" minFractionDigits="3" />
+								</p:inputText>
+
+								<h:outputLabel value="Peso 2" />
+								<p:inputText id="peso2" value="#{portariaConsultaController.movPortaria.peso2}" dir="rtl" onkeypress="FormataValor(this,8,event,3); return CheckNumerico(this,8,event);"
+									onkeyup="FormataValor(this,8,event,3); return CheckNumerico(this,8,event);">
+									<f:convertNumber for="peso2" locale="pt_BR" maxFractionDigits="3" maxIntegerDigits="20" pattern="###,##0.00" minFractionDigits="3" />
+								</p:inputText>
+							</p:panelGrid>
+						</p:fieldset>
+						<p:spacer width="0" height="5" />
+						<p:fieldset legend="Horários" toggleable="true" toggleSpeed="500">
+							<p:panelGrid columns="2">
+								<h:outputText value="Hora de Apresentação" />
+								<p:calendar id="horaApresentacao" value="#{portariaConsultaController.movPortaria.data}" pattern="dd/MM/yyyy HH:mm:ss" locale="pt" />
+
+								<h:outputText value="Hora da Ordem de Carregamento:" />
+								<p:calendar id="horaOrdermCarregamento" value="#{portariaConsultaController.movPortaria.horaOrdemCarrega}" pattern="dd/MM/yyyy HH:mm:ss" locale="pt" />
+
+								<h:outputText value="Hora de Entrada:" />
+								<p:calendar id="horaEntrada" value="#{portariaConsultaController.movPortaria.horaEntrada}" pattern="dd/MM/yyyy HH:mm:ss" locale="pt" />
+
+								<h:outputText value="Hora Inicio de Carregamento:" />
+								<p:calendar id="horaInicioCarregamento" value="#{portariaConsultaController.movPortaria.horaInicioCarregamento}" pattern="dd/MM/yyyy HH:mm:ss" locale="pt" />
+
+								<h:outputText value="Hora Fim de Carregamento:" />
+								<p:calendar id="horaTerminoCarregamento" value="#{portariaConsultaController.movPortaria.horaTerminoCarregamento}" pattern="dd/MM/yyyy HH:mm:ss" locale="pt" />
+
+								<h:outputText value="Hora de Saída:" />
+								<p:calendar id="horaSaida" value="#{portariaConsultaController.movPortaria.horaSaida}" pattern="dd/MM/yyyy HH:mm:ss" locale="pt" />
+							</p:panelGrid>
+						</p:fieldset>
+						<p:spacer width="0" height="5" />
+						<p:fieldset legend="Justificativa" toggleable="true" toggleSpeed="500">
+							<h:panelGroup>
+								<p:inputTextarea id="fmensagem" rows="7" cols="68" counter="counter" maxlength="300" required="true" label="mensagem" requiredMessage="É necessário apresentar uma justificativa"
+									counterTemplate="{0} caracteres permitidos." autoResize="false" value="#{portariaConsultaController.movPortaria.justificativa}" />
+								<br />
+								<h:outputText id="counter" />
+							</h:panelGroup>
+						</p:fieldset>
+						<p:spacer width="0" height="5" />
+						<p:commandButton value="Salvar" icon="ui-icon-disk" action="#{portariaConsultaController.salvarDetalhe}" update=":itens:messages :itens:tabConsultaPortaria"
+							oncomplete="PF('dialogDetalhe').hide();">
+							<f:setPropertyActionListener target="#{portariaConsultaController.movPortariaSelecionado}" value="#{portariaConsultaController.movPortaria}" />
+						</p:commandButton>
+						<p:commandButton value="Cancelar" icon="fa fa-times Fs18 white" onclick="PF('dialogDetalhe').hide();" />
+					</h:form>
+				</p:dialog>
+			</div>
+		</ui:define>
+	</ui:composition>
+</h:body>
+</html>

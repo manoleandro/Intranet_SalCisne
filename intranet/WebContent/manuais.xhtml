@@ -1,0 +1,52 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:c="http://java.sun.com/jsp/jstl/core"
+	xmlns:p="http://primefaces.org/ui">
+<h:head>
+	<link rel="stylesheet" href="lib/css/estilo.css" />
+
+	<style>
+		.ui-widget-content a {
+			color: #72828B !important;
+		}
+	</style>
+</h:head>
+
+<body>
+	<div class="container"
+		style="background-image: url('lib/img/manuais.jpg'); background-repeat: no-repeat; min-height: 40%; background-position: center; width: 100%">
+
+		<div class="half">
+			<p:fieldset legend="JD Edwards" style="height:99%"
+				styleClass="transparente">
+				<p:tree id="tree" value="#{jdeTreeBean.root}" var="node"
+					styleClass="transparente">
+					<p:treeNode id="treeNode">
+						<h:outputText rendered="#{node.target == ''}" value="#{node.name}" />
+						<h:outputLink value="#{node.link}" target="#{node.target}"
+							rendered="#{node.target != ''}">#{node.name}</h:outputLink>
+					</p:treeNode>
+				</p:tree>
+			</p:fieldset>
+		</div>
+
+		<div class="half2">
+			<p:fieldset legend="Intranet" style="height:99%"
+				styleClass="transparente">
+				<p:tree id="treeIntra" value="#{jdeTreeBean.rootIntra}"
+					var="nodeIntra" styleClass="transparente">
+					<p:treeNode id="treeNodeIntra">
+						<h:outputText rendered="#{nodeIntra.target == ''}"
+							value="#{nodeIntra.name}" />
+						<h:outputLink value="#{nodeIntra.link}"
+							target="#{nodeIntra.target}" rendered="#{nodeIntra.target != ''}">#{nodeIntra.name}</h:outputLink>
+					</p:treeNode>
+				</p:tree>
+			</p:fieldset>
+		</div>
+	</div>
+</body>
+</html>

@@ -1,0 +1,126 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:h="http://java.sun.com/jsf/html" xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core" xmlns:p="http://primefaces.org/ui">
+
+<h:head>
+	<f:loadBundle basename="messages_pt_BR" var="msg" />
+</h:head>
+<h:body>
+	<ui:composition template="../../template/commonLayout.xhtml">
+		<ui:define name="content">
+			<div class="ContainerIndent">
+				<h:form id="form">
+					<style>
+					</style>
+
+					<p:confirmDialog global="true" showEffect="puff" hideEffect="puff" appendTo="@(body)">
+						<p:commandButton value="Sim" type="button" styleClass="ui-confirmdialog-yes" icon="fa fa-check Fs18 white" />
+						<p:commandButton value="Não" type="button" styleClass="ui-confirmdialog-no" icon="fa fa-times Fs18 white" />
+					</p:confirmDialog>
+
+					<p:panel styleClass="panel">
+						<p:growl id="messages" autoUpdate="false" />
+						<div class="container">
+							<h:outputText value="Gerênciar Menu" styleClass="title-page hardblue"/>
+
+							<div class="right" style="text-align: right">
+								<p:commandLink styleClass="commandLinkIcone" title="#{msg['incluir']}" action="#{menuController.prepararIncluir}" update=":menuForm">
+									<i class="icon-plus title-page button" />
+								</p:commandLink>
+
+								<p:commandLink styleClass="commandLinkIcone" title="#{msg['alterar']}" action="#{menuController.prepararAlterar}" update=":menuForm :form:messages">
+									<i class="icon-pencil title-page button"/>
+								</p:commandLink>
+
+								<p:commandLink styleClass="commandLinkIcone" title="#{msg['excluir']}" action="#{menuController.excluir}" update=":form:messages :form:tableMenu"
+									oncomplete="PF('tableMenu').clearFilters();">
+									<p:confirm header="Atenção" message="#{msg['excluir.registro']}" icon="fa fa-info Fs18" />
+									<i class="icon-trash title-page button"/>
+								</p:commandLink>
+							</div>
+						</div>
+						<p:separator />
+
+						<p:dataTable id="tableMenu" widgetVar="tableMenu" var="menu" value="#{menuController.menus}" emptyMessage="#{msg['sem.registro']}"
+							selectionMode="single" selection="#{menuController.menuSelecionado}" rowKey="#{menu.id}" scrollHeight="600" paginator="true" rows="14"
+							paginatorPosition="bottom">
+
+							<p:column filterBy="#{menu.id}" sortBy="#{menu.id}" headerText="Código" styleClass="centralizar" filterStyleClass="filtro" width="10%" priority="4">
+								<h:outputText value="#{menu.id}" />
+							</p:column>
+
+							<p:column filterBy="#{menu.descricao}" sortBy="#{menu.descricao}" headerText="Descricao" styleClass="centralizar" filterStyleClass="filtro" priority="1">
+								<h:outputText value="#{menu.descricao}" />
+							</p:column>
+							
+							<p:column filterBy="#{menu.ordem}" sortBy="#{menu.ordem}" headerText="Ordem" styleClass="centralizar" filterStyleClass="filtro" priority="2">
+								<h:outputText value="#{menu.ordem}" />
+							</p:column>
+							
+							<p:column filterBy="#{menu.icone}" sortBy="#{menu.icone}" headerText="Icone" styleClass="centralizar" filterStyleClass="filtro" priority="3">
+								<h:outputText value="#{menu.icone}" />
+							</p:column>
+							
+							<p:column filterBy="#{menu.superior.descricao}" sortBy="#{menu.superior.descricao}" headerText="Superior" styleClass="centralizar" filterStyleClass="filtro" priority="4">
+								<h:outputText value="#{menu.superior.descricao}" />
+							</p:column>
+						</p:dataTable>
+					</p:panel>
+				</h:form>
+
+				<p:dialog header="Menu" widgetVar="dialogMenu" modal="true" showEffect="puff" hideEffect="puff" appendTo="@(body)">
+					<h:form id="menuForm"> 
+						<h:panelGrid columns="2">
+							<h:outputText value="Descrição:" />
+							<p:inputText value="#{menuController.menu.descricao}" />
+	
+							<h:outputText value="Ordem:" />
+							<p:inputText value="#{menuController.menu.ordem}" />
+	
+							<h:outputText value="Icone:" />
+							<p:inputText value="#{menuController.menu.icone}" />
+							
+							<h:outputText value="Superior:" />
+							<h:panelGroup>
+								<p:inputText value="#{menuController.menu.superior.descricao}" readonly="true"/>
+								<p:commandLink styleClass="commandLinkIcone" title="#{msg['assistente']}" update=":assistenteMenuForm"
+											   oncomplete="PF('dialogAssistenteMenu').show();">
+									<i class="icon-search button" style="font-size: 1.5rem;" />
+								</p:commandLink>
+							</h:panelGroup>	
+							
+						</h:panelGrid>
+						<p:spacer height="20" width="100%" />
+					
+						<p:commandButton value="Salvar" icon="fa fa-check Fs18 white" action="#{menuController.salvar}" update=":form"
+										 oncomplete="PF('dialogMenu').hide(); PF('tableMenu').clearFilters();">
+							<f:setPropertyActionListener value="#{menuController.menu}" target="#{menuController.menuSelecionado}" />
+						</p:commandButton>
+						<p:commandButton value="Cancelar" icon="fa fa-times Fs18 white" onclick="PF('dialogMenu').hide();" />
+					</h:form>
+				</p:dialog>
+				
+				<p:dialog header="Assistente Menu" widgetVar="dialogAssistenteMenu" modal="true" showEffect="puff" hideEffect="puff" width="40%" appendTo="@(body)">
+	            	<h:form id="assistenteMenuForm">
+	                	<p:dataTable id="tableMenu2" widgetVar="tableMenu2" var="menu" value="#{menuController.menus}" emptyMessage="#{msg['sem.registro']}"
+							selectionMode="single" selection="#{menuController.superiorSelecionado}" rowKey="#{menu.id}" paginator="true" rows="10"
+							paginatorPosition="bottom">
+							
+							<p:ajax event="rowSelect" listener="#{menuController.setarSuperior}" update=":menuForm" oncomplete="PF('dialogAssistenteMenu').hide();"/>
+							
+							<p:column headerText="Código" sortBy="#{menu.id}" filterBy="#{menu.id}">
+                				<h:outputText value="#{menu.id}" />
+            				</p:column>
+            				
+            				<p:column headerText="Descrição" sortFunction="#{menu.descricao}" filterBy="#{menu.descricao}">
+                				<h:outputText value="#{menu.descricao}"/>
+            				</p:column>
+	                	</p:dataTable>
+        			</h:form>
+			    </p:dialog>
+			</div>
+		</ui:define>
+	</ui:composition>
+</h:body>
+</html>

@@ -1,0 +1,87 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	  xmlns:h="http://java.sun.com/jsf/html"
+	  xmlns:ui="http://java.sun.com/jsf/facelets"
+	  xmlns:f="http://java.sun.com/jsf/core"
+	  xmlns:p="http://primefaces.org/ui">
+<h:head>
+	<f:loadBundle basename="messages_pt_BR" var="msg" />
+</h:head>
+<h:body>
+	<f:metadata>
+		<f:event listener="#{historicoPadraoCaixaController.init()}" type="preRenderView"></f:event>
+	</f:metadata>
+	<ui:composition template="../../template/commonLayout.xhtml">
+		<ui:define name="content">
+			<div class="ContainerIndent">
+				<h:form id="form">
+					<p:confirmDialog global="true" showEffect="puff" hideEffect="puff" widgetVar="dialogExcluir" appendTo="@(body)">
+						<p:commandButton value="Sim" type="button" styleClass="ui-confirmdialog-yes" icon="fa fa-check Fs18 white" />
+						<p:commandButton value="Não" type="button" styleClass="ui-confirmdialog-no" icon="fa fa-times Fs18 white" />
+					</p:confirmDialog>
+
+					<p:panel styleClass="panel">
+						<p:growl id="messages" autoUpdate="false" />
+						<div class="container">
+							<h:outputText value="Gerenciar Histórico Padrão" styleClass="title-page hardblue" />
+							<div class="right" style="text-align: right">
+								 <p:commandButton value="Incluir Histórico Padrão" icon="fa fa-plus Fs14 white" actionListener="#{historicoPadraoCaixaController.prepararInclusaoHistPadrao}" update=":formIncludAltHistPadrao" oncomplete="PF('dialogIncludAltHistPadrao').show();"/>
+										 <p:spacer width="5"></p:spacer>
+								<p:commandLink styleClass="commandLinkIcone" title="Atualizar" onclick="location.reload();" update="@form">
+									<i class="fa icon-arrows-cw title-page button" />
+								</p:commandLink>
+							</div>
+						</div>
+						<p:separator />
+
+					<p:dataTable id="tabelaHistPadrao" value="#{historicoPadraoCaixaController.listaHistPadrao}" var="histPadrao" emptyMessage="Não há histórico" paginatorPosition="bottom" paginator="true" rows="7" filteredValue="#{historicoPadraoCaixaController.listaHistPadraoFiltro}" rowsPerPageTemplate="5,10,15">
+					
+							<p:column headerText="Código" sortBy="#{histPadrao.id}" styleClass="center" style="width:11%">
+								<h:outputText value="#{histPadrao.id}"/>
+							</p:column>
+									 
+							<p:column headerText="Descrição" sortBy="#{histPadrao.descricao}" >
+								<h:outputText value="#{histPadrao.descricao}" />
+							</p:column>
+							
+							<p:column style="text-align:center;width:15% !important;" headerText="Ações">
+								<p:commandButton title="Alterar" icon="fa fa-pencil Fs14 white" action="#{historicoPadraoCaixaController.prepararAlteracaoHistPadrao}" update=":formIncludAltHistPadrao" 
+												 oncomplete="PF('dialogIncludAltHistPadrao').show();">
+									<f:setPropertyActionListener target="#{historicoPadraoCaixaController.histPadraoSelecionado}" value="#{histPadrao}"/>
+								</p:commandButton>
+							<p:spacer width="5"></p:spacer>
+								<p:commandButton title="Excluir" icon="fa fa-trash Fs14 white"  action="#{historicoPadraoCaixaController.excluirHistPadrao}" update=":form:messages :form:tabelaHistPadrao">
+								<p:confirm header="Atenção" message="#{msg['excluir.registro']}" icon="fa fa-info Fs18" />
+								<f:setPropertyActionListener target="#{historicoPadraoCaixaController.histPadraoSelecionado}" value="#{histPadrao}" />
+								</p:commandButton>
+								
+							</p:column>
+
+					</p:dataTable>
+					</p:panel>
+				</h:form>
+							
+			</div>
+		
+			
+			<p:dialog widgetVar="dialogIncludAltHistPadrao" header="Histórico Padrão" width="500" height="105" modal="true" resizable="true" appendToBody="true" showEffect="fade" hideEffect="fade">
+			<h:form id="formIncludAltHistPadrao">
+				<h:panelGrid columns="2">
+					<h:outputText value="Descrição:" />
+					<p:inputText id="descricao" value="#{historicoPadraoCaixaController.histPadrao.descricao}" required="true" size="50"/>
+				</h:panelGrid>
+				<p:separator></p:separator>
+				<p:commandButton value="Salvar" icon="fa fa-floppy-o Fs14 white" action="#{historicoPadraoCaixaController.salvarHistPadrao}" update=":form:messages :form:tabelaHistPadrao" 
+								 oncomplete="PF('dialogIncludAltHistPadrao').hide();">
+					<f:setPropertyActionListener target="#{historicoPadraoCaixaController.histPadraoSelecionado}" value="#{historicoPadraoCaixaController.histPadrao}"/>
+				</p:commandButton>
+				<p:spacer width="4"></p:spacer>
+				<p:commandButton value="Cancelar" icon="fa fa-times Fs14 white" oncomplete="PF('dialogIncludAltHistPadrao').hide();"/>
+			</h:form>
+		</p:dialog>
+			
+		</ui:define>
+	</ui:composition>
+</h:body>
+</html>

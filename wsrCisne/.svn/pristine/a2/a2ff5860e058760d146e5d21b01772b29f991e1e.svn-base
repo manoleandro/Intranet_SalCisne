@@ -1,0 +1,29 @@
+package wsr.model.security.repository;
+
+import java.util.List;
+
+import org.springframework.stereotype.Repository;
+
+import wsr.GenericDAOSecurity;
+import wsr.model.security.CsUsuario;
+import wsr.query.security.CsUsuarioQuery;
+
+@Repository
+public class CsUsuarioRepository extends GenericDAOSecurity{
+	
+	public CsUsuario findByUsername(String username){
+		CsUsuario usuario = null;
+		
+		usuario = (CsUsuario) getSession().get(CsUsuario.class, username);
+		
+		return usuario;
+	}
+	
+	public List<CsUsuario> findUsuariosApp(){
+		List<CsUsuario> usuarios = null;
+		
+		usuarios = getSession().createQuery(CsUsuarioQuery.HQL_USUARIO_APP).list();
+		
+		return usuarios;
+	}
+}

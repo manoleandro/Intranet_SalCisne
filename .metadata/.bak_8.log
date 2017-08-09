@@ -1,4 +1,4 @@
-!SESSION 2017-08-02 15:38:06.042 -----------------------------------------------
+!SESSION 2017-08-07 09:12:36.957 -----------------------------------------------
 eclipse.buildId=4.6.2.M20161124-1400
 java.version=1.8.0_121
 java.vendor=Oracle Corporation
@@ -7,141 +7,9 @@ Framework arguments:  -product org.eclipse.epp.package.jee.product
 Command-line arguments:  -os win32 -ws win32 -arch x86_64 -product org.eclipse.epp.package.jee.product
 
 This is a continuation of log file C:\eclipse\projetos\.metadata\.bak_7.log
-Created Time: 2017-08-02 16:03:23.025
+Created Time: 2017-08-07 10:34:18.513
 
-!ENTRY org.eclipse.jst.jsf.core 4 0 2017-08-02 16:03:23.025
-!MESSAGE Error creating base name for: messages
-!STACK 0
-java.io.IOException: Bundle messages not found in classpath for project: intranet
-	at org.eclipse.jst.jsf.designtime.internal.symbols.ResourceBundleMapSource.createCachedBundleFile(ResourceBundleMapSource.java:235)
-	at org.eclipse.jst.jsf.designtime.internal.symbols.ResourceBundleMapSource.<init>(ResourceBundleMapSource.java:253)
-	at org.eclipse.jst.jsf.designtime.internal.symbols.ResourceBundleMapSourceFactory.getResourceBundleMapSource(ResourceBundleMapSourceFactory.java:44)
-	at org.eclipse.jst.jsf.designtime.internal.symbols.ResourceBundleSymbolSourceProvider.createSymbolForResourceBundle(ResourceBundleSymbolSourceProvider.java:114)
-	at org.eclipse.jst.jsf.designtime.internal.symbols.ResourceBundleSymbolSourceProvider.getSymbols(ResourceBundleSymbolSourceProvider.java:86)
-	at org.eclipse.jst.jsf.designtime.context.DTJSPExternalContext.doGetMapForScope(DTJSPExternalContext.java:87)
-	at org.eclipse.jst.jsf.designtime.context.AbstractDTExternalContext.getMapForScope(AbstractDTExternalContext.java:46)
-	at org.eclipse.jst.jsf.designtime.context.AbstractDTExternalContext.getApplicationMap(AbstractDTExternalContext.java:80)
-	at org.eclipse.jst.jsf.designtime.el.DefaultDTVariableResolver.resolveVariable(DefaultDTVariableResolver.java:77)
-	at org.eclipse.jst.jsf.designtime.internal.symbols.ConfigBasedDTVariableResolver.resolveVariable(ConfigBasedDTVariableResolver.java:108)
-	at org.eclipse.jst.jsf.designtime.resolver.SymbolContextResolver.getVariable(SymbolContextResolver.java:61)
-	at org.eclipse.jst.jsf.validation.internal.el.ASTSemanticValidator.visit(ASTSemanticValidator.java:354)
-	at org.eclipse.jst.jsp.core.internal.java.jspel.ASTValuePrefix.jjtAccept(ASTValuePrefix.java:28)
-	at org.eclipse.jst.jsp.core.internal.java.jspel.SimpleNode.childrenAccept(SimpleNode.java:70)
-	at org.eclipse.jst.jsf.validation.internal.el.ASTSemanticValidator.visit(ASTSemanticValidator.java:324)
-	at org.eclipse.jst.jsp.core.internal.java.jspel.ASTValue.jjtAccept(ASTValue.java:28)
-	at org.eclipse.jst.jsp.core.internal.java.jspel.SimpleNode.childrenAccept(SimpleNode.java:70)
-	at org.eclipse.jst.jsf.validation.internal.el.ASTSemanticValidator.visit(ASTSemanticValidator.java:277)
-	at org.eclipse.jst.jsp.core.internal.java.jspel.ASTUnaryExpression.jjtAccept(ASTUnaryExpression.java:28)
-	at org.eclipse.jst.jsp.core.internal.java.jspel.SimpleNode.childrenAccept(SimpleNode.java:70)
-	at org.eclipse.jst.jsf.validation.internal.el.ASTSemanticValidator.visit(ASTSemanticValidator.java:175)
-	at org.eclipse.jst.jsp.core.internal.java.jspel.ASTExpression.jjtAccept(ASTExpression.java:28)
-	at org.eclipse.jst.jsf.validation.internal.el.ASTSemanticValidator.validate(ASTSemanticValidator.java:109)
-	at org.eclipse.jst.jsf.validation.internal.el.ELExpressionValidator.validateSemantics(ELExpressionValidator.java:183)
-	at org.eclipse.jst.jsf.validation.internal.el.ELExpressionValidator.validateXMLNode(ELExpressionValidator.java:80)
-	at org.eclipse.jst.jsf.validation.internal.strategy.AttributeValidatingStrategy.validateELExpression(AttributeValidatingStrategy.java:367)
-	at org.eclipse.jst.jsf.validation.internal.strategy.AttributeValidatingStrategy.checkIfELAndValidate(AttributeValidatingStrategy.java:275)
-	at org.eclipse.jst.jsf.validation.internal.strategy.AttributeValidatingStrategy.access$0(AttributeValidatingStrategy.java:192)
-	at org.eclipse.jst.jsf.validation.internal.strategy.AttributeValidatingStrategy$1.run(AttributeValidatingStrategy.java:184)
-	at org.eclipse.core.runtime.SafeRunner.run(SafeRunner.java:42)
-	at org.eclipse.jst.jsf.validation.internal.strategy.AttributeValidatingStrategy.validateAttributeValue(AttributeValidatingStrategy.java:168)
-	at org.eclipse.jst.jsf.validation.internal.strategy.AttributeValidatingStrategy.validate(AttributeValidatingStrategy.java:144)
-	at org.eclipse.jst.jsf.validation.internal.XMLViewDefnValidator.validateTag(XMLViewDefnValidator.java:99)
-	at org.eclipse.jst.jsf.validation.internal.XMLViewDefnValidator.validateRegions(XMLViewDefnValidator.java:177)
-	at org.eclipse.jst.jsf.validation.internal.XMLViewDefnValidator.validateView(XMLViewDefnValidator.java:134)
-	at org.eclipse.jst.jsf.facelet.ui.internal.validation.DefaultFaceletValidationStrategy.doValidate(DefaultFaceletValidationStrategy.java:42)
-	at org.eclipse.jst.jsf.facelet.ui.internal.validation.AbstractFaceletValidationStrategy.validateFile(AbstractFaceletValidationStrategy.java:96)
-	at org.eclipse.jst.jsf.facelet.ui.internal.validation.HTMLValidator.validate(HTMLValidator.java:57)
-	at org.eclipse.wst.validation.Validator$V2.validate(Validator.java:1159)
-	at org.eclipse.wst.validation.internal.ValManager.validate(ValManager.java:704)
-	at org.eclipse.wst.validation.internal.ValManager$1.visit(ValManager.java:665)
-	at org.eclipse.wst.validation.internal.ValManager.accept(ValManager.java:783)
-	at org.eclipse.wst.validation.internal.ValManager.validate(ValManager.java:669)
-	at org.eclipse.wst.validation.internal.ValBuilderJob$Visitor.visit(ValBuilderJob.java:299)
-	at org.eclipse.core.internal.resources.Resource$2.visit(Resource.java:120)
-	at org.eclipse.core.internal.resources.Resource$1.visitElement(Resource.java:84)
-	at org.eclipse.core.internal.watson.ElementTreeIterator.doIteration(ElementTreeIterator.java:82)
-	at org.eclipse.core.internal.watson.ElementTreeIterator.doIteration(ElementTreeIterator.java:87)
-	at org.eclipse.core.internal.watson.ElementTreeIterator.doIteration(ElementTreeIterator.java:87)
-	at org.eclipse.core.internal.watson.ElementTreeIterator.doIteration(ElementTreeIterator.java:87)
-	at org.eclipse.core.internal.watson.ElementTreeIterator.doIteration(ElementTreeIterator.java:87)
-	at org.eclipse.core.internal.watson.ElementTreeIterator.iterate(ElementTreeIterator.java:129)
-	at org.eclipse.core.internal.resources.Resource.accept(Resource.java:94)
-	at org.eclipse.core.internal.resources.Resource.accept(Resource.java:52)
-	at org.eclipse.core.internal.resources.Resource.accept(Resource.java:117)
-	at org.eclipse.core.internal.resources.Resource.accept(Resource.java:105)
-	at org.eclipse.wst.validation.internal.ValBuilderJob.fullBuild(ValBuilderJob.java:219)
-	at org.eclipse.wst.validation.internal.ValBuilderJob.run(ValBuilderJob.java:178)
-	at org.eclipse.wst.validation.internal.ValBuilderJob.runInWorkspace(ValBuilderJob.java:126)
-	at org.eclipse.core.internal.resources.InternalWorkspaceJob.run(InternalWorkspaceJob.java:39)
-	at org.eclipse.core.internal.jobs.Worker.run(Worker.java:55)
-
-!ENTRY org.eclipse.jst.jsf.core 4 0 2017-08-02 16:03:23.029
-!MESSAGE Error creating base name for: messages
-!STACK 0
-java.io.IOException: Bundle messages not found in classpath for project: intranet
-	at org.eclipse.jst.jsf.designtime.internal.symbols.ResourceBundleMapSource.createCachedBundleFile(ResourceBundleMapSource.java:235)
-	at org.eclipse.jst.jsf.designtime.internal.symbols.ResourceBundleMapSource.<init>(ResourceBundleMapSource.java:253)
-	at org.eclipse.jst.jsf.designtime.internal.symbols.ResourceBundleMapSourceFactory.getResourceBundleMapSource(ResourceBundleMapSourceFactory.java:44)
-	at org.eclipse.jst.jsf.designtime.internal.symbols.ResourceBundleSymbolSourceProvider.createSymbolForResourceBundle(ResourceBundleSymbolSourceProvider.java:114)
-	at org.eclipse.jst.jsf.designtime.internal.symbols.ResourceBundleSymbolSourceProvider.getSymbols(ResourceBundleSymbolSourceProvider.java:86)
-	at org.eclipse.jst.jsf.designtime.context.DTJSPExternalContext.doGetMapForScope(DTJSPExternalContext.java:87)
-	at org.eclipse.jst.jsf.designtime.context.AbstractDTExternalContext.getMapForScope(AbstractDTExternalContext.java:46)
-	at org.eclipse.jst.jsf.designtime.context.AbstractDTExternalContext.getApplicationMap(AbstractDTExternalContext.java:80)
-	at org.eclipse.jst.jsf.designtime.el.DefaultDTVariableResolver.resolveVariable(DefaultDTVariableResolver.java:77)
-	at org.eclipse.jst.jsf.designtime.internal.symbols.ConfigBasedDTVariableResolver.resolveVariable(ConfigBasedDTVariableResolver.java:108)
-	at org.eclipse.jst.jsf.designtime.resolver.SymbolContextResolver.getVariable(SymbolContextResolver.java:61)
-	at org.eclipse.jst.jsf.validation.internal.el.ASTSemanticValidator.visit(ASTSemanticValidator.java:354)
-	at org.eclipse.jst.jsp.core.internal.java.jspel.ASTValuePrefix.jjtAccept(ASTValuePrefix.java:28)
-	at org.eclipse.jst.jsp.core.internal.java.jspel.SimpleNode.childrenAccept(SimpleNode.java:70)
-	at org.eclipse.jst.jsf.validation.internal.el.ASTSemanticValidator.visit(ASTSemanticValidator.java:324)
-	at org.eclipse.jst.jsp.core.internal.java.jspel.ASTValue.jjtAccept(ASTValue.java:28)
-	at org.eclipse.jst.jsp.core.internal.java.jspel.SimpleNode.childrenAccept(SimpleNode.java:70)
-	at org.eclipse.jst.jsf.validation.internal.el.ASTSemanticValidator.visit(ASTSemanticValidator.java:277)
-	at org.eclipse.jst.jsp.core.internal.java.jspel.ASTUnaryExpression.jjtAccept(ASTUnaryExpression.java:28)
-	at org.eclipse.jst.jsp.core.internal.java.jspel.SimpleNode.childrenAccept(SimpleNode.java:70)
-	at org.eclipse.jst.jsf.validation.internal.el.ASTSemanticValidator.visit(ASTSemanticValidator.java:175)
-	at org.eclipse.jst.jsp.core.internal.java.jspel.ASTExpression.jjtAccept(ASTExpression.java:28)
-	at org.eclipse.jst.jsf.validation.internal.el.ASTSemanticValidator.validate(ASTSemanticValidator.java:109)
-	at org.eclipse.jst.jsf.validation.internal.el.ELExpressionValidator.validateSemantics(ELExpressionValidator.java:183)
-	at org.eclipse.jst.jsf.validation.internal.el.ELExpressionValidator.validateXMLNode(ELExpressionValidator.java:80)
-	at org.eclipse.jst.jsf.validation.internal.strategy.AttributeValidatingStrategy.validateELExpression(AttributeValidatingStrategy.java:367)
-	at org.eclipse.jst.jsf.validation.internal.strategy.AttributeValidatingStrategy.checkIfELAndValidate(AttributeValidatingStrategy.java:275)
-	at org.eclipse.jst.jsf.validation.internal.strategy.AttributeValidatingStrategy.access$0(AttributeValidatingStrategy.java:192)
-	at org.eclipse.jst.jsf.validation.internal.strategy.AttributeValidatingStrategy$1.run(AttributeValidatingStrategy.java:184)
-	at org.eclipse.core.runtime.SafeRunner.run(SafeRunner.java:42)
-	at org.eclipse.jst.jsf.validation.internal.strategy.AttributeValidatingStrategy.validateAttributeValue(AttributeValidatingStrategy.java:168)
-	at org.eclipse.jst.jsf.validation.internal.strategy.AttributeValidatingStrategy.validate(AttributeValidatingStrategy.java:144)
-	at org.eclipse.jst.jsf.validation.internal.XMLViewDefnValidator.validateTag(XMLViewDefnValidator.java:99)
-	at org.eclipse.jst.jsf.validation.internal.XMLViewDefnValidator.validateRegions(XMLViewDefnValidator.java:177)
-	at org.eclipse.jst.jsf.validation.internal.XMLViewDefnValidator.validateView(XMLViewDefnValidator.java:134)
-	at org.eclipse.jst.jsf.facelet.ui.internal.validation.DefaultFaceletValidationStrategy.doValidate(DefaultFaceletValidationStrategy.java:42)
-	at org.eclipse.jst.jsf.facelet.ui.internal.validation.AbstractFaceletValidationStrategy.validateFile(AbstractFaceletValidationStrategy.java:96)
-	at org.eclipse.jst.jsf.facelet.ui.internal.validation.HTMLValidator.validate(HTMLValidator.java:57)
-	at org.eclipse.wst.validation.Validator$V2.validate(Validator.java:1159)
-	at org.eclipse.wst.validation.internal.ValManager.validate(ValManager.java:704)
-	at org.eclipse.wst.validation.internal.ValManager$1.visit(ValManager.java:665)
-	at org.eclipse.wst.validation.internal.ValManager.accept(ValManager.java:783)
-	at org.eclipse.wst.validation.internal.ValManager.validate(ValManager.java:669)
-	at org.eclipse.wst.validation.internal.ValBuilderJob$Visitor.visit(ValBuilderJob.java:299)
-	at org.eclipse.core.internal.resources.Resource$2.visit(Resource.java:120)
-	at org.eclipse.core.internal.resources.Resource$1.visitElement(Resource.java:84)
-	at org.eclipse.core.internal.watson.ElementTreeIterator.doIteration(ElementTreeIterator.java:82)
-	at org.eclipse.core.internal.watson.ElementTreeIterator.doIteration(ElementTreeIterator.java:87)
-	at org.eclipse.core.internal.watson.ElementTreeIterator.doIteration(ElementTreeIterator.java:87)
-	at org.eclipse.core.internal.watson.ElementTreeIterator.doIteration(ElementTreeIterator.java:87)
-	at org.eclipse.core.internal.watson.ElementTreeIterator.doIteration(ElementTreeIterator.java:87)
-	at org.eclipse.core.internal.watson.ElementTreeIterator.iterate(ElementTreeIterator.java:129)
-	at org.eclipse.core.internal.resources.Resource.accept(Resource.java:94)
-	at org.eclipse.core.internal.resources.Resource.accept(Resource.java:52)
-	at org.eclipse.core.internal.resources.Resource.accept(Resource.java:117)
-	at org.eclipse.core.internal.resources.Resource.accept(Resource.java:105)
-	at org.eclipse.wst.validation.internal.ValBuilderJob.fullBuild(ValBuilderJob.java:219)
-	at org.eclipse.wst.validation.internal.ValBuilderJob.run(ValBuilderJob.java:178)
-	at org.eclipse.wst.validation.internal.ValBuilderJob.runInWorkspace(ValBuilderJob.java:126)
-	at org.eclipse.core.internal.resources.InternalWorkspaceJob.run(InternalWorkspaceJob.java:39)
-	at org.eclipse.core.internal.jobs.Worker.run(Worker.java:55)
-
-!ENTRY org.eclipse.jst.jsf.core 4 0 2017-08-02 16:03:23.034
+!ENTRY org.eclipse.jst.jsf.core 4 0 2017-08-07 10:34:18.513
 !MESSAGE Error creating base name for: messages
 !STACK 0
 java.io.IOException: Bundle messages not found in classpath for project: intranet
@@ -207,73 +75,7 @@ java.io.IOException: Bundle messages not found in classpath for project: intrane
 	at org.eclipse.core.internal.resources.InternalWorkspaceJob.run(InternalWorkspaceJob.java:39)
 	at org.eclipse.core.internal.jobs.Worker.run(Worker.java:55)
 
-!ENTRY org.eclipse.jst.jsf.core 4 0 2017-08-02 16:03:23.038
-!MESSAGE Error creating base name for: messages
-!STACK 0
-java.io.IOException: Bundle messages not found in classpath for project: intranet
-	at org.eclipse.jst.jsf.designtime.internal.symbols.ResourceBundleMapSource.createCachedBundleFile(ResourceBundleMapSource.java:235)
-	at org.eclipse.jst.jsf.designtime.internal.symbols.ResourceBundleMapSource.<init>(ResourceBundleMapSource.java:253)
-	at org.eclipse.jst.jsf.designtime.internal.symbols.ResourceBundleMapSourceFactory.getResourceBundleMapSource(ResourceBundleMapSourceFactory.java:44)
-	at org.eclipse.jst.jsf.designtime.internal.symbols.ResourceBundleSymbolSourceProvider.createSymbolForResourceBundle(ResourceBundleSymbolSourceProvider.java:114)
-	at org.eclipse.jst.jsf.designtime.internal.symbols.ResourceBundleSymbolSourceProvider.getSymbols(ResourceBundleSymbolSourceProvider.java:86)
-	at org.eclipse.jst.jsf.designtime.context.DTJSPExternalContext.doGetMapForScope(DTJSPExternalContext.java:87)
-	at org.eclipse.jst.jsf.designtime.context.AbstractDTExternalContext.getMapForScope(AbstractDTExternalContext.java:46)
-	at org.eclipse.jst.jsf.designtime.context.AbstractDTExternalContext.getRequestMap(AbstractDTExternalContext.java:64)
-	at org.eclipse.jst.jsf.designtime.el.DefaultDTVariableResolver.resolveVariable(DefaultDTVariableResolver.java:67)
-	at org.eclipse.jst.jsf.designtime.internal.symbols.ConfigBasedDTVariableResolver.resolveVariable(ConfigBasedDTVariableResolver.java:108)
-	at org.eclipse.jst.jsf.designtime.resolver.SymbolContextResolver.getVariable(SymbolContextResolver.java:61)
-	at org.eclipse.jst.jsf.validation.internal.el.ASTSemanticValidator.visit(ASTSemanticValidator.java:354)
-	at org.eclipse.jst.jsp.core.internal.java.jspel.ASTValuePrefix.jjtAccept(ASTValuePrefix.java:28)
-	at org.eclipse.jst.jsp.core.internal.java.jspel.SimpleNode.childrenAccept(SimpleNode.java:70)
-	at org.eclipse.jst.jsf.validation.internal.el.ASTSemanticValidator.visit(ASTSemanticValidator.java:324)
-	at org.eclipse.jst.jsp.core.internal.java.jspel.ASTValue.jjtAccept(ASTValue.java:28)
-	at org.eclipse.jst.jsp.core.internal.java.jspel.SimpleNode.childrenAccept(SimpleNode.java:70)
-	at org.eclipse.jst.jsf.validation.internal.el.ASTSemanticValidator.visit(ASTSemanticValidator.java:277)
-	at org.eclipse.jst.jsp.core.internal.java.jspel.ASTUnaryExpression.jjtAccept(ASTUnaryExpression.java:28)
-	at org.eclipse.jst.jsp.core.internal.java.jspel.SimpleNode.childrenAccept(SimpleNode.java:70)
-	at org.eclipse.jst.jsf.validation.internal.el.ASTSemanticValidator.visit(ASTSemanticValidator.java:175)
-	at org.eclipse.jst.jsp.core.internal.java.jspel.ASTExpression.jjtAccept(ASTExpression.java:28)
-	at org.eclipse.jst.jsf.validation.internal.el.ASTSemanticValidator.validate(ASTSemanticValidator.java:109)
-	at org.eclipse.jst.jsf.validation.internal.el.ELExpressionValidator.validateSemantics(ELExpressionValidator.java:183)
-	at org.eclipse.jst.jsf.validation.internal.el.ELExpressionValidator.validateXMLNode(ELExpressionValidator.java:80)
-	at org.eclipse.jst.jsf.validation.internal.strategy.AttributeValidatingStrategy.validateELExpression(AttributeValidatingStrategy.java:367)
-	at org.eclipse.jst.jsf.validation.internal.strategy.AttributeValidatingStrategy.checkIfELAndValidate(AttributeValidatingStrategy.java:275)
-	at org.eclipse.jst.jsf.validation.internal.strategy.AttributeValidatingStrategy.access$0(AttributeValidatingStrategy.java:192)
-	at org.eclipse.jst.jsf.validation.internal.strategy.AttributeValidatingStrategy$1.run(AttributeValidatingStrategy.java:184)
-	at org.eclipse.core.runtime.SafeRunner.run(SafeRunner.java:42)
-	at org.eclipse.jst.jsf.validation.internal.strategy.AttributeValidatingStrategy.validateAttributeValue(AttributeValidatingStrategy.java:168)
-	at org.eclipse.jst.jsf.validation.internal.strategy.AttributeValidatingStrategy.validate(AttributeValidatingStrategy.java:144)
-	at org.eclipse.jst.jsf.validation.internal.XMLViewDefnValidator.validateTag(XMLViewDefnValidator.java:99)
-	at org.eclipse.jst.jsf.validation.internal.XMLViewDefnValidator.validateRegions(XMLViewDefnValidator.java:177)
-	at org.eclipse.jst.jsf.validation.internal.XMLViewDefnValidator.validateView(XMLViewDefnValidator.java:134)
-	at org.eclipse.jst.jsf.facelet.ui.internal.validation.DefaultFaceletValidationStrategy.doValidate(DefaultFaceletValidationStrategy.java:42)
-	at org.eclipse.jst.jsf.facelet.ui.internal.validation.AbstractFaceletValidationStrategy.validateFile(AbstractFaceletValidationStrategy.java:96)
-	at org.eclipse.jst.jsf.facelet.ui.internal.validation.HTMLValidator.validate(HTMLValidator.java:57)
-	at org.eclipse.wst.validation.Validator$V2.validate(Validator.java:1159)
-	at org.eclipse.wst.validation.internal.ValManager.validate(ValManager.java:704)
-	at org.eclipse.wst.validation.internal.ValManager$1.visit(ValManager.java:665)
-	at org.eclipse.wst.validation.internal.ValManager.accept(ValManager.java:783)
-	at org.eclipse.wst.validation.internal.ValManager.validate(ValManager.java:669)
-	at org.eclipse.wst.validation.internal.ValBuilderJob$Visitor.visit(ValBuilderJob.java:299)
-	at org.eclipse.core.internal.resources.Resource$2.visit(Resource.java:120)
-	at org.eclipse.core.internal.resources.Resource$1.visitElement(Resource.java:84)
-	at org.eclipse.core.internal.watson.ElementTreeIterator.doIteration(ElementTreeIterator.java:82)
-	at org.eclipse.core.internal.watson.ElementTreeIterator.doIteration(ElementTreeIterator.java:87)
-	at org.eclipse.core.internal.watson.ElementTreeIterator.doIteration(ElementTreeIterator.java:87)
-	at org.eclipse.core.internal.watson.ElementTreeIterator.doIteration(ElementTreeIterator.java:87)
-	at org.eclipse.core.internal.watson.ElementTreeIterator.doIteration(ElementTreeIterator.java:87)
-	at org.eclipse.core.internal.watson.ElementTreeIterator.iterate(ElementTreeIterator.java:129)
-	at org.eclipse.core.internal.resources.Resource.accept(Resource.java:94)
-	at org.eclipse.core.internal.resources.Resource.accept(Resource.java:52)
-	at org.eclipse.core.internal.resources.Resource.accept(Resource.java:117)
-	at org.eclipse.core.internal.resources.Resource.accept(Resource.java:105)
-	at org.eclipse.wst.validation.internal.ValBuilderJob.fullBuild(ValBuilderJob.java:219)
-	at org.eclipse.wst.validation.internal.ValBuilderJob.run(ValBuilderJob.java:178)
-	at org.eclipse.wst.validation.internal.ValBuilderJob.runInWorkspace(ValBuilderJob.java:126)
-	at org.eclipse.core.internal.resources.InternalWorkspaceJob.run(InternalWorkspaceJob.java:39)
-	at org.eclipse.core.internal.jobs.Worker.run(Worker.java:55)
-
-!ENTRY org.eclipse.jst.jsf.core 4 0 2017-08-02 16:03:23.042
+!ENTRY org.eclipse.jst.jsf.core 4 0 2017-08-07 10:34:18.513
 !MESSAGE Error creating base name for: messages
 !STACK 0
 java.io.IOException: Bundle messages not found in classpath for project: intranet
@@ -339,7 +141,7 @@ java.io.IOException: Bundle messages not found in classpath for project: intrane
 	at org.eclipse.core.internal.resources.InternalWorkspaceJob.run(InternalWorkspaceJob.java:39)
 	at org.eclipse.core.internal.jobs.Worker.run(Worker.java:55)
 
-!ENTRY org.eclipse.jst.jsf.core 4 0 2017-08-02 16:03:23.045
+!ENTRY org.eclipse.jst.jsf.core 4 0 2017-08-07 10:34:18.513
 !MESSAGE Error creating base name for: messages
 !STACK 0
 java.io.IOException: Bundle messages not found in classpath for project: intranet
@@ -405,7 +207,7 @@ java.io.IOException: Bundle messages not found in classpath for project: intrane
 	at org.eclipse.core.internal.resources.InternalWorkspaceJob.run(InternalWorkspaceJob.java:39)
 	at org.eclipse.core.internal.jobs.Worker.run(Worker.java:55)
 
-!ENTRY org.eclipse.jst.jsf.core 4 0 2017-08-02 16:03:23.049
+!ENTRY org.eclipse.jst.jsf.core 4 0 2017-08-07 10:34:18.513
 !MESSAGE Error creating base name for: messages
 !STACK 0
 java.io.IOException: Bundle messages not found in classpath for project: intranet
@@ -471,7 +273,7 @@ java.io.IOException: Bundle messages not found in classpath for project: intrane
 	at org.eclipse.core.internal.resources.InternalWorkspaceJob.run(InternalWorkspaceJob.java:39)
 	at org.eclipse.core.internal.jobs.Worker.run(Worker.java:55)
 
-!ENTRY org.eclipse.jst.jsf.core 4 0 2017-08-02 16:03:23.052
+!ENTRY org.eclipse.jst.jsf.core 4 0 2017-08-07 10:34:18.513
 !MESSAGE Error creating base name for: messages
 !STACK 0
 java.io.IOException: Bundle messages not found in classpath for project: intranet
@@ -537,7 +339,7 @@ java.io.IOException: Bundle messages not found in classpath for project: intrane
 	at org.eclipse.core.internal.resources.InternalWorkspaceJob.run(InternalWorkspaceJob.java:39)
 	at org.eclipse.core.internal.jobs.Worker.run(Worker.java:55)
 
-!ENTRY org.eclipse.jst.jsf.core 4 0 2017-08-02 16:03:23.056
+!ENTRY org.eclipse.jst.jsf.core 4 0 2017-08-07 10:34:18.529
 !MESSAGE Error creating base name for: messages
 !STACK 0
 java.io.IOException: Bundle messages not found in classpath for project: intranet
@@ -603,7 +405,7 @@ java.io.IOException: Bundle messages not found in classpath for project: intrane
 	at org.eclipse.core.internal.resources.InternalWorkspaceJob.run(InternalWorkspaceJob.java:39)
 	at org.eclipse.core.internal.jobs.Worker.run(Worker.java:55)
 
-!ENTRY org.eclipse.jst.jsf.core 4 0 2017-08-02 16:03:23.060
+!ENTRY org.eclipse.jst.jsf.core 4 0 2017-08-07 10:34:18.529
 !MESSAGE Error creating base name for: messages
 !STACK 0
 java.io.IOException: Bundle messages not found in classpath for project: intranet
@@ -669,7 +471,7 @@ java.io.IOException: Bundle messages not found in classpath for project: intrane
 	at org.eclipse.core.internal.resources.InternalWorkspaceJob.run(InternalWorkspaceJob.java:39)
 	at org.eclipse.core.internal.jobs.Worker.run(Worker.java:55)
 
-!ENTRY org.eclipse.jst.jsf.core 4 0 2017-08-02 16:03:23.064
+!ENTRY org.eclipse.jst.jsf.core 4 0 2017-08-07 10:34:18.529
 !MESSAGE Error creating base name for: messages
 !STACK 0
 java.io.IOException: Bundle messages not found in classpath for project: intranet
@@ -735,7 +537,7 @@ java.io.IOException: Bundle messages not found in classpath for project: intrane
 	at org.eclipse.core.internal.resources.InternalWorkspaceJob.run(InternalWorkspaceJob.java:39)
 	at org.eclipse.core.internal.jobs.Worker.run(Worker.java:55)
 
-!ENTRY org.eclipse.jst.jsf.core 4 0 2017-08-02 16:03:23.068
+!ENTRY org.eclipse.jst.jsf.core 4 0 2017-08-07 10:34:18.529
 !MESSAGE Error creating base name for: messages
 !STACK 0
 java.io.IOException: Bundle messages not found in classpath for project: intranet
@@ -801,7 +603,7 @@ java.io.IOException: Bundle messages not found in classpath for project: intrane
 	at org.eclipse.core.internal.resources.InternalWorkspaceJob.run(InternalWorkspaceJob.java:39)
 	at org.eclipse.core.internal.jobs.Worker.run(Worker.java:55)
 
-!ENTRY org.eclipse.jst.jsf.core 4 0 2017-08-02 16:03:23.072
+!ENTRY org.eclipse.jst.jsf.core 4 0 2017-08-07 10:34:18.529
 !MESSAGE Error creating base name for: messages
 !STACK 0
 java.io.IOException: Bundle messages not found in classpath for project: intranet
@@ -867,7 +669,7 @@ java.io.IOException: Bundle messages not found in classpath for project: intrane
 	at org.eclipse.core.internal.resources.InternalWorkspaceJob.run(InternalWorkspaceJob.java:39)
 	at org.eclipse.core.internal.jobs.Worker.run(Worker.java:55)
 
-!ENTRY org.eclipse.jst.jsf.core 4 0 2017-08-02 16:03:23.075
+!ENTRY org.eclipse.jst.jsf.core 4 0 2017-08-07 10:34:18.545
 !MESSAGE Error creating base name for: messages
 !STACK 0
 java.io.IOException: Bundle messages not found in classpath for project: intranet
@@ -933,7 +735,7 @@ java.io.IOException: Bundle messages not found in classpath for project: intrane
 	at org.eclipse.core.internal.resources.InternalWorkspaceJob.run(InternalWorkspaceJob.java:39)
 	at org.eclipse.core.internal.jobs.Worker.run(Worker.java:55)
 
-!ENTRY org.eclipse.jst.jsf.core 4 0 2017-08-02 16:03:23.080
+!ENTRY org.eclipse.jst.jsf.core 4 0 2017-08-07 10:34:18.545
 !MESSAGE Error creating base name for: messages
 !STACK 0
 java.io.IOException: Bundle messages not found in classpath for project: intranet
@@ -999,7 +801,7 @@ java.io.IOException: Bundle messages not found in classpath for project: intrane
 	at org.eclipse.core.internal.resources.InternalWorkspaceJob.run(InternalWorkspaceJob.java:39)
 	at org.eclipse.core.internal.jobs.Worker.run(Worker.java:55)
 
-!ENTRY org.eclipse.jst.jsf.core 4 0 2017-08-02 16:03:23.083
+!ENTRY org.eclipse.jst.jsf.core 4 0 2017-08-07 10:34:18.545
 !MESSAGE Error creating base name for: messages
 !STACK 0
 java.io.IOException: Bundle messages not found in classpath for project: intranet
@@ -1065,7 +867,7 @@ java.io.IOException: Bundle messages not found in classpath for project: intrane
 	at org.eclipse.core.internal.resources.InternalWorkspaceJob.run(InternalWorkspaceJob.java:39)
 	at org.eclipse.core.internal.jobs.Worker.run(Worker.java:55)
 
-!ENTRY org.eclipse.jst.jsf.core 4 0 2017-08-02 16:03:23.087
+!ENTRY org.eclipse.jst.jsf.core 4 0 2017-08-07 10:34:18.545
 !MESSAGE Error creating base name for: messages
 !STACK 0
 java.io.IOException: Bundle messages not found in classpath for project: intranet
@@ -1131,7 +933,7 @@ java.io.IOException: Bundle messages not found in classpath for project: intrane
 	at org.eclipse.core.internal.resources.InternalWorkspaceJob.run(InternalWorkspaceJob.java:39)
 	at org.eclipse.core.internal.jobs.Worker.run(Worker.java:55)
 
-!ENTRY org.eclipse.jst.jsf.core 4 0 2017-08-02 16:03:23.091
+!ENTRY org.eclipse.jst.jsf.core 4 0 2017-08-07 10:34:18.560
 !MESSAGE Error creating base name for: messages
 !STACK 0
 java.io.IOException: Bundle messages not found in classpath for project: intranet
@@ -1197,7 +999,7 @@ java.io.IOException: Bundle messages not found in classpath for project: intrane
 	at org.eclipse.core.internal.resources.InternalWorkspaceJob.run(InternalWorkspaceJob.java:39)
 	at org.eclipse.core.internal.jobs.Worker.run(Worker.java:55)
 
-!ENTRY org.eclipse.jst.jsf.core 4 0 2017-08-02 16:03:23.094
+!ENTRY org.eclipse.jst.jsf.core 4 0 2017-08-07 10:34:18.560
 !MESSAGE Error creating base name for: messages
 !STACK 0
 java.io.IOException: Bundle messages not found in classpath for project: intranet
@@ -1263,7 +1065,7 @@ java.io.IOException: Bundle messages not found in classpath for project: intrane
 	at org.eclipse.core.internal.resources.InternalWorkspaceJob.run(InternalWorkspaceJob.java:39)
 	at org.eclipse.core.internal.jobs.Worker.run(Worker.java:55)
 
-!ENTRY org.eclipse.jst.jsf.core 4 0 2017-08-02 16:03:23.098
+!ENTRY org.eclipse.jst.jsf.core 4 0 2017-08-07 10:34:18.560
 !MESSAGE Error creating base name for: messages
 !STACK 0
 java.io.IOException: Bundle messages not found in classpath for project: intranet
@@ -1329,7 +1131,7 @@ java.io.IOException: Bundle messages not found in classpath for project: intrane
 	at org.eclipse.core.internal.resources.InternalWorkspaceJob.run(InternalWorkspaceJob.java:39)
 	at org.eclipse.core.internal.jobs.Worker.run(Worker.java:55)
 
-!ENTRY org.eclipse.jst.jsf.core 4 0 2017-08-02 16:03:23.103
+!ENTRY org.eclipse.jst.jsf.core 4 0 2017-08-07 10:34:18.560
 !MESSAGE Error creating base name for: messages
 !STACK 0
 java.io.IOException: Bundle messages not found in classpath for project: intranet
@@ -1395,7 +1197,7 @@ java.io.IOException: Bundle messages not found in classpath for project: intrane
 	at org.eclipse.core.internal.resources.InternalWorkspaceJob.run(InternalWorkspaceJob.java:39)
 	at org.eclipse.core.internal.jobs.Worker.run(Worker.java:55)
 
-!ENTRY org.eclipse.jst.jsf.core 4 0 2017-08-02 16:03:23.106
+!ENTRY org.eclipse.jst.jsf.core 4 0 2017-08-07 10:34:18.560
 !MESSAGE Error creating base name for: messages
 !STACK 0
 java.io.IOException: Bundle messages not found in classpath for project: intranet
@@ -1461,7 +1263,7 @@ java.io.IOException: Bundle messages not found in classpath for project: intrane
 	at org.eclipse.core.internal.resources.InternalWorkspaceJob.run(InternalWorkspaceJob.java:39)
 	at org.eclipse.core.internal.jobs.Worker.run(Worker.java:55)
 
-!ENTRY org.eclipse.jst.jsf.core 4 0 2017-08-02 16:03:23.110
+!ENTRY org.eclipse.jst.jsf.core 4 0 2017-08-07 10:34:18.576
 !MESSAGE Error creating base name for: messages
 !STACK 0
 java.io.IOException: Bundle messages not found in classpath for project: intranet
@@ -1527,7 +1329,7 @@ java.io.IOException: Bundle messages not found in classpath for project: intrane
 	at org.eclipse.core.internal.resources.InternalWorkspaceJob.run(InternalWorkspaceJob.java:39)
 	at org.eclipse.core.internal.jobs.Worker.run(Worker.java:55)
 
-!ENTRY org.eclipse.jst.jsf.core 4 0 2017-08-02 16:03:23.113
+!ENTRY org.eclipse.jst.jsf.core 4 0 2017-08-07 10:34:18.576
 !MESSAGE Error creating base name for: messages
 !STACK 0
 java.io.IOException: Bundle messages not found in classpath for project: intranet
@@ -1593,7 +1395,7 @@ java.io.IOException: Bundle messages not found in classpath for project: intrane
 	at org.eclipse.core.internal.resources.InternalWorkspaceJob.run(InternalWorkspaceJob.java:39)
 	at org.eclipse.core.internal.jobs.Worker.run(Worker.java:55)
 
-!ENTRY org.eclipse.jst.jsf.core 4 0 2017-08-02 16:03:23.117
+!ENTRY org.eclipse.jst.jsf.core 4 0 2017-08-07 10:34:18.576
 !MESSAGE Error creating base name for: messages
 !STACK 0
 java.io.IOException: Bundle messages not found in classpath for project: intranet
@@ -1659,7 +1461,7 @@ java.io.IOException: Bundle messages not found in classpath for project: intrane
 	at org.eclipse.core.internal.resources.InternalWorkspaceJob.run(InternalWorkspaceJob.java:39)
 	at org.eclipse.core.internal.jobs.Worker.run(Worker.java:55)
 
-!ENTRY org.eclipse.jst.jsf.core 4 0 2017-08-02 16:03:23.120
+!ENTRY org.eclipse.jst.jsf.core 4 0 2017-08-07 10:34:18.576
 !MESSAGE Error creating base name for: messages
 !STACK 0
 java.io.IOException: Bundle messages not found in classpath for project: intranet
@@ -1725,7 +1527,7 @@ java.io.IOException: Bundle messages not found in classpath for project: intrane
 	at org.eclipse.core.internal.resources.InternalWorkspaceJob.run(InternalWorkspaceJob.java:39)
 	at org.eclipse.core.internal.jobs.Worker.run(Worker.java:55)
 
-!ENTRY org.eclipse.jst.jsf.core 4 0 2017-08-02 16:03:23.125
+!ENTRY org.eclipse.jst.jsf.core 4 0 2017-08-07 10:34:18.576
 !MESSAGE Error creating base name for: messages
 !STACK 0
 java.io.IOException: Bundle messages not found in classpath for project: intranet
@@ -1791,7 +1593,7 @@ java.io.IOException: Bundle messages not found in classpath for project: intrane
 	at org.eclipse.core.internal.resources.InternalWorkspaceJob.run(InternalWorkspaceJob.java:39)
 	at org.eclipse.core.internal.jobs.Worker.run(Worker.java:55)
 
-!ENTRY org.eclipse.jst.jsf.core 4 0 2017-08-02 16:03:23.129
+!ENTRY org.eclipse.jst.jsf.core 4 0 2017-08-07 10:34:18.591
 !MESSAGE Error creating base name for: messages
 !STACK 0
 java.io.IOException: Bundle messages not found in classpath for project: intranet
@@ -1857,7 +1659,7 @@ java.io.IOException: Bundle messages not found in classpath for project: intrane
 	at org.eclipse.core.internal.resources.InternalWorkspaceJob.run(InternalWorkspaceJob.java:39)
 	at org.eclipse.core.internal.jobs.Worker.run(Worker.java:55)
 
-!ENTRY org.eclipse.jst.jsf.core 4 0 2017-08-02 16:03:23.132
+!ENTRY org.eclipse.jst.jsf.core 4 0 2017-08-07 10:34:18.591
 !MESSAGE Error creating base name for: messages
 !STACK 0
 java.io.IOException: Bundle messages not found in classpath for project: intranet
@@ -1923,7 +1725,7 @@ java.io.IOException: Bundle messages not found in classpath for project: intrane
 	at org.eclipse.core.internal.resources.InternalWorkspaceJob.run(InternalWorkspaceJob.java:39)
 	at org.eclipse.core.internal.jobs.Worker.run(Worker.java:55)
 
-!ENTRY org.eclipse.jst.jsf.core 4 0 2017-08-02 16:03:23.136
+!ENTRY org.eclipse.jst.jsf.core 4 0 2017-08-07 10:34:18.591
 !MESSAGE Error creating base name for: messages
 !STACK 0
 java.io.IOException: Bundle messages not found in classpath for project: intranet
@@ -1989,7 +1791,7 @@ java.io.IOException: Bundle messages not found in classpath for project: intrane
 	at org.eclipse.core.internal.resources.InternalWorkspaceJob.run(InternalWorkspaceJob.java:39)
 	at org.eclipse.core.internal.jobs.Worker.run(Worker.java:55)
 
-!ENTRY org.eclipse.jst.jsf.core 4 0 2017-08-02 16:03:23.139
+!ENTRY org.eclipse.jst.jsf.core 4 0 2017-08-07 10:34:18.607
 !MESSAGE Error creating base name for: messages
 !STACK 0
 java.io.IOException: Bundle messages not found in classpath for project: intranet
@@ -2055,7 +1857,7 @@ java.io.IOException: Bundle messages not found in classpath for project: intrane
 	at org.eclipse.core.internal.resources.InternalWorkspaceJob.run(InternalWorkspaceJob.java:39)
 	at org.eclipse.core.internal.jobs.Worker.run(Worker.java:55)
 
-!ENTRY org.eclipse.jst.jsf.core 4 0 2017-08-02 16:03:23.142
+!ENTRY org.eclipse.jst.jsf.core 4 0 2017-08-07 10:34:18.607
 !MESSAGE Error creating base name for: messages
 !STACK 0
 java.io.IOException: Bundle messages not found in classpath for project: intranet
@@ -2121,7 +1923,7 @@ java.io.IOException: Bundle messages not found in classpath for project: intrane
 	at org.eclipse.core.internal.resources.InternalWorkspaceJob.run(InternalWorkspaceJob.java:39)
 	at org.eclipse.core.internal.jobs.Worker.run(Worker.java:55)
 
-!ENTRY org.eclipse.jst.jsf.core 4 0 2017-08-02 16:03:23.147
+!ENTRY org.eclipse.jst.jsf.core 4 0 2017-08-07 10:34:18.607
 !MESSAGE Error creating base name for: messages
 !STACK 0
 java.io.IOException: Bundle messages not found in classpath for project: intranet
@@ -2187,7 +1989,7 @@ java.io.IOException: Bundle messages not found in classpath for project: intrane
 	at org.eclipse.core.internal.resources.InternalWorkspaceJob.run(InternalWorkspaceJob.java:39)
 	at org.eclipse.core.internal.jobs.Worker.run(Worker.java:55)
 
-!ENTRY org.eclipse.jst.jsf.core 4 0 2017-08-02 16:03:23.150
+!ENTRY org.eclipse.jst.jsf.core 4 0 2017-08-07 10:34:18.607
 !MESSAGE Error creating base name for: messages
 !STACK 0
 java.io.IOException: Bundle messages not found in classpath for project: intranet
@@ -2253,7 +2055,7 @@ java.io.IOException: Bundle messages not found in classpath for project: intrane
 	at org.eclipse.core.internal.resources.InternalWorkspaceJob.run(InternalWorkspaceJob.java:39)
 	at org.eclipse.core.internal.jobs.Worker.run(Worker.java:55)
 
-!ENTRY org.eclipse.jst.jsf.core 4 0 2017-08-02 16:03:23.154
+!ENTRY org.eclipse.jst.jsf.core 4 0 2017-08-07 10:34:18.623
 !MESSAGE Error creating base name for: messages
 !STACK 0
 java.io.IOException: Bundle messages not found in classpath for project: intranet
@@ -2319,7 +2121,7 @@ java.io.IOException: Bundle messages not found in classpath for project: intrane
 	at org.eclipse.core.internal.resources.InternalWorkspaceJob.run(InternalWorkspaceJob.java:39)
 	at org.eclipse.core.internal.jobs.Worker.run(Worker.java:55)
 
-!ENTRY org.eclipse.jst.jsf.core 4 0 2017-08-02 16:03:23.157
+!ENTRY org.eclipse.jst.jsf.core 4 0 2017-08-07 10:34:18.623
 !MESSAGE Error creating base name for: messages
 !STACK 0
 java.io.IOException: Bundle messages not found in classpath for project: intranet
@@ -2385,7 +2187,7 @@ java.io.IOException: Bundle messages not found in classpath for project: intrane
 	at org.eclipse.core.internal.resources.InternalWorkspaceJob.run(InternalWorkspaceJob.java:39)
 	at org.eclipse.core.internal.jobs.Worker.run(Worker.java:55)
 
-!ENTRY org.eclipse.jst.jsf.core 4 0 2017-08-02 16:03:23.161
+!ENTRY org.eclipse.jst.jsf.core 4 0 2017-08-07 10:34:18.623
 !MESSAGE Error creating base name for: messages
 !STACK 0
 java.io.IOException: Bundle messages not found in classpath for project: intranet
@@ -2451,7 +2253,7 @@ java.io.IOException: Bundle messages not found in classpath for project: intrane
 	at org.eclipse.core.internal.resources.InternalWorkspaceJob.run(InternalWorkspaceJob.java:39)
 	at org.eclipse.core.internal.jobs.Worker.run(Worker.java:55)
 
-!ENTRY org.eclipse.jst.jsf.core 4 0 2017-08-02 16:03:23.164
+!ENTRY org.eclipse.jst.jsf.core 4 0 2017-08-07 10:34:18.623
 !MESSAGE Error creating base name for: messages
 !STACK 0
 java.io.IOException: Bundle messages not found in classpath for project: intranet
@@ -2517,7 +2319,7 @@ java.io.IOException: Bundle messages not found in classpath for project: intrane
 	at org.eclipse.core.internal.resources.InternalWorkspaceJob.run(InternalWorkspaceJob.java:39)
 	at org.eclipse.core.internal.jobs.Worker.run(Worker.java:55)
 
-!ENTRY org.eclipse.jst.jsf.core 4 0 2017-08-02 16:03:23.169
+!ENTRY org.eclipse.jst.jsf.core 4 0 2017-08-07 10:34:18.623
 !MESSAGE Error creating base name for: messages
 !STACK 0
 java.io.IOException: Bundle messages not found in classpath for project: intranet
@@ -2583,7 +2385,7 @@ java.io.IOException: Bundle messages not found in classpath for project: intrane
 	at org.eclipse.core.internal.resources.InternalWorkspaceJob.run(InternalWorkspaceJob.java:39)
 	at org.eclipse.core.internal.jobs.Worker.run(Worker.java:55)
 
-!ENTRY org.eclipse.jst.jsf.core 4 0 2017-08-02 16:03:23.172
+!ENTRY org.eclipse.jst.jsf.core 4 0 2017-08-07 10:34:18.638
 !MESSAGE Error creating base name for: messages
 !STACK 0
 java.io.IOException: Bundle messages not found in classpath for project: intranet
@@ -2649,7 +2451,7 @@ java.io.IOException: Bundle messages not found in classpath for project: intrane
 	at org.eclipse.core.internal.resources.InternalWorkspaceJob.run(InternalWorkspaceJob.java:39)
 	at org.eclipse.core.internal.jobs.Worker.run(Worker.java:55)
 
-!ENTRY org.eclipse.jst.jsf.core 4 0 2017-08-02 16:03:23.176
+!ENTRY org.eclipse.jst.jsf.core 4 0 2017-08-07 10:34:18.638
 !MESSAGE Error creating base name for: messages
 !STACK 0
 java.io.IOException: Bundle messages not found in classpath for project: intranet
@@ -2715,7 +2517,7 @@ java.io.IOException: Bundle messages not found in classpath for project: intrane
 	at org.eclipse.core.internal.resources.InternalWorkspaceJob.run(InternalWorkspaceJob.java:39)
 	at org.eclipse.core.internal.jobs.Worker.run(Worker.java:55)
 
-!ENTRY org.eclipse.jst.jsf.core 4 0 2017-08-02 16:03:23.180
+!ENTRY org.eclipse.jst.jsf.core 4 0 2017-08-07 10:34:18.638
 !MESSAGE Error creating base name for: messages
 !STACK 0
 java.io.IOException: Bundle messages not found in classpath for project: intranet
@@ -2781,7 +2583,7 @@ java.io.IOException: Bundle messages not found in classpath for project: intrane
 	at org.eclipse.core.internal.resources.InternalWorkspaceJob.run(InternalWorkspaceJob.java:39)
 	at org.eclipse.core.internal.jobs.Worker.run(Worker.java:55)
 
-!ENTRY org.eclipse.jst.jsf.core 4 0 2017-08-02 16:03:23.183
+!ENTRY org.eclipse.jst.jsf.core 4 0 2017-08-07 10:34:18.638
 !MESSAGE Error creating base name for: messages
 !STACK 0
 java.io.IOException: Bundle messages not found in classpath for project: intranet
@@ -2847,7 +2649,7 @@ java.io.IOException: Bundle messages not found in classpath for project: intrane
 	at org.eclipse.core.internal.resources.InternalWorkspaceJob.run(InternalWorkspaceJob.java:39)
 	at org.eclipse.core.internal.jobs.Worker.run(Worker.java:55)
 
-!ENTRY org.eclipse.jst.jsf.core 4 0 2017-08-02 16:03:23.187
+!ENTRY org.eclipse.jst.jsf.core 4 0 2017-08-07 10:34:18.638
 !MESSAGE Error creating base name for: messages
 !STACK 0
 java.io.IOException: Bundle messages not found in classpath for project: intranet
@@ -2913,7 +2715,7 @@ java.io.IOException: Bundle messages not found in classpath for project: intrane
 	at org.eclipse.core.internal.resources.InternalWorkspaceJob.run(InternalWorkspaceJob.java:39)
 	at org.eclipse.core.internal.jobs.Worker.run(Worker.java:55)
 
-!ENTRY org.eclipse.jst.jsf.core 4 0 2017-08-02 16:03:23.191
+!ENTRY org.eclipse.jst.jsf.core 4 0 2017-08-07 10:34:18.654
 !MESSAGE Error creating base name for: messages
 !STACK 0
 java.io.IOException: Bundle messages not found in classpath for project: intranet
@@ -2979,7 +2781,7 @@ java.io.IOException: Bundle messages not found in classpath for project: intrane
 	at org.eclipse.core.internal.resources.InternalWorkspaceJob.run(InternalWorkspaceJob.java:39)
 	at org.eclipse.core.internal.jobs.Worker.run(Worker.java:55)
 
-!ENTRY org.eclipse.jst.jsf.core 4 0 2017-08-02 16:03:23.194
+!ENTRY org.eclipse.jst.jsf.core 4 0 2017-08-07 10:34:18.654
 !MESSAGE Error creating base name for: messages
 !STACK 0
 java.io.IOException: Bundle messages not found in classpath for project: intranet
@@ -3045,7 +2847,7 @@ java.io.IOException: Bundle messages not found in classpath for project: intrane
 	at org.eclipse.core.internal.resources.InternalWorkspaceJob.run(InternalWorkspaceJob.java:39)
 	at org.eclipse.core.internal.jobs.Worker.run(Worker.java:55)
 
-!ENTRY org.eclipse.jst.jsf.core 4 0 2017-08-02 16:03:23.198
+!ENTRY org.eclipse.jst.jsf.core 4 0 2017-08-07 10:34:18.654
 !MESSAGE Error creating base name for: messages
 !STACK 0
 java.io.IOException: Bundle messages not found in classpath for project: intranet
@@ -3111,7 +2913,7 @@ java.io.IOException: Bundle messages not found in classpath for project: intrane
 	at org.eclipse.core.internal.resources.InternalWorkspaceJob.run(InternalWorkspaceJob.java:39)
 	at org.eclipse.core.internal.jobs.Worker.run(Worker.java:55)
 
-!ENTRY org.eclipse.jst.jsf.core 4 0 2017-08-02 16:03:23.201
+!ENTRY org.eclipse.jst.jsf.core 4 0 2017-08-07 10:34:18.654
 !MESSAGE Error creating base name for: messages
 !STACK 0
 java.io.IOException: Bundle messages not found in classpath for project: intranet
@@ -3177,7 +2979,7 @@ java.io.IOException: Bundle messages not found in classpath for project: intrane
 	at org.eclipse.core.internal.resources.InternalWorkspaceJob.run(InternalWorkspaceJob.java:39)
 	at org.eclipse.core.internal.jobs.Worker.run(Worker.java:55)
 
-!ENTRY org.eclipse.jst.jsf.core 4 0 2017-08-02 16:03:23.205
+!ENTRY org.eclipse.jst.jsf.core 4 0 2017-08-07 10:34:18.654
 !MESSAGE Error creating base name for: messages
 !STACK 0
 java.io.IOException: Bundle messages not found in classpath for project: intranet
@@ -3243,7 +3045,7 @@ java.io.IOException: Bundle messages not found in classpath for project: intrane
 	at org.eclipse.core.internal.resources.InternalWorkspaceJob.run(InternalWorkspaceJob.java:39)
 	at org.eclipse.core.internal.jobs.Worker.run(Worker.java:55)
 
-!ENTRY org.eclipse.jst.jsf.core 4 0 2017-08-02 16:03:23.208
+!ENTRY org.eclipse.jst.jsf.core 4 0 2017-08-07 10:34:18.669
 !MESSAGE Error creating base name for: messages
 !STACK 0
 java.io.IOException: Bundle messages not found in classpath for project: intranet
@@ -3309,7 +3111,7 @@ java.io.IOException: Bundle messages not found in classpath for project: intrane
 	at org.eclipse.core.internal.resources.InternalWorkspaceJob.run(InternalWorkspaceJob.java:39)
 	at org.eclipse.core.internal.jobs.Worker.run(Worker.java:55)
 
-!ENTRY org.eclipse.jst.jsf.core 4 0 2017-08-02 16:03:23.213
+!ENTRY org.eclipse.jst.jsf.core 4 0 2017-08-07 10:34:18.669
 !MESSAGE Error creating base name for: messages
 !STACK 0
 java.io.IOException: Bundle messages not found in classpath for project: intranet
@@ -3375,7 +3177,7 @@ java.io.IOException: Bundle messages not found in classpath for project: intrane
 	at org.eclipse.core.internal.resources.InternalWorkspaceJob.run(InternalWorkspaceJob.java:39)
 	at org.eclipse.core.internal.jobs.Worker.run(Worker.java:55)
 
-!ENTRY org.eclipse.jst.jsf.core 4 0 2017-08-02 16:03:23.216
+!ENTRY org.eclipse.jst.jsf.core 4 0 2017-08-07 10:34:18.669
 !MESSAGE Error creating base name for: messages
 !STACK 0
 java.io.IOException: Bundle messages not found in classpath for project: intranet
@@ -3441,7 +3243,7 @@ java.io.IOException: Bundle messages not found in classpath for project: intrane
 	at org.eclipse.core.internal.resources.InternalWorkspaceJob.run(InternalWorkspaceJob.java:39)
 	at org.eclipse.core.internal.jobs.Worker.run(Worker.java:55)
 
-!ENTRY org.eclipse.jst.jsf.core 4 0 2017-08-02 16:03:23.220
+!ENTRY org.eclipse.jst.jsf.core 4 0 2017-08-07 10:34:18.669
 !MESSAGE Error creating base name for: messages
 !STACK 0
 java.io.IOException: Bundle messages not found in classpath for project: intranet
@@ -3507,7 +3309,7 @@ java.io.IOException: Bundle messages not found in classpath for project: intrane
 	at org.eclipse.core.internal.resources.InternalWorkspaceJob.run(InternalWorkspaceJob.java:39)
 	at org.eclipse.core.internal.jobs.Worker.run(Worker.java:55)
 
-!ENTRY org.eclipse.jst.jsf.core 4 0 2017-08-02 16:03:23.223
+!ENTRY org.eclipse.jst.jsf.core 4 0 2017-08-07 10:34:18.685
 !MESSAGE Error creating base name for: messages
 !STACK 0
 java.io.IOException: Bundle messages not found in classpath for project: intranet
@@ -3573,7 +3375,7 @@ java.io.IOException: Bundle messages not found in classpath for project: intrane
 	at org.eclipse.core.internal.resources.InternalWorkspaceJob.run(InternalWorkspaceJob.java:39)
 	at org.eclipse.core.internal.jobs.Worker.run(Worker.java:55)
 
-!ENTRY org.eclipse.jst.jsf.core 4 0 2017-08-02 16:03:23.227
+!ENTRY org.eclipse.jst.jsf.core 4 0 2017-08-07 10:34:18.685
 !MESSAGE Error creating base name for: messages
 !STACK 0
 java.io.IOException: Bundle messages not found in classpath for project: intranet
@@ -3639,7 +3441,7 @@ java.io.IOException: Bundle messages not found in classpath for project: intrane
 	at org.eclipse.core.internal.resources.InternalWorkspaceJob.run(InternalWorkspaceJob.java:39)
 	at org.eclipse.core.internal.jobs.Worker.run(Worker.java:55)
 
-!ENTRY org.eclipse.jst.jsf.core 4 0 2017-08-02 16:03:23.230
+!ENTRY org.eclipse.jst.jsf.core 4 0 2017-08-07 10:34:18.685
 !MESSAGE Error creating base name for: messages
 !STACK 0
 java.io.IOException: Bundle messages not found in classpath for project: intranet
@@ -3705,7 +3507,7 @@ java.io.IOException: Bundle messages not found in classpath for project: intrane
 	at org.eclipse.core.internal.resources.InternalWorkspaceJob.run(InternalWorkspaceJob.java:39)
 	at org.eclipse.core.internal.jobs.Worker.run(Worker.java:55)
 
-!ENTRY org.eclipse.jst.jsf.core 4 0 2017-08-02 16:03:23.234
+!ENTRY org.eclipse.jst.jsf.core 4 0 2017-08-07 10:34:18.685
 !MESSAGE Error creating base name for: messages
 !STACK 0
 java.io.IOException: Bundle messages not found in classpath for project: intranet
@@ -3771,7 +3573,7 @@ java.io.IOException: Bundle messages not found in classpath for project: intrane
 	at org.eclipse.core.internal.resources.InternalWorkspaceJob.run(InternalWorkspaceJob.java:39)
 	at org.eclipse.core.internal.jobs.Worker.run(Worker.java:55)
 
-!ENTRY org.eclipse.jst.jsf.core 4 0 2017-08-02 16:03:23.238
+!ENTRY org.eclipse.jst.jsf.core 4 0 2017-08-07 10:34:18.685
 !MESSAGE Error creating base name for: messages
 !STACK 0
 java.io.IOException: Bundle messages not found in classpath for project: intranet
@@ -3837,7 +3639,7 @@ java.io.IOException: Bundle messages not found in classpath for project: intrane
 	at org.eclipse.core.internal.resources.InternalWorkspaceJob.run(InternalWorkspaceJob.java:39)
 	at org.eclipse.core.internal.jobs.Worker.run(Worker.java:55)
 
-!ENTRY org.eclipse.jst.jsf.core 4 0 2017-08-02 16:03:23.241
+!ENTRY org.eclipse.jst.jsf.core 4 0 2017-08-07 10:34:18.701
 !MESSAGE Error creating base name for: messages
 !STACK 0
 java.io.IOException: Bundle messages not found in classpath for project: intranet
@@ -3903,7 +3705,7 @@ java.io.IOException: Bundle messages not found in classpath for project: intrane
 	at org.eclipse.core.internal.resources.InternalWorkspaceJob.run(InternalWorkspaceJob.java:39)
 	at org.eclipse.core.internal.jobs.Worker.run(Worker.java:55)
 
-!ENTRY org.eclipse.jst.jsf.core 4 0 2017-08-02 16:03:23.244
+!ENTRY org.eclipse.jst.jsf.core 4 0 2017-08-07 10:34:18.701
 !MESSAGE Error creating base name for: messages
 !STACK 0
 java.io.IOException: Bundle messages not found in classpath for project: intranet
@@ -3969,7 +3771,7 @@ java.io.IOException: Bundle messages not found in classpath for project: intrane
 	at org.eclipse.core.internal.resources.InternalWorkspaceJob.run(InternalWorkspaceJob.java:39)
 	at org.eclipse.core.internal.jobs.Worker.run(Worker.java:55)
 
-!ENTRY org.eclipse.jst.jsf.core 4 0 2017-08-02 16:03:23.248
+!ENTRY org.eclipse.jst.jsf.core 4 0 2017-08-07 10:34:18.701
 !MESSAGE Error creating base name for: messages
 !STACK 0
 java.io.IOException: Bundle messages not found in classpath for project: intranet
@@ -4035,7 +3837,7 @@ java.io.IOException: Bundle messages not found in classpath for project: intrane
 	at org.eclipse.core.internal.resources.InternalWorkspaceJob.run(InternalWorkspaceJob.java:39)
 	at org.eclipse.core.internal.jobs.Worker.run(Worker.java:55)
 
-!ENTRY org.eclipse.jst.jsf.core 4 0 2017-08-02 16:03:23.252
+!ENTRY org.eclipse.jst.jsf.core 4 0 2017-08-07 10:34:18.701
 !MESSAGE Error creating base name for: messages
 !STACK 0
 java.io.IOException: Bundle messages not found in classpath for project: intranet
@@ -4101,7 +3903,7 @@ java.io.IOException: Bundle messages not found in classpath for project: intrane
 	at org.eclipse.core.internal.resources.InternalWorkspaceJob.run(InternalWorkspaceJob.java:39)
 	at org.eclipse.core.internal.jobs.Worker.run(Worker.java:55)
 
-!ENTRY org.eclipse.jst.jsf.core 4 0 2017-08-02 16:03:23.256
+!ENTRY org.eclipse.jst.jsf.core 4 0 2017-08-07 10:34:18.701
 !MESSAGE Error creating base name for: messages
 !STACK 0
 java.io.IOException: Bundle messages not found in classpath for project: intranet
@@ -4167,7 +3969,7 @@ java.io.IOException: Bundle messages not found in classpath for project: intrane
 	at org.eclipse.core.internal.resources.InternalWorkspaceJob.run(InternalWorkspaceJob.java:39)
 	at org.eclipse.core.internal.jobs.Worker.run(Worker.java:55)
 
-!ENTRY org.eclipse.jst.jsf.core 4 0 2017-08-02 16:03:23.260
+!ENTRY org.eclipse.jst.jsf.core 4 0 2017-08-07 10:34:18.716
 !MESSAGE Error creating base name for: messages
 !STACK 0
 java.io.IOException: Bundle messages not found in classpath for project: intranet
@@ -4233,7 +4035,7 @@ java.io.IOException: Bundle messages not found in classpath for project: intrane
 	at org.eclipse.core.internal.resources.InternalWorkspaceJob.run(InternalWorkspaceJob.java:39)
 	at org.eclipse.core.internal.jobs.Worker.run(Worker.java:55)
 
-!ENTRY org.eclipse.jst.jsf.core 4 0 2017-08-02 16:03:23.263
+!ENTRY org.eclipse.jst.jsf.core 4 0 2017-08-07 10:34:18.716
 !MESSAGE Error creating base name for: messages
 !STACK 0
 java.io.IOException: Bundle messages not found in classpath for project: intranet
@@ -4299,7 +4101,7 @@ java.io.IOException: Bundle messages not found in classpath for project: intrane
 	at org.eclipse.core.internal.resources.InternalWorkspaceJob.run(InternalWorkspaceJob.java:39)
 	at org.eclipse.core.internal.jobs.Worker.run(Worker.java:55)
 
-!ENTRY org.eclipse.jst.jsf.core 4 0 2017-08-02 16:03:23.267
+!ENTRY org.eclipse.jst.jsf.core 4 0 2017-08-07 10:34:18.716
 !MESSAGE Error creating base name for: messages
 !STACK 0
 java.io.IOException: Bundle messages not found in classpath for project: intranet
@@ -4365,7 +4167,7 @@ java.io.IOException: Bundle messages not found in classpath for project: intrane
 	at org.eclipse.core.internal.resources.InternalWorkspaceJob.run(InternalWorkspaceJob.java:39)
 	at org.eclipse.core.internal.jobs.Worker.run(Worker.java:55)
 
-!ENTRY org.eclipse.jst.jsf.core 4 0 2017-08-02 16:03:23.270
+!ENTRY org.eclipse.jst.jsf.core 4 0 2017-08-07 10:34:18.716
 !MESSAGE Error creating base name for: messages
 !STACK 0
 java.io.IOException: Bundle messages not found in classpath for project: intranet
@@ -4431,7 +4233,7 @@ java.io.IOException: Bundle messages not found in classpath for project: intrane
 	at org.eclipse.core.internal.resources.InternalWorkspaceJob.run(InternalWorkspaceJob.java:39)
 	at org.eclipse.core.internal.jobs.Worker.run(Worker.java:55)
 
-!ENTRY org.eclipse.jst.jsf.core 4 0 2017-08-02 16:03:23.274
+!ENTRY org.eclipse.jst.jsf.core 4 0 2017-08-07 10:34:18.716
 !MESSAGE Error creating base name for: messages
 !STACK 0
 java.io.IOException: Bundle messages not found in classpath for project: intranet
@@ -4497,7 +4299,7 @@ java.io.IOException: Bundle messages not found in classpath for project: intrane
 	at org.eclipse.core.internal.resources.InternalWorkspaceJob.run(InternalWorkspaceJob.java:39)
 	at org.eclipse.core.internal.jobs.Worker.run(Worker.java:55)
 
-!ENTRY org.eclipse.jst.jsf.core 4 0 2017-08-02 16:03:23.278
+!ENTRY org.eclipse.jst.jsf.core 4 0 2017-08-07 10:34:18.732
 !MESSAGE Error creating base name for: messages
 !STACK 0
 java.io.IOException: Bundle messages not found in classpath for project: intranet
@@ -4563,7 +4365,7 @@ java.io.IOException: Bundle messages not found in classpath for project: intrane
 	at org.eclipse.core.internal.resources.InternalWorkspaceJob.run(InternalWorkspaceJob.java:39)
 	at org.eclipse.core.internal.jobs.Worker.run(Worker.java:55)
 
-!ENTRY org.eclipse.jst.jsf.core 4 0 2017-08-02 16:03:23.282
+!ENTRY org.eclipse.jst.jsf.core 4 0 2017-08-07 10:34:18.732
 !MESSAGE Error creating base name for: messages
 !STACK 0
 java.io.IOException: Bundle messages not found in classpath for project: intranet
@@ -4629,7 +4431,7 @@ java.io.IOException: Bundle messages not found in classpath for project: intrane
 	at org.eclipse.core.internal.resources.InternalWorkspaceJob.run(InternalWorkspaceJob.java:39)
 	at org.eclipse.core.internal.jobs.Worker.run(Worker.java:55)
 
-!ENTRY org.eclipse.jst.jsf.core 4 0 2017-08-02 16:03:23.285
+!ENTRY org.eclipse.jst.jsf.core 4 0 2017-08-07 10:34:18.732
 !MESSAGE Error creating base name for: messages
 !STACK 0
 java.io.IOException: Bundle messages not found in classpath for project: intranet
@@ -4695,7 +4497,7 @@ java.io.IOException: Bundle messages not found in classpath for project: intrane
 	at org.eclipse.core.internal.resources.InternalWorkspaceJob.run(InternalWorkspaceJob.java:39)
 	at org.eclipse.core.internal.jobs.Worker.run(Worker.java:55)
 
-!ENTRY org.eclipse.jst.jsf.core 4 0 2017-08-02 16:03:23.288
+!ENTRY org.eclipse.jst.jsf.core 4 0 2017-08-07 10:34:18.732
 !MESSAGE Error creating base name for: messages
 !STACK 0
 java.io.IOException: Bundle messages not found in classpath for project: intranet
@@ -4761,7 +4563,7 @@ java.io.IOException: Bundle messages not found in classpath for project: intrane
 	at org.eclipse.core.internal.resources.InternalWorkspaceJob.run(InternalWorkspaceJob.java:39)
 	at org.eclipse.core.internal.jobs.Worker.run(Worker.java:55)
 
-!ENTRY org.eclipse.jst.jsf.core 4 0 2017-08-02 16:03:23.292
+!ENTRY org.eclipse.jst.jsf.core 4 0 2017-08-07 10:34:18.732
 !MESSAGE Error creating base name for: messages
 !STACK 0
 java.io.IOException: Bundle messages not found in classpath for project: intranet
@@ -4827,7 +4629,7 @@ java.io.IOException: Bundle messages not found in classpath for project: intrane
 	at org.eclipse.core.internal.resources.InternalWorkspaceJob.run(InternalWorkspaceJob.java:39)
 	at org.eclipse.core.internal.jobs.Worker.run(Worker.java:55)
 
-!ENTRY org.eclipse.jst.jsf.core 4 0 2017-08-02 16:03:23.295
+!ENTRY org.eclipse.jst.jsf.core 4 0 2017-08-07 10:34:18.747
 !MESSAGE Error creating base name for: messages
 !STACK 0
 java.io.IOException: Bundle messages not found in classpath for project: intranet
@@ -4893,7 +4695,7 @@ java.io.IOException: Bundle messages not found in classpath for project: intrane
 	at org.eclipse.core.internal.resources.InternalWorkspaceJob.run(InternalWorkspaceJob.java:39)
 	at org.eclipse.core.internal.jobs.Worker.run(Worker.java:55)
 
-!ENTRY org.eclipse.jst.jsf.core 4 0 2017-08-02 16:03:23.299
+!ENTRY org.eclipse.jst.jsf.core 4 0 2017-08-07 10:34:18.747
 !MESSAGE Error creating base name for: messages
 !STACK 0
 java.io.IOException: Bundle messages not found in classpath for project: intranet
@@ -4959,7 +4761,7 @@ java.io.IOException: Bundle messages not found in classpath for project: intrane
 	at org.eclipse.core.internal.resources.InternalWorkspaceJob.run(InternalWorkspaceJob.java:39)
 	at org.eclipse.core.internal.jobs.Worker.run(Worker.java:55)
 
-!ENTRY org.eclipse.jst.jsf.core 4 0 2017-08-02 16:03:23.303
+!ENTRY org.eclipse.jst.jsf.core 4 0 2017-08-07 10:34:18.747
 !MESSAGE Error creating base name for: messages
 !STACK 0
 java.io.IOException: Bundle messages not found in classpath for project: intranet
@@ -5025,7 +4827,7 @@ java.io.IOException: Bundle messages not found in classpath for project: intrane
 	at org.eclipse.core.internal.resources.InternalWorkspaceJob.run(InternalWorkspaceJob.java:39)
 	at org.eclipse.core.internal.jobs.Worker.run(Worker.java:55)
 
-!ENTRY org.eclipse.jst.jsf.core 4 0 2017-08-02 16:03:23.306
+!ENTRY org.eclipse.jst.jsf.core 4 0 2017-08-07 10:34:18.747
 !MESSAGE Error creating base name for: messages
 !STACK 0
 java.io.IOException: Bundle messages not found in classpath for project: intranet
@@ -5091,7 +4893,7 @@ java.io.IOException: Bundle messages not found in classpath for project: intrane
 	at org.eclipse.core.internal.resources.InternalWorkspaceJob.run(InternalWorkspaceJob.java:39)
 	at org.eclipse.core.internal.jobs.Worker.run(Worker.java:55)
 
-!ENTRY org.eclipse.jst.jsf.core 4 0 2017-08-02 16:03:23.310
+!ENTRY org.eclipse.jst.jsf.core 4 0 2017-08-07 10:34:18.747
 !MESSAGE Error creating base name for: messages
 !STACK 0
 java.io.IOException: Bundle messages not found in classpath for project: intranet
@@ -5157,7 +4959,7 @@ java.io.IOException: Bundle messages not found in classpath for project: intrane
 	at org.eclipse.core.internal.resources.InternalWorkspaceJob.run(InternalWorkspaceJob.java:39)
 	at org.eclipse.core.internal.jobs.Worker.run(Worker.java:55)
 
-!ENTRY org.eclipse.jst.jsf.core 4 0 2017-08-02 16:03:23.324
+!ENTRY org.eclipse.jst.jsf.core 4 0 2017-08-07 10:34:18.763
 !MESSAGE Error creating base name for: messages
 !STACK 0
 java.io.IOException: Bundle messages not found in classpath for project: intranet
@@ -5223,7 +5025,7 @@ java.io.IOException: Bundle messages not found in classpath for project: intrane
 	at org.eclipse.core.internal.resources.InternalWorkspaceJob.run(InternalWorkspaceJob.java:39)
 	at org.eclipse.core.internal.jobs.Worker.run(Worker.java:55)
 
-!ENTRY org.eclipse.jst.jsf.core 4 0 2017-08-02 16:03:23.328
+!ENTRY org.eclipse.jst.jsf.core 4 0 2017-08-07 10:34:18.763
 !MESSAGE Error creating base name for: messages
 !STACK 0
 java.io.IOException: Bundle messages not found in classpath for project: intranet
@@ -5289,7 +5091,7 @@ java.io.IOException: Bundle messages not found in classpath for project: intrane
 	at org.eclipse.core.internal.resources.InternalWorkspaceJob.run(InternalWorkspaceJob.java:39)
 	at org.eclipse.core.internal.jobs.Worker.run(Worker.java:55)
 
-!ENTRY org.eclipse.jst.jsf.core 4 0 2017-08-02 16:03:23.332
+!ENTRY org.eclipse.jst.jsf.core 4 0 2017-08-07 10:34:18.763
 !MESSAGE Error creating base name for: messages
 !STACK 0
 java.io.IOException: Bundle messages not found in classpath for project: intranet
@@ -5355,7 +5157,7 @@ java.io.IOException: Bundle messages not found in classpath for project: intrane
 	at org.eclipse.core.internal.resources.InternalWorkspaceJob.run(InternalWorkspaceJob.java:39)
 	at org.eclipse.core.internal.jobs.Worker.run(Worker.java:55)
 
-!ENTRY org.eclipse.jst.jsf.core 4 0 2017-08-02 16:03:23.336
+!ENTRY org.eclipse.jst.jsf.core 4 0 2017-08-07 10:34:18.763
 !MESSAGE Error creating base name for: messages
 !STACK 0
 java.io.IOException: Bundle messages not found in classpath for project: intranet
@@ -5421,7 +5223,7 @@ java.io.IOException: Bundle messages not found in classpath for project: intrane
 	at org.eclipse.core.internal.resources.InternalWorkspaceJob.run(InternalWorkspaceJob.java:39)
 	at org.eclipse.core.internal.jobs.Worker.run(Worker.java:55)
 
-!ENTRY org.eclipse.jst.jsf.core 4 0 2017-08-02 16:03:23.340
+!ENTRY org.eclipse.jst.jsf.core 4 0 2017-08-07 10:34:18.763
 !MESSAGE Error creating base name for: messages
 !STACK 0
 java.io.IOException: Bundle messages not found in classpath for project: intranet
@@ -5487,7 +5289,7 @@ java.io.IOException: Bundle messages not found in classpath for project: intrane
 	at org.eclipse.core.internal.resources.InternalWorkspaceJob.run(InternalWorkspaceJob.java:39)
 	at org.eclipse.core.internal.jobs.Worker.run(Worker.java:55)
 
-!ENTRY org.eclipse.jst.jsf.core 4 0 2017-08-02 16:03:23.344
+!ENTRY org.eclipse.jst.jsf.core 4 0 2017-08-07 10:34:18.779
 !MESSAGE Error creating base name for: messages
 !STACK 0
 java.io.IOException: Bundle messages not found in classpath for project: intranet
@@ -5553,7 +5355,7 @@ java.io.IOException: Bundle messages not found in classpath for project: intrane
 	at org.eclipse.core.internal.resources.InternalWorkspaceJob.run(InternalWorkspaceJob.java:39)
 	at org.eclipse.core.internal.jobs.Worker.run(Worker.java:55)
 
-!ENTRY org.eclipse.jst.jsf.core 4 0 2017-08-02 16:03:23.348
+!ENTRY org.eclipse.jst.jsf.core 4 0 2017-08-07 10:34:18.779
 !MESSAGE Error creating base name for: messages
 !STACK 0
 java.io.IOException: Bundle messages not found in classpath for project: intranet
@@ -5619,7 +5421,7 @@ java.io.IOException: Bundle messages not found in classpath for project: intrane
 	at org.eclipse.core.internal.resources.InternalWorkspaceJob.run(InternalWorkspaceJob.java:39)
 	at org.eclipse.core.internal.jobs.Worker.run(Worker.java:55)
 
-!ENTRY org.eclipse.jst.jsf.core 4 0 2017-08-02 16:03:23.352
+!ENTRY org.eclipse.jst.jsf.core 4 0 2017-08-07 10:34:18.779
 !MESSAGE Error creating base name for: messages
 !STACK 0
 java.io.IOException: Bundle messages not found in classpath for project: intranet
@@ -5685,7 +5487,7 @@ java.io.IOException: Bundle messages not found in classpath for project: intrane
 	at org.eclipse.core.internal.resources.InternalWorkspaceJob.run(InternalWorkspaceJob.java:39)
 	at org.eclipse.core.internal.jobs.Worker.run(Worker.java:55)
 
-!ENTRY org.eclipse.jst.jsf.core 4 0 2017-08-02 16:03:23.356
+!ENTRY org.eclipse.jst.jsf.core 4 0 2017-08-07 10:34:18.779
 !MESSAGE Error creating base name for: messages
 !STACK 0
 java.io.IOException: Bundle messages not found in classpath for project: intranet
@@ -5751,7 +5553,7 @@ java.io.IOException: Bundle messages not found in classpath for project: intrane
 	at org.eclipse.core.internal.resources.InternalWorkspaceJob.run(InternalWorkspaceJob.java:39)
 	at org.eclipse.core.internal.jobs.Worker.run(Worker.java:55)
 
-!ENTRY org.eclipse.jst.jsf.core 4 0 2017-08-02 16:03:23.360
+!ENTRY org.eclipse.jst.jsf.core 4 0 2017-08-07 10:34:18.779
 !MESSAGE Error creating base name for: messages
 !STACK 0
 java.io.IOException: Bundle messages not found in classpath for project: intranet
@@ -5817,7 +5619,7 @@ java.io.IOException: Bundle messages not found in classpath for project: intrane
 	at org.eclipse.core.internal.resources.InternalWorkspaceJob.run(InternalWorkspaceJob.java:39)
 	at org.eclipse.core.internal.jobs.Worker.run(Worker.java:55)
 
-!ENTRY org.eclipse.jst.jsf.core 4 0 2017-08-02 16:03:23.364
+!ENTRY org.eclipse.jst.jsf.core 4 0 2017-08-07 10:34:18.794
 !MESSAGE Error creating base name for: messages
 !STACK 0
 java.io.IOException: Bundle messages not found in classpath for project: intranet
@@ -5883,7 +5685,7 @@ java.io.IOException: Bundle messages not found in classpath for project: intrane
 	at org.eclipse.core.internal.resources.InternalWorkspaceJob.run(InternalWorkspaceJob.java:39)
 	at org.eclipse.core.internal.jobs.Worker.run(Worker.java:55)
 
-!ENTRY org.eclipse.jst.jsf.core 4 0 2017-08-02 16:03:23.368
+!ENTRY org.eclipse.jst.jsf.core 4 0 2017-08-07 10:34:18.794
 !MESSAGE Error creating base name for: messages
 !STACK 0
 java.io.IOException: Bundle messages not found in classpath for project: intranet
@@ -5949,7 +5751,7 @@ java.io.IOException: Bundle messages not found in classpath for project: intrane
 	at org.eclipse.core.internal.resources.InternalWorkspaceJob.run(InternalWorkspaceJob.java:39)
 	at org.eclipse.core.internal.jobs.Worker.run(Worker.java:55)
 
-!ENTRY org.eclipse.jst.jsf.core 4 0 2017-08-02 16:03:23.372
+!ENTRY org.eclipse.jst.jsf.core 4 0 2017-08-07 10:34:18.794
 !MESSAGE Error creating base name for: messages
 !STACK 0
 java.io.IOException: Bundle messages not found in classpath for project: intranet
@@ -6015,7 +5817,7 @@ java.io.IOException: Bundle messages not found in classpath for project: intrane
 	at org.eclipse.core.internal.resources.InternalWorkspaceJob.run(InternalWorkspaceJob.java:39)
 	at org.eclipse.core.internal.jobs.Worker.run(Worker.java:55)
 
-!ENTRY org.eclipse.jst.jsf.core 4 0 2017-08-02 16:03:23.376
+!ENTRY org.eclipse.jst.jsf.core 4 0 2017-08-07 10:34:18.794
 !MESSAGE Error creating base name for: messages
 !STACK 0
 java.io.IOException: Bundle messages not found in classpath for project: intranet
@@ -6081,7 +5883,7 @@ java.io.IOException: Bundle messages not found in classpath for project: intrane
 	at org.eclipse.core.internal.resources.InternalWorkspaceJob.run(InternalWorkspaceJob.java:39)
 	at org.eclipse.core.internal.jobs.Worker.run(Worker.java:55)
 
-!ENTRY org.eclipse.jst.jsf.core 4 0 2017-08-02 16:03:23.380
+!ENTRY org.eclipse.jst.jsf.core 4 0 2017-08-07 10:34:18.794
 !MESSAGE Error creating base name for: messages
 !STACK 0
 java.io.IOException: Bundle messages not found in classpath for project: intranet
@@ -6147,7 +5949,7 @@ java.io.IOException: Bundle messages not found in classpath for project: intrane
 	at org.eclipse.core.internal.resources.InternalWorkspaceJob.run(InternalWorkspaceJob.java:39)
 	at org.eclipse.core.internal.jobs.Worker.run(Worker.java:55)
 
-!ENTRY org.eclipse.jst.jsf.core 4 0 2017-08-02 16:03:23.384
+!ENTRY org.eclipse.jst.jsf.core 4 0 2017-08-07 10:34:18.810
 !MESSAGE Error creating base name for: messages
 !STACK 0
 java.io.IOException: Bundle messages not found in classpath for project: intranet
@@ -6213,7 +6015,7 @@ java.io.IOException: Bundle messages not found in classpath for project: intrane
 	at org.eclipse.core.internal.resources.InternalWorkspaceJob.run(InternalWorkspaceJob.java:39)
 	at org.eclipse.core.internal.jobs.Worker.run(Worker.java:55)
 
-!ENTRY org.eclipse.jst.jsf.core 4 0 2017-08-02 16:03:23.388
+!ENTRY org.eclipse.jst.jsf.core 4 0 2017-08-07 10:34:18.810
 !MESSAGE Error creating base name for: messages
 !STACK 0
 java.io.IOException: Bundle messages not found in classpath for project: intranet
@@ -6279,7 +6081,7 @@ java.io.IOException: Bundle messages not found in classpath for project: intrane
 	at org.eclipse.core.internal.resources.InternalWorkspaceJob.run(InternalWorkspaceJob.java:39)
 	at org.eclipse.core.internal.jobs.Worker.run(Worker.java:55)
 
-!ENTRY org.eclipse.jst.jsf.core 4 0 2017-08-02 16:03:23.392
+!ENTRY org.eclipse.jst.jsf.core 4 0 2017-08-07 10:34:18.810
 !MESSAGE Error creating base name for: messages
 !STACK 0
 java.io.IOException: Bundle messages not found in classpath for project: intranet
@@ -6345,7 +6147,7 @@ java.io.IOException: Bundle messages not found in classpath for project: intrane
 	at org.eclipse.core.internal.resources.InternalWorkspaceJob.run(InternalWorkspaceJob.java:39)
 	at org.eclipse.core.internal.jobs.Worker.run(Worker.java:55)
 
-!ENTRY org.eclipse.jst.jsf.core 4 0 2017-08-02 16:03:23.395
+!ENTRY org.eclipse.jst.jsf.core 4 0 2017-08-07 10:34:18.810
 !MESSAGE Error creating base name for: messages
 !STACK 0
 java.io.IOException: Bundle messages not found in classpath for project: intranet
@@ -6411,7 +6213,7 @@ java.io.IOException: Bundle messages not found in classpath for project: intrane
 	at org.eclipse.core.internal.resources.InternalWorkspaceJob.run(InternalWorkspaceJob.java:39)
 	at org.eclipse.core.internal.jobs.Worker.run(Worker.java:55)
 
-!ENTRY org.eclipse.jst.jsf.core 4 0 2017-08-02 16:03:23.399
+!ENTRY org.eclipse.jst.jsf.core 4 0 2017-08-07 10:34:18.810
 !MESSAGE Error creating base name for: messages
 !STACK 0
 java.io.IOException: Bundle messages not found in classpath for project: intranet
@@ -6477,7 +6279,7 @@ java.io.IOException: Bundle messages not found in classpath for project: intrane
 	at org.eclipse.core.internal.resources.InternalWorkspaceJob.run(InternalWorkspaceJob.java:39)
 	at org.eclipse.core.internal.jobs.Worker.run(Worker.java:55)
 
-!ENTRY org.eclipse.jst.jsf.core 4 0 2017-08-02 16:03:23.404
+!ENTRY org.eclipse.jst.jsf.core 4 0 2017-08-07 10:34:18.825
 !MESSAGE Error creating base name for: messages
 !STACK 0
 java.io.IOException: Bundle messages not found in classpath for project: intranet
@@ -6543,7 +6345,7 @@ java.io.IOException: Bundle messages not found in classpath for project: intrane
 	at org.eclipse.core.internal.resources.InternalWorkspaceJob.run(InternalWorkspaceJob.java:39)
 	at org.eclipse.core.internal.jobs.Worker.run(Worker.java:55)
 
-!ENTRY org.eclipse.jst.jsf.core 4 0 2017-08-02 16:03:23.408
+!ENTRY org.eclipse.jst.jsf.core 4 0 2017-08-07 10:34:18.825
 !MESSAGE Error creating base name for: messages
 !STACK 0
 java.io.IOException: Bundle messages not found in classpath for project: intranet
@@ -6609,7 +6411,7 @@ java.io.IOException: Bundle messages not found in classpath for project: intrane
 	at org.eclipse.core.internal.resources.InternalWorkspaceJob.run(InternalWorkspaceJob.java:39)
 	at org.eclipse.core.internal.jobs.Worker.run(Worker.java:55)
 
-!ENTRY org.eclipse.jst.jsf.core 4 0 2017-08-02 16:03:23.411
+!ENTRY org.eclipse.jst.jsf.core 4 0 2017-08-07 10:34:18.825
 !MESSAGE Error creating base name for: messages
 !STACK 0
 java.io.IOException: Bundle messages not found in classpath for project: intranet
@@ -6675,7 +6477,7 @@ java.io.IOException: Bundle messages not found in classpath for project: intrane
 	at org.eclipse.core.internal.resources.InternalWorkspaceJob.run(InternalWorkspaceJob.java:39)
 	at org.eclipse.core.internal.jobs.Worker.run(Worker.java:55)
 
-!ENTRY org.eclipse.jst.jsf.core 4 0 2017-08-02 16:03:23.415
+!ENTRY org.eclipse.jst.jsf.core 4 0 2017-08-07 10:34:18.825
 !MESSAGE Error creating base name for: messages
 !STACK 0
 java.io.IOException: Bundle messages not found in classpath for project: intranet
@@ -6741,7 +6543,7 @@ java.io.IOException: Bundle messages not found in classpath for project: intrane
 	at org.eclipse.core.internal.resources.InternalWorkspaceJob.run(InternalWorkspaceJob.java:39)
 	at org.eclipse.core.internal.jobs.Worker.run(Worker.java:55)
 
-!ENTRY org.eclipse.jst.jsf.core 4 0 2017-08-02 16:03:23.419
+!ENTRY org.eclipse.jst.jsf.core 4 0 2017-08-07 10:34:18.825
 !MESSAGE Error creating base name for: messages
 !STACK 0
 java.io.IOException: Bundle messages not found in classpath for project: intranet
@@ -6807,7 +6609,7 @@ java.io.IOException: Bundle messages not found in classpath for project: intrane
 	at org.eclipse.core.internal.resources.InternalWorkspaceJob.run(InternalWorkspaceJob.java:39)
 	at org.eclipse.core.internal.jobs.Worker.run(Worker.java:55)
 
-!ENTRY org.eclipse.jst.jsf.core 4 0 2017-08-02 16:03:23.423
+!ENTRY org.eclipse.jst.jsf.core 4 0 2017-08-07 10:34:18.841
 !MESSAGE Error creating base name for: messages
 !STACK 0
 java.io.IOException: Bundle messages not found in classpath for project: intranet
@@ -6873,7 +6675,7 @@ java.io.IOException: Bundle messages not found in classpath for project: intrane
 	at org.eclipse.core.internal.resources.InternalWorkspaceJob.run(InternalWorkspaceJob.java:39)
 	at org.eclipse.core.internal.jobs.Worker.run(Worker.java:55)
 
-!ENTRY org.eclipse.jst.jsf.core 4 0 2017-08-02 16:03:23.427
+!ENTRY org.eclipse.jst.jsf.core 4 0 2017-08-07 10:34:18.841
 !MESSAGE Error creating base name for: messages
 !STACK 0
 java.io.IOException: Bundle messages not found in classpath for project: intranet
@@ -6939,7 +6741,7 @@ java.io.IOException: Bundle messages not found in classpath for project: intrane
 	at org.eclipse.core.internal.resources.InternalWorkspaceJob.run(InternalWorkspaceJob.java:39)
 	at org.eclipse.core.internal.jobs.Worker.run(Worker.java:55)
 
-!ENTRY org.eclipse.jst.jsf.core 4 0 2017-08-02 16:03:23.431
+!ENTRY org.eclipse.jst.jsf.core 4 0 2017-08-07 10:34:18.841
 !MESSAGE Error creating base name for: messages
 !STACK 0
 java.io.IOException: Bundle messages not found in classpath for project: intranet
@@ -7005,7 +6807,7 @@ java.io.IOException: Bundle messages not found in classpath for project: intrane
 	at org.eclipse.core.internal.resources.InternalWorkspaceJob.run(InternalWorkspaceJob.java:39)
 	at org.eclipse.core.internal.jobs.Worker.run(Worker.java:55)
 
-!ENTRY org.eclipse.jst.jsf.core 4 0 2017-08-02 16:03:23.435
+!ENTRY org.eclipse.jst.jsf.core 4 0 2017-08-07 10:34:18.841
 !MESSAGE Error creating base name for: messages
 !STACK 0
 java.io.IOException: Bundle messages not found in classpath for project: intranet
@@ -7071,7 +6873,7 @@ java.io.IOException: Bundle messages not found in classpath for project: intrane
 	at org.eclipse.core.internal.resources.InternalWorkspaceJob.run(InternalWorkspaceJob.java:39)
 	at org.eclipse.core.internal.jobs.Worker.run(Worker.java:55)
 
-!ENTRY org.eclipse.jst.jsf.core 4 0 2017-08-02 16:03:23.439
+!ENTRY org.eclipse.jst.jsf.core 4 0 2017-08-07 10:34:18.841
 !MESSAGE Error creating base name for: messages
 !STACK 0
 java.io.IOException: Bundle messages not found in classpath for project: intranet
@@ -7137,7 +6939,7 @@ java.io.IOException: Bundle messages not found in classpath for project: intrane
 	at org.eclipse.core.internal.resources.InternalWorkspaceJob.run(InternalWorkspaceJob.java:39)
 	at org.eclipse.core.internal.jobs.Worker.run(Worker.java:55)
 
-!ENTRY org.eclipse.jst.jsf.core 4 0 2017-08-02 16:03:23.442
+!ENTRY org.eclipse.jst.jsf.core 4 0 2017-08-07 10:34:18.857
 !MESSAGE Error creating base name for: messages
 !STACK 0
 java.io.IOException: Bundle messages not found in classpath for project: intranet
@@ -7203,7 +7005,7 @@ java.io.IOException: Bundle messages not found in classpath for project: intrane
 	at org.eclipse.core.internal.resources.InternalWorkspaceJob.run(InternalWorkspaceJob.java:39)
 	at org.eclipse.core.internal.jobs.Worker.run(Worker.java:55)
 
-!ENTRY org.eclipse.jst.jsf.core 4 0 2017-08-02 16:03:23.446
+!ENTRY org.eclipse.jst.jsf.core 4 0 2017-08-07 10:34:18.857
 !MESSAGE Error creating base name for: messages
 !STACK 0
 java.io.IOException: Bundle messages not found in classpath for project: intranet
@@ -7269,7 +7071,7 @@ java.io.IOException: Bundle messages not found in classpath for project: intrane
 	at org.eclipse.core.internal.resources.InternalWorkspaceJob.run(InternalWorkspaceJob.java:39)
 	at org.eclipse.core.internal.jobs.Worker.run(Worker.java:55)
 
-!ENTRY org.eclipse.jst.jsf.core 4 0 2017-08-02 16:03:23.450
+!ENTRY org.eclipse.jst.jsf.core 4 0 2017-08-07 10:34:18.857
 !MESSAGE Error creating base name for: messages
 !STACK 0
 java.io.IOException: Bundle messages not found in classpath for project: intranet
@@ -7335,7 +7137,7 @@ java.io.IOException: Bundle messages not found in classpath for project: intrane
 	at org.eclipse.core.internal.resources.InternalWorkspaceJob.run(InternalWorkspaceJob.java:39)
 	at org.eclipse.core.internal.jobs.Worker.run(Worker.java:55)
 
-!ENTRY org.eclipse.jst.jsf.core 4 0 2017-08-02 16:03:23.454
+!ENTRY org.eclipse.jst.jsf.core 4 0 2017-08-07 10:34:18.857
 !MESSAGE Error creating base name for: messages
 !STACK 0
 java.io.IOException: Bundle messages not found in classpath for project: intranet
@@ -7401,7 +7203,7 @@ java.io.IOException: Bundle messages not found in classpath for project: intrane
 	at org.eclipse.core.internal.resources.InternalWorkspaceJob.run(InternalWorkspaceJob.java:39)
 	at org.eclipse.core.internal.jobs.Worker.run(Worker.java:55)
 
-!ENTRY org.eclipse.jst.jsf.core 4 0 2017-08-02 16:03:23.458
+!ENTRY org.eclipse.jst.jsf.core 4 0 2017-08-07 10:34:18.872
 !MESSAGE Error creating base name for: messages
 !STACK 0
 java.io.IOException: Bundle messages not found in classpath for project: intranet
@@ -7467,7 +7269,7 @@ java.io.IOException: Bundle messages not found in classpath for project: intrane
 	at org.eclipse.core.internal.resources.InternalWorkspaceJob.run(InternalWorkspaceJob.java:39)
 	at org.eclipse.core.internal.jobs.Worker.run(Worker.java:55)
 
-!ENTRY org.eclipse.jst.jsf.core 4 0 2017-08-02 16:03:23.462
+!ENTRY org.eclipse.jst.jsf.core 4 0 2017-08-07 10:34:18.872
 !MESSAGE Error creating base name for: messages
 !STACK 0
 java.io.IOException: Bundle messages not found in classpath for project: intranet
@@ -7533,7 +7335,7 @@ java.io.IOException: Bundle messages not found in classpath for project: intrane
 	at org.eclipse.core.internal.resources.InternalWorkspaceJob.run(InternalWorkspaceJob.java:39)
 	at org.eclipse.core.internal.jobs.Worker.run(Worker.java:55)
 
-!ENTRY org.eclipse.jst.jsf.core 4 0 2017-08-02 16:03:23.466
+!ENTRY org.eclipse.jst.jsf.core 4 0 2017-08-07 10:34:18.872
 !MESSAGE Error creating base name for: messages
 !STACK 0
 java.io.IOException: Bundle messages not found in classpath for project: intranet
@@ -7599,7 +7401,7 @@ java.io.IOException: Bundle messages not found in classpath for project: intrane
 	at org.eclipse.core.internal.resources.InternalWorkspaceJob.run(InternalWorkspaceJob.java:39)
 	at org.eclipse.core.internal.jobs.Worker.run(Worker.java:55)
 
-!ENTRY org.eclipse.jst.jsf.core 4 0 2017-08-02 16:03:23.470
+!ENTRY org.eclipse.jst.jsf.core 4 0 2017-08-07 10:34:18.872
 !MESSAGE Error creating base name for: messages
 !STACK 0
 java.io.IOException: Bundle messages not found in classpath for project: intranet
@@ -7665,7 +7467,7 @@ java.io.IOException: Bundle messages not found in classpath for project: intrane
 	at org.eclipse.core.internal.resources.InternalWorkspaceJob.run(InternalWorkspaceJob.java:39)
 	at org.eclipse.core.internal.jobs.Worker.run(Worker.java:55)
 
-!ENTRY org.eclipse.jst.jsf.core 4 0 2017-08-02 16:03:23.474
+!ENTRY org.eclipse.jst.jsf.core 4 0 2017-08-07 10:34:18.872
 !MESSAGE Error creating base name for: messages
 !STACK 0
 java.io.IOException: Bundle messages not found in classpath for project: intranet
@@ -7731,7 +7533,7 @@ java.io.IOException: Bundle messages not found in classpath for project: intrane
 	at org.eclipse.core.internal.resources.InternalWorkspaceJob.run(InternalWorkspaceJob.java:39)
 	at org.eclipse.core.internal.jobs.Worker.run(Worker.java:55)
 
-!ENTRY org.eclipse.jst.jsf.core 4 0 2017-08-02 16:03:23.478
+!ENTRY org.eclipse.jst.jsf.core 4 0 2017-08-07 10:34:18.888
 !MESSAGE Error creating base name for: messages
 !STACK 0
 java.io.IOException: Bundle messages not found in classpath for project: intranet
@@ -7797,7 +7599,7 @@ java.io.IOException: Bundle messages not found in classpath for project: intrane
 	at org.eclipse.core.internal.resources.InternalWorkspaceJob.run(InternalWorkspaceJob.java:39)
 	at org.eclipse.core.internal.jobs.Worker.run(Worker.java:55)
 
-!ENTRY org.eclipse.jst.jsf.core 4 0 2017-08-02 16:03:23.482
+!ENTRY org.eclipse.jst.jsf.core 4 0 2017-08-07 10:34:18.888
 !MESSAGE Error creating base name for: messages
 !STACK 0
 java.io.IOException: Bundle messages not found in classpath for project: intranet
@@ -7863,7 +7665,7 @@ java.io.IOException: Bundle messages not found in classpath for project: intrane
 	at org.eclipse.core.internal.resources.InternalWorkspaceJob.run(InternalWorkspaceJob.java:39)
 	at org.eclipse.core.internal.jobs.Worker.run(Worker.java:55)
 
-!ENTRY org.eclipse.jst.jsf.core 4 0 2017-08-02 16:03:23.486
+!ENTRY org.eclipse.jst.jsf.core 4 0 2017-08-07 10:34:18.888
 !MESSAGE Error creating base name for: messages
 !STACK 0
 java.io.IOException: Bundle messages not found in classpath for project: intranet
@@ -7929,7 +7731,7 @@ java.io.IOException: Bundle messages not found in classpath for project: intrane
 	at org.eclipse.core.internal.resources.InternalWorkspaceJob.run(InternalWorkspaceJob.java:39)
 	at org.eclipse.core.internal.jobs.Worker.run(Worker.java:55)
 
-!ENTRY org.eclipse.jst.jsf.core 4 0 2017-08-02 16:03:23.489
+!ENTRY org.eclipse.jst.jsf.core 4 0 2017-08-07 10:34:18.888
 !MESSAGE Error creating base name for: messages
 !STACK 0
 java.io.IOException: Bundle messages not found in classpath for project: intranet
@@ -7995,7 +7797,7 @@ java.io.IOException: Bundle messages not found in classpath for project: intrane
 	at org.eclipse.core.internal.resources.InternalWorkspaceJob.run(InternalWorkspaceJob.java:39)
 	at org.eclipse.core.internal.jobs.Worker.run(Worker.java:55)
 
-!ENTRY org.eclipse.jst.jsf.core 4 0 2017-08-02 16:03:23.493
+!ENTRY org.eclipse.jst.jsf.core 4 0 2017-08-07 10:34:18.888
 !MESSAGE Error creating base name for: messages
 !STACK 0
 java.io.IOException: Bundle messages not found in classpath for project: intranet
@@ -8061,7 +7863,7 @@ java.io.IOException: Bundle messages not found in classpath for project: intrane
 	at org.eclipse.core.internal.resources.InternalWorkspaceJob.run(InternalWorkspaceJob.java:39)
 	at org.eclipse.core.internal.jobs.Worker.run(Worker.java:55)
 
-!ENTRY org.eclipse.jst.jsf.core 4 0 2017-08-02 16:03:23.498
+!ENTRY org.eclipse.jst.jsf.core 4 0 2017-08-07 10:34:18.903
 !MESSAGE Error creating base name for: messages
 !STACK 0
 java.io.IOException: Bundle messages not found in classpath for project: intranet
@@ -8127,7 +7929,7 @@ java.io.IOException: Bundle messages not found in classpath for project: intrane
 	at org.eclipse.core.internal.resources.InternalWorkspaceJob.run(InternalWorkspaceJob.java:39)
 	at org.eclipse.core.internal.jobs.Worker.run(Worker.java:55)
 
-!ENTRY org.eclipse.jst.jsf.core 4 0 2017-08-02 16:03:23.502
+!ENTRY org.eclipse.jst.jsf.core 4 0 2017-08-07 10:34:18.903
 !MESSAGE Error creating base name for: messages
 !STACK 0
 java.io.IOException: Bundle messages not found in classpath for project: intranet
@@ -8193,139 +7995,7 @@ java.io.IOException: Bundle messages not found in classpath for project: intrane
 	at org.eclipse.core.internal.resources.InternalWorkspaceJob.run(InternalWorkspaceJob.java:39)
 	at org.eclipse.core.internal.jobs.Worker.run(Worker.java:55)
 
-!ENTRY org.eclipse.jst.jsf.core 4 0 2017-08-02 16:03:23.507
-!MESSAGE Error creating base name for: messages
-!STACK 0
-java.io.IOException: Bundle messages not found in classpath for project: intranet
-	at org.eclipse.jst.jsf.designtime.internal.symbols.ResourceBundleMapSource.createCachedBundleFile(ResourceBundleMapSource.java:235)
-	at org.eclipse.jst.jsf.designtime.internal.symbols.ResourceBundleMapSource.<init>(ResourceBundleMapSource.java:253)
-	at org.eclipse.jst.jsf.designtime.internal.symbols.ResourceBundleMapSourceFactory.getResourceBundleMapSource(ResourceBundleMapSourceFactory.java:44)
-	at org.eclipse.jst.jsf.designtime.internal.symbols.ResourceBundleSymbolSourceProvider.createSymbolForResourceBundle(ResourceBundleSymbolSourceProvider.java:114)
-	at org.eclipse.jst.jsf.designtime.internal.symbols.ResourceBundleSymbolSourceProvider.getSymbols(ResourceBundleSymbolSourceProvider.java:86)
-	at org.eclipse.jst.jsf.designtime.context.DTJSPExternalContext.doGetMapForScope(DTJSPExternalContext.java:87)
-	at org.eclipse.jst.jsf.designtime.context.AbstractDTExternalContext.getMapForScope(AbstractDTExternalContext.java:46)
-	at org.eclipse.jst.jsf.designtime.context.AbstractDTExternalContext.getRequestMap(AbstractDTExternalContext.java:64)
-	at org.eclipse.jst.jsf.designtime.el.DefaultDTVariableResolver.resolveVariable(DefaultDTVariableResolver.java:67)
-	at org.eclipse.jst.jsf.designtime.internal.symbols.ConfigBasedDTVariableResolver.resolveVariable(ConfigBasedDTVariableResolver.java:108)
-	at org.eclipse.jst.jsf.designtime.resolver.SymbolContextResolver.getVariable(SymbolContextResolver.java:61)
-	at org.eclipse.jst.jsf.validation.internal.el.ASTSemanticValidator.visit(ASTSemanticValidator.java:354)
-	at org.eclipse.jst.jsp.core.internal.java.jspel.ASTValuePrefix.jjtAccept(ASTValuePrefix.java:28)
-	at org.eclipse.jst.jsp.core.internal.java.jspel.SimpleNode.childrenAccept(SimpleNode.java:70)
-	at org.eclipse.jst.jsf.validation.internal.el.ASTSemanticValidator.visit(ASTSemanticValidator.java:324)
-	at org.eclipse.jst.jsp.core.internal.java.jspel.ASTValue.jjtAccept(ASTValue.java:28)
-	at org.eclipse.jst.jsp.core.internal.java.jspel.SimpleNode.childrenAccept(SimpleNode.java:70)
-	at org.eclipse.jst.jsf.validation.internal.el.ASTSemanticValidator.visit(ASTSemanticValidator.java:277)
-	at org.eclipse.jst.jsp.core.internal.java.jspel.ASTUnaryExpression.jjtAccept(ASTUnaryExpression.java:28)
-	at org.eclipse.jst.jsp.core.internal.java.jspel.SimpleNode.childrenAccept(SimpleNode.java:70)
-	at org.eclipse.jst.jsf.validation.internal.el.ASTSemanticValidator.visit(ASTSemanticValidator.java:175)
-	at org.eclipse.jst.jsp.core.internal.java.jspel.ASTExpression.jjtAccept(ASTExpression.java:28)
-	at org.eclipse.jst.jsf.validation.internal.el.ASTSemanticValidator.validate(ASTSemanticValidator.java:109)
-	at org.eclipse.jst.jsf.validation.internal.el.ELExpressionValidator.validateSemantics(ELExpressionValidator.java:183)
-	at org.eclipse.jst.jsf.validation.internal.el.ELExpressionValidator.validateXMLNode(ELExpressionValidator.java:80)
-	at org.eclipse.jst.jsf.validation.internal.strategy.AttributeValidatingStrategy.validateELExpression(AttributeValidatingStrategy.java:367)
-	at org.eclipse.jst.jsf.validation.internal.strategy.AttributeValidatingStrategy.checkIfELAndValidate(AttributeValidatingStrategy.java:275)
-	at org.eclipse.jst.jsf.validation.internal.strategy.AttributeValidatingStrategy.access$0(AttributeValidatingStrategy.java:192)
-	at org.eclipse.jst.jsf.validation.internal.strategy.AttributeValidatingStrategy$1.run(AttributeValidatingStrategy.java:184)
-	at org.eclipse.core.runtime.SafeRunner.run(SafeRunner.java:42)
-	at org.eclipse.jst.jsf.validation.internal.strategy.AttributeValidatingStrategy.validateAttributeValue(AttributeValidatingStrategy.java:168)
-	at org.eclipse.jst.jsf.validation.internal.strategy.AttributeValidatingStrategy.validate(AttributeValidatingStrategy.java:144)
-	at org.eclipse.jst.jsf.validation.internal.XMLViewDefnValidator.validateTag(XMLViewDefnValidator.java:99)
-	at org.eclipse.jst.jsf.validation.internal.XMLViewDefnValidator.validateRegions(XMLViewDefnValidator.java:177)
-	at org.eclipse.jst.jsf.validation.internal.XMLViewDefnValidator.validateView(XMLViewDefnValidator.java:134)
-	at org.eclipse.jst.jsf.facelet.ui.internal.validation.DefaultFaceletValidationStrategy.doValidate(DefaultFaceletValidationStrategy.java:42)
-	at org.eclipse.jst.jsf.facelet.ui.internal.validation.AbstractFaceletValidationStrategy.validateFile(AbstractFaceletValidationStrategy.java:96)
-	at org.eclipse.jst.jsf.facelet.ui.internal.validation.HTMLValidator.validate(HTMLValidator.java:57)
-	at org.eclipse.wst.validation.Validator$V2.validate(Validator.java:1159)
-	at org.eclipse.wst.validation.internal.ValManager.validate(ValManager.java:704)
-	at org.eclipse.wst.validation.internal.ValManager$1.visit(ValManager.java:665)
-	at org.eclipse.wst.validation.internal.ValManager.accept(ValManager.java:783)
-	at org.eclipse.wst.validation.internal.ValManager.validate(ValManager.java:669)
-	at org.eclipse.wst.validation.internal.ValBuilderJob$Visitor.visit(ValBuilderJob.java:299)
-	at org.eclipse.core.internal.resources.Resource$2.visit(Resource.java:120)
-	at org.eclipse.core.internal.resources.Resource$1.visitElement(Resource.java:84)
-	at org.eclipse.core.internal.watson.ElementTreeIterator.doIteration(ElementTreeIterator.java:82)
-	at org.eclipse.core.internal.watson.ElementTreeIterator.doIteration(ElementTreeIterator.java:87)
-	at org.eclipse.core.internal.watson.ElementTreeIterator.doIteration(ElementTreeIterator.java:87)
-	at org.eclipse.core.internal.watson.ElementTreeIterator.doIteration(ElementTreeIterator.java:87)
-	at org.eclipse.core.internal.watson.ElementTreeIterator.doIteration(ElementTreeIterator.java:87)
-	at org.eclipse.core.internal.watson.ElementTreeIterator.iterate(ElementTreeIterator.java:129)
-	at org.eclipse.core.internal.resources.Resource.accept(Resource.java:94)
-	at org.eclipse.core.internal.resources.Resource.accept(Resource.java:52)
-	at org.eclipse.core.internal.resources.Resource.accept(Resource.java:117)
-	at org.eclipse.core.internal.resources.Resource.accept(Resource.java:105)
-	at org.eclipse.wst.validation.internal.ValBuilderJob.fullBuild(ValBuilderJob.java:219)
-	at org.eclipse.wst.validation.internal.ValBuilderJob.run(ValBuilderJob.java:178)
-	at org.eclipse.wst.validation.internal.ValBuilderJob.runInWorkspace(ValBuilderJob.java:126)
-	at org.eclipse.core.internal.resources.InternalWorkspaceJob.run(InternalWorkspaceJob.java:39)
-	at org.eclipse.core.internal.jobs.Worker.run(Worker.java:55)
-
-!ENTRY org.eclipse.jst.jsf.core 4 0 2017-08-02 16:03:23.511
-!MESSAGE Error creating base name for: messages
-!STACK 0
-java.io.IOException: Bundle messages not found in classpath for project: intranet
-	at org.eclipse.jst.jsf.designtime.internal.symbols.ResourceBundleMapSource.createCachedBundleFile(ResourceBundleMapSource.java:235)
-	at org.eclipse.jst.jsf.designtime.internal.symbols.ResourceBundleMapSource.<init>(ResourceBundleMapSource.java:253)
-	at org.eclipse.jst.jsf.designtime.internal.symbols.ResourceBundleMapSourceFactory.getResourceBundleMapSource(ResourceBundleMapSourceFactory.java:44)
-	at org.eclipse.jst.jsf.designtime.internal.symbols.ResourceBundleSymbolSourceProvider.createSymbolForResourceBundle(ResourceBundleSymbolSourceProvider.java:114)
-	at org.eclipse.jst.jsf.designtime.internal.symbols.ResourceBundleSymbolSourceProvider.getSymbols(ResourceBundleSymbolSourceProvider.java:86)
-	at org.eclipse.jst.jsf.designtime.context.DTJSPExternalContext.doGetMapForScope(DTJSPExternalContext.java:87)
-	at org.eclipse.jst.jsf.designtime.context.AbstractDTExternalContext.getMapForScope(AbstractDTExternalContext.java:46)
-	at org.eclipse.jst.jsf.designtime.context.AbstractDTExternalContext.getRequestMap(AbstractDTExternalContext.java:64)
-	at org.eclipse.jst.jsf.designtime.el.DefaultDTVariableResolver.resolveVariable(DefaultDTVariableResolver.java:67)
-	at org.eclipse.jst.jsf.designtime.internal.symbols.ConfigBasedDTVariableResolver.resolveVariable(ConfigBasedDTVariableResolver.java:108)
-	at org.eclipse.jst.jsf.designtime.resolver.SymbolContextResolver.getVariable(SymbolContextResolver.java:61)
-	at org.eclipse.jst.jsf.validation.internal.el.ASTSemanticValidator.visit(ASTSemanticValidator.java:354)
-	at org.eclipse.jst.jsp.core.internal.java.jspel.ASTValuePrefix.jjtAccept(ASTValuePrefix.java:28)
-	at org.eclipse.jst.jsp.core.internal.java.jspel.SimpleNode.childrenAccept(SimpleNode.java:70)
-	at org.eclipse.jst.jsf.validation.internal.el.ASTSemanticValidator.visit(ASTSemanticValidator.java:324)
-	at org.eclipse.jst.jsp.core.internal.java.jspel.ASTValue.jjtAccept(ASTValue.java:28)
-	at org.eclipse.jst.jsp.core.internal.java.jspel.SimpleNode.childrenAccept(SimpleNode.java:70)
-	at org.eclipse.jst.jsf.validation.internal.el.ASTSemanticValidator.visit(ASTSemanticValidator.java:277)
-	at org.eclipse.jst.jsp.core.internal.java.jspel.ASTUnaryExpression.jjtAccept(ASTUnaryExpression.java:28)
-	at org.eclipse.jst.jsp.core.internal.java.jspel.SimpleNode.childrenAccept(SimpleNode.java:70)
-	at org.eclipse.jst.jsf.validation.internal.el.ASTSemanticValidator.visit(ASTSemanticValidator.java:175)
-	at org.eclipse.jst.jsp.core.internal.java.jspel.ASTExpression.jjtAccept(ASTExpression.java:28)
-	at org.eclipse.jst.jsf.validation.internal.el.ASTSemanticValidator.validate(ASTSemanticValidator.java:109)
-	at org.eclipse.jst.jsf.validation.internal.el.ELExpressionValidator.validateSemantics(ELExpressionValidator.java:183)
-	at org.eclipse.jst.jsf.validation.internal.el.ELExpressionValidator.validateXMLNode(ELExpressionValidator.java:80)
-	at org.eclipse.jst.jsf.validation.internal.strategy.AttributeValidatingStrategy.validateELExpression(AttributeValidatingStrategy.java:367)
-	at org.eclipse.jst.jsf.validation.internal.strategy.AttributeValidatingStrategy.checkIfELAndValidate(AttributeValidatingStrategy.java:275)
-	at org.eclipse.jst.jsf.validation.internal.strategy.AttributeValidatingStrategy.access$0(AttributeValidatingStrategy.java:192)
-	at org.eclipse.jst.jsf.validation.internal.strategy.AttributeValidatingStrategy$1.run(AttributeValidatingStrategy.java:184)
-	at org.eclipse.core.runtime.SafeRunner.run(SafeRunner.java:42)
-	at org.eclipse.jst.jsf.validation.internal.strategy.AttributeValidatingStrategy.validateAttributeValue(AttributeValidatingStrategy.java:168)
-	at org.eclipse.jst.jsf.validation.internal.strategy.AttributeValidatingStrategy.validate(AttributeValidatingStrategy.java:144)
-	at org.eclipse.jst.jsf.validation.internal.XMLViewDefnValidator.validateTag(XMLViewDefnValidator.java:99)
-	at org.eclipse.jst.jsf.validation.internal.XMLViewDefnValidator.validateRegions(XMLViewDefnValidator.java:177)
-	at org.eclipse.jst.jsf.validation.internal.XMLViewDefnValidator.validateView(XMLViewDefnValidator.java:134)
-	at org.eclipse.jst.jsf.facelet.ui.internal.validation.DefaultFaceletValidationStrategy.doValidate(DefaultFaceletValidationStrategy.java:42)
-	at org.eclipse.jst.jsf.facelet.ui.internal.validation.AbstractFaceletValidationStrategy.validateFile(AbstractFaceletValidationStrategy.java:96)
-	at org.eclipse.jst.jsf.facelet.ui.internal.validation.HTMLValidator.validate(HTMLValidator.java:57)
-	at org.eclipse.wst.validation.Validator$V2.validate(Validator.java:1159)
-	at org.eclipse.wst.validation.internal.ValManager.validate(ValManager.java:704)
-	at org.eclipse.wst.validation.internal.ValManager$1.visit(ValManager.java:665)
-	at org.eclipse.wst.validation.internal.ValManager.accept(ValManager.java:783)
-	at org.eclipse.wst.validation.internal.ValManager.validate(ValManager.java:669)
-	at org.eclipse.wst.validation.internal.ValBuilderJob$Visitor.visit(ValBuilderJob.java:299)
-	at org.eclipse.core.internal.resources.Resource$2.visit(Resource.java:120)
-	at org.eclipse.core.internal.resources.Resource$1.visitElement(Resource.java:84)
-	at org.eclipse.core.internal.watson.ElementTreeIterator.doIteration(ElementTreeIterator.java:82)
-	at org.eclipse.core.internal.watson.ElementTreeIterator.doIteration(ElementTreeIterator.java:87)
-	at org.eclipse.core.internal.watson.ElementTreeIterator.doIteration(ElementTreeIterator.java:87)
-	at org.eclipse.core.internal.watson.ElementTreeIterator.doIteration(ElementTreeIterator.java:87)
-	at org.eclipse.core.internal.watson.ElementTreeIterator.doIteration(ElementTreeIterator.java:87)
-	at org.eclipse.core.internal.watson.ElementTreeIterator.iterate(ElementTreeIterator.java:129)
-	at org.eclipse.core.internal.resources.Resource.accept(Resource.java:94)
-	at org.eclipse.core.internal.resources.Resource.accept(Resource.java:52)
-	at org.eclipse.core.internal.resources.Resource.accept(Resource.java:117)
-	at org.eclipse.core.internal.resources.Resource.accept(Resource.java:105)
-	at org.eclipse.wst.validation.internal.ValBuilderJob.fullBuild(ValBuilderJob.java:219)
-	at org.eclipse.wst.validation.internal.ValBuilderJob.run(ValBuilderJob.java:178)
-	at org.eclipse.wst.validation.internal.ValBuilderJob.runInWorkspace(ValBuilderJob.java:126)
-	at org.eclipse.core.internal.resources.InternalWorkspaceJob.run(InternalWorkspaceJob.java:39)
-	at org.eclipse.core.internal.jobs.Worker.run(Worker.java:55)
-
-!ENTRY org.eclipse.jst.jsf.core 4 0 2017-08-02 16:03:23.515
+!ENTRY org.eclipse.jst.jsf.core 4 0 2017-08-07 10:34:18.903
 !MESSAGE Error creating base name for: messages
 !STACK 0
 java.io.IOException: Bundle messages not found in classpath for project: intranet
@@ -8391,7 +8061,7 @@ java.io.IOException: Bundle messages not found in classpath for project: intrane
 	at org.eclipse.core.internal.resources.InternalWorkspaceJob.run(InternalWorkspaceJob.java:39)
 	at org.eclipse.core.internal.jobs.Worker.run(Worker.java:55)
 
-!ENTRY org.eclipse.jst.jsf.core 4 0 2017-08-02 16:03:23.518
+!ENTRY org.eclipse.jst.jsf.core 4 0 2017-08-07 10:34:18.903
 !MESSAGE Error creating base name for: messages
 !STACK 0
 java.io.IOException: Bundle messages not found in classpath for project: intranet
@@ -8457,7 +8127,7 @@ java.io.IOException: Bundle messages not found in classpath for project: intrane
 	at org.eclipse.core.internal.resources.InternalWorkspaceJob.run(InternalWorkspaceJob.java:39)
 	at org.eclipse.core.internal.jobs.Worker.run(Worker.java:55)
 
-!ENTRY org.eclipse.jst.jsf.core 4 0 2017-08-02 16:03:23.522
+!ENTRY org.eclipse.jst.jsf.core 4 0 2017-08-07 10:34:18.919
 !MESSAGE Error creating base name for: messages
 !STACK 0
 java.io.IOException: Bundle messages not found in classpath for project: intranet
@@ -8523,7 +8193,7 @@ java.io.IOException: Bundle messages not found in classpath for project: intrane
 	at org.eclipse.core.internal.resources.InternalWorkspaceJob.run(InternalWorkspaceJob.java:39)
 	at org.eclipse.core.internal.jobs.Worker.run(Worker.java:55)
 
-!ENTRY org.eclipse.jst.jsf.core 4 0 2017-08-02 16:03:23.526
+!ENTRY org.eclipse.jst.jsf.core 4 0 2017-08-07 10:34:18.919
 !MESSAGE Error creating base name for: messages
 !STACK 0
 java.io.IOException: Bundle messages not found in classpath for project: intranet
@@ -8589,7 +8259,7 @@ java.io.IOException: Bundle messages not found in classpath for project: intrane
 	at org.eclipse.core.internal.resources.InternalWorkspaceJob.run(InternalWorkspaceJob.java:39)
 	at org.eclipse.core.internal.jobs.Worker.run(Worker.java:55)
 
-!ENTRY org.eclipse.jst.jsf.core 4 0 2017-08-02 16:03:23.530
+!ENTRY org.eclipse.jst.jsf.core 4 0 2017-08-07 10:34:18.919
 !MESSAGE Error creating base name for: messages
 !STACK 0
 java.io.IOException: Bundle messages not found in classpath for project: intranet
@@ -8655,7 +8325,7 @@ java.io.IOException: Bundle messages not found in classpath for project: intrane
 	at org.eclipse.core.internal.resources.InternalWorkspaceJob.run(InternalWorkspaceJob.java:39)
 	at org.eclipse.core.internal.jobs.Worker.run(Worker.java:55)
 
-!ENTRY org.eclipse.jst.jsf.core 4 0 2017-08-02 16:03:23.534
+!ENTRY org.eclipse.jst.jsf.core 4 0 2017-08-07 10:34:18.935
 !MESSAGE Error creating base name for: messages
 !STACK 0
 java.io.IOException: Bundle messages not found in classpath for project: intranet
@@ -8721,7 +8391,7 @@ java.io.IOException: Bundle messages not found in classpath for project: intrane
 	at org.eclipse.core.internal.resources.InternalWorkspaceJob.run(InternalWorkspaceJob.java:39)
 	at org.eclipse.core.internal.jobs.Worker.run(Worker.java:55)
 
-!ENTRY org.eclipse.jst.jsf.core 4 0 2017-08-02 16:03:23.538
+!ENTRY org.eclipse.jst.jsf.core 4 0 2017-08-07 10:34:18.935
 !MESSAGE Error creating base name for: messages
 !STACK 0
 java.io.IOException: Bundle messages not found in classpath for project: intranet
@@ -8787,7 +8457,7 @@ java.io.IOException: Bundle messages not found in classpath for project: intrane
 	at org.eclipse.core.internal.resources.InternalWorkspaceJob.run(InternalWorkspaceJob.java:39)
 	at org.eclipse.core.internal.jobs.Worker.run(Worker.java:55)
 
-!ENTRY org.eclipse.jst.jsf.core 4 0 2017-08-02 16:03:23.541
+!ENTRY org.eclipse.jst.jsf.core 4 0 2017-08-07 10:34:18.935
 !MESSAGE Error creating base name for: messages
 !STACK 0
 java.io.IOException: Bundle messages not found in classpath for project: intranet
@@ -8853,7 +8523,7 @@ java.io.IOException: Bundle messages not found in classpath for project: intrane
 	at org.eclipse.core.internal.resources.InternalWorkspaceJob.run(InternalWorkspaceJob.java:39)
 	at org.eclipse.core.internal.jobs.Worker.run(Worker.java:55)
 
-!ENTRY org.eclipse.jst.jsf.core 4 0 2017-08-02 16:03:23.545
+!ENTRY org.eclipse.jst.jsf.core 4 0 2017-08-07 10:34:18.935
 !MESSAGE Error creating base name for: messages
 !STACK 0
 java.io.IOException: Bundle messages not found in classpath for project: intranet
@@ -8919,7 +8589,7 @@ java.io.IOException: Bundle messages not found in classpath for project: intrane
 	at org.eclipse.core.internal.resources.InternalWorkspaceJob.run(InternalWorkspaceJob.java:39)
 	at org.eclipse.core.internal.jobs.Worker.run(Worker.java:55)
 
-!ENTRY org.eclipse.jst.jsf.core 4 0 2017-08-02 16:03:23.549
+!ENTRY org.eclipse.jst.jsf.core 4 0 2017-08-07 10:34:18.935
 !MESSAGE Error creating base name for: messages
 !STACK 0
 java.io.IOException: Bundle messages not found in classpath for project: intranet
@@ -8985,7 +8655,7 @@ java.io.IOException: Bundle messages not found in classpath for project: intrane
 	at org.eclipse.core.internal.resources.InternalWorkspaceJob.run(InternalWorkspaceJob.java:39)
 	at org.eclipse.core.internal.jobs.Worker.run(Worker.java:55)
 
-!ENTRY org.eclipse.jst.jsf.core 4 0 2017-08-02 16:03:23.553
+!ENTRY org.eclipse.jst.jsf.core 4 0 2017-08-07 10:34:18.950
 !MESSAGE Error creating base name for: messages
 !STACK 0
 java.io.IOException: Bundle messages not found in classpath for project: intranet
@@ -9051,7 +8721,7 @@ java.io.IOException: Bundle messages not found in classpath for project: intrane
 	at org.eclipse.core.internal.resources.InternalWorkspaceJob.run(InternalWorkspaceJob.java:39)
 	at org.eclipse.core.internal.jobs.Worker.run(Worker.java:55)
 
-!ENTRY org.eclipse.jst.jsf.core 4 0 2017-08-02 16:03:23.557
+!ENTRY org.eclipse.jst.jsf.core 4 0 2017-08-07 10:34:18.950
 !MESSAGE Error creating base name for: messages
 !STACK 0
 java.io.IOException: Bundle messages not found in classpath for project: intranet
@@ -9117,7 +8787,7 @@ java.io.IOException: Bundle messages not found in classpath for project: intrane
 	at org.eclipse.core.internal.resources.InternalWorkspaceJob.run(InternalWorkspaceJob.java:39)
 	at org.eclipse.core.internal.jobs.Worker.run(Worker.java:55)
 
-!ENTRY org.eclipse.jst.jsf.core 4 0 2017-08-02 16:03:23.561
+!ENTRY org.eclipse.jst.jsf.core 4 0 2017-08-07 10:34:18.950
 !MESSAGE Error creating base name for: messages
 !STACK 0
 java.io.IOException: Bundle messages not found in classpath for project: intranet
@@ -9183,7 +8853,7 @@ java.io.IOException: Bundle messages not found in classpath for project: intrane
 	at org.eclipse.core.internal.resources.InternalWorkspaceJob.run(InternalWorkspaceJob.java:39)
 	at org.eclipse.core.internal.jobs.Worker.run(Worker.java:55)
 
-!ENTRY org.eclipse.jst.jsf.core 4 0 2017-08-02 16:03:23.565
+!ENTRY org.eclipse.jst.jsf.core 4 0 2017-08-07 10:34:18.950
 !MESSAGE Error creating base name for: messages
 !STACK 0
 java.io.IOException: Bundle messages not found in classpath for project: intranet
@@ -9249,7 +8919,7 @@ java.io.IOException: Bundle messages not found in classpath for project: intrane
 	at org.eclipse.core.internal.resources.InternalWorkspaceJob.run(InternalWorkspaceJob.java:39)
 	at org.eclipse.core.internal.jobs.Worker.run(Worker.java:55)
 
-!ENTRY org.eclipse.jst.jsf.core 4 0 2017-08-02 16:03:23.569
+!ENTRY org.eclipse.jst.jsf.core 4 0 2017-08-07 10:34:18.950
 !MESSAGE Error creating base name for: messages
 !STACK 0
 java.io.IOException: Bundle messages not found in classpath for project: intranet
@@ -9315,7 +8985,7 @@ java.io.IOException: Bundle messages not found in classpath for project: intrane
 	at org.eclipse.core.internal.resources.InternalWorkspaceJob.run(InternalWorkspaceJob.java:39)
 	at org.eclipse.core.internal.jobs.Worker.run(Worker.java:55)
 
-!ENTRY org.eclipse.jst.jsf.core 4 0 2017-08-02 16:03:23.572
+!ENTRY org.eclipse.jst.jsf.core 4 0 2017-08-07 10:34:18.966
 !MESSAGE Error creating base name for: messages
 !STACK 0
 java.io.IOException: Bundle messages not found in classpath for project: intranet
@@ -9381,7 +9051,7 @@ java.io.IOException: Bundle messages not found in classpath for project: intrane
 	at org.eclipse.core.internal.resources.InternalWorkspaceJob.run(InternalWorkspaceJob.java:39)
 	at org.eclipse.core.internal.jobs.Worker.run(Worker.java:55)
 
-!ENTRY org.eclipse.jst.jsf.core 4 0 2017-08-02 16:03:23.578
+!ENTRY org.eclipse.jst.jsf.core 4 0 2017-08-07 10:34:18.966
 !MESSAGE Error creating base name for: messages
 !STACK 0
 java.io.IOException: Bundle messages not found in classpath for project: intranet
@@ -9447,7 +9117,7 @@ java.io.IOException: Bundle messages not found in classpath for project: intrane
 	at org.eclipse.core.internal.resources.InternalWorkspaceJob.run(InternalWorkspaceJob.java:39)
 	at org.eclipse.core.internal.jobs.Worker.run(Worker.java:55)
 
-!ENTRY org.eclipse.jst.jsf.core 4 0 2017-08-02 16:03:23.582
+!ENTRY org.eclipse.jst.jsf.core 4 0 2017-08-07 10:34:18.966
 !MESSAGE Error creating base name for: messages
 !STACK 0
 java.io.IOException: Bundle messages not found in classpath for project: intranet
@@ -9513,7 +9183,7 @@ java.io.IOException: Bundle messages not found in classpath for project: intrane
 	at org.eclipse.core.internal.resources.InternalWorkspaceJob.run(InternalWorkspaceJob.java:39)
 	at org.eclipse.core.internal.jobs.Worker.run(Worker.java:55)
 
-!ENTRY org.eclipse.jst.jsf.core 4 0 2017-08-02 16:03:23.585
+!ENTRY org.eclipse.jst.jsf.core 4 0 2017-08-07 10:34:18.966
 !MESSAGE Error creating base name for: messages
 !STACK 0
 java.io.IOException: Bundle messages not found in classpath for project: intranet
@@ -9579,7 +9249,7 @@ java.io.IOException: Bundle messages not found in classpath for project: intrane
 	at org.eclipse.core.internal.resources.InternalWorkspaceJob.run(InternalWorkspaceJob.java:39)
 	at org.eclipse.core.internal.jobs.Worker.run(Worker.java:55)
 
-!ENTRY org.eclipse.jst.jsf.core 4 0 2017-08-02 16:03:23.589
+!ENTRY org.eclipse.jst.jsf.core 4 0 2017-08-07 10:34:18.966
 !MESSAGE Error creating base name for: messages
 !STACK 0
 java.io.IOException: Bundle messages not found in classpath for project: intranet
@@ -9645,7 +9315,7 @@ java.io.IOException: Bundle messages not found in classpath for project: intrane
 	at org.eclipse.core.internal.resources.InternalWorkspaceJob.run(InternalWorkspaceJob.java:39)
 	at org.eclipse.core.internal.jobs.Worker.run(Worker.java:55)
 
-!ENTRY org.eclipse.jst.jsf.core 4 0 2017-08-02 16:03:23.593
+!ENTRY org.eclipse.jst.jsf.core 4 0 2017-08-07 10:34:18.981
 !MESSAGE Error creating base name for: messages
 !STACK 0
 java.io.IOException: Bundle messages not found in classpath for project: intranet
@@ -9711,7 +9381,7 @@ java.io.IOException: Bundle messages not found in classpath for project: intrane
 	at org.eclipse.core.internal.resources.InternalWorkspaceJob.run(InternalWorkspaceJob.java:39)
 	at org.eclipse.core.internal.jobs.Worker.run(Worker.java:55)
 
-!ENTRY org.eclipse.jst.jsf.core 4 0 2017-08-02 16:03:23.596
+!ENTRY org.eclipse.jst.jsf.core 4 0 2017-08-07 10:34:18.981
 !MESSAGE Error creating base name for: messages
 !STACK 0
 java.io.IOException: Bundle messages not found in classpath for project: intranet
@@ -9777,7 +9447,7 @@ java.io.IOException: Bundle messages not found in classpath for project: intrane
 	at org.eclipse.core.internal.resources.InternalWorkspaceJob.run(InternalWorkspaceJob.java:39)
 	at org.eclipse.core.internal.jobs.Worker.run(Worker.java:55)
 
-!ENTRY org.eclipse.jst.jsf.core 4 0 2017-08-02 16:03:23.601
+!ENTRY org.eclipse.jst.jsf.core 4 0 2017-08-07 10:34:18.981
 !MESSAGE Error creating base name for: messages
 !STACK 0
 java.io.IOException: Bundle messages not found in classpath for project: intranet
@@ -9843,7 +9513,7 @@ java.io.IOException: Bundle messages not found in classpath for project: intrane
 	at org.eclipse.core.internal.resources.InternalWorkspaceJob.run(InternalWorkspaceJob.java:39)
 	at org.eclipse.core.internal.jobs.Worker.run(Worker.java:55)
 
-!ENTRY org.eclipse.jst.jsf.core 4 0 2017-08-02 16:03:23.604
+!ENTRY org.eclipse.jst.jsf.core 4 0 2017-08-07 10:34:18.981
 !MESSAGE Error creating base name for: messages
 !STACK 0
 java.io.IOException: Bundle messages not found in classpath for project: intranet
@@ -9909,7 +9579,7 @@ java.io.IOException: Bundle messages not found in classpath for project: intrane
 	at org.eclipse.core.internal.resources.InternalWorkspaceJob.run(InternalWorkspaceJob.java:39)
 	at org.eclipse.core.internal.jobs.Worker.run(Worker.java:55)
 
-!ENTRY org.eclipse.jst.jsf.core 4 0 2017-08-02 16:03:23.608
+!ENTRY org.eclipse.jst.jsf.core 4 0 2017-08-07 10:34:18.981
 !MESSAGE Error creating base name for: messages
 !STACK 0
 java.io.IOException: Bundle messages not found in classpath for project: intranet
@@ -9975,7 +9645,7 @@ java.io.IOException: Bundle messages not found in classpath for project: intrane
 	at org.eclipse.core.internal.resources.InternalWorkspaceJob.run(InternalWorkspaceJob.java:39)
 	at org.eclipse.core.internal.jobs.Worker.run(Worker.java:55)
 
-!ENTRY org.eclipse.jst.jsf.core 4 0 2017-08-02 16:03:23.612
+!ENTRY org.eclipse.jst.jsf.core 4 0 2017-08-07 10:34:18.997
 !MESSAGE Error creating base name for: messages
 !STACK 0
 java.io.IOException: Bundle messages not found in classpath for project: intranet
@@ -10041,7 +9711,7 @@ java.io.IOException: Bundle messages not found in classpath for project: intrane
 	at org.eclipse.core.internal.resources.InternalWorkspaceJob.run(InternalWorkspaceJob.java:39)
 	at org.eclipse.core.internal.jobs.Worker.run(Worker.java:55)
 
-!ENTRY org.eclipse.jst.jsf.core 4 0 2017-08-02 16:03:23.616
+!ENTRY org.eclipse.jst.jsf.core 4 0 2017-08-07 10:34:18.997
 !MESSAGE Error creating base name for: messages
 !STACK 0
 java.io.IOException: Bundle messages not found in classpath for project: intranet
@@ -10107,7 +9777,7 @@ java.io.IOException: Bundle messages not found in classpath for project: intrane
 	at org.eclipse.core.internal.resources.InternalWorkspaceJob.run(InternalWorkspaceJob.java:39)
 	at org.eclipse.core.internal.jobs.Worker.run(Worker.java:55)
 
-!ENTRY org.eclipse.jst.jsf.core 4 0 2017-08-02 16:03:23.619
+!ENTRY org.eclipse.jst.jsf.core 4 0 2017-08-07 10:34:18.997
 !MESSAGE Error creating base name for: messages
 !STACK 0
 java.io.IOException: Bundle messages not found in classpath for project: intranet
@@ -10173,7 +9843,7 @@ java.io.IOException: Bundle messages not found in classpath for project: intrane
 	at org.eclipse.core.internal.resources.InternalWorkspaceJob.run(InternalWorkspaceJob.java:39)
 	at org.eclipse.core.internal.jobs.Worker.run(Worker.java:55)
 
-!ENTRY org.eclipse.jst.jsf.core 4 0 2017-08-02 16:03:23.633
+!ENTRY org.eclipse.jst.jsf.core 4 0 2017-08-07 10:34:18.997
 !MESSAGE Error creating base name for: messages
 !STACK 0
 java.io.IOException: Bundle messages not found in classpath for project: intranet
@@ -10186,6 +9856,336 @@ java.io.IOException: Bundle messages not found in classpath for project: intrane
 	at org.eclipse.jst.jsf.designtime.context.AbstractDTExternalContext.getMapForScope(AbstractDTExternalContext.java:46)
 	at org.eclipse.jst.jsf.designtime.context.AbstractDTExternalContext.getRequestMap(AbstractDTExternalContext.java:64)
 	at org.eclipse.jst.jsf.designtime.el.DefaultDTVariableResolver.resolveVariable(DefaultDTVariableResolver.java:67)
+	at org.eclipse.jst.jsf.designtime.internal.symbols.ConfigBasedDTVariableResolver.resolveVariable(ConfigBasedDTVariableResolver.java:108)
+	at org.eclipse.jst.jsf.designtime.resolver.SymbolContextResolver.getVariable(SymbolContextResolver.java:61)
+	at org.eclipse.jst.jsf.validation.internal.el.ASTSemanticValidator.visit(ASTSemanticValidator.java:354)
+	at org.eclipse.jst.jsp.core.internal.java.jspel.ASTValuePrefix.jjtAccept(ASTValuePrefix.java:28)
+	at org.eclipse.jst.jsp.core.internal.java.jspel.SimpleNode.childrenAccept(SimpleNode.java:70)
+	at org.eclipse.jst.jsf.validation.internal.el.ASTSemanticValidator.visit(ASTSemanticValidator.java:324)
+	at org.eclipse.jst.jsp.core.internal.java.jspel.ASTValue.jjtAccept(ASTValue.java:28)
+	at org.eclipse.jst.jsp.core.internal.java.jspel.SimpleNode.childrenAccept(SimpleNode.java:70)
+	at org.eclipse.jst.jsf.validation.internal.el.ASTSemanticValidator.visit(ASTSemanticValidator.java:277)
+	at org.eclipse.jst.jsp.core.internal.java.jspel.ASTUnaryExpression.jjtAccept(ASTUnaryExpression.java:28)
+	at org.eclipse.jst.jsp.core.internal.java.jspel.SimpleNode.childrenAccept(SimpleNode.java:70)
+	at org.eclipse.jst.jsf.validation.internal.el.ASTSemanticValidator.visit(ASTSemanticValidator.java:175)
+	at org.eclipse.jst.jsp.core.internal.java.jspel.ASTExpression.jjtAccept(ASTExpression.java:28)
+	at org.eclipse.jst.jsf.validation.internal.el.ASTSemanticValidator.validate(ASTSemanticValidator.java:109)
+	at org.eclipse.jst.jsf.validation.internal.el.ELExpressionValidator.validateSemantics(ELExpressionValidator.java:183)
+	at org.eclipse.jst.jsf.validation.internal.el.ELExpressionValidator.validateXMLNode(ELExpressionValidator.java:80)
+	at org.eclipse.jst.jsf.validation.internal.strategy.AttributeValidatingStrategy.validateELExpression(AttributeValidatingStrategy.java:367)
+	at org.eclipse.jst.jsf.validation.internal.strategy.AttributeValidatingStrategy.checkIfELAndValidate(AttributeValidatingStrategy.java:275)
+	at org.eclipse.jst.jsf.validation.internal.strategy.AttributeValidatingStrategy.access$0(AttributeValidatingStrategy.java:192)
+	at org.eclipse.jst.jsf.validation.internal.strategy.AttributeValidatingStrategy$1.run(AttributeValidatingStrategy.java:184)
+	at org.eclipse.core.runtime.SafeRunner.run(SafeRunner.java:42)
+	at org.eclipse.jst.jsf.validation.internal.strategy.AttributeValidatingStrategy.validateAttributeValue(AttributeValidatingStrategy.java:168)
+	at org.eclipse.jst.jsf.validation.internal.strategy.AttributeValidatingStrategy.validate(AttributeValidatingStrategy.java:144)
+	at org.eclipse.jst.jsf.validation.internal.XMLViewDefnValidator.validateTag(XMLViewDefnValidator.java:99)
+	at org.eclipse.jst.jsf.validation.internal.XMLViewDefnValidator.validateRegions(XMLViewDefnValidator.java:177)
+	at org.eclipse.jst.jsf.validation.internal.XMLViewDefnValidator.validateView(XMLViewDefnValidator.java:134)
+	at org.eclipse.jst.jsf.facelet.ui.internal.validation.DefaultFaceletValidationStrategy.doValidate(DefaultFaceletValidationStrategy.java:42)
+	at org.eclipse.jst.jsf.facelet.ui.internal.validation.AbstractFaceletValidationStrategy.validateFile(AbstractFaceletValidationStrategy.java:96)
+	at org.eclipse.jst.jsf.facelet.ui.internal.validation.HTMLValidator.validate(HTMLValidator.java:57)
+	at org.eclipse.wst.validation.Validator$V2.validate(Validator.java:1159)
+	at org.eclipse.wst.validation.internal.ValManager.validate(ValManager.java:704)
+	at org.eclipse.wst.validation.internal.ValManager$1.visit(ValManager.java:665)
+	at org.eclipse.wst.validation.internal.ValManager.accept(ValManager.java:783)
+	at org.eclipse.wst.validation.internal.ValManager.validate(ValManager.java:669)
+	at org.eclipse.wst.validation.internal.ValBuilderJob$Visitor.visit(ValBuilderJob.java:299)
+	at org.eclipse.core.internal.resources.Resource$2.visit(Resource.java:120)
+	at org.eclipse.core.internal.resources.Resource$1.visitElement(Resource.java:84)
+	at org.eclipse.core.internal.watson.ElementTreeIterator.doIteration(ElementTreeIterator.java:82)
+	at org.eclipse.core.internal.watson.ElementTreeIterator.doIteration(ElementTreeIterator.java:87)
+	at org.eclipse.core.internal.watson.ElementTreeIterator.doIteration(ElementTreeIterator.java:87)
+	at org.eclipse.core.internal.watson.ElementTreeIterator.doIteration(ElementTreeIterator.java:87)
+	at org.eclipse.core.internal.watson.ElementTreeIterator.doIteration(ElementTreeIterator.java:87)
+	at org.eclipse.core.internal.watson.ElementTreeIterator.iterate(ElementTreeIterator.java:129)
+	at org.eclipse.core.internal.resources.Resource.accept(Resource.java:94)
+	at org.eclipse.core.internal.resources.Resource.accept(Resource.java:52)
+	at org.eclipse.core.internal.resources.Resource.accept(Resource.java:117)
+	at org.eclipse.core.internal.resources.Resource.accept(Resource.java:105)
+	at org.eclipse.wst.validation.internal.ValBuilderJob.fullBuild(ValBuilderJob.java:219)
+	at org.eclipse.wst.validation.internal.ValBuilderJob.run(ValBuilderJob.java:178)
+	at org.eclipse.wst.validation.internal.ValBuilderJob.runInWorkspace(ValBuilderJob.java:126)
+	at org.eclipse.core.internal.resources.InternalWorkspaceJob.run(InternalWorkspaceJob.java:39)
+	at org.eclipse.core.internal.jobs.Worker.run(Worker.java:55)
+
+!ENTRY org.eclipse.jst.jsf.core 4 0 2017-08-07 10:34:19.013
+!MESSAGE Error creating base name for: messages
+!STACK 0
+java.io.IOException: Bundle messages not found in classpath for project: intranet
+	at org.eclipse.jst.jsf.designtime.internal.symbols.ResourceBundleMapSource.createCachedBundleFile(ResourceBundleMapSource.java:235)
+	at org.eclipse.jst.jsf.designtime.internal.symbols.ResourceBundleMapSource.<init>(ResourceBundleMapSource.java:253)
+	at org.eclipse.jst.jsf.designtime.internal.symbols.ResourceBundleMapSourceFactory.getResourceBundleMapSource(ResourceBundleMapSourceFactory.java:44)
+	at org.eclipse.jst.jsf.designtime.internal.symbols.ResourceBundleSymbolSourceProvider.createSymbolForResourceBundle(ResourceBundleSymbolSourceProvider.java:114)
+	at org.eclipse.jst.jsf.designtime.internal.symbols.ResourceBundleSymbolSourceProvider.getSymbols(ResourceBundleSymbolSourceProvider.java:86)
+	at org.eclipse.jst.jsf.designtime.context.DTJSPExternalContext.doGetMapForScope(DTJSPExternalContext.java:87)
+	at org.eclipse.jst.jsf.designtime.context.AbstractDTExternalContext.getMapForScope(AbstractDTExternalContext.java:46)
+	at org.eclipse.jst.jsf.designtime.context.AbstractDTExternalContext.getRequestMap(AbstractDTExternalContext.java:64)
+	at org.eclipse.jst.jsf.designtime.el.DefaultDTVariableResolver.resolveVariable(DefaultDTVariableResolver.java:67)
+	at org.eclipse.jst.jsf.designtime.internal.symbols.ConfigBasedDTVariableResolver.resolveVariable(ConfigBasedDTVariableResolver.java:108)
+	at org.eclipse.jst.jsf.designtime.resolver.SymbolContextResolver.getVariable(SymbolContextResolver.java:61)
+	at org.eclipse.jst.jsf.validation.internal.el.ASTSemanticValidator.visit(ASTSemanticValidator.java:354)
+	at org.eclipse.jst.jsp.core.internal.java.jspel.ASTValuePrefix.jjtAccept(ASTValuePrefix.java:28)
+	at org.eclipse.jst.jsp.core.internal.java.jspel.SimpleNode.childrenAccept(SimpleNode.java:70)
+	at org.eclipse.jst.jsf.validation.internal.el.ASTSemanticValidator.visit(ASTSemanticValidator.java:324)
+	at org.eclipse.jst.jsp.core.internal.java.jspel.ASTValue.jjtAccept(ASTValue.java:28)
+	at org.eclipse.jst.jsp.core.internal.java.jspel.SimpleNode.childrenAccept(SimpleNode.java:70)
+	at org.eclipse.jst.jsf.validation.internal.el.ASTSemanticValidator.visit(ASTSemanticValidator.java:277)
+	at org.eclipse.jst.jsp.core.internal.java.jspel.ASTUnaryExpression.jjtAccept(ASTUnaryExpression.java:28)
+	at org.eclipse.jst.jsp.core.internal.java.jspel.SimpleNode.childrenAccept(SimpleNode.java:70)
+	at org.eclipse.jst.jsf.validation.internal.el.ASTSemanticValidator.visit(ASTSemanticValidator.java:175)
+	at org.eclipse.jst.jsp.core.internal.java.jspel.ASTExpression.jjtAccept(ASTExpression.java:28)
+	at org.eclipse.jst.jsf.validation.internal.el.ASTSemanticValidator.validate(ASTSemanticValidator.java:109)
+	at org.eclipse.jst.jsf.validation.internal.el.ELExpressionValidator.validateSemantics(ELExpressionValidator.java:183)
+	at org.eclipse.jst.jsf.validation.internal.el.ELExpressionValidator.validateXMLNode(ELExpressionValidator.java:80)
+	at org.eclipse.jst.jsf.validation.internal.strategy.AttributeValidatingStrategy.validateELExpression(AttributeValidatingStrategy.java:367)
+	at org.eclipse.jst.jsf.validation.internal.strategy.AttributeValidatingStrategy.checkIfELAndValidate(AttributeValidatingStrategy.java:275)
+	at org.eclipse.jst.jsf.validation.internal.strategy.AttributeValidatingStrategy.access$0(AttributeValidatingStrategy.java:192)
+	at org.eclipse.jst.jsf.validation.internal.strategy.AttributeValidatingStrategy$1.run(AttributeValidatingStrategy.java:184)
+	at org.eclipse.core.runtime.SafeRunner.run(SafeRunner.java:42)
+	at org.eclipse.jst.jsf.validation.internal.strategy.AttributeValidatingStrategy.validateAttributeValue(AttributeValidatingStrategy.java:168)
+	at org.eclipse.jst.jsf.validation.internal.strategy.AttributeValidatingStrategy.validate(AttributeValidatingStrategy.java:144)
+	at org.eclipse.jst.jsf.validation.internal.XMLViewDefnValidator.validateTag(XMLViewDefnValidator.java:99)
+	at org.eclipse.jst.jsf.validation.internal.XMLViewDefnValidator.validateRegions(XMLViewDefnValidator.java:177)
+	at org.eclipse.jst.jsf.validation.internal.XMLViewDefnValidator.validateView(XMLViewDefnValidator.java:134)
+	at org.eclipse.jst.jsf.facelet.ui.internal.validation.DefaultFaceletValidationStrategy.doValidate(DefaultFaceletValidationStrategy.java:42)
+	at org.eclipse.jst.jsf.facelet.ui.internal.validation.AbstractFaceletValidationStrategy.validateFile(AbstractFaceletValidationStrategy.java:96)
+	at org.eclipse.jst.jsf.facelet.ui.internal.validation.HTMLValidator.validate(HTMLValidator.java:57)
+	at org.eclipse.wst.validation.Validator$V2.validate(Validator.java:1159)
+	at org.eclipse.wst.validation.internal.ValManager.validate(ValManager.java:704)
+	at org.eclipse.wst.validation.internal.ValManager$1.visit(ValManager.java:665)
+	at org.eclipse.wst.validation.internal.ValManager.accept(ValManager.java:783)
+	at org.eclipse.wst.validation.internal.ValManager.validate(ValManager.java:669)
+	at org.eclipse.wst.validation.internal.ValBuilderJob$Visitor.visit(ValBuilderJob.java:299)
+	at org.eclipse.core.internal.resources.Resource$2.visit(Resource.java:120)
+	at org.eclipse.core.internal.resources.Resource$1.visitElement(Resource.java:84)
+	at org.eclipse.core.internal.watson.ElementTreeIterator.doIteration(ElementTreeIterator.java:82)
+	at org.eclipse.core.internal.watson.ElementTreeIterator.doIteration(ElementTreeIterator.java:87)
+	at org.eclipse.core.internal.watson.ElementTreeIterator.doIteration(ElementTreeIterator.java:87)
+	at org.eclipse.core.internal.watson.ElementTreeIterator.doIteration(ElementTreeIterator.java:87)
+	at org.eclipse.core.internal.watson.ElementTreeIterator.doIteration(ElementTreeIterator.java:87)
+	at org.eclipse.core.internal.watson.ElementTreeIterator.iterate(ElementTreeIterator.java:129)
+	at org.eclipse.core.internal.resources.Resource.accept(Resource.java:94)
+	at org.eclipse.core.internal.resources.Resource.accept(Resource.java:52)
+	at org.eclipse.core.internal.resources.Resource.accept(Resource.java:117)
+	at org.eclipse.core.internal.resources.Resource.accept(Resource.java:105)
+	at org.eclipse.wst.validation.internal.ValBuilderJob.fullBuild(ValBuilderJob.java:219)
+	at org.eclipse.wst.validation.internal.ValBuilderJob.run(ValBuilderJob.java:178)
+	at org.eclipse.wst.validation.internal.ValBuilderJob.runInWorkspace(ValBuilderJob.java:126)
+	at org.eclipse.core.internal.resources.InternalWorkspaceJob.run(InternalWorkspaceJob.java:39)
+	at org.eclipse.core.internal.jobs.Worker.run(Worker.java:55)
+
+!ENTRY org.eclipse.jst.jsf.core 4 0 2017-08-07 10:34:19.013
+!MESSAGE Error creating base name for: messages
+!STACK 0
+java.io.IOException: Bundle messages not found in classpath for project: intranet
+	at org.eclipse.jst.jsf.designtime.internal.symbols.ResourceBundleMapSource.createCachedBundleFile(ResourceBundleMapSource.java:235)
+	at org.eclipse.jst.jsf.designtime.internal.symbols.ResourceBundleMapSource.<init>(ResourceBundleMapSource.java:253)
+	at org.eclipse.jst.jsf.designtime.internal.symbols.ResourceBundleMapSourceFactory.getResourceBundleMapSource(ResourceBundleMapSourceFactory.java:44)
+	at org.eclipse.jst.jsf.designtime.internal.symbols.ResourceBundleSymbolSourceProvider.createSymbolForResourceBundle(ResourceBundleSymbolSourceProvider.java:114)
+	at org.eclipse.jst.jsf.designtime.internal.symbols.ResourceBundleSymbolSourceProvider.getSymbols(ResourceBundleSymbolSourceProvider.java:86)
+	at org.eclipse.jst.jsf.designtime.context.DTJSPExternalContext.doGetMapForScope(DTJSPExternalContext.java:87)
+	at org.eclipse.jst.jsf.designtime.context.AbstractDTExternalContext.getMapForScope(AbstractDTExternalContext.java:46)
+	at org.eclipse.jst.jsf.designtime.context.AbstractDTExternalContext.getSessionMap(AbstractDTExternalContext.java:72)
+	at org.eclipse.jst.jsf.designtime.el.DefaultDTVariableResolver.resolveVariable(DefaultDTVariableResolver.java:72)
+	at org.eclipse.jst.jsf.designtime.internal.symbols.ConfigBasedDTVariableResolver.resolveVariable(ConfigBasedDTVariableResolver.java:108)
+	at org.eclipse.jst.jsf.designtime.resolver.SymbolContextResolver.getVariable(SymbolContextResolver.java:61)
+	at org.eclipse.jst.jsf.validation.internal.el.ASTSemanticValidator.visit(ASTSemanticValidator.java:354)
+	at org.eclipse.jst.jsp.core.internal.java.jspel.ASTValuePrefix.jjtAccept(ASTValuePrefix.java:28)
+	at org.eclipse.jst.jsp.core.internal.java.jspel.SimpleNode.childrenAccept(SimpleNode.java:70)
+	at org.eclipse.jst.jsf.validation.internal.el.ASTSemanticValidator.visit(ASTSemanticValidator.java:324)
+	at org.eclipse.jst.jsp.core.internal.java.jspel.ASTValue.jjtAccept(ASTValue.java:28)
+	at org.eclipse.jst.jsp.core.internal.java.jspel.SimpleNode.childrenAccept(SimpleNode.java:70)
+	at org.eclipse.jst.jsf.validation.internal.el.ASTSemanticValidator.visit(ASTSemanticValidator.java:277)
+	at org.eclipse.jst.jsp.core.internal.java.jspel.ASTUnaryExpression.jjtAccept(ASTUnaryExpression.java:28)
+	at org.eclipse.jst.jsp.core.internal.java.jspel.SimpleNode.childrenAccept(SimpleNode.java:70)
+	at org.eclipse.jst.jsf.validation.internal.el.ASTSemanticValidator.visit(ASTSemanticValidator.java:175)
+	at org.eclipse.jst.jsp.core.internal.java.jspel.ASTExpression.jjtAccept(ASTExpression.java:28)
+	at org.eclipse.jst.jsf.validation.internal.el.ASTSemanticValidator.validate(ASTSemanticValidator.java:109)
+	at org.eclipse.jst.jsf.validation.internal.el.ELExpressionValidator.validateSemantics(ELExpressionValidator.java:183)
+	at org.eclipse.jst.jsf.validation.internal.el.ELExpressionValidator.validateXMLNode(ELExpressionValidator.java:80)
+	at org.eclipse.jst.jsf.validation.internal.strategy.AttributeValidatingStrategy.validateELExpression(AttributeValidatingStrategy.java:367)
+	at org.eclipse.jst.jsf.validation.internal.strategy.AttributeValidatingStrategy.checkIfELAndValidate(AttributeValidatingStrategy.java:275)
+	at org.eclipse.jst.jsf.validation.internal.strategy.AttributeValidatingStrategy.access$0(AttributeValidatingStrategy.java:192)
+	at org.eclipse.jst.jsf.validation.internal.strategy.AttributeValidatingStrategy$1.run(AttributeValidatingStrategy.java:184)
+	at org.eclipse.core.runtime.SafeRunner.run(SafeRunner.java:42)
+	at org.eclipse.jst.jsf.validation.internal.strategy.AttributeValidatingStrategy.validateAttributeValue(AttributeValidatingStrategy.java:168)
+	at org.eclipse.jst.jsf.validation.internal.strategy.AttributeValidatingStrategy.validate(AttributeValidatingStrategy.java:144)
+	at org.eclipse.jst.jsf.validation.internal.XMLViewDefnValidator.validateTag(XMLViewDefnValidator.java:99)
+	at org.eclipse.jst.jsf.validation.internal.XMLViewDefnValidator.validateRegions(XMLViewDefnValidator.java:177)
+	at org.eclipse.jst.jsf.validation.internal.XMLViewDefnValidator.validateView(XMLViewDefnValidator.java:134)
+	at org.eclipse.jst.jsf.facelet.ui.internal.validation.DefaultFaceletValidationStrategy.doValidate(DefaultFaceletValidationStrategy.java:42)
+	at org.eclipse.jst.jsf.facelet.ui.internal.validation.AbstractFaceletValidationStrategy.validateFile(AbstractFaceletValidationStrategy.java:96)
+	at org.eclipse.jst.jsf.facelet.ui.internal.validation.HTMLValidator.validate(HTMLValidator.java:57)
+	at org.eclipse.wst.validation.Validator$V2.validate(Validator.java:1159)
+	at org.eclipse.wst.validation.internal.ValManager.validate(ValManager.java:704)
+	at org.eclipse.wst.validation.internal.ValManager$1.visit(ValManager.java:665)
+	at org.eclipse.wst.validation.internal.ValManager.accept(ValManager.java:783)
+	at org.eclipse.wst.validation.internal.ValManager.validate(ValManager.java:669)
+	at org.eclipse.wst.validation.internal.ValBuilderJob$Visitor.visit(ValBuilderJob.java:299)
+	at org.eclipse.core.internal.resources.Resource$2.visit(Resource.java:120)
+	at org.eclipse.core.internal.resources.Resource$1.visitElement(Resource.java:84)
+	at org.eclipse.core.internal.watson.ElementTreeIterator.doIteration(ElementTreeIterator.java:82)
+	at org.eclipse.core.internal.watson.ElementTreeIterator.doIteration(ElementTreeIterator.java:87)
+	at org.eclipse.core.internal.watson.ElementTreeIterator.doIteration(ElementTreeIterator.java:87)
+	at org.eclipse.core.internal.watson.ElementTreeIterator.doIteration(ElementTreeIterator.java:87)
+	at org.eclipse.core.internal.watson.ElementTreeIterator.doIteration(ElementTreeIterator.java:87)
+	at org.eclipse.core.internal.watson.ElementTreeIterator.iterate(ElementTreeIterator.java:129)
+	at org.eclipse.core.internal.resources.Resource.accept(Resource.java:94)
+	at org.eclipse.core.internal.resources.Resource.accept(Resource.java:52)
+	at org.eclipse.core.internal.resources.Resource.accept(Resource.java:117)
+	at org.eclipse.core.internal.resources.Resource.accept(Resource.java:105)
+	at org.eclipse.wst.validation.internal.ValBuilderJob.fullBuild(ValBuilderJob.java:219)
+	at org.eclipse.wst.validation.internal.ValBuilderJob.run(ValBuilderJob.java:178)
+	at org.eclipse.wst.validation.internal.ValBuilderJob.runInWorkspace(ValBuilderJob.java:126)
+	at org.eclipse.core.internal.resources.InternalWorkspaceJob.run(InternalWorkspaceJob.java:39)
+	at org.eclipse.core.internal.jobs.Worker.run(Worker.java:55)
+
+!ENTRY org.eclipse.jst.jsf.core 4 0 2017-08-07 10:34:19.013
+!MESSAGE Error creating base name for: messages
+!STACK 0
+java.io.IOException: Bundle messages not found in classpath for project: intranet
+	at org.eclipse.jst.jsf.designtime.internal.symbols.ResourceBundleMapSource.createCachedBundleFile(ResourceBundleMapSource.java:235)
+	at org.eclipse.jst.jsf.designtime.internal.symbols.ResourceBundleMapSource.<init>(ResourceBundleMapSource.java:253)
+	at org.eclipse.jst.jsf.designtime.internal.symbols.ResourceBundleMapSourceFactory.getResourceBundleMapSource(ResourceBundleMapSourceFactory.java:44)
+	at org.eclipse.jst.jsf.designtime.internal.symbols.ResourceBundleSymbolSourceProvider.createSymbolForResourceBundle(ResourceBundleSymbolSourceProvider.java:114)
+	at org.eclipse.jst.jsf.designtime.internal.symbols.ResourceBundleSymbolSourceProvider.getSymbols(ResourceBundleSymbolSourceProvider.java:86)
+	at org.eclipse.jst.jsf.designtime.context.DTJSPExternalContext.doGetMapForScope(DTJSPExternalContext.java:87)
+	at org.eclipse.jst.jsf.designtime.context.AbstractDTExternalContext.getMapForScope(AbstractDTExternalContext.java:46)
+	at org.eclipse.jst.jsf.designtime.context.AbstractDTExternalContext.getSessionMap(AbstractDTExternalContext.java:72)
+	at org.eclipse.jst.jsf.designtime.el.DefaultDTVariableResolver.resolveVariable(DefaultDTVariableResolver.java:72)
+	at org.eclipse.jst.jsf.designtime.internal.symbols.ConfigBasedDTVariableResolver.resolveVariable(ConfigBasedDTVariableResolver.java:108)
+	at org.eclipse.jst.jsf.designtime.resolver.SymbolContextResolver.getVariable(SymbolContextResolver.java:61)
+	at org.eclipse.jst.jsf.validation.internal.el.ASTSemanticValidator.visit(ASTSemanticValidator.java:354)
+	at org.eclipse.jst.jsp.core.internal.java.jspel.ASTValuePrefix.jjtAccept(ASTValuePrefix.java:28)
+	at org.eclipse.jst.jsp.core.internal.java.jspel.SimpleNode.childrenAccept(SimpleNode.java:70)
+	at org.eclipse.jst.jsf.validation.internal.el.ASTSemanticValidator.visit(ASTSemanticValidator.java:324)
+	at org.eclipse.jst.jsp.core.internal.java.jspel.ASTValue.jjtAccept(ASTValue.java:28)
+	at org.eclipse.jst.jsp.core.internal.java.jspel.SimpleNode.childrenAccept(SimpleNode.java:70)
+	at org.eclipse.jst.jsf.validation.internal.el.ASTSemanticValidator.visit(ASTSemanticValidator.java:277)
+	at org.eclipse.jst.jsp.core.internal.java.jspel.ASTUnaryExpression.jjtAccept(ASTUnaryExpression.java:28)
+	at org.eclipse.jst.jsp.core.internal.java.jspel.SimpleNode.childrenAccept(SimpleNode.java:70)
+	at org.eclipse.jst.jsf.validation.internal.el.ASTSemanticValidator.visit(ASTSemanticValidator.java:175)
+	at org.eclipse.jst.jsp.core.internal.java.jspel.ASTExpression.jjtAccept(ASTExpression.java:28)
+	at org.eclipse.jst.jsf.validation.internal.el.ASTSemanticValidator.validate(ASTSemanticValidator.java:109)
+	at org.eclipse.jst.jsf.validation.internal.el.ELExpressionValidator.validateSemantics(ELExpressionValidator.java:183)
+	at org.eclipse.jst.jsf.validation.internal.el.ELExpressionValidator.validateXMLNode(ELExpressionValidator.java:80)
+	at org.eclipse.jst.jsf.validation.internal.strategy.AttributeValidatingStrategy.validateELExpression(AttributeValidatingStrategy.java:367)
+	at org.eclipse.jst.jsf.validation.internal.strategy.AttributeValidatingStrategy.checkIfELAndValidate(AttributeValidatingStrategy.java:275)
+	at org.eclipse.jst.jsf.validation.internal.strategy.AttributeValidatingStrategy.access$0(AttributeValidatingStrategy.java:192)
+	at org.eclipse.jst.jsf.validation.internal.strategy.AttributeValidatingStrategy$1.run(AttributeValidatingStrategy.java:184)
+	at org.eclipse.core.runtime.SafeRunner.run(SafeRunner.java:42)
+	at org.eclipse.jst.jsf.validation.internal.strategy.AttributeValidatingStrategy.validateAttributeValue(AttributeValidatingStrategy.java:168)
+	at org.eclipse.jst.jsf.validation.internal.strategy.AttributeValidatingStrategy.validate(AttributeValidatingStrategy.java:144)
+	at org.eclipse.jst.jsf.validation.internal.XMLViewDefnValidator.validateTag(XMLViewDefnValidator.java:99)
+	at org.eclipse.jst.jsf.validation.internal.XMLViewDefnValidator.validateRegions(XMLViewDefnValidator.java:177)
+	at org.eclipse.jst.jsf.validation.internal.XMLViewDefnValidator.validateView(XMLViewDefnValidator.java:134)
+	at org.eclipse.jst.jsf.facelet.ui.internal.validation.DefaultFaceletValidationStrategy.doValidate(DefaultFaceletValidationStrategy.java:42)
+	at org.eclipse.jst.jsf.facelet.ui.internal.validation.AbstractFaceletValidationStrategy.validateFile(AbstractFaceletValidationStrategy.java:96)
+	at org.eclipse.jst.jsf.facelet.ui.internal.validation.HTMLValidator.validate(HTMLValidator.java:57)
+	at org.eclipse.wst.validation.Validator$V2.validate(Validator.java:1159)
+	at org.eclipse.wst.validation.internal.ValManager.validate(ValManager.java:704)
+	at org.eclipse.wst.validation.internal.ValManager$1.visit(ValManager.java:665)
+	at org.eclipse.wst.validation.internal.ValManager.accept(ValManager.java:783)
+	at org.eclipse.wst.validation.internal.ValManager.validate(ValManager.java:669)
+	at org.eclipse.wst.validation.internal.ValBuilderJob$Visitor.visit(ValBuilderJob.java:299)
+	at org.eclipse.core.internal.resources.Resource$2.visit(Resource.java:120)
+	at org.eclipse.core.internal.resources.Resource$1.visitElement(Resource.java:84)
+	at org.eclipse.core.internal.watson.ElementTreeIterator.doIteration(ElementTreeIterator.java:82)
+	at org.eclipse.core.internal.watson.ElementTreeIterator.doIteration(ElementTreeIterator.java:87)
+	at org.eclipse.core.internal.watson.ElementTreeIterator.doIteration(ElementTreeIterator.java:87)
+	at org.eclipse.core.internal.watson.ElementTreeIterator.doIteration(ElementTreeIterator.java:87)
+	at org.eclipse.core.internal.watson.ElementTreeIterator.doIteration(ElementTreeIterator.java:87)
+	at org.eclipse.core.internal.watson.ElementTreeIterator.iterate(ElementTreeIterator.java:129)
+	at org.eclipse.core.internal.resources.Resource.accept(Resource.java:94)
+	at org.eclipse.core.internal.resources.Resource.accept(Resource.java:52)
+	at org.eclipse.core.internal.resources.Resource.accept(Resource.java:117)
+	at org.eclipse.core.internal.resources.Resource.accept(Resource.java:105)
+	at org.eclipse.wst.validation.internal.ValBuilderJob.fullBuild(ValBuilderJob.java:219)
+	at org.eclipse.wst.validation.internal.ValBuilderJob.run(ValBuilderJob.java:178)
+	at org.eclipse.wst.validation.internal.ValBuilderJob.runInWorkspace(ValBuilderJob.java:126)
+	at org.eclipse.core.internal.resources.InternalWorkspaceJob.run(InternalWorkspaceJob.java:39)
+	at org.eclipse.core.internal.jobs.Worker.run(Worker.java:55)
+
+!ENTRY org.eclipse.jst.jsf.core 4 0 2017-08-07 10:34:19.013
+!MESSAGE Error creating base name for: messages
+!STACK 0
+java.io.IOException: Bundle messages not found in classpath for project: intranet
+	at org.eclipse.jst.jsf.designtime.internal.symbols.ResourceBundleMapSource.createCachedBundleFile(ResourceBundleMapSource.java:235)
+	at org.eclipse.jst.jsf.designtime.internal.symbols.ResourceBundleMapSource.<init>(ResourceBundleMapSource.java:253)
+	at org.eclipse.jst.jsf.designtime.internal.symbols.ResourceBundleMapSourceFactory.getResourceBundleMapSource(ResourceBundleMapSourceFactory.java:44)
+	at org.eclipse.jst.jsf.designtime.internal.symbols.ResourceBundleSymbolSourceProvider.createSymbolForResourceBundle(ResourceBundleSymbolSourceProvider.java:114)
+	at org.eclipse.jst.jsf.designtime.internal.symbols.ResourceBundleSymbolSourceProvider.getSymbols(ResourceBundleSymbolSourceProvider.java:86)
+	at org.eclipse.jst.jsf.designtime.context.DTJSPExternalContext.doGetMapForScope(DTJSPExternalContext.java:87)
+	at org.eclipse.jst.jsf.designtime.context.AbstractDTExternalContext.getMapForScope(AbstractDTExternalContext.java:46)
+	at org.eclipse.jst.jsf.designtime.context.AbstractDTExternalContext.getApplicationMap(AbstractDTExternalContext.java:80)
+	at org.eclipse.jst.jsf.designtime.el.DefaultDTVariableResolver.resolveVariable(DefaultDTVariableResolver.java:77)
+	at org.eclipse.jst.jsf.designtime.internal.symbols.ConfigBasedDTVariableResolver.resolveVariable(ConfigBasedDTVariableResolver.java:108)
+	at org.eclipse.jst.jsf.designtime.resolver.SymbolContextResolver.getVariable(SymbolContextResolver.java:61)
+	at org.eclipse.jst.jsf.validation.internal.el.ASTSemanticValidator.visit(ASTSemanticValidator.java:354)
+	at org.eclipse.jst.jsp.core.internal.java.jspel.ASTValuePrefix.jjtAccept(ASTValuePrefix.java:28)
+	at org.eclipse.jst.jsp.core.internal.java.jspel.SimpleNode.childrenAccept(SimpleNode.java:70)
+	at org.eclipse.jst.jsf.validation.internal.el.ASTSemanticValidator.visit(ASTSemanticValidator.java:324)
+	at org.eclipse.jst.jsp.core.internal.java.jspel.ASTValue.jjtAccept(ASTValue.java:28)
+	at org.eclipse.jst.jsp.core.internal.java.jspel.SimpleNode.childrenAccept(SimpleNode.java:70)
+	at org.eclipse.jst.jsf.validation.internal.el.ASTSemanticValidator.visit(ASTSemanticValidator.java:277)
+	at org.eclipse.jst.jsp.core.internal.java.jspel.ASTUnaryExpression.jjtAccept(ASTUnaryExpression.java:28)
+	at org.eclipse.jst.jsp.core.internal.java.jspel.SimpleNode.childrenAccept(SimpleNode.java:70)
+	at org.eclipse.jst.jsf.validation.internal.el.ASTSemanticValidator.visit(ASTSemanticValidator.java:175)
+	at org.eclipse.jst.jsp.core.internal.java.jspel.ASTExpression.jjtAccept(ASTExpression.java:28)
+	at org.eclipse.jst.jsf.validation.internal.el.ASTSemanticValidator.validate(ASTSemanticValidator.java:109)
+	at org.eclipse.jst.jsf.validation.internal.el.ELExpressionValidator.validateSemantics(ELExpressionValidator.java:183)
+	at org.eclipse.jst.jsf.validation.internal.el.ELExpressionValidator.validateXMLNode(ELExpressionValidator.java:80)
+	at org.eclipse.jst.jsf.validation.internal.strategy.AttributeValidatingStrategy.validateELExpression(AttributeValidatingStrategy.java:367)
+	at org.eclipse.jst.jsf.validation.internal.strategy.AttributeValidatingStrategy.checkIfELAndValidate(AttributeValidatingStrategy.java:275)
+	at org.eclipse.jst.jsf.validation.internal.strategy.AttributeValidatingStrategy.access$0(AttributeValidatingStrategy.java:192)
+	at org.eclipse.jst.jsf.validation.internal.strategy.AttributeValidatingStrategy$1.run(AttributeValidatingStrategy.java:184)
+	at org.eclipse.core.runtime.SafeRunner.run(SafeRunner.java:42)
+	at org.eclipse.jst.jsf.validation.internal.strategy.AttributeValidatingStrategy.validateAttributeValue(AttributeValidatingStrategy.java:168)
+	at org.eclipse.jst.jsf.validation.internal.strategy.AttributeValidatingStrategy.validate(AttributeValidatingStrategy.java:144)
+	at org.eclipse.jst.jsf.validation.internal.XMLViewDefnValidator.validateTag(XMLViewDefnValidator.java:99)
+	at org.eclipse.jst.jsf.validation.internal.XMLViewDefnValidator.validateRegions(XMLViewDefnValidator.java:177)
+	at org.eclipse.jst.jsf.validation.internal.XMLViewDefnValidator.validateView(XMLViewDefnValidator.java:134)
+	at org.eclipse.jst.jsf.facelet.ui.internal.validation.DefaultFaceletValidationStrategy.doValidate(DefaultFaceletValidationStrategy.java:42)
+	at org.eclipse.jst.jsf.facelet.ui.internal.validation.AbstractFaceletValidationStrategy.validateFile(AbstractFaceletValidationStrategy.java:96)
+	at org.eclipse.jst.jsf.facelet.ui.internal.validation.HTMLValidator.validate(HTMLValidator.java:57)
+	at org.eclipse.wst.validation.Validator$V2.validate(Validator.java:1159)
+	at org.eclipse.wst.validation.internal.ValManager.validate(ValManager.java:704)
+	at org.eclipse.wst.validation.internal.ValManager$1.visit(ValManager.java:665)
+	at org.eclipse.wst.validation.internal.ValManager.accept(ValManager.java:783)
+	at org.eclipse.wst.validation.internal.ValManager.validate(ValManager.java:669)
+	at org.eclipse.wst.validation.internal.ValBuilderJob$Visitor.visit(ValBuilderJob.java:299)
+	at org.eclipse.core.internal.resources.Resource$2.visit(Resource.java:120)
+	at org.eclipse.core.internal.resources.Resource$1.visitElement(Resource.java:84)
+	at org.eclipse.core.internal.watson.ElementTreeIterator.doIteration(ElementTreeIterator.java:82)
+	at org.eclipse.core.internal.watson.ElementTreeIterator.doIteration(ElementTreeIterator.java:87)
+	at org.eclipse.core.internal.watson.ElementTreeIterator.doIteration(ElementTreeIterator.java:87)
+	at org.eclipse.core.internal.watson.ElementTreeIterator.doIteration(ElementTreeIterator.java:87)
+	at org.eclipse.core.internal.watson.ElementTreeIterator.doIteration(ElementTreeIterator.java:87)
+	at org.eclipse.core.internal.watson.ElementTreeIterator.iterate(ElementTreeIterator.java:129)
+	at org.eclipse.core.internal.resources.Resource.accept(Resource.java:94)
+	at org.eclipse.core.internal.resources.Resource.accept(Resource.java:52)
+	at org.eclipse.core.internal.resources.Resource.accept(Resource.java:117)
+	at org.eclipse.core.internal.resources.Resource.accept(Resource.java:105)
+	at org.eclipse.wst.validation.internal.ValBuilderJob.fullBuild(ValBuilderJob.java:219)
+	at org.eclipse.wst.validation.internal.ValBuilderJob.run(ValBuilderJob.java:178)
+	at org.eclipse.wst.validation.internal.ValBuilderJob.runInWorkspace(ValBuilderJob.java:126)
+	at org.eclipse.core.internal.resources.InternalWorkspaceJob.run(InternalWorkspaceJob.java:39)
+	at org.eclipse.core.internal.jobs.Worker.run(Worker.java:55)
+
+!ENTRY org.eclipse.jst.jsf.core 4 0 2017-08-07 10:34:19.013
+!MESSAGE Error creating base name for: messages
+!STACK 0
+java.io.IOException: Bundle messages not found in classpath for project: intranet
+	at org.eclipse.jst.jsf.designtime.internal.symbols.ResourceBundleMapSource.createCachedBundleFile(ResourceBundleMapSource.java:235)
+	at org.eclipse.jst.jsf.designtime.internal.symbols.ResourceBundleMapSource.<init>(ResourceBundleMapSource.java:253)
+	at org.eclipse.jst.jsf.designtime.internal.symbols.ResourceBundleMapSourceFactory.getResourceBundleMapSource(ResourceBundleMapSourceFactory.java:44)
+	at org.eclipse.jst.jsf.designtime.internal.symbols.ResourceBundleSymbolSourceProvider.createSymbolForResourceBundle(ResourceBundleSymbolSourceProvider.java:114)
+	at org.eclipse.jst.jsf.designtime.internal.symbols.ResourceBundleSymbolSourceProvider.getSymbols(ResourceBundleSymbolSourceProvider.java:86)
+	at org.eclipse.jst.jsf.designtime.context.DTJSPExternalContext.doGetMapForScope(DTJSPExternalContext.java:87)
+	at org.eclipse.jst.jsf.designtime.context.AbstractDTExternalContext.getMapForScope(AbstractDTExternalContext.java:46)
+	at org.eclipse.jst.jsf.designtime.context.AbstractDTExternalContext.getApplicationMap(AbstractDTExternalContext.java:80)
+	at org.eclipse.jst.jsf.designtime.el.DefaultDTVariableResolver.resolveVariable(DefaultDTVariableResolver.java:77)
 	at org.eclipse.jst.jsf.designtime.internal.symbols.ConfigBasedDTVariableResolver.resolveVariable(ConfigBasedDTVariableResolver.java:108)
 	at org.eclipse.jst.jsf.designtime.resolver.SymbolContextResolver.getVariable(SymbolContextResolver.java:61)
 	at org.eclipse.jst.jsf.validation.internal.el.ASTSemanticValidator.visit(ASTSemanticValidator.java:354)

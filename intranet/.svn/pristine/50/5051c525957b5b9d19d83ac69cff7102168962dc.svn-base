@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="mediaTempoEsperaCarregamento" language="groovy" pageWidth="842" pageHeight="595" orientation="Landscape" columnWidth="802" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="1db44c0f-4faf-42d5-a538-c97ccfe6ea62">
+	<property name="ireport.zoom" value="1.0"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<parameter name="listaTempos" class="java.util.List"/>
+	<queryString>
+		<![CDATA[]]>
+	</queryString>
+	<field name="data" class="java.util.Date"/>
+	<field name="tempoCarregamento" class="java.lang.String"/>
+	<field name="tempoEspera" class="java.lang.String"/>
+	<field name="tempoEsperaMilis" class="java.lang.Long"/>
+	<field name="tempoCarregamentoMilis" class="java.lang.Long"/>
+	<title>
+		<band height="79" splitType="Stretch"/>
+	</title>
+	<summary>
+		<band height="358" splitType="Stretch">
+			<staticText>
+				<reportElement x="242" y="-52" width="330" height="20" uuid="46dd96e1-5d81-481b-a2c8-e76f23054f79"/>
+				<textElement textAlignment="Center">
+					<font fontName="SansSerif" size="12" isBold="true" isStrikeThrough="false"/>
+				</textElement>
+				<text><![CDATA[Média de tempo geral de Espera/Carregamento]]></text>
+			</staticText>
+			<image>
+				<reportElement x="2" y="-78" width="29" height="35" forecolor="#000000" uuid="0052b14c-93a3-4b93-b7df-276472abbc85">
+					<property name="ireport.layer" value="1"/>
+				</reportElement>
+				<imageExpression><![CDATA["http://192.168.2.10/lib/img/logoori.png"]]></imageExpression>
+			</image>
+			<staticText>
+				<reportElement x="280" y="-74" width="255" height="16" uuid="af1b6bcc-61db-4ffc-9618-6817f8f8bf1e"/>
+				<textElement textAlignment="Center">
+					<font fontName="SansSerif" size="12" isBold="true"/>
+				</textElement>
+				<text><![CDATA[REFINARIA NACIONAL DE SAL S.A.]]></text>
+			</staticText>
+			<barChart>
+				<chart isShowLegend="true">
+					<reportElement mode="Transparent" x="2" y="0" width="800" height="358" uuid="a31fa59e-949f-4c87-906c-2898ccbaa836"/>
+					<chartTitle position="Top"/>
+					<chartSubtitle/>
+					<chartLegend position="Right"/>
+				</chart>
+				<categoryDataset>
+					<categorySeries>
+						<seriesExpression><![CDATA["Tempo Carregamento"]]></seriesExpression>
+						<categoryExpression><![CDATA[new SimpleDateFormat("MM/yyyy").format($F{data})]]></categoryExpression>
+						<valueExpression><![CDATA[$F{tempoCarregamentoMilis}/3600000]]></valueExpression>
+						<labelExpression><![CDATA[$F{tempoCarregamento}]]></labelExpression>
+					</categorySeries>
+					<categorySeries>
+						<seriesExpression><![CDATA["Tempo de Espera"]]></seriesExpression>
+						<categoryExpression><![CDATA[new SimpleDateFormat("MM/yyyy").format($F{data})]]></categoryExpression>
+						<valueExpression><![CDATA[$F{tempoEsperaMilis}/3600000]]></valueExpression>
+						<labelExpression><![CDATA[$F{tempoEspera}]]></labelExpression>
+					</categorySeries>
+				</categoryDataset>
+				<barPlot isShowLabels="true" isShowTickLabels="true" isShowTickMarks="true">
+					<plot/>
+					<itemLabel color="#000000"/>
+					<categoryAxisFormat>
+						<axisFormat labelColor="#000000" tickLabelColor="#000000" tickLabelMask="#" axisLineColor="#000000"/>
+					</categoryAxisFormat>
+					<valueAxisFormat>
+						<axisFormat labelColor="#FFFFFF" tickLabelColor="#000000" tickLabelMask="#:'00'" verticalTickLabels="false"/>
+					</valueAxisFormat>
+				</barPlot>
+			</barChart>
+		</band>
+	</summary>
+</jasperReport>

@@ -2304,3 +2304,300 @@ java.lang.NullPointerException: null
 2017-08-02 18:10:57,972 [Worker-78] INFO  o.e.m.c.i.embedder.EclipseLogger - Copying 0 resource
 2017-08-02 18:10:57,972 [Worker-78] WARN  o.e.m.c.i.embedder.EclipseLogger - Using platform encoding (Cp1252 actually) to copy filtered resources, i.e. build is platform dependent!
 2017-08-02 18:10:57,972 [Worker-78] INFO  o.e.m.c.i.embedder.EclipseLogger - Copying 0 resource
+2017-08-04 15:45:50,073 [Worker-3] WARN  o.e.m.c.i.embedder.EclipseLogger - The POM for org.primefaces.themes:sentinel:jar:2.1.2 is missing, no dependency information available
+2017-08-04 15:45:53,585 [Worker-3] WARN  o.e.m.c.i.embedder.EclipseLogger - Using platform encoding (Cp1252 actually) to copy filtered resources, i.e. build is platform dependent!
+2017-08-04 15:45:53,588 [Worker-3] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory C:\eclipse\projetos\intranet\src\main\resources
+2017-08-04 15:45:53,591 [Worker-3] WARN  o.e.m.c.i.embedder.EclipseLogger - Using platform encoding (Cp1252 actually) to copy filtered resources, i.e. build is platform dependent!
+2017-08-04 15:45:53,593 [Worker-3] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory C:\eclipse\projetos\intranet\src\test\resources
+2017-08-04 15:47:15,852 [Worker-2] WARN  o.e.m.c.i.embedder.EclipseLogger - Using platform encoding (Cp1252 actually) to copy filtered resources, i.e. build is platform dependent!
+2017-08-04 15:47:15,855 [Worker-2] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory C:\eclipse\projetos\intranet\src\main\resources
+2017-08-04 15:47:15,856 [Worker-2] WARN  o.e.m.c.i.embedder.EclipseLogger - Using platform encoding (Cp1252 actually) to copy filtered resources, i.e. build is platform dependent!
+2017-08-04 15:47:15,858 [Worker-2] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory C:\eclipse\projetos\intranet\src\test\resources
+2017-08-04 15:47:16,447 [Worker-2] WARN  o.e.m.c.i.embedder.EclipseLogger - Using platform encoding (Cp1252 actually) to copy filtered resources, i.e. build is platform dependent!
+2017-08-04 15:47:16,457 [Worker-2] INFO  o.e.m.c.i.embedder.EclipseLogger - Copying 0 resource
+2017-08-04 15:47:16,460 [Worker-2] WARN  o.e.m.c.i.embedder.EclipseLogger - Using platform encoding (Cp1252 actually) to copy filtered resources, i.e. build is platform dependent!
+2017-08-04 15:47:16,462 [Worker-2] INFO  o.e.m.c.i.embedder.EclipseLogger - Copying 0 resource
+2017-08-04 15:47:17,133 [Worker-2] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2017-08-04 15:47:17,134 [Worker-2] INFO  o.e.m.c.i.embedder.EclipseLogger - Copying 0 resource
+2017-08-04 15:47:17,135 [Worker-2] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2017-08-04 15:47:17,140 [Worker-2] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory C:\eclipse\projetos\sentinel\src\test\resources
+2017-08-07 09:13:40,765 [Worker-0] WARN  o.e.m.c.i.embedder.EclipseLogger - The POM for org.primefaces.themes:sentinel:jar:2.1.2 is missing, no dependency information available
+2017-08-07 09:13:51,975 [Worker-0] WARN  o.e.m.c.i.embedder.EclipseLogger - Using platform encoding (Cp1252 actually) to copy filtered resources, i.e. build is platform dependent!
+2017-08-07 09:13:51,980 [Worker-0] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory C:\eclipse\projetos\intranet\src\main\resources
+2017-08-07 09:13:51,983 [Worker-0] WARN  o.e.m.c.i.embedder.EclipseLogger - Using platform encoding (Cp1252 actually) to copy filtered resources, i.e. build is platform dependent!
+2017-08-07 09:13:51,985 [Worker-0] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory C:\eclipse\projetos\intranet\src\test\resources
+2017-08-07 09:13:55,267 [Worker-2] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2017-08-07 09:13:55,273 [Worker-2] INFO  o.e.m.c.i.embedder.EclipseLogger - Copying 0 resource
+2017-08-07 09:13:55,277 [Worker-2] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2017-08-07 09:13:55,277 [Worker-2] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory C:\eclipse\projetos\sentinel\src\test\resources
+2017-08-07 09:21:21,208 [Worker-15] WARN  o.e.m.c.i.embedder.EclipseLogger - The POM for com.oracle:ojdbc7:jar:12.1.2 is missing, no dependency information available
+2017-08-07 09:24:15,213 [Worker-26] INFO  o.e.m.c.i.p.ProjectConfigurationManager - Update started
+2017-08-07 09:24:16,244 [Worker-26] INFO  o.e.m.c.i.l.LifecycleMappingFactory - Using org.maven.ide.eclipse.wtp.WarLifecycleMapping lifecycle mapping for MavenProject: com.salcisne:intranets:1.0.0-BUILD-SNAPSHOT @ C:\eclipse\projetos\intranet\pom.xml.
+2017-08-07 09:24:16,344 [Worker-26] WARN  o.e.m.c.i.embedder.EclipseLogger - The POM for org.primefaces.themes:sentinel:jar:2.1.2 is missing, no dependency information available
+2017-08-07 09:24:16,758 [Worker-26] WARN  o.e.m.c.i.embedder.EclipseLogger - The POM for org.primefaces.themes:sentinel:jar:2.1.2 is missing, no dependency information available
+2017-08-07 09:24:17,198 [Worker-26] INFO  o.e.m.j.i.AbstractJavaProjectConfigurator - Not adding source folder /intranet/src/main/java because it overlaps with /intranet/src
+2017-08-07 09:24:17,198 [Worker-26] INFO  o.e.m.j.i.AbstractJavaProjectConfigurator - Not adding source folder /intranet/src/test/java because it overlaps with /intranet/src
+2017-08-07 09:24:17,710 [Worker-26] WARN  o.e.m.c.i.embedder.EclipseLogger - The POM for org.primefaces.themes:sentinel:jar:2.1.2 is missing, no dependency information available
+2017-08-07 09:24:18,614 [Worker-26] INFO  o.e.m.w.i.f.ResourceFilteringBuildParticipant - Cleaning filtered folder for intranet
+2017-08-07 09:24:18,624 [Worker-26] INFO  o.e.m.c.i.p.ProjectConfigurationManager - Update completed: 3 sec
+2017-08-07 09:24:23,573 [Worker-26] WARN  o.e.m.c.i.embedder.EclipseLogger - The POM for org.primefaces.themes:sentinel:jar:2.1.2 is missing, no dependency information available
+2017-08-07 09:24:23,653 [Worker-26] WARN  o.e.m.c.i.embedder.EclipseLogger - Using platform encoding (Cp1252 actually) to copy filtered resources, i.e. build is platform dependent!
+2017-08-07 09:24:23,663 [Worker-26] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory C:\eclipse\projetos\intranet\src\main\resources
+2017-08-07 09:24:23,663 [Worker-26] WARN  o.e.m.c.i.embedder.EclipseLogger - Using platform encoding (Cp1252 actually) to copy filtered resources, i.e. build is platform dependent!
+2017-08-07 09:24:23,673 [Worker-26] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory C:\eclipse\projetos\intranet\src\test\resources
+2017-08-07 09:24:23,673 [Worker-26] INFO  o.e.m.w.i.f.ResourceFilteringBuildParticipant - Changed resources require a complete clean of filtered resources of intranet
+2017-08-07 09:24:23,673 [Worker-26] INFO  o.e.m.w.i.f.ResourceFilteringBuildParticipant - Executing resource filtering for intranet
+2017-08-07 09:24:23,683 [Worker-26] WARN  o.e.m.c.i.embedder.EclipseLogger - Using platform encoding (Cp1252 actually) to copy filtered resources, i.e. build is platform dependent!
+2017-08-07 09:26:29,751 [Worker-29] INFO  o.e.m.i.launch.MavenLaunchDelegate - C:\eclipse\projetos\intranet
+2017-08-07 09:26:29,751 [Worker-29] INFO  o.e.m.i.launch.MavenLaunchDelegate -  mvn -B clean
+2017-08-07 09:26:31,681 [Worker-24] WARN  o.e.m.c.i.embedder.EclipseLogger - Using platform encoding (Cp1252 actually) to copy filtered resources, i.e. build is platform dependent!
+2017-08-07 09:26:31,691 [Worker-24] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory C:\eclipse\projetos\intranet\src\main\resources
+2017-08-07 09:26:31,691 [Worker-24] WARN  o.e.m.c.i.embedder.EclipseLogger - Using platform encoding (Cp1252 actually) to copy filtered resources, i.e. build is platform dependent!
+2017-08-07 09:26:31,691 [Worker-24] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory C:\eclipse\projetos\intranet\src\test\resources
+2017-08-07 09:26:31,691 [Worker-24] INFO  o.e.m.w.i.f.ResourceFilteringBuildParticipant - Changed resources require a complete clean of filtered resources of intranet
+2017-08-07 09:26:31,701 [Worker-24] INFO  o.e.m.w.i.f.ResourceFilteringBuildParticipant - Executing resource filtering for intranet
+2017-08-07 09:26:31,711 [Worker-24] WARN  o.e.m.c.i.embedder.EclipseLogger - Using platform encoding (Cp1252 actually) to copy filtered resources, i.e. build is platform dependent!
+2017-08-07 09:46:39,322 [Worker-43] INFO  o.e.m.c.i.e.AbstractTransferListenerAdapter - Downloaded http://repository.primefaces.org/com/sun/faces/jsf-impl/2.1.4/jsf-impl-2.1.4-sources.jar
+2017-08-07 09:46:39,922 [Worker-43] INFO  o.e.m.c.i.e.AbstractTransferListenerAdapter - Downloaded http://maven.springframework.org/milestone/com/sun/faces/jsf-impl/2.1.4/jsf-impl-2.1.4-sources.jar
+2017-08-07 09:46:42,147 [Worker-43] INFO  o.e.m.c.i.e.AbstractTransferListenerAdapter - Downloading https://repo.maven.apache.org/maven2/com/sun/faces/jsf-impl/2.1.4/jsf-impl-2.1.4-sources.jar
+2017-08-07 09:46:43,299 [Worker-43] INFO  o.e.m.c.i.e.AbstractTransferListenerAdapter - Downloaded https://repo.maven.apache.org/maven2/com/sun/faces/jsf-impl/2.1.4/jsf-impl-2.1.4-sources.jar
+2017-08-07 09:46:43,431 [Worker-43] INFO  o.e.m.j.internal.DownloadSourcesJob - Downloaded sources for com.sun.faces:jsf-impl:2.1.4
+2017-08-07 09:46:44,118 [Worker-43] WARN  o.e.m.c.i.embedder.EclipseLogger - Using platform encoding (Cp1252 actually) to copy filtered resources, i.e. build is platform dependent!
+2017-08-07 09:46:44,125 [Worker-43] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory C:\eclipse\projetos\intranet\src\main\resources
+2017-08-07 09:46:44,125 [Worker-43] WARN  o.e.m.c.i.embedder.EclipseLogger - Using platform encoding (Cp1252 actually) to copy filtered resources, i.e. build is platform dependent!
+2017-08-07 09:46:44,135 [Worker-43] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory C:\eclipse\projetos\intranet\src\test\resources
+2017-08-07 09:53:57,676 [Worker-44] INFO  o.e.m.i.launch.MavenLaunchDelegate - C:\eclipse\projetos\intranet
+2017-08-07 09:53:57,676 [Worker-44] INFO  o.e.m.i.launch.MavenLaunchDelegate -  mvn -B clean
+2017-08-07 09:53:59,122 [Worker-46] WARN  o.e.m.c.i.embedder.EclipseLogger - Using platform encoding (Cp1252 actually) to copy filtered resources, i.e. build is platform dependent!
+2017-08-07 09:53:59,132 [Worker-46] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory C:\eclipse\projetos\intranet\src\main\resources
+2017-08-07 09:53:59,142 [Worker-46] WARN  o.e.m.c.i.embedder.EclipseLogger - Using platform encoding (Cp1252 actually) to copy filtered resources, i.e. build is platform dependent!
+2017-08-07 09:53:59,142 [Worker-46] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory C:\eclipse\projetos\intranet\src\test\resources
+2017-08-07 09:53:59,142 [Worker-46] INFO  o.e.m.w.i.f.ResourceFilteringBuildParticipant - Changed resources require a complete clean of filtered resources of intranet
+2017-08-07 09:53:59,152 [Worker-46] INFO  o.e.m.w.i.f.ResourceFilteringBuildParticipant - Executing resource filtering for intranet
+2017-08-07 09:53:59,152 [Worker-46] WARN  o.e.m.c.i.embedder.EclipseLogger - Using platform encoding (Cp1252 actually) to copy filtered resources, i.e. build is platform dependent!
+2017-08-07 09:54:07,109 [Worker-43] INFO  o.e.m.i.launch.MavenLaunchDelegate - C:\eclipse\projetos\intranet
+2017-08-07 09:54:07,109 [Worker-43] INFO  o.e.m.i.launch.MavenLaunchDelegate -  mvn -B install
+2017-08-07 09:54:18,546 [Worker-43] WARN  o.e.m.c.i.embedder.EclipseLogger - Using platform encoding (Cp1252 actually) to copy filtered resources, i.e. build is platform dependent!
+2017-08-07 09:54:18,546 [Worker-43] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory C:\eclipse\projetos\intranet\src\main\resources
+2017-08-07 09:54:18,556 [Worker-43] WARN  o.e.m.c.i.embedder.EclipseLogger - Using platform encoding (Cp1252 actually) to copy filtered resources, i.e. build is platform dependent!
+2017-08-07 09:54:18,556 [Worker-43] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory C:\eclipse\projetos\intranet\src\test\resources
+2017-08-07 09:55:02,777 [Worker-35] INFO  o.e.m.c.i.p.ProjectConfigurationManager - Update started
+2017-08-07 09:55:03,047 [Worker-35] INFO  o.e.m.c.i.l.LifecycleMappingFactory - Using org.maven.ide.eclipse.wtp.WarLifecycleMapping lifecycle mapping for MavenProject: com.salcisne:intranets:1.0.0-BUILD-SNAPSHOT @ C:\eclipse\projetos\intranet\pom.xml.
+2017-08-07 09:55:03,137 [Worker-35] WARN  o.e.m.c.i.embedder.EclipseLogger - The POM for org.primefaces.themes:sentinel:jar:2.1.2 is missing, no dependency information available
+2017-08-07 09:55:03,297 [Worker-35] WARN  o.e.m.c.i.embedder.EclipseLogger - The POM for org.primefaces.themes:sentinel:jar:2.1.2 is missing, no dependency information available
+2017-08-07 09:55:03,637 [Worker-35] INFO  o.e.m.j.i.AbstractJavaProjectConfigurator - Not adding source folder /intranet/src/main/java because it overlaps with /intranet/src
+2017-08-07 09:55:03,647 [Worker-35] INFO  o.e.m.j.i.AbstractJavaProjectConfigurator - Not adding source folder /intranet/src/test/java because it overlaps with /intranet/src
+2017-08-07 09:55:03,907 [Worker-35] WARN  o.e.m.c.i.embedder.EclipseLogger - The POM for org.primefaces.themes:sentinel:jar:2.1.2 is missing, no dependency information available
+2017-08-07 09:55:04,483 [Worker-35] INFO  o.e.m.w.i.f.ResourceFilteringBuildParticipant - Cleaning filtered folder for intranet
+2017-08-07 09:55:04,493 [Worker-35] INFO  o.e.m.c.i.p.ProjectConfigurationManager - Update completed: 1 sec
+2017-08-07 09:55:07,208 [Worker-44] WARN  o.e.m.c.i.embedder.EclipseLogger - The POM for org.primefaces.themes:sentinel:jar:2.1.2 is missing, no dependency information available
+2017-08-07 09:55:07,350 [Worker-44] WARN  o.e.m.c.i.embedder.EclipseLogger - Using platform encoding (Cp1252 actually) to copy filtered resources, i.e. build is platform dependent!
+2017-08-07 09:55:07,350 [Worker-44] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory C:\eclipse\projetos\intranet\src\main\resources
+2017-08-07 09:55:07,350 [Worker-44] WARN  o.e.m.c.i.embedder.EclipseLogger - Using platform encoding (Cp1252 actually) to copy filtered resources, i.e. build is platform dependent!
+2017-08-07 09:55:07,350 [Worker-44] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory C:\eclipse\projetos\intranet\src\test\resources
+2017-08-07 09:55:07,350 [Worker-44] INFO  o.e.m.w.i.f.ResourceFilteringBuildParticipant - Changed resources require a complete clean of filtered resources of intranet
+2017-08-07 09:55:07,350 [Worker-44] INFO  o.e.m.w.i.f.ResourceFilteringBuildParticipant - Executing resource filtering for intranet
+2017-08-07 09:55:07,360 [Worker-44] WARN  o.e.m.c.i.embedder.EclipseLogger - Using platform encoding (Cp1252 actually) to copy filtered resources, i.e. build is platform dependent!
+2017-08-07 09:56:25,728 [Worker-49] INFO  o.e.m.i.launch.MavenLaunchDelegate - C:\eclipse\projetos\intranet
+2017-08-07 09:56:25,728 [Worker-49] INFO  o.e.m.i.launch.MavenLaunchDelegate -  mvn -B generate-sources
+2017-08-07 09:56:32,185 [Worker-50] INFO  o.e.m.i.launch.MavenLaunchDelegate - C:\eclipse\projetos\intranet
+2017-08-07 09:56:32,185 [Worker-50] INFO  o.e.m.i.launch.MavenLaunchDelegate -  mvn -B install
+2017-08-07 09:56:37,646 [Worker-35] WARN  o.e.m.c.i.embedder.EclipseLogger - Using platform encoding (Cp1252 actually) to copy filtered resources, i.e. build is platform dependent!
+2017-08-07 09:56:37,646 [Worker-35] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory C:\eclipse\projetos\intranet\src\main\resources
+2017-08-07 09:56:37,656 [Worker-35] WARN  o.e.m.c.i.embedder.EclipseLogger - Using platform encoding (Cp1252 actually) to copy filtered resources, i.e. build is platform dependent!
+2017-08-07 09:56:37,666 [Worker-35] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory C:\eclipse\projetos\intranet\src\test\resources
+2017-08-07 10:00:06,848 [Worker-46] INFO  o.e.m.c.i.l.LifecycleMappingFactory - Using org.maven.ide.eclipse.wtp.WarLifecycleMapping lifecycle mapping for MavenProject: com.salcisne:intranets:1.0.0-BUILD-SNAPSHOT @ C:\eclipse\projetos\intranet\pom.xml.
+2017-08-07 10:00:06,941 [Worker-46] WARN  o.e.m.c.i.embedder.EclipseLogger - The POM for org.primefaces.themes:sentinel:jar:2.1.2 is missing, no dependency information available
+2017-08-07 10:00:07,111 [Worker-46] WARN  o.e.m.c.i.embedder.EclipseLogger - The POM for org.primefaces.themes:sentinel:jar:2.1.2 is missing, no dependency information available
+2017-08-07 10:00:07,320 [Worker-46] WARN  o.e.m.c.i.embedder.EclipseLogger - Using platform encoding (Cp1252 actually) to copy filtered resources, i.e. build is platform dependent!
+2017-08-07 10:00:07,327 [Worker-46] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory C:\eclipse\projetos\intranet\src\main\resources
+2017-08-07 10:00:07,334 [Worker-46] WARN  o.e.m.c.i.embedder.EclipseLogger - Using platform encoding (Cp1252 actually) to copy filtered resources, i.e. build is platform dependent!
+2017-08-07 10:00:07,337 [Worker-46] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory C:\eclipse\projetos\intranet\src\test\resources
+2017-08-07 10:00:07,343 [Worker-46] INFO  o.e.m.w.i.f.ResourceFilteringBuildParticipant - Changed resources require a complete clean of filtered resources of intranet
+2017-08-07 10:00:07,343 [Worker-46] INFO  o.e.m.w.i.f.ResourceFilteringBuildParticipant - Executing resource filtering for intranet
+2017-08-07 10:00:07,345 [Worker-46] WARN  o.e.m.c.i.embedder.EclipseLogger - Using platform encoding (Cp1252 actually) to copy filtered resources, i.e. build is platform dependent!
+2017-08-07 10:00:33,421 [Worker-47] INFO  o.e.m.c.i.p.ProjectConfigurationManager - Update started
+2017-08-07 10:00:33,741 [Worker-47] INFO  o.e.m.c.i.l.LifecycleMappingFactory - Using org.maven.ide.eclipse.wtp.WarLifecycleMapping lifecycle mapping for MavenProject: com.salcisne:intranets:1.0.0-BUILD-SNAPSHOT @ C:\eclipse\projetos\intranet\pom.xml.
+2017-08-07 10:00:33,841 [Worker-47] WARN  o.e.m.c.i.embedder.EclipseLogger - The POM for org.primefaces.themes:sentinel:jar:2.1.2 is missing, no dependency information available
+2017-08-07 10:00:33,997 [Worker-47] WARN  o.e.m.c.i.embedder.EclipseLogger - The POM for org.primefaces.themes:sentinel:jar:2.1.2 is missing, no dependency information available
+2017-08-07 10:00:34,295 [Worker-47] INFO  o.e.m.j.i.AbstractJavaProjectConfigurator - Not adding source folder /intranet/src/main/java because it overlaps with /intranet/src
+2017-08-07 10:00:34,301 [Worker-47] INFO  o.e.m.j.i.AbstractJavaProjectConfigurator - Not adding source folder /intranet/src/test/java because it overlaps with /intranet/src
+2017-08-07 10:00:34,449 [Worker-47] ERROR o.e.m2e.wtp.WTPProjectConfigurator - Unable to configure intranet
+org.eclipse.m2e.wtp.MarkedException: Unable to configure intranet
+	at org.eclipse.m2e.wtp.AbstractProjectConfiguratorDelegate.configureProject(AbstractProjectConfiguratorDelegate.java:98) ~[na:na]
+	at org.eclipse.m2e.wtp.WTPProjectConfigurator.configure(WTPProjectConfigurator.java:68) ~[na:na]
+	at org.eclipse.m2e.core.project.configurator.AbstractLifecycleMapping.configure(AbstractLifecycleMapping.java:120) [org.eclipse.m2e.core_1.7.0.20160603-1933.jar:na]
+	at org.eclipse.m2e.core.internal.project.ProjectConfigurationManager$3.call(ProjectConfigurationManager.java:501) [org.eclipse.m2e.core_1.7.0.20160603-1933.jar:na]
+	at org.eclipse.m2e.core.internal.project.ProjectConfigurationManager$3.call(ProjectConfigurationManager.java:1) [org.eclipse.m2e.core_1.7.0.20160603-1933.jar:na]
+	at org.eclipse.m2e.core.internal.embedder.MavenExecutionContext.executeBare(MavenExecutionContext.java:176) [org.eclipse.m2e.core_1.7.0.20160603-1933.jar:na]
+	at org.eclipse.m2e.core.internal.embedder.MavenExecutionContext.execute(MavenExecutionContext.java:151) [org.eclipse.m2e.core_1.7.0.20160603-1933.jar:na]
+	at org.eclipse.m2e.core.internal.project.ProjectConfigurationManager.updateProjectConfiguration(ProjectConfigurationManager.java:494) [org.eclipse.m2e.core_1.7.0.20160603-1933.jar:na]
+	at org.eclipse.m2e.core.internal.project.ProjectConfigurationManager.updateProjectConfiguration0(ProjectConfigurationManager.java:432) [org.eclipse.m2e.core_1.7.0.20160603-1933.jar:na]
+	at org.eclipse.m2e.core.internal.project.ProjectConfigurationManager$2.call(ProjectConfigurationManager.java:345) [org.eclipse.m2e.core_1.7.0.20160603-1933.jar:na]
+	at org.eclipse.m2e.core.internal.project.ProjectConfigurationManager$2.call(ProjectConfigurationManager.java:1) [org.eclipse.m2e.core_1.7.0.20160603-1933.jar:na]
+	at org.eclipse.m2e.core.internal.embedder.MavenExecutionContext.executeBare(MavenExecutionContext.java:176) [org.eclipse.m2e.core_1.7.0.20160603-1933.jar:na]
+	at org.eclipse.m2e.core.internal.embedder.MavenExecutionContext.execute(MavenExecutionContext.java:151) [org.eclipse.m2e.core_1.7.0.20160603-1933.jar:na]
+	at org.eclipse.m2e.core.internal.embedder.MavenExecutionContext.execute(MavenExecutionContext.java:99) [org.eclipse.m2e.core_1.7.0.20160603-1933.jar:na]
+	at org.eclipse.m2e.core.internal.embedder.MavenImpl.execute(MavenImpl.java:1351) [org.eclipse.m2e.core_1.7.0.20160603-1933.jar:na]
+	at org.eclipse.m2e.core.internal.project.ProjectConfigurationManager.updateProjectConfiguration(ProjectConfigurationManager.java:342) [org.eclipse.m2e.core_1.7.0.20160603-1933.jar:na]
+	at org.eclipse.m2e.core.ui.internal.UpdateMavenProjectJob.runInWorkspace(UpdateMavenProjectJob.java:77) [org.eclipse.m2e.core.ui_1.7.0.20160603-1933.jar:na]
+	at org.eclipse.core.internal.resources.InternalWorkspaceJob.run(InternalWorkspaceJob.java:39) [org.eclipse.core.resources_3.11.1.v20161107-2032.jar:na]
+	at org.eclipse.core.internal.jobs.Worker.run(Worker.java:55) [org.eclipse.core.jobs_3.8.0.v20160509-0411.jar:na]
+Caused by: org.eclipse.core.runtime.CoreException: One or more constraints have not been satisfied.
+	at org.eclipse.wst.common.project.facet.core.internal.FacetedProject.modifyInternal(FacetedProject.java:363) ~[na:na]
+	at org.eclipse.wst.common.project.facet.core.internal.FacetedProject.mergeChangesInternal(FacetedProject.java:1181) ~[na:na]
+	at org.eclipse.wst.common.project.facet.core.internal.FacetedProject.access$2(FacetedProject.java:1117) ~[na:na]
+	at org.eclipse.wst.common.project.facet.core.internal.FacetedProject$1.run(FacetedProject.java:324) ~[na:na]
+	at org.eclipse.core.internal.resources.Workspace.run(Workspace.java:2240) ~[org.eclipse.core.resources_3.11.1.v20161107-2032.jar:na]
+	at org.eclipse.core.internal.resources.Workspace.run(Workspace.java:2267) ~[org.eclipse.core.resources_3.11.1.v20161107-2032.jar:na]
+	at org.eclipse.wst.common.project.facet.core.internal.FacetedProject.modify(FacetedProject.java:339) ~[na:na]
+	at org.eclipse.m2e.wtp.WebProjectConfiguratorDelegate.configure(WebProjectConfiguratorDelegate.java:136) ~[na:na]
+	at org.eclipse.m2e.wtp.AbstractProjectConfiguratorDelegate.configureProject(AbstractProjectConfiguratorDelegate.java:94) ~[na:na]
+	... 18 common frames omitted
+2017-08-07 10:00:34,549 [Worker-47] WARN  o.e.m.c.i.embedder.EclipseLogger - The POM for org.primefaces.themes:sentinel:jar:2.1.2 is missing, no dependency information available
+2017-08-07 10:00:35,289 [Worker-47] INFO  o.e.m.w.i.f.ResourceFilteringBuildParticipant - Cleaning filtered folder for intranet
+2017-08-07 10:00:35,301 [Worker-47] INFO  o.e.m.c.i.p.ProjectConfigurationManager - Update completed: 1 sec
+2017-08-07 10:00:39,024 [Worker-58] WARN  o.e.m.c.i.embedder.EclipseLogger - The POM for org.primefaces.themes:sentinel:jar:2.1.2 is missing, no dependency information available
+2017-08-07 10:00:39,126 [Worker-58] WARN  o.e.m.c.i.embedder.EclipseLogger - Using platform encoding (Cp1252 actually) to copy filtered resources, i.e. build is platform dependent!
+2017-08-07 10:00:39,134 [Worker-58] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory C:\eclipse\projetos\intranet\src\main\resources
+2017-08-07 10:00:39,140 [Worker-58] WARN  o.e.m.c.i.embedder.EclipseLogger - Using platform encoding (Cp1252 actually) to copy filtered resources, i.e. build is platform dependent!
+2017-08-07 10:00:39,146 [Worker-58] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory C:\eclipse\projetos\intranet\src\test\resources
+2017-08-07 10:00:39,151 [Worker-58] INFO  o.e.m.w.i.f.ResourceFilteringBuildParticipant - Changed resources require a complete clean of filtered resources of intranet
+2017-08-07 10:00:39,151 [Worker-58] INFO  o.e.m.w.i.f.ResourceFilteringBuildParticipant - Executing resource filtering for intranet
+2017-08-07 10:00:39,159 [Worker-58] WARN  o.e.m.c.i.embedder.EclipseLogger - Using platform encoding (Cp1252 actually) to copy filtered resources, i.e. build is platform dependent!
+2017-08-07 10:03:33,633 [Worker-44] INFO  o.e.m.i.launch.MavenLaunchDelegate - C:\eclipse\projetos\intranet
+2017-08-07 10:03:33,633 [Worker-44] INFO  o.e.m.i.launch.MavenLaunchDelegate -  mvn -B generate-sources
+2017-08-07 10:03:41,905 [Worker-46] INFO  o.e.m.i.launch.MavenLaunchDelegate - C:\eclipse\projetos\intranet
+2017-08-07 10:03:41,905 [Worker-46] INFO  o.e.m.i.launch.MavenLaunchDelegate -  mvn -B install
+2017-08-07 10:03:52,907 [Worker-44] WARN  o.e.m.c.i.embedder.EclipseLogger - Using platform encoding (Cp1252 actually) to copy filtered resources, i.e. build is platform dependent!
+2017-08-07 10:03:52,909 [Worker-44] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory C:\eclipse\projetos\intranet\src\main\resources
+2017-08-07 10:03:52,910 [Worker-44] WARN  o.e.m.c.i.embedder.EclipseLogger - Using platform encoding (Cp1252 actually) to copy filtered resources, i.e. build is platform dependent!
+2017-08-07 10:03:52,917 [Worker-44] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory C:\eclipse\projetos\intranet\src\test\resources
+2017-08-07 10:07:25,047 [Worker-44] INFO  o.e.m.i.launch.MavenLaunchDelegate - C:\eclipse\projetos\intranet
+2017-08-07 10:07:25,053 [Worker-44] INFO  o.e.m.i.launch.MavenLaunchDelegate -  mvn -B clean
+2017-08-07 10:07:27,239 [Worker-60] WARN  o.e.m.c.i.embedder.EclipseLogger - Using platform encoding (Cp1252 actually) to copy filtered resources, i.e. build is platform dependent!
+2017-08-07 10:07:27,247 [Worker-60] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory C:\eclipse\projetos\intranet\src\main\resources
+2017-08-07 10:07:27,253 [Worker-60] WARN  o.e.m.c.i.embedder.EclipseLogger - Using platform encoding (Cp1252 actually) to copy filtered resources, i.e. build is platform dependent!
+2017-08-07 10:07:27,264 [Worker-60] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory C:\eclipse\projetos\intranet\src\test\resources
+2017-08-07 10:07:27,265 [Worker-60] INFO  o.e.m.w.i.f.ResourceFilteringBuildParticipant - Changed resources require a complete clean of filtered resources of intranet
+2017-08-07 10:07:27,271 [Worker-60] INFO  o.e.m.w.i.f.ResourceFilteringBuildParticipant - Executing resource filtering for intranet
+2017-08-07 10:07:27,274 [Worker-60] WARN  o.e.m.c.i.embedder.EclipseLogger - Using platform encoding (Cp1252 actually) to copy filtered resources, i.e. build is platform dependent!
+2017-08-07 10:09:33,769 [Worker-62] INFO  o.e.m.i.launch.MavenLaunchDelegate - C:\eclipse\projetos\intranet
+2017-08-07 10:09:33,769 [Worker-62] INFO  o.e.m.i.launch.MavenLaunchDelegate -  mvn -B generate-sources
+2017-08-07 10:09:39,943 [Worker-60] INFO  o.e.m.i.launch.MavenLaunchDelegate - C:\eclipse\projetos\intranet
+2017-08-07 10:09:39,943 [Worker-60] INFO  o.e.m.i.launch.MavenLaunchDelegate -  mvn -B install
+2017-08-07 10:09:48,597 [Worker-51] WARN  o.e.m.c.i.embedder.EclipseLogger - Using platform encoding (Cp1252 actually) to copy filtered resources, i.e. build is platform dependent!
+2017-08-07 10:09:48,599 [Worker-51] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory C:\eclipse\projetos\intranet\src\main\resources
+2017-08-07 10:09:48,607 [Worker-51] WARN  o.e.m.c.i.embedder.EclipseLogger - Using platform encoding (Cp1252 actually) to copy filtered resources, i.e. build is platform dependent!
+2017-08-07 10:09:48,609 [Worker-51] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory C:\eclipse\projetos\intranet\src\test\resources
+2017-08-07 10:29:43,157 [Worker-72] INFO  o.e.m.c.i.p.ProjectConfigurationManager - Update started
+2017-08-07 10:29:43,422 [Worker-72] INFO  o.e.m.c.i.l.LifecycleMappingFactory - Using org.maven.ide.eclipse.wtp.WarLifecycleMapping lifecycle mapping for MavenProject: com.salcisne:intranets:1.0.0-BUILD-SNAPSHOT @ C:\eclipse\projetos\intranet\pom.xml.
+2017-08-07 10:29:45,746 [Worker-72] INFO  o.e.m.c.i.e.AbstractTransferListenerAdapter - Downloaded http://repository.primefaces.org/org/primefaces/themes/sentinel/2.1.2/sentinel-2.1.2.pom
+2017-08-07 10:29:46,355 [Worker-72] INFO  o.e.m.c.i.e.AbstractTransferListenerAdapter - Downloaded http://maven.springframework.org/milestone/org/primefaces/themes/sentinel/2.1.2/sentinel-2.1.2.pom
+2017-08-07 10:29:48,227 [Worker-72] INFO  o.e.m.c.i.e.AbstractTransferListenerAdapter - Downloaded https://repo.maven.apache.org/maven2/org/primefaces/themes/sentinel/2.1.2/sentinel-2.1.2.pom
+2017-08-07 10:29:48,227 [Worker-72] WARN  o.e.m.c.i.embedder.EclipseLogger - The POM for org.primefaces.themes:sentinel:jar:2.1.2 is missing, no dependency information available
+2017-08-07 10:29:48,336 [Worker-72] INFO  o.e.m.c.i.l.LifecycleMappingFactory - Using org.maven.ide.eclipse.wtp.WarLifecycleMapping lifecycle mapping for MavenProject: org.primefaces:sentinel:1.3 @ C:\eclipse\projetos\sentinel\pom.xml.
+2017-08-07 10:29:48,742 [Worker-72] WARN  o.e.m.c.i.embedder.EclipseLogger - The POM for org.primefaces.themes:sentinel:jar:2.1.2 is missing, no dependency information available
+2017-08-07 10:29:49,163 [Worker-72] INFO  o.e.m.j.i.AbstractJavaProjectConfigurator - Not adding source folder /intranet/src/main/java because it overlaps with /intranet/src
+2017-08-07 10:29:49,163 [Worker-72] INFO  o.e.m.j.i.AbstractJavaProjectConfigurator - Not adding source folder /intranet/src/test/java because it overlaps with /intranet/src
+2017-08-07 10:29:49,256 [Worker-72] ERROR o.e.m2e.wtp.WTPProjectConfigurator - Unable to configure intranet
+org.eclipse.m2e.wtp.MarkedException: Unable to configure intranet
+	at org.eclipse.m2e.wtp.AbstractProjectConfiguratorDelegate.configureProject(AbstractProjectConfiguratorDelegate.java:98) ~[na:na]
+	at org.eclipse.m2e.wtp.WTPProjectConfigurator.configure(WTPProjectConfigurator.java:68) ~[na:na]
+	at org.eclipse.m2e.core.project.configurator.AbstractLifecycleMapping.configure(AbstractLifecycleMapping.java:120) [org.eclipse.m2e.core_1.7.0.20160603-1933.jar:na]
+	at org.eclipse.m2e.core.internal.project.ProjectConfigurationManager$3.call(ProjectConfigurationManager.java:501) [org.eclipse.m2e.core_1.7.0.20160603-1933.jar:na]
+	at org.eclipse.m2e.core.internal.project.ProjectConfigurationManager$3.call(ProjectConfigurationManager.java:1) [org.eclipse.m2e.core_1.7.0.20160603-1933.jar:na]
+	at org.eclipse.m2e.core.internal.embedder.MavenExecutionContext.executeBare(MavenExecutionContext.java:176) [org.eclipse.m2e.core_1.7.0.20160603-1933.jar:na]
+	at org.eclipse.m2e.core.internal.embedder.MavenExecutionContext.execute(MavenExecutionContext.java:151) [org.eclipse.m2e.core_1.7.0.20160603-1933.jar:na]
+	at org.eclipse.m2e.core.internal.project.ProjectConfigurationManager.updateProjectConfiguration(ProjectConfigurationManager.java:494) [org.eclipse.m2e.core_1.7.0.20160603-1933.jar:na]
+	at org.eclipse.m2e.core.internal.project.ProjectConfigurationManager.updateProjectConfiguration0(ProjectConfigurationManager.java:432) [org.eclipse.m2e.core_1.7.0.20160603-1933.jar:na]
+	at org.eclipse.m2e.core.internal.project.ProjectConfigurationManager$2.call(ProjectConfigurationManager.java:345) [org.eclipse.m2e.core_1.7.0.20160603-1933.jar:na]
+	at org.eclipse.m2e.core.internal.project.ProjectConfigurationManager$2.call(ProjectConfigurationManager.java:1) [org.eclipse.m2e.core_1.7.0.20160603-1933.jar:na]
+	at org.eclipse.m2e.core.internal.embedder.MavenExecutionContext.executeBare(MavenExecutionContext.java:176) [org.eclipse.m2e.core_1.7.0.20160603-1933.jar:na]
+	at org.eclipse.m2e.core.internal.embedder.MavenExecutionContext.execute(MavenExecutionContext.java:151) [org.eclipse.m2e.core_1.7.0.20160603-1933.jar:na]
+	at org.eclipse.m2e.core.internal.embedder.MavenExecutionContext.execute(MavenExecutionContext.java:99) [org.eclipse.m2e.core_1.7.0.20160603-1933.jar:na]
+	at org.eclipse.m2e.core.internal.embedder.MavenImpl.execute(MavenImpl.java:1351) [org.eclipse.m2e.core_1.7.0.20160603-1933.jar:na]
+	at org.eclipse.m2e.core.internal.project.ProjectConfigurationManager.updateProjectConfiguration(ProjectConfigurationManager.java:342) [org.eclipse.m2e.core_1.7.0.20160603-1933.jar:na]
+	at org.eclipse.m2e.core.ui.internal.UpdateMavenProjectJob.runInWorkspace(UpdateMavenProjectJob.java:77) [org.eclipse.m2e.core.ui_1.7.0.20160603-1933.jar:na]
+	at org.eclipse.core.internal.resources.InternalWorkspaceJob.run(InternalWorkspaceJob.java:39) [org.eclipse.core.resources_3.11.1.v20161107-2032.jar:na]
+	at org.eclipse.core.internal.jobs.Worker.run(Worker.java:55) [org.eclipse.core.jobs_3.8.0.v20160509-0411.jar:na]
+Caused by: org.eclipse.core.runtime.CoreException: One or more constraints have not been satisfied.
+	at org.eclipse.wst.common.project.facet.core.internal.FacetedProject.modifyInternal(FacetedProject.java:363) ~[na:na]
+	at org.eclipse.wst.common.project.facet.core.internal.FacetedProject.mergeChangesInternal(FacetedProject.java:1181) ~[na:na]
+	at org.eclipse.wst.common.project.facet.core.internal.FacetedProject.access$2(FacetedProject.java:1117) ~[na:na]
+	at org.eclipse.wst.common.project.facet.core.internal.FacetedProject$1.run(FacetedProject.java:324) ~[na:na]
+	at org.eclipse.core.internal.resources.Workspace.run(Workspace.java:2240) ~[org.eclipse.core.resources_3.11.1.v20161107-2032.jar:na]
+	at org.eclipse.core.internal.resources.Workspace.run(Workspace.java:2267) ~[org.eclipse.core.resources_3.11.1.v20161107-2032.jar:na]
+	at org.eclipse.wst.common.project.facet.core.internal.FacetedProject.modify(FacetedProject.java:339) ~[na:na]
+	at org.eclipse.m2e.wtp.WebProjectConfiguratorDelegate.configure(WebProjectConfiguratorDelegate.java:136) ~[na:na]
+	at org.eclipse.m2e.wtp.AbstractProjectConfiguratorDelegate.configureProject(AbstractProjectConfiguratorDelegate.java:94) ~[na:na]
+	... 18 common frames omitted
+2017-08-07 10:29:49,350 [Worker-72] WARN  o.e.m.c.i.embedder.EclipseLogger - The POM for org.primefaces.themes:sentinel:jar:2.1.2 is missing, no dependency information available
+2017-08-07 10:29:49,880 [Worker-72] INFO  o.e.m.w.i.f.ResourceFilteringBuildParticipant - Cleaning filtered folder for intranet
+2017-08-07 10:29:49,896 [Worker-72] INFO  o.e.m.c.i.p.ProjectConfigurationManager - Update completed: 6 sec
+2017-08-07 10:29:52,362 [Worker-44] WARN  o.e.m.c.i.embedder.EclipseLogger - The POM for org.primefaces.themes:sentinel:jar:2.1.2 is missing, no dependency information available
+2017-08-07 10:29:52,549 [Worker-44] WARN  o.e.m.c.i.embedder.EclipseLogger - Using platform encoding (Cp1252 actually) to copy filtered resources, i.e. build is platform dependent!
+2017-08-07 10:29:52,565 [Worker-44] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory C:\eclipse\projetos\intranet\src\main\resources
+2017-08-07 10:29:52,565 [Worker-44] WARN  o.e.m.c.i.embedder.EclipseLogger - Using platform encoding (Cp1252 actually) to copy filtered resources, i.e. build is platform dependent!
+2017-08-07 10:29:52,565 [Worker-44] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory C:\eclipse\projetos\intranet\src\test\resources
+2017-08-07 10:29:52,565 [Worker-44] INFO  o.e.m.w.i.f.ResourceFilteringBuildParticipant - Changed resources require a complete clean of filtered resources of intranet
+2017-08-07 10:29:52,565 [Worker-44] INFO  o.e.m.w.i.f.ResourceFilteringBuildParticipant - Executing resource filtering for intranet
+2017-08-07 10:29:52,565 [Worker-44] WARN  o.e.m.c.i.embedder.EclipseLogger - Using platform encoding (Cp1252 actually) to copy filtered resources, i.e. build is platform dependent!
+2017-08-07 10:29:52,830 [Worker-73] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2017-08-07 10:29:52,830 [Worker-73] INFO  o.e.m.c.i.embedder.EclipseLogger - Copying 0 resource
+2017-08-07 10:29:52,830 [Worker-73] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2017-08-07 10:29:52,830 [Worker-73] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory C:\eclipse\projetos\sentinel\src\test\resources
+2017-08-07 10:31:15,350 [Worker-65] INFO  o.e.m.i.launch.MavenLaunchDelegate - C:\eclipse\projetos\intranet
+2017-08-07 10:31:15,350 [Worker-65] INFO  o.e.m.i.launch.MavenLaunchDelegate -  mvn -B install
+2017-08-07 10:31:23,767 [Worker-68] WARN  o.e.m.c.i.embedder.EclipseLogger - Using platform encoding (Cp1252 actually) to copy filtered resources, i.e. build is platform dependent!
+2017-08-07 10:31:23,767 [Worker-68] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory C:\eclipse\projetos\intranet\src\main\resources
+2017-08-07 10:31:23,767 [Worker-68] WARN  o.e.m.c.i.embedder.EclipseLogger - Using platform encoding (Cp1252 actually) to copy filtered resources, i.e. build is platform dependent!
+2017-08-07 10:31:23,767 [Worker-68] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory C:\eclipse\projetos\intranet\src\test\resources
+2017-08-07 10:33:23,873 [Worker-69] INFO  o.e.m.c.i.l.LifecycleMappingFactory - Using org.maven.ide.eclipse.wtp.WarLifecycleMapping lifecycle mapping for MavenProject: com.salcisne:intranets:1.0.0-BUILD-SNAPSHOT @ C:\eclipse\projetos\intranet\pom.xml.
+2017-08-07 10:33:23,966 [Worker-69] WARN  o.e.m.c.i.embedder.EclipseLogger - The POM for org.primefaces.themes:sentinel:jar:2.1.2 is missing, no dependency information available
+2017-08-07 10:33:24,122 [Worker-69] WARN  o.e.m.c.i.embedder.EclipseLogger - The POM for org.primefaces.themes:sentinel:jar:2.1.2 is missing, no dependency information available
+2017-08-07 10:33:24,341 [Worker-69] WARN  o.e.m.c.i.embedder.EclipseLogger - Using platform encoding (Cp1252 actually) to copy filtered resources, i.e. build is platform dependent!
+2017-08-07 10:33:24,341 [Worker-69] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory C:\eclipse\projetos\intranet\src\main\resources
+2017-08-07 10:33:24,356 [Worker-69] WARN  o.e.m.c.i.embedder.EclipseLogger - Using platform encoding (Cp1252 actually) to copy filtered resources, i.e. build is platform dependent!
+2017-08-07 10:33:24,356 [Worker-69] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory C:\eclipse\projetos\intranet\src\test\resources
+2017-08-07 10:33:24,356 [Worker-69] INFO  o.e.m.w.i.f.ResourceFilteringBuildParticipant - Changed resources require a complete clean of filtered resources of intranet
+2017-08-07 10:33:24,356 [Worker-69] INFO  o.e.m.w.i.f.ResourceFilteringBuildParticipant - Executing resource filtering for intranet
+2017-08-07 10:33:24,356 [Worker-69] WARN  o.e.m.c.i.embedder.EclipseLogger - Using platform encoding (Cp1252 actually) to copy filtered resources, i.e. build is platform dependent!
+2017-08-07 10:33:32,094 [Worker-69] INFO  o.e.m.c.i.p.ProjectConfigurationManager - Update started
+2017-08-07 10:33:32,281 [Worker-69] INFO  o.e.m.c.i.l.LifecycleMappingFactory - Using org.maven.ide.eclipse.wtp.WarLifecycleMapping lifecycle mapping for MavenProject: com.salcisne:intranets:1.0.0-BUILD-SNAPSHOT @ C:\eclipse\projetos\intranet\pom.xml.
+2017-08-07 10:33:32,375 [Worker-69] WARN  o.e.m.c.i.embedder.EclipseLogger - The POM for org.primefaces.themes:sentinel:jar:2.1.2 is missing, no dependency information available
+2017-08-07 10:33:32,578 [Worker-69] WARN  o.e.m.c.i.embedder.EclipseLogger - The POM for org.primefaces.themes:sentinel:jar:2.1.2 is missing, no dependency information available
+2017-08-07 10:33:32,874 [Worker-69] INFO  o.e.m.j.i.AbstractJavaProjectConfigurator - Not adding source folder /intranet/src/main/java because it overlaps with /intranet/src
+2017-08-07 10:33:32,874 [Worker-69] INFO  o.e.m.j.i.AbstractJavaProjectConfigurator - Not adding source folder /intranet/src/test/java because it overlaps with /intranet/src
+2017-08-07 10:33:33,124 [Worker-69] WARN  o.e.m.c.i.embedder.EclipseLogger - The POM for org.primefaces.themes:sentinel:jar:2.1.2 is missing, no dependency information available
+2017-08-07 10:33:33,810 [Worker-69] INFO  o.e.m.w.i.f.ResourceFilteringBuildParticipant - Cleaning filtered folder for intranet
+2017-08-07 10:33:33,826 [Worker-69] INFO  o.e.m.c.i.p.ProjectConfigurationManager - Update completed: 1 sec
+2017-08-07 10:33:36,613 [Worker-0] WARN  o.e.m.c.i.embedder.EclipseLogger - The POM for org.primefaces.themes:sentinel:jar:2.1.2 is missing, no dependency information available
+2017-08-07 10:33:36,800 [Worker-0] WARN  o.e.m.c.i.embedder.EclipseLogger - Using platform encoding (Cp1252 actually) to copy filtered resources, i.e. build is platform dependent!
+2017-08-07 10:33:36,800 [Worker-0] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory C:\eclipse\projetos\intranet\src\main\resources
+2017-08-07 10:33:36,800 [Worker-0] WARN  o.e.m.c.i.embedder.EclipseLogger - Using platform encoding (Cp1252 actually) to copy filtered resources, i.e. build is platform dependent!
+2017-08-07 10:33:36,815 [Worker-0] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory C:\eclipse\projetos\intranet\src\test\resources
+2017-08-07 10:33:36,815 [Worker-0] INFO  o.e.m.w.i.f.ResourceFilteringBuildParticipant - Changed resources require a complete clean of filtered resources of intranet
+2017-08-07 10:33:36,815 [Worker-0] INFO  o.e.m.w.i.f.ResourceFilteringBuildParticipant - Executing resource filtering for intranet
+2017-08-07 10:33:36,815 [Worker-0] WARN  o.e.m.c.i.embedder.EclipseLogger - Using platform encoding (Cp1252 actually) to copy filtered resources, i.e. build is platform dependent!
+2017-08-07 10:35:52,383 [Worker-70] INFO  o.e.m.i.launch.MavenLaunchDelegate - C:\eclipse\projetos\intranet
+2017-08-07 10:35:52,383 [Worker-70] INFO  o.e.m.i.launch.MavenLaunchDelegate -  mvn -B install
+2017-08-07 10:36:03,374 [Worker-51] WARN  o.e.m.c.i.embedder.EclipseLogger - Using platform encoding (Cp1252 actually) to copy filtered resources, i.e. build is platform dependent!
+2017-08-07 10:36:03,389 [Worker-51] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory C:\eclipse\projetos\intranet\src\main\resources
+2017-08-07 10:36:03,389 [Worker-51] WARN  o.e.m.c.i.embedder.EclipseLogger - Using platform encoding (Cp1252 actually) to copy filtered resources, i.e. build is platform dependent!
+2017-08-07 10:36:03,389 [Worker-51] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory C:\eclipse\projetos\intranet\src\test\resources
+2017-08-07 10:38:22,795 [main] INFO  o.e.m2e.actions.ExecutePomAction - Using existing launch configuration
+2017-08-07 10:38:53,636 [Worker-75] INFO  o.e.m.i.launch.MavenLaunchDelegate - C:\eclipse\projetos\wsrCisne
+2017-08-07 10:38:53,636 [Worker-75] INFO  o.e.m.i.launch.MavenLaunchDelegate -  mvn -B spring-boot:run
+2017-08-09 14:50:34,740 [Worker-392] WARN  o.e.m.c.i.embedder.EclipseLogger - Using platform encoding (Cp1252 actually) to copy filtered resources, i.e. build is platform dependent!
+2017-08-09 14:50:34,750 [Worker-392] INFO  o.e.m.c.i.embedder.EclipseLogger - Copying 1 resource
+2017-08-09 14:50:34,810 [Worker-392] WARN  o.e.m.c.i.embedder.EclipseLogger - Using platform encoding (Cp1252 actually) to copy filtered resources, i.e. build is platform dependent!
+2017-08-09 14:50:34,820 [Worker-392] INFO  o.e.m.c.i.embedder.EclipseLogger - Copying 0 resource
+2017-08-09 15:41:12,981 [Worker-406] WARN  o.e.m.c.i.embedder.EclipseLogger - Using platform encoding (Cp1252 actually) to copy filtered resources, i.e. build is platform dependent!
+2017-08-09 15:41:12,997 [Worker-406] INFO  o.e.m.c.i.embedder.EclipseLogger - Copying 1 resource
+2017-08-09 15:41:13,000 [Worker-406] WARN  o.e.m.c.i.embedder.EclipseLogger - Using platform encoding (Cp1252 actually) to copy filtered resources, i.e. build is platform dependent!
+2017-08-09 15:41:13,004 [Worker-406] INFO  o.e.m.c.i.embedder.EclipseLogger - Copying 0 resource
+2017-08-09 16:44:53,388 [Worker-443] WARN  o.e.m.c.i.embedder.EclipseLogger - Using platform encoding (Cp1252 actually) to copy filtered resources, i.e. build is platform dependent!
+2017-08-09 16:44:53,388 [Worker-443] INFO  o.e.m.c.i.embedder.EclipseLogger - Copying 1 resource
+2017-08-09 16:44:53,398 [Worker-443] WARN  o.e.m.c.i.embedder.EclipseLogger - Using platform encoding (Cp1252 actually) to copy filtered resources, i.e. build is platform dependent!
+2017-08-09 16:44:53,398 [Worker-443] INFO  o.e.m.c.i.embedder.EclipseLogger - Copying 0 resource

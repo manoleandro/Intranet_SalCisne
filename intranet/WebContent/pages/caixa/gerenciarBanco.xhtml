@@ -1,0 +1,89 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	  xmlns:h="http://java.sun.com/jsf/html"
+	  xmlns:ui="http://java.sun.com/jsf/facelets"
+	  xmlns:f="http://java.sun.com/jsf/core"
+	  xmlns:p="http://primefaces.org/ui">
+<h:head>
+	<f:loadBundle basename="messages_pt_BR" var="msg" />
+</h:head>
+<h:body>
+	<f:metadata>
+		<f:event listener="#{bancoCaixaController.init()}" type="preRenderView"></f:event>
+	</f:metadata>
+	<ui:composition template="../../template/commonLayout.xhtml">
+		<ui:define name="content">
+			<div class="ContainerIndent">
+				<h:form id="form">
+					<p:confirmDialog global="true" showEffect="puff" hideEffect="puff" widgetVar="dialogExcluir" appendTo="@(body)">
+						<p:commandButton value="Sim" type="button" styleClass="ui-confirmdialog-yes" icon="fa fa-check Fs18 white" />
+						<p:commandButton value="Não" type="button" styleClass="ui-confirmdialog-no" icon="fa fa-times Fs18 white" />
+					</p:confirmDialog>
+
+					<p:panel styleClass="panel">
+						<p:growl id="messages" autoUpdate="false" />
+						<div class="container">
+							<h:outputText value="Gerenciar Bancos" styleClass="title-page hardblue" />
+							<div class="right" style="text-align: right">
+								  <p:commandButton value="Incluir Banco" actionListener="#{bancoCaixaController.prepararInclusaoBanco}" update=":formIncludAltBancos" oncomplete="PF('dialogIncludAltBancos').show();" icon="fa fa-plus Fs14 white"/>
+										 <p:spacer width="5"></p:spacer>
+								<p:commandLink styleClass="commandLinkIcone" title="Atualizar" onclick="location.reload();" update="@form">
+									<i class="fa icon-arrows-cw title-page button" />
+								</p:commandLink>
+							</div>
+						</div>
+						<p:separator />
+
+					<p:dataTable id="tabelaBancos" var="banco"
+					value="#{bancoCaixaController.listBancos}" paginator="true" paginatorPosition="bottom"
+					rows="7" filteredValue="#{bancoCaixaController.listaBancosFiltro}"
+					rowsPerPageTemplate="5,10,15" emptyMessage="Não há Tipo de Contas">
+					
+					<p:column headerText="Código" sortBy="#{banco.id}" style="width:11% !important;">
+						<h:outputText value="#{banco.id}" />
+					</p:column>
+					
+					<p:column headerText="Descrição" sortBy="#{banco.descricao}">
+						<h:outputText value="#{banco.descricao}" />
+					</p:column>
+					
+					<p:column style="text-align:center;width:15% !important;">
+						<p:commandButton title="Alterar" action="#{bancoCaixaController.prepararAlteracaoBanco}" update=":formIncludAltBancos" oncomplete="PF('dialogIncludAltBancos').show();"
+										 icon="fa fa-pencil Fs14 white">
+							<f:setPropertyActionListener target="#{bancoCaixaController.bancoSelecionado}" value="#{banco}"/>
+						</p:commandButton>
+						<p:spacer width="9%"></p:spacer>
+						<p:commandButton title="Excluir" action="#{bancoCaixaController.excluirBanco}" update=":form:messages :form:tabelaBancos" icon="fa fa-trash Fs14 white">
+							<p:confirm header="Atenção" message="#{msg['excluir.registro']}" icon="fa fa-info Fs18" />
+							<f:setPropertyActionListener target="#{bancoCaixaController.bancoSelecionado}" value="#{banco}"/>
+						</p:commandButton>
+					</p:column>
+					
+					
+					</p:dataTable>
+					</p:panel>
+				</h:form>
+							
+			</div>
+
+			<p:dialog widgetVar="dialogIncludAltBancos" header="Bancos" width="500" height="105" modal="true" appendToBody="true" showEffect="fade" hideEffect="fade"> 
+			<h:form id="formIncludAltBancos">
+				<h:panelGrid columns="2">
+					<h:outputText value="Descrição:" />
+					<p:inputText id="descricao" value="#{bancoCaixaController.bancos.descricao}" required="true" size="50" requiredMessage="Informe a descrição, preenchimento obrigatório..."/>
+				</h:panelGrid>
+				<p:separator></p:separator>
+				<p:commandButton value="Salvar" action="#{bancoCaixaController.salvarBanco}" update=":form:messages :form:tabelaBancos" onsuccess="PF('dialogIncludAltBancos').hide();"
+					  			 icon="fa fa-plus Fs14 white">
+					<f:setPropertyActionListener target="#{bancoCaixaController.bancoSelecionado}" value="#{bancoCaixaController.bancos}"/>
+				</p:commandButton>
+				<p:spacer width="4"></p:spacer>
+				<p:commandButton value="Cancelar" oncomplete="PF('dialogIncludAltBancos').hide();" icon="fa fa-times Fs14 white"/>
+			</h:form>
+		</p:dialog>
+			
+		</ui:define>
+	</ui:composition>
+</h:body>
+</html>

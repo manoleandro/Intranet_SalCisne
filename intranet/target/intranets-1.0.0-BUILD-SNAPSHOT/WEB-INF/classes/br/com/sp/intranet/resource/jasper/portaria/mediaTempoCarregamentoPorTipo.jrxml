@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="mediaTempoCarregamentoPorTipo" language="groovy" pageWidth="842" pageHeight="595" orientation="Landscape" columnWidth="802" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="bba02cee-4b61-4204-8fc2-fe13ad53bbc6">
+	<property name="ireport.zoom" value="1.0"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<parameter name="listaTempos" class="java.lang.String"/>
+	<queryString language="SQL">
+		<![CDATA[SELECT * FROM MOV_PORTARIA]]>
+	</queryString>
+	<field name="data" class="java.util.Date"/>
+	<field name="tempoMedCarragamentoNPalet" class="java.lang.String"/>
+	<field name="tempoMedCarregamentoPalet" class="java.lang.String"/>
+	<field name="tempoMedCarregamentoNPaletMilis" class="java.lang.Long"/>
+	<field name="tempoMedCarregamentoPaletMilis" class="java.lang.Long"/>
+	<title>
+		<band height="79" splitType="Stretch">
+			<image>
+				<reportElement x="1" y="0" width="29" height="35" forecolor="#000000" uuid="9752da50-1fe4-48b1-b3b2-cf981bd1dd6e">
+					<property name="ireport.layer" value="1"/>
+				</reportElement>
+				<imageExpression><![CDATA["http://192.168.2.10/lib/img/logoori.png"]]></imageExpression>
+			</image>
+			<staticText>
+				<reportElement x="280" y="5" width="255" height="16" uuid="ccd3b717-870e-42f9-a4f9-26baf12fdfa4"/>
+				<textElement textAlignment="Center">
+					<font fontName="SansSerif" size="12" isBold="true"/>
+				</textElement>
+				<text><![CDATA[REFINARIA NACIONAL DE SAL S.A.]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="242" y="27" width="330" height="20" uuid="87506965-643f-4f1e-bf03-03c197288cbe"/>
+				<textElement textAlignment="Center">
+					<font fontName="SansSerif" size="12" isBold="true" isStrikeThrough="false"/>
+				</textElement>
+				<text><![CDATA[Média de tempo de Carregamento por Tipo]]></text>
+			</staticText>
+		</band>
+	</title>
+	<summary>
+		<band height="369" splitType="Stretch">
+			<barChart>
+				<chart isShowLegend="true">
+					<reportElement mode="Transparent" x="0" y="11" width="800" height="358" uuid="178d03fd-3b41-4473-9db7-a9329d153eb4"/>
+					<chartTitle position="Top"/>
+					<chartSubtitle/>
+					<chartLegend position="Bottom"/>
+				</chart>
+				<categoryDataset>
+					<categorySeries>
+						<seriesExpression><![CDATA["Tempo Médio de Carregamento Paletizado"]]></seriesExpression>
+						<categoryExpression><![CDATA[new SimpleDateFormat("MM/yyyy").format($F{data})]]></categoryExpression>
+						<valueExpression><![CDATA[$F{tempoMedCarregamentoPaletMilis}/3600000]]></valueExpression>
+						<labelExpression><![CDATA[$F{tempoMedCarregamentoPalet}]]></labelExpression>
+					</categorySeries>
+					<categorySeries>
+						<seriesExpression><![CDATA["Tempo Médio de Carregamento Despaletizado"]]></seriesExpression>
+						<categoryExpression><![CDATA[new SimpleDateFormat("MM/yyyy").format($F{data})]]></categoryExpression>
+						<valueExpression><![CDATA[$F{tempoMedCarregamentoNPaletMilis}/3600000]]></valueExpression>
+						<labelExpression><![CDATA[$F{tempoMedCarragamentoNPalet}]]></labelExpression>
+					</categorySeries>
+				</categoryDataset>
+				<barPlot isShowLabels="true" isShowTickLabels="true" isShowTickMarks="true">
+					<plot/>
+					<itemLabel color="#000000"/>
+					<categoryAxisFormat>
+						<axisFormat labelColor="#000000" tickLabelColor="#000000" tickLabelMask="#" axisLineColor="#000000"/>
+					</categoryAxisFormat>
+					<valueAxisFormat>
+						<axisFormat labelColor="#FFFFFF" tickLabelColor="#000000" tickLabelMask="#:'00'" verticalTickLabels="false"/>
+					</valueAxisFormat>
+				</barPlot>
+			</barChart>
+		</band>
+	</summary>
+</jasperReport>

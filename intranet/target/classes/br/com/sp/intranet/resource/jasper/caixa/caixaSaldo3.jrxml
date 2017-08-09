@@ -1,0 +1,298 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="caixaSaldo3" language="groovy" pageWidth="595" pageHeight="842" whenNoDataType="AllSectionsNoDetail" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" isFloatColumnFooter="true" scriptletClass="net.sf.jasperreports.engine.JRDefaultScriptlet" uuid="bc55c137-9088-453a-a4bb-433d11e3b7c5">
+	<property name="ireport.zoom" value="1.8181818181818237"/>
+	<property name="ireport.x" value="335"/>
+	<property name="ireport.y" value="140"/>
+	<property name="ireport.layers" value="##Mon Dec 30 15:52:10 BRST 2013\nlayer.1.name=Layer 1\nlayer.1.visible=true\nlayer.1.id=1\nlayer.0.name=Background\nlayer.0.visible=true\nlayer.0.id=0"/>
+	<property name="ireport.background.image.properties" value="true,true,1.0,-8,-8,0,0,469,458"/>
+	<parameter name="SUBREPORT_DIR" class="java.lang.String" isForPrompting="false">
+		<defaultValueExpression><![CDATA["C:\\ECLIPSEI\\PROJETOS\\sic\\src\\br\\com\\sp\\sic\\controller\\resource\\caixa\\"]]></defaultValueExpression>
+	</parameter>
+	<parameter name="dataInicio" class="java.lang.String"/>
+	<parameter name="dataFim" class="java.lang.String"/>
+	<parameter name="idConta" class="java.lang.String"/>
+	<parameter name="saldoAnterior" class="java.lang.String"/>
+	<parameter name="dataInicioApres" class="java.lang.String"/>
+	<parameter name="dataFimApres" class="java.lang.String"/>
+	<parameter name="descricaoConta" class="java.lang.String"/>
+	<queryString>
+		<![CDATA[SELECT LANC.DT_LANCAMENTO,LANC.ID_LANCAMENTO,LANC.DESCRICAO AS DESCRICAO_LANC, LANC.DOCUMENTO, LANC.ID_CONTA, CONT.DESCRICAO AS DESCRICAO_CONTA,
+CONT.ID_TP_CONTA, TP.DESCRICAO AS DESCRICAO_TP_CONTA, LANC.ID_HIST_PADRAO, CONT.ID_BANCO,
+BANC.DESCRICAO AS DESCRICAO_BANCO, LANC.VALOR
+FROM LANCAMENTOS LANC, CONTAS CONT, TP_CONTA TP, BANCOS BANC
+WHERE LANC.ID_CONTA=CONT.ID_CONTA AND  CONT.ID_BANCO=BANC.ID AND CONT.ID_TP_CONTA=TP.ID AND LANC.ID_CONTA =$P{idConta} AND LANC.DT_LANCAMENTO between to_date($P{dataInicio},'dd/MM/yyyy') and to_date($P{dataFim},'dd/MM/yyyy')
+ORDER BY LANC.DT_LANCAMENTO,LANC.DEB_CRED, LANC.ID_LANCAMENTO]]>
+	</queryString>
+	<field name="DT_LANCAMENTO" class="java.sql.Timestamp"/>
+	<field name="ID_LANCAMENTO" class="java.math.BigDecimal"/>
+	<field name="DESCRICAO_LANC" class="java.lang.String"/>
+	<field name="DOCUMENTO" class="java.lang.String"/>
+	<field name="ID_CONTA" class="java.math.BigDecimal"/>
+	<field name="DESCRICAO_CONTA" class="java.lang.String"/>
+	<field name="ID_TP_CONTA" class="java.math.BigDecimal"/>
+	<field name="DESCRICAO_TP_CONTA" class="java.lang.String"/>
+	<field name="ID_HIST_PADRAO" class="java.math.BigDecimal"/>
+	<field name="ID_BANCO" class="java.math.BigDecimal"/>
+	<field name="DESCRICAO_BANCO" class="java.lang.String"/>
+	<field name="VALOR" class="java.math.BigDecimal"/>
+	<variable name="dataHoje" class="java.util.Date" resetType="Page">
+		<initialValueExpression><![CDATA[new Date()]]></initialValueExpression>
+	</variable>
+	<variable name="total" class="java.lang.Double" calculation="Sum">
+		<variableExpression><![CDATA[$F{VALOR}]]></variableExpression>
+		<initialValueExpression><![CDATA[new Double(0)]]></initialValueExpression>
+	</variable>
+	<variable name="saldoAtual" class="java.lang.Double"/>
+	<variable name="saldoLinha" class="java.lang.Double" incrementType="Report" calculation="System">
+		<initialValueExpression><![CDATA[new Double($P{saldoAnterior})]]></initialValueExpression>
+	</variable>
+	<variable name="totalCreditos" class="java.lang.Double" calculation="Sum">
+		<variableExpression><![CDATA[($F{VALOR} > 0 ? $F{VALOR} : new Double(0))]]></variableExpression>
+		<initialValueExpression><![CDATA[new Double(0)]]></initialValueExpression>
+	</variable>
+	<variable name="totalDebitos" class="java.lang.Double" calculation="Sum">
+		<variableExpression><![CDATA[($F{VALOR} < 0 ? $F{VALOR}: new Double(0))]]></variableExpression>
+		<initialValueExpression><![CDATA[new Double(0)]]></initialValueExpression>
+	</variable>
+	<variable name="SaldoDia" class="java.lang.Double" incrementType="Report" calculation="System">
+		<variableExpression><![CDATA[]]></variableExpression>
+		<initialValueExpression><![CDATA[]]></initialValueExpression>
+	</variable>
+	<variable name="valor" class="java.lang.Double" calculation="Sum">
+		<variableExpression><![CDATA[$F{VALOR}]]></variableExpression>
+		<initialValueExpression><![CDATA[]]></initialValueExpression>
+	</variable>
+	<variable name="saldoAnterior" class="java.lang.Double" incrementType="Report" calculation="System">
+		<variableExpression><![CDATA[]]></variableExpression>
+		<initialValueExpression><![CDATA[new Double($P{saldoAnterior})]]></initialValueExpression>
+	</variable>
+	<variable name="calculo" class="java.lang.Double" incrementType="Report" calculation="Sum">
+		<variableExpression><![CDATA[$V{saldoAnterior} +$V{valor}]]></variableExpression>
+		<initialValueExpression><![CDATA[]]></initialValueExpression>
+	</variable>
+	<variable name="totPag" class="java.lang.Integer" incrementType="Report" calculation="Sum">
+		<variableExpression><![CDATA[$V{PAGE_NUMBER}]]></variableExpression>
+	</variable>
+	<pageHeader>
+		<band height="148" splitType="Stretch">
+			<elementGroup/>
+			<textField>
+				<reportElement x="0" y="81" width="218" height="14" forecolor="#000000" uuid="c7b7e6fd-83a8-4552-9be1-bf6ede8bce88"/>
+				<textElement markup="html"/>
+				<textFieldExpression><![CDATA["<b>Período de: </b>" +$P{dataInicioApres} + "<b> até: </b>"+$P{dataFimApres}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="0" y="53" width="553" height="20" uuid="a0ed6cff-7e34-4ffc-b1c5-619b9decc00a"/>
+				<textElement>
+					<font size="12" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{descricaoConta}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="454" y="4" width="55" height="16" forecolor="#000000" uuid="856cccd6-c683-4a2a-b29f-31d59a49a1f6"/>
+				<textElement textAlignment="Right"/>
+				<textFieldExpression><![CDATA["Pág "+$V{PAGE_NUMBER}+" de"]]></textFieldExpression>
+			</textField>
+			<textField evaluationTime="Report">
+				<reportElement x="509" y="4" width="40" height="16" forecolor="#000000" uuid="402a362b-d0bf-48ac-9843-ef51a20e4c63"/>
+				<textFieldExpression><![CDATA[" " + $V{PAGE_NUMBER}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="402" y="106" width="77" height="13" forecolor="#000000" uuid="14f2ccfc-d29e-484b-b496-370bead556fd">
+					<property name="ireport.layer" value="1"/>
+				</reportElement>
+				<textElement>
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[Saldo Anterior:]]></text>
+			</staticText>
+			<textField pattern="#,##0.00;-#,##0.00">
+				<reportElement x="483" y="106" width="71" height="13" forecolor="#000000" uuid="adb69175-d4a8-4aa0-aa1a-c30fc828a676"/>
+				<textElement textAlignment="Right"/>
+				<textFieldExpression><![CDATA[$V{saldoAnterior}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="0" y="130" width="45" height="14" forecolor="#000000" uuid="16717e82-883a-4b1d-a1c8-cfc46ea4730b">
+					<property name="ireport.layer" value="1"/>
+				</reportElement>
+				<textElement>
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[Dia]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="75" y="130" width="38" height="14" forecolor="#000000" uuid="6fff6a2f-22f8-4f01-a179-608ca410ef69">
+					<property name="ireport.layer" value="1"/>
+				</reportElement>
+				<textElement>
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[Cód.]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="113" y="130" width="45" height="14" forecolor="#000000" uuid="11b50b3a-5724-4002-bef1-562e97999d44">
+					<property name="ireport.layer" value="1"/>
+				</reportElement>
+				<textElement>
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[Docto.]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="167" y="130" width="170" height="14" forecolor="#000000" uuid="6deed5f8-c59f-4257-83c1-72642ddb2cdb">
+					<property name="ireport.layer" value="1"/>
+				</reportElement>
+				<textElement>
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[Histórico]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="420" y="130" width="45" height="14" forecolor="#000000" uuid="6fe9199a-12b2-46ed-bfdc-be034d0af337">
+					<property name="ireport.layer" value="1"/>
+				</reportElement>
+				<textElement>
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[Valor R$]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="504" y="130" width="45" height="14" forecolor="#000000" uuid="f9a6a8cc-ce06-4ea6-9949-d2ec2c0b3d95">
+					<property name="ireport.layer" value="1"/>
+				</reportElement>
+				<textElement>
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[Saldo R$]]></text>
+			</staticText>
+			<line>
+				<reportElement x="0" y="127" width="555" height="1" forecolor="#000000" uuid="101fe804-4c30-4f46-9d99-62914c97ef83"/>
+			</line>
+			<line>
+				<reportElement x="0" y="144" width="555" height="1" forecolor="#000000" uuid="c3e750ee-03f7-4251-b1f4-3da53ad873f2"/>
+			</line>
+			<staticText>
+				<reportElement x="224" y="82" width="68" height="13" forecolor="#000000" uuid="bce09e4a-8555-4e37-9b79-690361f7aa96">
+					<property name="ireport.layer" value="1"/>
+				</reportElement>
+				<textElement verticalAlignment="Top">
+					<font size="10" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Posição em:]]></text>
+			</staticText>
+			<textField pattern="dd/MM/yyyy">
+				<reportElement x="294" y="82" width="215" height="13" forecolor="#000000" uuid="82b4362e-7109-45a8-b677-4129d8ccb403">
+					<property name="ireport.layer" value="1"/>
+				</reportElement>
+				<textFieldExpression><![CDATA[$V{dataHoje}]]></textFieldExpression>
+			</textField>
+		</band>
+	</pageHeader>
+	<detail>
+		<band height="23" splitType="Stretch">
+			<textField>
+				<reportElement x="75" y="0" width="38" height="20" forecolor="#000000" uuid="906ee6ea-217a-42d2-8007-41180e9eb256">
+					<property name="ireport.layer" value="1"/>
+				</reportElement>
+				<textFieldExpression><![CDATA[$F{ID_LANCAMENTO}]]></textFieldExpression>
+			</textField>
+			<textField isStretchWithOverflow="true">
+				<reportElement x="113" y="0" width="54" height="20" forecolor="#000000" uuid="7c26c483-84ad-4b25-a066-5051ce3bc176">
+					<property name="ireport.layer" value="1"/>
+				</reportElement>
+				<textFieldExpression><![CDATA[($F{DOCUMENTO}==null ? "":$F{DOCUMENTO})]]></textFieldExpression>
+			</textField>
+			<textField isStretchWithOverflow="true">
+				<reportElement stretchType="RelativeToBandHeight" x="167" y="0" width="235" height="20" isPrintWhenDetailOverflows="true" forecolor="#000000" uuid="ec6ef610-c54f-46d8-b229-11c16007863b"/>
+				<textFieldExpression><![CDATA[($F{DESCRICAO_LANC}==null ? "":$F{DESCRICAO_LANC})]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="581" y="-1" width="100" height="20" forecolor="#000000" uuid="bf49cb10-d5ec-496a-be07-161a86a9da0f"/>
+				<textFieldExpression><![CDATA[$V{valor}]]></textFieldExpression>
+			</textField>
+			<textField pattern="#,##0.00;-#,##0.00">
+				<reportElement x="410" y="0" width="67" height="20" uuid="502a5599-3b60-4708-86ab-fab4917f5ac1"/>
+				<textElement textAlignment="Right"/>
+				<textFieldExpression><![CDATA[$F{VALOR}]]></textFieldExpression>
+			</textField>
+			<textField pattern="dd/MM/yyyy">
+				<reportElement x="0" y="0" width="75" height="20" uuid="3d34c77b-6355-41b1-af48-c510fbe8d7b7"/>
+				<textFieldExpression><![CDATA[$F{DT_LANCAMENTO}]]></textFieldExpression>
+			</textField>
+			<textField pattern="#,##0.00;-#,##0.00">
+				<reportElement x="482" y="0" width="71" height="20" forecolor="#000000" uuid="8e0113c1-48ba-4e8d-8982-d70a041572a3"/>
+				<textElement textAlignment="Right"/>
+				<textFieldExpression><![CDATA[$V{saldoLinha} + $V{valor}]]></textFieldExpression>
+			</textField>
+		</band>
+	</detail>
+	<summary>
+		<band height="78">
+			<line>
+				<reportElement x="0" y="11" width="555" height="1" uuid="5ac68350-ec76-4002-915f-208f2d24d834"/>
+			</line>
+			<textField pattern="#,##0.00;-#,##0.00">
+				<reportElement x="410" y="16" width="68" height="13" forecolor="#000000" uuid="181a7e28-8173-43cd-bb5b-86514fb186ba">
+					<property name="ireport.layer" value="1"/>
+				</reportElement>
+				<textElement textAlignment="Right"/>
+				<textFieldExpression><![CDATA[($V{total}.intValue()==0 ? new Double(0): $V{total})]]></textFieldExpression>
+			</textField>
+			<textField pattern="#,##0.00;-#,##0.00">
+				<reportElement x="206" y="15" width="104" height="13" forecolor="#000000" uuid="f223ec79-beb1-479b-b961-ebd6b194c6a8">
+					<property name="ireport.layer" value="1"/>
+				</reportElement>
+				<textFieldExpression><![CDATA[$V{totalDebitos}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="374" y="16" width="35" height="13" forecolor="#000000" uuid="42407650-ac94-49d1-9e6b-d7699332b232">
+					<property name="ireport.layer" value="1"/>
+				</reportElement>
+				<textElement>
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[Total:]]></text>
+			</staticText>
+			<textField pattern="#,##0.00;-#,##0.00">
+				<reportElement x="50" y="15" width="98" height="13" forecolor="#000000" uuid="28bbe3b2-77a1-4f5b-874a-7450f1f47c80">
+					<property name="ireport.layer" value="1"/>
+				</reportElement>
+				<textFieldExpression><![CDATA[$V{totalCreditos}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="0" y="15" width="50" height="13" forecolor="#000000" uuid="9794b6a8-9cc6-4dda-b0e6-ea6417b5b970">
+					<property name="ireport.layer" value="1"/>
+				</reportElement>
+				<textElement>
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[Créditos:]]></text>
+			</staticText>
+			<textField pattern="#,##0.00;-#,##0.00">
+				<reportElement x="483" y="38" width="71" height="13" forecolor="#000000" uuid="bdf3082b-1df3-455a-8780-a8d81809d30c">
+					<property name="ireport.layer" value="1"/>
+				</reportElement>
+				<textElement textAlignment="Right"/>
+				<textFieldExpression><![CDATA[$V{saldoAnterior} + new Double($V{total})]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="158" y="15" width="48" height="13" forecolor="#000000" uuid="4e49e430-2b92-4834-bb37-aabbfc4e50dc">
+					<property name="ireport.layer" value="1"/>
+				</reportElement>
+				<textElement>
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[Débitos:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="412" y="38" width="67" height="13" forecolor="#000000" uuid="aeefd781-3a32-4bed-ae21-62a2dbc868e1">
+					<property name="ireport.layer" value="1"/>
+				</reportElement>
+				<textElement>
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[Saldo Atual:]]></text>
+			</staticText>
+		</band>
+	</summary>
+</jasperReport>

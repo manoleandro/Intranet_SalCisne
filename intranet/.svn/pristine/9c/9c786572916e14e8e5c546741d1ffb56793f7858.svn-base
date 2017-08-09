@@ -1,0 +1,235 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:h="http://java.sun.com/jsf/html" xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core" xmlns:p="http://primefaces.org/ui">
+
+<h:head>
+	<f:loadBundle basename="messages_pt_BR" var="msg" />
+</h:head>
+<h:body>
+	<ui:composition template="../../template/commonLayout.xhtml">
+		<ui:define name="content">
+			<div class="ContainerIndent">
+				<h:form id="form">
+					<style>
+					</style>
+					
+					<p:confirmDialog global="true" showEffect="puff" hideEffect="puff" appendTo="@(body)">
+						<p:commandButton value="Sim" type="button" styleClass="ui-confirmdialog-yes" icon="fa fa-check Fs18 white" />
+						<p:commandButton value="Não" type="button" styleClass="ui-confirmdialog-no" icon="fa fa-times Fs18 white" />
+					</p:confirmDialog>
+
+					<p:panel styleClass="panel">
+						<p:growl id="messages" autoUpdate="false" />
+						<div class="container">
+							<h:outputText value="Gerênciar Usuário" styleClass="title-page hardblue"/>
+
+							<div class="right" style="text-align: right">
+								<p:commandLink styleClass="commandLinkIcone" title="#{msg['incluir']}" action="#{usuarioController.prepararIncluir}" update=":usuarioForm">
+									<i class="icon-plus title-page button" />
+								</p:commandLink>
+
+								<p:commandLink styleClass="commandLinkIcone" title="#{msg['alterar']}" action="#{usuarioController.prepararAlterar}" update=":usuarioForm :form:messages">
+									<i class="icon-pencil title-page button" />
+								</p:commandLink>
+
+								<p:commandLink styleClass="commandLinkIcone" title="#{msg['excluir']}" action="#{usuarioController.excluir}" update=":form:messages :form:tableUsuario"
+									oncomplete="PF('tableUsuario').clearFilters();">
+									<p:confirm header="Atenção" message="#{msg['excluir.registro']}" icon="fa fa-info Fs18" />
+									<i class="icon-trash title-page button"/>
+								</p:commandLink>
+							</div>
+						</div>
+						<p:separator />
+
+						<p:dataTable id="tableUsuario" widgetVar="tableUsuario" var="usuario" value="#{usuarioController.usuarios}" emptyMessage="#{msg['sem.registro']}"
+							selectionMode="single" selection="#{usuarioController.usuarioSelecionado}" rowKey="#{usuario.username}" paginator="true" rows="12"
+							paginatorPosition="bottom">
+
+							<p:column filterBy="#{usuario.username}" sortBy="#{usuario.username}" headerText="Usuário" styleClass="centralizar" filterStyleClass="filtro" priority="1">
+								<h:outputText value="#{usuario.username}" />
+							</p:column>
+
+							<p:column filterBy="#{usuario.nome}" sortBy="#{usuario.nome}" headerText="Nome" filterStyleClass="filtro" priority="2">
+								<h:outputText value="#{usuario.nome}" />
+							</p:column>
+							
+							<p:column headerText="Ativo" styleClass="centralizar" width="7%" priority="3">
+								<p:outputPanel layout="inline" styleClass="icon-ok-circled-1 Fs22 hardblue" rendered="#{usuario.enable}" />
+								<p:outputPanel layout="inline" styleClass="icon-cancel-circled-2 Fs22 red" rendered="#{!usuario.enable}" />
+							</p:column>
+							
+							<p:column headerText="Grupo" styleClass="centralizar" width="10%" priority="4">
+								<p:commandLink action="#{usuarioController.prepararGrupoUsuario}" update=":grupoForm" oncomplete="PF('dialogGrupo').show();">
+									<f:setPropertyActionListener value="#{usuario}" target="#{usuarioController.usuarioSelecionado}"/>
+									<i class="icon-users Fs22 button" />
+								</p:commandLink>
+							</p:column>
+							
+							<p:column headerText="Serviço" styleClass="centralizar" width="10%" priority="5">
+								<p:commandLink action="#{usuarioController.prepararServicoUsuario}" update=":servicoForm :servicoForm:tableServico" 
+											   oncomplete="PF('dialogServico').show();">
+									<f:setPropertyActionListener value="#{usuario}" target="#{usuarioController.usuarioSelecionado}"/>
+									<i class="icon-link Fs26 button" />
+								</p:commandLink>
+							</p:column>
+							
+							<p:column headerText="Autorizações" styleClass="centralizar" width="10%" priority="6">
+								<p:commandLink action="#{usuarioController.prepararAutorizacaoUsuario}" update=":assistenteAutorizacaoForm"
+											   oncomplete="PF('dialogAssistenteAutorizacao').show();" >
+									<f:setPropertyActionListener value="#{usuario}" target="#{usuarioController.usuarioSelecionado}"/>
+									<i class="icon-lock Fs26 button" />
+								</p:commandLink>
+							</p:column>
+						</p:dataTable>
+					</p:panel>
+				</h:form>
+				
+				<p:dialog header="Usuário" widgetVar="dialogUsuario" modal="true" showEffect="puff" hideEffect="puff" appendTo="@(body)">
+					<h:form id="usuarioForm"> 
+						<h:panelGrid columns="2">
+							<h:outputText value="Usuário:" />
+							<p:inputText value="#{usuarioController.usuario.username}" rendered="#{usuarioController.inclusao}" />
+							<h:outputText value="#{usuarioController.usuario.username}" rendered="#{!usuarioController.inclusao}" />
+	
+							<h:outputText value="Nome:" />
+							<p:inputText value="#{usuarioController.usuario.nome}" />
+	
+							<h:outputText value="E-mail:" />
+							<p:inputText value="#{usuarioController.usuario.email}" />
+							
+							<h:outputText value="Colaborador:" />
+							<p:selectOneMenu id="colaborador" value="#{usuarioController.usuario.idColaborador}" effect="fade" filter="true" filterMatchMode="contains">
+            					<f:selectItem itemLabel="Selecione" itemValue=""/>
+            					<f:selectItems value="#{usuarioController.listaColaborador}" var="col" itemLabel="#{col.nome}" itemValue="#{col.id}" />
+							</p:selectOneMenu>
+	
+							<h:outputText value="Ativo:" />
+							<p:selectBooleanCheckbox id="ativo" value="#{usuarioController.usuario.enable}" />
+							
+							<h:outputText value="Gestor:" />
+							<p:selectBooleanCheckbox id="gestor" value="#{usuarioController.usuario.gestor}" />
+							
+							<h:outputText value="Zona de Vendas:" />
+							<h:panelGroup>
+								<p:inputText value="#{usuarioController.usuario.zonaVendas}" readonly="true" />
+								<p:commandLink styleClass="commandLinkIcone" title="#{msg['pesquisar.vendedor']}" action="#{usuarioController.prepararVendedores}" update=":assistenteVendedoresForm">
+									<i class="icon-user-male button" style="font-size: 1.5rem;"/>
+								</p:commandLink>
+							</h:panelGroup>
+							
+							<p:outputLabel for="pwd1" value="Senha:"/>	
+	               			<p:password match="pwd2" id="pwd1" value="#{usuarioController.usuario.senha}" feedback="true" 
+	               			    		goodLabel="Boa" weakLabel="Fraca" strongLabel="Forte" validatorMessage="As senhas devem ser iguais" promptLabel="Digite a Senha"/>
+	               			    
+	               			<p:outputLabel for="pwd2" value="Confirme a Senha:"/>
+	               			<p:password id="pwd2" value="#{usuarioController.usuario.senha}" feedback="true" 
+	               			    		goodLabel="Boa" weakLabel="Fraca" strongLabel="Forte" validatorMessage="As senhas devem ser iguais" promptLabel="Digite a Senha">
+	               				<p:ajax process=":usuarioForm" event="blur" update=":form:messages"/>
+	               			</p:password>
+						</h:panelGrid>
+						<p:spacer height="20" width="100%" />
+					
+						<p:commandButton value="Salvar" icon="fa fa-check Fs18 white" action="#{usuarioController.salvar}" update=":form"
+										 oncomplete="PF('dialogUsuario').hide(); PF('tableUsuario').clearFilters();">
+							<f:setPropertyActionListener value="#{usuarioController.usuario}" target="#{usuarioController.usuarioSelecionado}" />
+						</p:commandButton>
+						<p:commandButton value="Cancelar" icon="fa fa-times Fs18 white" onclick="PF('dialogUsuario').hide();" />
+					</h:form>
+				</p:dialog>
+
+				<p:dialog header="Assistente Grupo de Usuário" widgetVar="dialogGrupo" modal="true" showEffect="puff" hideEffect="puff" appendTo="@(body)">
+					<h:form id="grupoForm">
+						<p:pickList id="pickListGrupo" value="#{usuarioController.grupos}" var="grupo" itemLabel="#{grupo.descricao}"
+							itemValue="#{grupo}" converter="pickListGenericConverter" showSourceControls="false" showTargetControls="false" showSourceFilter="true"
+							showTargetFilter="true">
+							<f:facet name="sourceCaption">Disponíveis</f:facet>
+							<f:facet name="targetCaption">Selecionados</f:facet>
+						</p:pickList>
+						<p:spacer height="20" width="100%" />
+						<p:commandButton value="Salvar" icon="fa fa-check Fs18 white" action="#{usuarioController.salvarGrupo}" update=":form:messages"
+							oncomplete="PF('dialogGrupo').hide(); PF('tableUsuario').clearFilters();">
+							<f:setPropertyActionListener value="#{usuarioController.usuario}" target="#{usuarioController.usuarioSelecionado}" />
+						</p:commandButton>
+						<p:commandButton value="Cancelar" icon="fa fa-times Fs18 white" onclick="PF('dialogGrupo').hide();" />
+					</h:form>
+				</p:dialog>
+				
+				<p:dialog header="Assistente Serviço" widgetVar="dialogServico" modal="true" showEffect="puff" hideEffect="puff" width="40%" appendTo="@(body)" 
+						  onHide="PF('tableServico').clearFilters();">
+	            	<h:form id="servicoForm">
+	            		<p:dataTable id="tableServico" widgetVar="tableServico" var="servico" value="#{usuarioController.servicos}" emptyMessage="#{msg['sem.registro']}"
+							selection="#{usuarioController.servicosSelecionados}" rowKey="#{servico}" scrollable="true" scrollHeight="400"
+							rowSelectMode="checkbox" disabledTextSelection="true" >
+							
+							<p:column selectionMode="multiple" styleClass="centralizar" width="5%" />
+							
+							<p:column headerText="Menu" sortBy="#{servico.menu.descricao}" filterBy="#{servico.menu.descricao}">
+                				<h:outputText value="#{servico.menu.descricao}" />
+            				</p:column>
+            				
+            				<p:column headerText="Serviço" sortBy="#{servico.descricao}" filterBy="#{servico.descricao}">
+                				<h:outputText value="#{servico.descricao}"/>
+            				</p:column>
+	                	</p:dataTable>
+	                	
+	                	<p:spacer width="100%" height="3"/>
+	                	
+	                	<p:commandButton value="Salvar" icon="fa fa-check Fs18 white" action="#{usuarioController.salvarServico}" update=":form"
+										 oncomplete="PF('dialogServico').hide(); PF('tableUsuario').clearFilters(); PF('tableServico').clearFilters();">
+						</p:commandButton>
+						<p:commandButton value="Cancelar" icon="fa fa-times Fs18 white" onclick="PF('dialogServico').hide(); PF('tableServico').clearFilters();" />
+        			</h:form>
+			    </p:dialog>
+			    
+			    <p:dialog header="Assistente Autorização" widgetVar="dialogAssistenteAutorizacao" modal="true" showEffect="puff" hideEffect="puff" width="40%" appendTo="@(body)"
+						  onHide="PF('tableAutorizacao').clearFilters();">
+	            	<h:form id="assistenteAutorizacaoForm">
+	            		<p:dataTable id="tableAutorizacao" widgetVar="tableAutorizacao" var="autorizacao" value="#{usuarioController.autorizacoes}" emptyMessage="#{msg['sem.registro']}"
+							selection="#{usuarioController.autorizacoesSelecionadas}" rowKey="#{autorizacao.id}" scrollable="true" scrollHeight="400"
+							rowSelectMode="checkbox" >
+							
+							<p:column selectionMode="multiple" styleClass="centralizar" width="5%"/>
+							
+							<p:column headerText="Serviço" sortBy="#{autorizacao.servico.descricao}" filterBy="#{autorizacao.servico.descricao}">
+                				<h:outputText value="#{autorizacao.servico.descricao}"/>
+            				</p:column>
+            				
+            				<p:column headerText="Autorização" sortBy="#{autorizacao.descricao}" filterBy="#{autorizacao.descricao}">
+                				<h:outputText value="#{autorizacao.descricao}"/>
+            				</p:column>
+	                	</p:dataTable>
+	                	
+	                	<p:spacer width="100%" height="3"/>
+	                	
+	                	<p:commandButton value="Salvar" icon="fa fa-check Fs18 white" action="#{usuarioController.salvarAutorizacao}" update=":form"
+										 oncomplete="PF('dialogAssistenteAutorizacao').hide(); PF('tableUsuario').clearFilters();  PF('tableAutorizacao').clearFilters();">
+							<f:setPropertyActionListener value="#{usuarioController.usuario}" target="#{usuarioController.usuarioSelecionado}" />
+						</p:commandButton>
+						<p:commandButton value="Cancelar" icon="fa fa-times Fs18 white" onclick="PF('dialogAssistenteAutorizacao').hide();  PF('tableAutorizacao').clearFilters();" />
+        			</h:form>
+			    </p:dialog>
+			    
+			    <p:dialog header="Assistente Vendedores" focus="assistenteVendedoresForm" widgetVar="dialogAssistenteVendedores" modal="true" showEffect="puff" hideEffect="puff" width="60vw" appendTo="@(body)">
+					<h:form id="assistenteVendedoresForm">
+						<p:dataTable id="tableVendedores" widgetVar="tableVendedores" var="vendedor" value="#{usuarioController.vendedores}" filteredValue="#{usuarioController.vendedoresFiltro}" 
+							emptyMessage="#{msg['sem.registro']}" selectionMode="single"
+							selection="#{usuarioController.vendedorSelecionado}" rowKey="#{vendedor.idVendedor}" paginator="true" rows="10" paginatorPosition="bottom">
+
+							<p:ajax event="rowSelect" listener="#{usuarioController.selecionarVendedor}" update=":usuarioForm" oncomplete="PF('dialogAssistenteVendedores').hide();" />
+
+							<p:column headerText="Cód. Zona" sortBy="#{vendedor.codZonaVendas}" filterBy="#{vendedor.codZonaVendas}" styleClass="centralizar" priority="1">
+								<h:outputText value="#{vendedor.codZonaVendas}" />
+							</p:column>
+
+							<p:column headerText="Vendedor" sortBy="#{vendedor.nomeVendedor}" filterBy="#{vendedor.nomeVendedor}" priority="2">
+								<h:outputText value="#{vendedor.nomeVendedor}" />
+							</p:column>
+						</p:dataTable>
+					</h:form>
+				</p:dialog>
+			</div>
+		</ui:define>
+	</ui:composition>
+</h:body>
+</html>

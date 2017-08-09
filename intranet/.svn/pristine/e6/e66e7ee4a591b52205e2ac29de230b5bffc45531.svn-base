@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui">
+
+<h:head>
+	<title>INTRANET 2.0 | Login</title>
+	<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0"/>
+        
+    <h:outputScript name="js/login.js" library="sentinel-layout" />
+    <h:outputStylesheet name="css/font-icon-layout.css" library="sentinel-layout"/>
+    <h:outputStylesheet name="css/sentinel-layout.css" library="sentinel-layout"/>
+    <h:outputStylesheet name="css/core-layout.css" library="sentinel-layout"/>
+    <h:outputStylesheet name="estilo.css" library="css"/>
+    
+    <style>
+    	.center{
+    		text-align:center !important;
+    	}
+    	
+    	#cap1{
+    		display: inline-block;
+    	}
+    	
+    </style>
+    
+    <script>
+    	(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+		  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+			m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+		})(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+
+		ga('create', 'UA-102425208-1', 'auto');
+		ga('send', 'pageview');
+
+	</script>
+	<p:growl id="messages" autoUpdate="false" />
+</h:head>
+
+<h:body class="fontRegular login-back white-back" >   	
+    <div class="Container80 MaxWid500 Fnone MarAuto TexAlCenter PaddingTopPercent10">
+        <a href="" id="login-logo">
+			<h:graphicImage name="images/LOGO.svg" styleClass="Fleft" library="sentinel-layout"/>
+            <span class="Fs30 FontTitilliumSemiBoldItalic Fleft"><span class="hardblue"> I N T R A N E T </span><span class="softblue Fs40">2.0</span></span>
+        </a>
+        <div class="EmptyBox10"></div>
+    </div>
+    
+    <!-- LOGIN BOX COVER START -->
+    <div class="Container80 MaxWid500 white-back Fnone MarAuto BordRad10" id="login-box">
+        <div class="Container100">
+            <div class="Container50 TexAlCenter Animated05 BoxSizeBorder TabBtn left TabBtnActiveLeft" role="1">
+                <div class="Container80 Fnone MarAuto FontBold"><i class="icon-lock"></i>Login</div>
+            </div>
+            <div class="Container50 TexAlCenter Animated05 BoxSizeBorder TabBtn right" role="2">
+                <div class="Container80 Fnone MarAuto FontBold"><i class="icon-key-1"></i>E-mail</div>
+            </div>
+            
+            <form action="j_spring_security_check" method="post">
+	            <div class="Container90 Fnone MarAuto TexAlCenter TabContent" id="TAB1">
+	            	<p:spacer height="20" width="100%"/>
+	               
+	               	<h:panelGrid columns="1" width="100%">
+	                	<h:outputText value="Usuário ou senha incorretos!" rendered="#{param.erro}" styleClass="Fs16 red"/>
+	                	<p:spacer height="20" width="100%"/>
+						<p:inputText id="j_username" value="" placeholder="Usuário" styleClass="Container80 Fnone MarAuto Fs18" required="true"/>
+	                	<div class="EmptyBox10"></div>
+	                	<p:password id="j_password" value="" placeholder="Senha" styleClass="Container80 Fnone MarAuto Fs18" feedback="false" required="true"/>
+	                	<p:commandLink value="Esqueci a senha" styleClass="Fs16" onclick="PF('dialogEsqueciSenha').show();" update=":formDialog" 
+	                				   actionListener="#{loginController.prepararEsqueciSenha}"/>
+	                </h:panelGrid>
+	                <div class="EmptyBox20"></div>
+	                
+	                <button id="loginButton" name="loginButton" class="ui-button ui-widget ui-state-default ui-corner-all ui-button-text-only" type="submit">
+	                	<span class="ui-button-text ui-c">Login</span>
+	                </button>
+	                
+	                <div class="EmptyBox50"></div>
+	            </div>
+	        </form>
+            
+            <div class="Container90 Fnone MarAuto DispNone TexAlCenter TabContent" id="TAB2">
+            	<h:form>
+                	<p:spacer height="55" width="100%"/>
+                	<h:outputText value="Requisição de Acesso" styleClass="TexAlCenter FontBold Fs18 leaden"/>
+                	<p:spacer height="20" width="100%"/>
+                	<p:inputText value="#{loginController.email}" placeholder="E-mail" styleClass="Container80 Fnone MarAuto Fs18" validatorMessage="Formato de Email inválido!">
+                		<f:validateRegex pattern="^[_A-Za-z0-9-\+]+(\.[_A-Za-z0-9-]+)*@[A-Za-z0-9-]+(\.[A-Za-z0-9]+)*(\.[A-Za-z]{2,})$" />
+                	</p:inputText>
+                	<div class="EmptyBox20"></div>
+                	<p:commandButton value="Enviar Requisição" styleClass="Fs16" action="#{loginController.enviarEmailRequisicaoAcesso}" update=":messages">
+                		<f:setPropertyActionListener value="#{loginController.email}" target="#{loginController.email}"/>
+                	</p:commandButton>
+                </h:form>
+                <div class="EmptyBox50"></div>
+            </div>
+        </div>
+        
+        <p:dialog id="dialogEsqueciSenha" header="Gerar nova senha" widgetVar="dialogEsqueciSenha" width="500" height="280" modal="true">
+			<h:form id="formDialog" prependId="false">
+				<h:panelGrid columns="1" styleClass="center" width="100%">
+					<p:captcha label="Captcha" publicKey="6LdGwwUTAAAAAAFZztef2iIcAI0WIUhmC1c3aDg8" language="pt_BR" id="cap1"
+						validatorMessage="É necessário confirmação do captcha!" immediate="true"/>
+
+					<p:inputText value="#{loginController.usuario.username}" placeholder="Usuário" styleClass="Container80 Fnone MarAuto Fs18" required="true"
+						requiredMessage="É necessário preencher o campo de usuário"/>
+					<div class="EmptyBox60"></div>
+					<p:commandButton id="button" value="Enviar Email" ajax="false" actionListener="#{loginController.gerarNovaSenha}"
+						oncomplete="PF('dialogEsqueciSenha').hide();" update=":messages">
+						<f:setPropertyActionListener value="#{loginController.usuario.username}" target="#{loginController.usuario.username}" />
+					</p:commandButton>
+				</h:panelGrid>
+			</h:form>
+		</p:dialog>
+	</div>
+	</h:body>
+</html>

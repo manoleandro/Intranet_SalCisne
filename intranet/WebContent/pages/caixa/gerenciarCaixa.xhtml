@@ -1,0 +1,799 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:h="http://java.sun.com/jsf/html" xmlns:ui="http://java.sun.com/jsf/facelets" xmlns:f="http://java.sun.com/jsf/core" xmlns:p="http://primefaces.org/ui">
+<h:head>
+	<f:loadBundle basename="messages_pt_BR" var="msg" />
+
+	<style>
+		.ui-panelgrid>*>tr, .ui-panelgrid>*>tr>td.ui-panelgrid-cell {
+			border: none !important;
+		}
+	</style>
+
+</h:head>
+
+<h:body>
+	<f:metadata>
+		<f:event listener="#{caixaController.init()}" type="preRenderView"></f:event>
+	</f:metadata>
+	<ui:composition template="../../template/commonLayout.xhtml">
+		<ui:define name="content">
+
+			<div class="ContainerIndent">
+				<p:panel styleClass="panel">
+					<h:form id="itens">
+						<p:growl id="messages" autoUpdate="false" escape="false" />
+						<p:confirmDialog global="true" showEffect="puff" hideEffect="puff" appendTo="@(body)">
+							<p:commandButton value="Sim" type="button" styleClass="ui-confirmdialog-yes" icon="fa fa-check Fs18 white" />
+							<p:commandButton value="Não" type="button" styleClass="ui-confirmdialog-no" icon="fa fa-times Fs18 white" />
+						</p:confirmDialog>
+
+						<div class="container">
+							<h:outputText value="Gerenciar Caixa" styleClass="title-page hardblue" />
+							<div class="right" style="text-align: right">
+
+								<p:commandButton value="Lançar" actionListener="#{caixaController.prepararLancamento}" oncomplete="PF('dialogLancamento').show();" update=":formLancamento" icon="fa fa-arrow-right Fs14 white" />
+								<p:spacer width="5"></p:spacer>
+								<p:commandButton value="Consulta de Saldo" icon="fa fa-file Fs14 white" onclick="PF('dialogConsultaSaldo').show();" actionListener="#{caixaController.prepararConsultaSaldo}"
+									update=":formConsultaSaldo" />
+								<p:spacer width="5"></p:spacer>
+								<p:menuButton value="Relatórios">
+									<p:menuitem value="Saldo Total" icon="fa fa-print  Fs12" oncomplete="PF('dialogParamRelatSaldoTotal').show();" actionListener="#{caixaController.prepararRelatorioSaldoTot}"
+										update=":formParamRelatSaldoTotal" />
+									<p:menuitem value="Saldo Detalhado" icon="fa fa-print  Fs12" actionListener="#{caixaController.prepararRelatorio}" oncomplete="PF('dialogParamRelat').show();" update=":formParamRelat" />
+								</p:menuButton>
+								<p:spacer width="5"></p:spacer>
+
+								<p:commandButton value="Editar" oncomplete="PF('dialogAltHistorico').show();" update=":formAltHistorico" icon="fa fa-pencil Fs14 white" />
+								<p:spacer width="5"></p:spacer>
+								<p:commandLink styleClass="commandLinkIcone" title="Atualizar">
+
+									<i class="fa icon-arrows-cw title-page button" />
+								</p:commandLink>
+
+							</div>
+						</div>
+						<p:separator />
+					</h:form>
+					<h:form id="form-filtros">
+						<p:toolbar id="toolbar">
+							<p:toolbarGroup align="left">
+
+								<h:panelGrid id="gridPesquisa" columns="13">
+
+									<style>
+										@media only screen and (min-device-width: 768px) {
+											.componenteRenderizado {
+												display: none !important;
+											}
+										}
+
+										@media ( min-width :320px) { /* smartphones, portrait iPhone, portrait 480x320 phones (Android) */
+											.componenteRenderizado {
+												display: none !important;
+											}
+										}
+
+										@media ( min-width :480px) { /* smartphones, Android phones, landscape iPhone */
+											.componenteRenderizado {
+												display: none !important;
+											}
+										}
+
+										@media ( min-width :600px) { /* portrait tablets, portrait iPad, e-readers (Nook/Kindle), landscape 800x480 phones (Android) */
+											.componenteRenderizado {
+												display: none !important;
+											}
+										}
+
+										@media ( min-width :801px) { /* tablet, landscape iPad, lo-res laptops ands desktops */
+											.componenteRenderizado {
+												display: block !important;
+											}
+										}
+
+										@media ( min-width :1025px) { /* big landscape tablets, laptops, and desktops */
+											.componenteRenderizado {
+												display: block !important;
+											}
+										}
+									</style>
+
+									<h:outputText value="De:" />
+									<p:calendar locale="pt" mask="99/99/9999" pattern="dd/MM/yyyy" id="dataInicio" size="11" effect="fade" value="#{caixaController.lancamentoFiltro.dataInicio}">
+										<p:ajax event="dateSelect" process="@this" listener="#{caixaController.mudaData()}"></p:ajax>
+									</p:calendar>
+
+									<h:outputText value="Até:" />
+									<p:calendar locale="pt" mask="99/99/9999" pattern="dd/MM/yyyy" id="dataFim" size="11" effect="fade" value="#{caixaController.lancamentoFiltro.dataFim}">
+										<p:ajax event="dateSelect" process="@this"></p:ajax>
+									</p:calendar>
+
+									<p:selectOneMenu value="#{caixaController.lancamentoFiltro.contas.idConta}" effect="fade" effectSpeed="500" styleClass="componenteRenderizado">
+										<f:selectItem itemLabel="Selecione a Conta" itemValue="" />
+										<f:selectItems value="#{caixaController.listContas}" var="contas" itemLabel="#{contas.conta}" itemValue="#{contas.idConta}" itemDescription="#{contas.descricao}" />
+									</p:selectOneMenu>
+
+									<p:selectOneMenu value="#{caixaController.lancamentoFiltro.contas.tpConta.id}" effect="fade" effectSpeed="500" styleClass="componenteRenderizado">
+										<f:selectItem itemLabel="Selecione o Tipo" itemValue="" />
+										<f:selectItems value="#{caixaController.listTpContas}" var="tpContas" itemLabel="#{tpContas.descricao}" itemValue="#{tpContas.id}" />
+									</p:selectOneMenu>
+
+									<p:selectOneMenu value="#{caixaController.lancamentoFiltro.contas.banco.id}" effect="fade" effectSpeed="500" styleClass="componenteRenderizado">
+										<f:selectItem itemLabel="Selecione o Banco" itemValue="" />
+										<f:selectItems value="#{caixaController.listBancos}" var="bancos" itemLabel="#{bancos.descricao}" itemValue="#{bancos.id}" />
+									</p:selectOneMenu>
+
+									<h:outputText value="Comp. Saldo: " />
+									<p:selectOneMenu value="#{caixaController.compFluxo}" effect="fade" effectSpeed="500" style="valign:center">
+										<f:selectItem itemLabel="Selecione" itemValue="" />
+										<f:selectItem itemLabel="Sim" itemValue="1" />
+										<f:selectItem itemLabel="Não" itemValue="0" />
+										<f:selectItem itemLabel="Todas" itemValue="T" />
+										<p:ajax event="change" process="@this"></p:ajax>
+									</p:selectOneMenu>
+
+									<p:commandButton id="btn-pesquisar" icon="fa fa-search Fs14 white" title="Pesquisar"
+										actionListener="#{caixaController.listarLancamentos(caixaController.compFluxo, caixaController.lancamentoFiltro)}" update=":formLancamentos:tabelaLancamentos">
+									</p:commandButton>
+
+								</h:panelGrid>
+							</p:toolbarGroup>
+						</p:toolbar>
+
+					</h:form>
+					<p:separator></p:separator>
+
+					<h:form id="formLancamentos">
+						<style>
+							.ui-datatable .ui-datatable-data .even-row td {
+								background-color: #fcefa1; border-right: solid 0px #4e6769;
+							}
+
+							.ui-datatable .ui-datatable-data .odd-row td {
+								background-color: #D5E1ED; border-right: solid 0px #4e6769;
+							}
+
+							.center {
+								text-align: center;
+							}
+						</style>
+						
+						<p:dataTable id="tabelaLancamentos" value="#{caixaController.listaLancamentos}" var="lancamentos" emptyMessage="Não há Lançamentos"
+							rowStyleClass="#{empty rowIx or rowIx  mod 2 ne 0 ? 'odd-row' : 'null'}" filteredValue="#{caixaController.listaLancamentosFiltro}" selection="#{caixaController.lancamentoSelected}"
+							selectionMode="single" rowIndexVar="rowIx" rowKey="#{lancamentos.idLancamento}" style="overflow:auto" scrollable="true" scrollHeight="300">
+
+							<p:ajax event="rowSelect" listener="#{caixaController.onRowSelect}" />
+							<p:column priority="1" headerText="Dia" filterBy="#{lancamentos.dtLancamento}" sortBy="#{lancamentos.dtLancamento}" style="text-align:center" filterStyle="width:84%">
+								<h:outputText value="#{lancamentos.dtLancamento}" style="font-size: 12px;color:black;">
+									<f:convertDateTime pattern="dd/MM/yyyy" />
+								</h:outputText>
+							</p:column>
+
+							<p:column priority="6" headerText="Código" filterBy="#{lancamentos.idLancamento}" sortBy="#{lancamentos.idLancamento}" style="text-align:center" filterStyle="width:84%">
+								<h:outputText value="#{lancamentos.idLancamento}" style="font-size: 12px;color:black;" />
+							</p:column>
+
+							<p:column priority="6" headerText="Docto" filterBy="#{lancamentos.documento}" sortBy="#{lancamentos.documento}" style="text-align:center" filterStyle="width:84%">
+								<h:outputText value="#{lancamentos.documento}" style="font-size: 12px;color:black;" />
+							</p:column>
+
+							<p:column priority="1" headerText="Conta" filterBy="#{lancamentos.contas.conta}" sortBy="#{lancamentos.contas.conta}" filterMatchMode="contains" filterStyle="width:84%">
+								<h:outputText value="#{lancamentos.contas.conta}" title="#{lancamentos.contas.descricao}" style="font-size: 12px;color:black;" />
+							</p:column>
+
+							<p:column priority="1" headerText="Hist. Lanc." filterBy="#{lancamentos.descricao}" sortBy="#{lancamentos.descricao}" filterMatchMode="contains" filterStyle="width:84%" width="30%">
+								<h:outputText value="#{lancamentos.descricao}" style="font-size: 12px;color:black;" />
+								<f:facet name="footer">
+									<h:outputText value="Total: " style="color:black;text-align: right;font-size:bold;font-size: 15px !important;" />
+								</f:facet>
+							</p:column>
+
+							<p:column priority="1" headerText="Valor" filterBy="#{lancamentos.valor}" sortBy="#{lancamentos.valor}" filterStyle="width:84%">
+								<h:outputText value="R$" style="font-size: 12px;color:black;" />
+								<h:outputText value="#{lancamentos.valor}" rendered="#{lancamentos.valor lt 0}" style="font-size: 12px;float:right;color:red">
+									<f:convertNumber type="currency" pattern="###,##0.00" minFractionDigits="2" />
+								</h:outputText>
+
+								<h:outputText value="#{lancamentos.valor}" rendered="#{lancamentos.valor ge 0}" style="font-size: 12px;float:right;color:black;">
+									<f:convertNumber type="currency" pattern="###,##0.00" minFractionDigits="2" />
+								</h:outputText>
+
+
+								<f:facet name="footer">
+									<h:outputText value="R$ #{caixaController.strTotal}" rendered="#{caixaController.total lt 0}" style="color:red;text-align: right;font-size:bold;font-size: 15px !important;" />
+									<h:outputText value="R$ #{caixaController.strTotal}" rendered="#{caixaController.total ge 0}" style="text-align: right;color:black;font-size:bold;font-size: 15px !important;" />
+								</f:facet>
+							</p:column>
+
+							<p:column priority="6" headerText="Bco." sortBy="#{lancamentos.contas.banco.descricao}" style="text-align:center">
+								<h:outputText value="#{lancamentos.contas.banco.descricao.substring(0,1)}" title="#{lancamentos.contas.banco.descricao}" style="font-size: 12px;color:black;" />
+							</p:column>
+
+							<p:column priority="6" headerText="Tipo" sortBy="#{lancamentos.contas.tpConta.descricao}" style="text-align:center">
+								<h:outputText value="#{lancamentos.contas.tpConta.descricao.substring(0,2)}" title="#{lancamentos.contas.tpConta.descricao}" style="font-size: 12px;color:black;" />
+							</p:column>
+
+
+
+						</p:dataTable>
+					</h:form>
+
+				</p:panel>
+			</div>
+
+			<p:dialog widgetVar="dialogAltHistorico" header="Alterar Historico de Lançamentos" width="560" height="100" modal="true" appendToBody="true" showEffect="fade" hideEffect="fade">
+				<h:form id="formAltHistorico">
+					<h:panelGrid columns="2">
+						<h:outputText value="Histórico:" />
+						<p:inputText value="#{caixaController.lancamentos.descricao}" size="70" />
+					</h:panelGrid>
+					<p:separator></p:separator>
+					<h:panelGrid columns="2">
+						<p:commandButton value="Salvar" icon="fa fa-floppy-o Fs14 white" action="#{caixaController.alterar}" oncomplete="PF('dialogAltHistorico').hide();"
+							update=":itens:messages :formLancamentos:tabelaLancamentos">
+
+							<f:setPropertyActionListener target="#{caixaController.lancamentos}" value="#{caixaController.lancamentos}" />
+						</p:commandButton>
+						<p:commandButton value="Cancelar" oncomplete="PF('dialogAltHistorico').hide();" icon="fa fa-times Fs14 white" />
+					</h:panelGrid>
+				</h:form>
+			</p:dialog>
+
+
+			<p:dialog widgetVar="dialogConsultaSaldo" header="Saldo" width="330" height="180" modal="true" appendToBody="true" showEffect="fade" hideEffect="fade">
+				<h:form id="formConsultaSaldo">
+					<style>
+.semBorda tr, .semBorda td {
+	border: none !important;
+}
+</style>
+					<h:panelGrid columns="2" styleClass="semBorda">
+						<h:outputLabel value="Conta:" />
+						<p:selectOneMenu value="#{caixaController.fechamento.idConta}" effect="fade" effectSpeed="500">
+							<f:selectItem itemLabel="Selecione" itemValue="" />
+							<f:selectItems value="#{caixaController.listContas}" var="contas" itemLabel="#{contas.conta}" itemValue="#{contas.idConta}" itemDescription="#{contas.descricao}" />
+						</p:selectOneMenu>
+
+						<p:outputLabel for="data" value="Data:" />
+						<p:calendar locale="pt" pattern="dd/MM/yyyy" mask="99/99/9999" mindate="03/02/2014" id="data" showOn="button" effect="fade" value="#{caixaController.fechamento.competencia}" />
+
+						<h:outputText value="Saldo: R$" />
+						<h:panelGroup>
+							<p:inputText value="#{caixaController.fechamento.saldo}" readonly="true">
+								<f:convertNumber type="currency" pattern="###,##0.00" minFractionDigits="2" />
+							</p:inputText>
+							<p:spacer width="3"></p:spacer>
+							<p:commandButton icon="fa fa-search  Fs14 white" title="Pesquisar Saldo" action="#{caixaController.consultarSaldo}" update=":formConsultaSaldo">
+								<f:setPropertyActionListener target="#{caixaController.fechamento}" value="#{caixaController.fechamento}" />
+							</p:commandButton>
+						</h:panelGroup>
+					</h:panelGrid>
+				</h:form>
+				<p:separator></p:separator>
+
+				<p:commandButton value="Cancelar" oncomplete="PF('dialogConsultaSaldo').hide();" icon="fa fa-times Fs14 white" />
+			</p:dialog>
+
+			<p:dialog widgetVar="dialogCodLancamento" header="Alterar Lançamento Retroativo" width="280" height="110" appendToBody="true" modal="true" showEffect="fade" hideEffect="fade">
+				<h:form id="formCodlancamento">
+					<h:panelGrid columns="2">
+						<h:outputLabel value="Código de Lançamento" />
+						<p:inputText value="#{caixaController.codLancamento}" />
+						<p:commandButton value="Alterar" icon="ui-icon-pencil" actionListener="#{caixaController.prepararAlterarLancamentoRetroativo}" oncomplete="PF('dialogLancamento').show();"
+							update=":formLancamento">
+							<f:setPropertyActionListener target="#{caixaController.codLancamento}" value="#{caixaController.codLancamento}" />
+						</p:commandButton>
+						<p:commandButton value="Cancelar" icon="ui-icon-cancel" onclick="PF('dialogCodLancamento').hide();" />
+					</h:panelGrid>
+				</h:form>
+			</p:dialog>
+
+			<p:dialog widgetVar="dialogParamRelatSaldoTotal" header="Parâmetros para emissão de relatório" width="375" height="190" appendToBody="true" modal="true" showEffect="fade" hideEffect="fade">
+				<h:form id="formParamRelatSaldoTotal">
+					<style>
+.semBorda tr, .semBorda td {
+	border: none !important;
+}
+</style>
+					<p:panel>
+						<h:panelGrid columns="2" styleClass="semBorda">
+							<h:outputText value="Data: " />
+							<p:calendar locale="pt" pattern="dd/MM/yyyy" id="data" mask="99/99/9999" mindate="03/02/2014" showOn="button" effect="fade" value="#{caixaController.paramRelat.dataInicio}" />
+
+							<h:outputLabel value="Banco: " />
+							<p:selectOneMenu value="#{caixaController.paramRelat.idBanco}" effect="fade" effectSpeed="500">
+								<f:selectItem itemLabel="Selecione" itemValue="" />
+								<f:selectItems value="#{caixaController.listBancos}" var="bancos" itemLabel="#{bancos.descricao}" itemValue="#{bancos.id}" itemDescription="#{bancos.descricao}" />
+							</p:selectOneMenu>
+							<h:outputLabel value="Compõe o Fluxo? " />
+							<p:selectOneMenu value="#{caixaController.paramRelat.compFluxo}" effect="fade" effectSpeed="500">
+								<f:selectItem itemLabel="Selecione" itemValue="" itemDisabled="true" />
+								<f:selectItem itemLabel="Sim" itemValue="1" />
+								<f:selectItem itemLabel="Não" itemValue="0" />
+								<f:selectItem itemLabel="Todas" itemValue="T" />
+							</p:selectOneMenu>
+
+						</h:panelGrid>
+
+						<p:separator></p:separator>
+
+						<p:commandButton value="Emitir" icon="fa fa-print  Fs16 white" ajax="false" action="#{caixaController.emitirRelatorioSaldoConta}" onclick="target='_blank'">
+							<f:setPropertyActionListener target="#{caixaController.paramRelat}" value="#{caixaController.paramRelat}" />
+							<p:fileDownload id="relatorioTotal" value="#{caixaController.relatorioSaldoConta}" contentDisposition="inline" />
+						</p:commandButton>
+						<p:spacer width="4"></p:spacer>
+						<p:commandButton value="Cancelar" icon="fa fa-times Fs16 white" oncomplete="PF('dialogParamRelatSaldoTotal').hide();" />
+					</p:panel>
+				</h:form>
+			</p:dialog>
+
+			<p:dialog widgetVar="dialogParamRelat" header="Parâmetros para emissão de relatório" width="370" height="180" modal="true" appendToBody="true" showEffect="fade" hideEffect="fade">
+				<p:ajax event="close" listener="#{caixaController.newLancamentos(false)}" />
+				<h:form id="formParamRelat">
+					<p:panel>
+						<style>
+.semBorda tr, .semBorda td {
+	border: none !important;
+}
+</style>
+						<h:panelGrid columns="2" styleClass="semBorda">
+							<p:outputLabel for="dataInicio" value="Data Inicio:" />
+							<p:calendar locale="pt" pattern="dd/MM/yyyy" id="dataInicio" mask="99/99/9999" mindate="03/02/2014" showOn="button" effect="fade" value="#{caixaController.lancamentos.dataInicio}" />
+
+							<p:outputLabel for="dataInicio" value="Data Fim:" />
+							<p:calendar locale="pt" pattern="dd/MM/yyyy" id="dataFim" mask="99/99/9999" showOn="button" effect="fade" value="#{caixaController.lancamentos.dataFim}" />
+
+							<h:outputLabel value="Conta:" />
+							<p:selectOneMenu value="#{caixaController.lancamentos.contas.idConta}" effect="fade" effectSpeed="500">
+								<f:selectItem itemLabel="Selecione" itemValue="" />
+								<f:selectItems value="#{caixaController.listContas}" var="contas" itemLabel="#{contas.conta}" itemValue="#{contas.idConta}" itemDescription="#{contas.descricao}" />
+							</p:selectOneMenu>
+						</h:panelGrid>
+						<p:separator></p:separator>
+						<p:commandButton value="Emitir" icon="fa fa-print  Fs16 white" ajax="false" onclick="target='_blank'" action="#{caixaController.emitirRelatorio}">
+							<f:setPropertyActionListener target="#{caixaController.lancamentoSelecionado}" value="#{caixaController.lancamentos}" />
+							<p:fileDownload value="#{caixaController.relatorioSaldoCaixa}" contentDisposition="inline" />
+						</p:commandButton>
+						<p:spacer width="4"></p:spacer>
+						<p:commandButton value="Cancelar" icon="fa fa-times Fs16 white" oncomplete="PF('dialogParamRelat').hide();" actionListener="#{caixaController.newLancamentos(false)}" />
+					</p:panel>
+				</h:form>
+			</p:dialog>
+
+			<p:dialog widgetVar="dialogIncludAltHistPadrao" header="Histórico Padrão" width="500" height="105" modal="true" resizable="true" appendToBody="true" showEffect="fade" hideEffect="fade">
+				<h:form id="formIncludAltHistPadrao">
+					<h:panelGrid columns="2">
+						<h:outputText value="Descrição:" />
+						<p:inputText id="descricao" value="#{caixaController.histPadrao.descricao}" required="true" size="50" />
+					</h:panelGrid>
+					<p:separator></p:separator>
+					<p:commandButton value="Salvar" icon="fa fa-floppy-o Fs14 white" action="#{caixaController.salvarHistPadrao}" update=":itens:messages :formHistPadrao:tabelaHistPadrao"
+						oncomplete="PF('dialogIncludAltHistPadrao').hide();">
+						<f:setPropertyActionListener target="#{caixaController.histPadraoSelecionado}" value="#{caixaController.histPadrao}" />
+					</p:commandButton>
+					<p:spacer width="4"></p:spacer>
+					<p:commandButton value="Cancelar" icon="fa fa-times Fs14 white" oncomplete="PF('dialogIncludAltHistPadrao').hide();" />
+				</h:form>
+			</p:dialog>
+
+			<p:dialog widgetVar="dialogHistPadrao" header="Histórico Padrão" width="650" resizable="true" modal="true" appendToBody="true" showEffect="fade" hideEffect="fade">
+				<h:form id="formHistPadrao">
+					<p:commandButton value="Incluir Histórico Padrão" icon="fa fa-plus Fs14 white" actionListener="#{caixaController.prepararInclusaoHistPadrao}" update=":formIncludAltHistPadrao"
+						oncomplete="PF('dialogIncludAltHistPadrao').show();" />
+					<p:spacer width="6"></p:spacer>
+					<p:commandButton value="Fechar" icon="fa fa-times Fs14 white" onclick="PF('dialogHistPadrao').hide();" />
+					<p:separator></p:separator>
+					<p:dataTable id="tabelaHistPadrao" value="#{caixaController.listaHistPadrao}" var="histPadrao" emptyMessage="Não há histórico" paginatorPosition="bottom" paginator="true" rows="7"
+						filteredValue="#{caixaController.listaHistPadraoFiltro}" rowsPerPageTemplate="5,10,15">
+
+						<p:column headerText="Código" sortBy="#{histPadrao.id}" styleClass="center">
+							<h:outputText value="#{histPadrao.id}" />
+						</p:column>
+
+						<p:column headerText="Descrição" sortBy="#{histPadrao.descricao}">
+							<h:outputText value="#{histPadrao.descricao}" />
+						</p:column>
+
+						<p:column styleClass="center">
+							<p:commandButton value="Alterar" icon="fa fa-pencil Fs14 white" action="#{caixaController.prepararAlteracaoHistPadrao}" update=":formIncludAltHistPadrao"
+								oncomplete="PF('dialogIncludAltHistPadrao').show();">
+								<f:setPropertyActionListener target="#{caixaController.histPadraoSelecionado}" value="#{histPadrao}" />
+							</p:commandButton>
+						</p:column>
+
+						<p:column styleClass="center">
+							<p:commandButton value="Excluir" icon="fa fa-trash Fs14 white" action="#{caixaController.excluirHistPadrao}" update=":itens:messages :formHistPadrao:tabelaHistPadrao">
+								<p:confirm header="Atenção" message="#{msg['excluir.registro']}" icon="fa fa-info Fs18" />
+								<f:setPropertyActionListener target="#{caixaController.histPadraoSelecionado}" value="#{histPadrao}" />
+							</p:commandButton>
+
+						</p:column>
+
+
+
+
+
+					</p:dataTable>
+				</h:form>
+			</p:dialog>
+
+			<p:dialog widgetVar="dialogFechar" header="Fechamento de Período" width="390" height="210" modal="true" appendToBody="true" showEffect="fade" hideEffect="fade">
+				<h:form id="formFechar">
+					<style>
+.semBorda tr, .semBorda td {
+	border: none !important;
+}
+</style>
+					<p:panelGrid columns="2" styleClass="semBorda">
+						<h:outputText value="Competência:" />
+						<p:calendar locale="pt" pattern="dd/MM/yyyy" id="dataInicio" mask="99/99/9999" showOn="button" effect="fade" value="#{caixaController.fechamento.competencia}"
+							title="Sempre Informar o 1º dia do Mês!" />
+
+						<h:outputText value="Saldo: R$" />
+						<h:panelGroup>
+							<p:inputText value="#{caixaController.fechamento.saldo}" rendered="#{caixaController.fechamento.saldo lt 0}" style="color:red" readonly="true">
+								<f:convertNumber type="currency" pattern="###,##0.00" minFractionDigits="2" />
+							</p:inputText>
+							<p:inputText value="#{caixaController.fechamento.saldo}" rendered="#{caixaController.fechamento.saldo ge 0}" readonly="true">
+								<f:convertNumber type="currency" pattern="###,##0.00" minFractionDigits="2" />
+							</p:inputText>
+							<p:commandButton icon="ui-icon-calculator" title="Calcular Saldo" action="#{caixaController.prepararSaldoFechar}" update=":formFechar">
+								<f:setPropertyActionListener target="#{caixaController.fechamento}" value="#{caixaController.fechamento}" />
+							</p:commandButton>
+						</h:panelGroup>
+
+						<h:outputText value="Período:" />
+						<p:inputText value="#{caixaController.fechamento.periodo}" size="35" readonly="true" />
+
+						<p:commandButton value="Fechar" action="#{caixaController.salvarFechamento}" update=":itens:messages :formLancamentos:tabelaLancamentos" oncomplete="PF('dialogFechar').hide();"
+							icon="ui-icon-check" onclick="target='_self'; return confirm('Deseja realmente fechar o período? Depois disto não será possível alterar as contas da competência!');">
+							<f:setPropertyActionListener target="#{caixaController.fechamento}" value="#{caixaController.fechamento}" />
+						</p:commandButton>
+						<p:commandButton value="Cancelar" oncomplete="PF('dialogFechar').hide();" icon="ui-icon-cancel" />
+					</p:panelGrid>
+				</h:form>
+			</p:dialog>
+
+			<p:dialog widgetVar="dialogConsultaFechamento" header="Fechamentos" width="620" height="620" modal="true" appendToBody="true" showEffect="fade" hideEffect="fade">
+				<h:form id="formConsultaFechamento">
+					<p:dataTable id="tabelaFechamento" value="#{caixaController.listFechamento}" var="fechamento" emptyMessage="Não há Fechamentos" paginator="true" rows="10"
+						filteredValue="#{caixaController.listaFechamentoFiltro}" rowsPerPageTemplate="5,10,15">
+
+						<p:column headerText="Competência" sortBy="#{fechamento.competencia}" filterBy="#{fechamento.competencia}">
+							<p:inputMask readonly="true" id="competencia" value="#{fechamento.competencia}" mask="99/99/9999" style="text-align:center">
+								<f:convertDateTime pattern="dd/MM/yyyy" />
+							</p:inputMask>
+						</p:column>
+
+						<p:column headerText="Período" sortBy="#{fechamento.periodo}" filterBy="#{fechamento.periodo}">
+							<h:outputText value="#{fechamento.periodo}" />
+						</p:column>
+
+						<p:column headerText="Saldo" sortBy="#{fechamento.saldo}" filterBy="#{fechamento.saldo}">
+						R$
+						<h:outputText value="#{fechamento.saldo}" rendered="#{fechamento.saldo lt 0}" style="float:right;color:red">
+								<f:convertNumber type="currency" pattern="###,##0.00" minFractionDigits="2" />
+							</h:outputText>
+							<h:outputText value="#{fechamento.saldo}" rendered="#{fechamento.saldo ge 0}" style="float:right">
+								<f:convertNumber type="currency" pattern="###,##0.00" minFractionDigits="2" />
+							</h:outputText>
+						</p:column>
+					</p:dataTable>
+				</h:form>
+			</p:dialog>
+
+			<p:dialog widgetVar="dialogLancamento" header="Lançamentos" width="589" height="410" modal="true" appendToBody="true" showEffect="fade" hideEffect="fade">
+				<p:ajax event="close" listener="#{caixaController.newLancamentos(false)}" />
+				<h:form id="formLancamento" prependId="false">
+					<h:panelGrid id="gridLancamento" columns="2" width="500">
+						<h:outputLabel value="Data:" />
+						<p:calendar value="#{caixaController.lancamentos.dtLancamento}" locale="pt" mask="99/99/9999" pattern="dd/MM/yyyy" showOn="button" effect="fade" disabled="#{!caixaController.inclusao}"
+							mindate="#{caixaController.lancamentos.dataInicioLancPermitido}" maxdate="#{caixaController.lancamentos.dataFimLancPermitido}" />
+
+						<h:outputLabel value="Código:" />
+						<h:panelGroup>
+							<p:inputText id="strIdConta" value="#{caixaController.lancamentos.strIdConta}" disabled="#{!caixaController.inclusao}">
+								<p:ajax listener="#{caixaController.selecionarContaId}" update=":formLancamento:conta :formLancamento:descricaoConta :formLancamento:idHistLancamento" event="blur"
+									oncomplete="jQuery('#idHistLancamento').focus()" />
+							</p:inputText>
+							<p:spacer width="3"></p:spacer>
+							<p:commandButton id="pesquisaConta" icon="fa fa-search Fs14 white" actionListener="#{caixaController.prepararContas}" oncomplete="PF('dialogAssistenteConta').show();"
+								update=":formAssistenteContas:tabelaAssistenteContas" />
+						</h:panelGroup>
+						<h:outputLabel value="Conta:" />
+						<p:inputText id="conta" value="#{caixaController.lancamentos.contas.conta}" size="50" readonly="true" />
+
+						<h:outputLabel value="Descrição Conta:" />
+						<p:inputText id="descricaoConta" value="#{caixaController.lancamentos.contas.descricao}" size="50" readonly="true" />
+
+						<h:outputLabel value="Código de Histórico:" />
+						<h:panelGroup>
+							<p:inputText id="idHistLancamento" value="#{caixaController.lancamentos.strIdHistPadrao}">
+								<p:ajax listener="#{caixaController.selecionarHistPadraoId}" update=":formLancamento:histLancamento" event="blur" oncomplete="jQuery('#histLancamento').focus()" />
+							</p:inputText>
+							<p:spacer width="3"></p:spacer>
+							<p:commandButton icon="fa fa-search Fs14 white" actionListener="#{caixaController.prepararHistoricoPadrao}" update=":formAssistenteHistPadrao:tabelaAssistenteHistPadrao"
+								oncomplete="PF('dialogAssistenteHistPadrao').show();" />
+						</h:panelGroup>
+
+						<h:outputLabel value="Histórico de Lançamento:" />
+						<p:inputText id="histLancamento" value="#{caixaController.lancamentos.descricao}" size="50" onfocus="this.selectionStart = this.value.length; this.selectionEnd = this.value.length;" />
+
+						<h:outputLabel value="Documento:" />
+						<p:inputText id="documento" value="#{caixaController.lancamentos.documento}" />
+
+						<h:outputLabel value="Valor:" />
+						<h:panelGroup>
+
+							<p:inputText id="valor" value="#{caixaController.lancamentos.valor}" dir="rtl" placeholder="R$ 0,00" onkeypress="FormataValor(this,8,event,2); return CheckNumerico(this,8,event);"
+								onkeyup="FormataValor(this,8,event,2); return CheckNumerico(this,8,event);" disabled="#{!caixaController.inclusao}">
+								<f:convertNumber for="valor" locale="pt_BR" maxFractionDigits="2" maxIntegerDigits="20" pattern="###,##0.00" />
+							</p:inputText>
+						</h:panelGroup>
+						<h:outputLabel value="Crédio/Débito:" />
+						<p:selectOneMenu value="#{caixaController.lancamentos.debCred}" effect="fade" effectSpeed="500" disabled="#{!caixaController.inclusao}">
+							<f:selectItem itemLabel="Selecione" itemValue="" />
+							<f:selectItem itemLabel="Débito" itemValue="D" />
+							<f:selectItem itemLabel="Crédito" itemValue="C" />
+						</p:selectOneMenu>
+					</h:panelGrid>
+					<p:separator></p:separator>
+					<h:panelGrid columns="2">
+						<p:commandButton value="Lançar" action="#{caixaController.salvarLancamento}" update=":itens:messages :formLancamentos:tabelaLancamentos :formLancamento:gridLancamento"
+							icon="fa fa-arrow-right Fs14 white" oncomplete="jQuery('#strIdConta').focus()">
+							<f:setPropertyActionListener target="#{caixaController.lancamentoSelecionado}" value="#{caixaController.lancamentos}" />
+						</p:commandButton>
+
+						<p:commandButton value="Cancelar" oncomplete="PF('dialogLancamento').hide();" actionListener="#{caixaController.newLancamentos(false)}" icon="fa fa-times Fs14 white" />
+					</h:panelGrid>
+				</h:form>
+			</p:dialog>
+
+			<p:dialog widgetVar="dialogAssistenteHistPadrao" header="Selecione um Histórico" width="610" height="490" modal="true" appendToBody="true" showEffect="fade" hideEffect="fade">
+
+				<h:form id="formAssistenteHistPadrao">
+					<p:dataTable id="tabelaAssistenteHistPadrao" value="#{caixaController.listaHistPadrao}" var="histPadrao" emptyMessage="Não há Históricos" selection="#{caixaController.histPadraoSelecionado}"
+						selectionMode="single" rows="10" paginator="true" rowKey="#{histPadrao.id}" paginatorPosition="bottom">
+						<p:column headerText="Código" sortBy="#{histPadrao.id}" filterBy="#{histPadrao.id}" width="30%">
+							<h:outputText value="#{histPadrao.id}" />
+						</p:column>
+
+						<p:column headerText="Descrição" sortBy="#{histPadrao.descricao}" filterBy="#{histPadrao.descricao}" filterStyle="width:90%;">
+							<h:outputText value="#{histPadrao.descricao}" />
+						</p:column>
+
+						<f:facet name="footer">
+							<p:commandButton id="viewButton" value="Selecionar" icon="ui-icon-check" action="#{caixaController.selecionarHistPadrao}"
+								update=":formLancamento:histLancamento :formLancamento:idHistLancamento" oncomplete="PF('dialogAssistenteHistPadrao').hide();" />
+						</f:facet>
+					</p:dataTable>
+				</h:form>
+			</p:dialog>
+
+			<p:dialog widgetVar="dialogAssistenteConta" header="Selecione uma conta" width="530" height="440" modal="true" appendToBody="true" showEffect="fade" hideEffect="fade">
+				<h:form id="formAssistenteContas">
+					<p:dataTable id="tabelaAssistenteContas" value="#{caixaController.listaContas}" var="contas" emptyMessage="Não há Contas" paginatorPosition="bottom"
+						selection="#{caixaController.contaSelecionada}" selectionMode="single" rows="10" paginator="true" rowKey="#{contas.idConta}">
+						<p:column headerText="Código" sortBy="#{contas.idConta}" filterBy="#{contas.idConta}" width="30%">
+							<h:outputText value="#{contas.idConta}" />
+						</p:column>
+
+						<p:column headerText="Descrição" sortBy="#{contas.descricao}" filterBy="#{contas.descricao}" filterStyle="width:90%">
+							<h:outputText value="#{contas.descricao}" />
+						</p:column>
+
+						<f:facet name="footer">
+							<p:commandButton id="viewButton" value="Selecionar" icon="fa fa-check Fs14 white" action="#{caixaController.selecionarConta}"
+								update=":formLancamento:strIdConta :formLancamento:conta :formLancamento:descricaoConta" oncomplete="PF('dialogAssistenteConta').hide();" />
+						</f:facet>
+					</p:dataTable>
+				</h:form>
+			</p:dialog>
+
+			<p:dialog widgetVar="dialogBancos" header="Manutenção de Bancos" width="600" resizable="true" modal="true" appendToBody="true" showEffect="fade" hideEffect="fade" position="center">
+				<h:form id="formBancos">
+
+					<p:commandButton value="Incluir Banco" actionListener="#{caixaController.prepararInclusaoBanco}" update=":formIncludAltBancos" oncomplete="PF('dialogIncludAltBancos').show();"
+						icon="fa fa-plus Fs14 white" />
+					<p:spacer width="6"></p:spacer>
+					<p:commandButton value="Fechar" onclick="PF('dialogBancos').hide();" icon="fa fa-times Fs14 white" />
+					<p:separator></p:separator>
+
+					<p:dataTable id="tabelaBancos" var="banco" value="#{caixaController.listBancos}" paginator="true" paginatorPosition="bottom" rows="7" filteredValue="#{caixaController.listaBancosFiltro}"
+						rowsPerPageTemplate="5,10,15" emptyMessage="Não há Tipo de Contas">
+
+						<p:column headerText="Código" sortBy="#{banco.id}">
+							<h:outputText value="#{banco.id}" />
+						</p:column>
+
+						<p:column headerText="Descrição" sortBy="#{banco.descricao}">
+							<h:outputText value="#{banco.descricao}" />
+						</p:column>
+
+						<p:column>
+							<p:commandButton value="Alterar" action="#{caixaController.prepararAlteracaoBanco}" update=":formIncludAltBancos" oncomplete="PF('dialogIncludAltBancos').show();" icon="fa fa-pencil Fs14 white">
+								<f:setPropertyActionListener target="#{caixaController.bancoSelecionado}" value="#{banco}" />
+							</p:commandButton>
+						</p:column>
+
+						<p:column>
+							<p:commandButton value="Excluir" action="#{caixaController.excluirBanco}" update=":itens:messages :formBancos:tabelaBancos" icon="fa fa-trash Fs14 white">
+								<p:confirm header="Atenção" message="#{msg['excluir.registro']}" icon="fa fa-info Fs18" />
+								<f:setPropertyActionListener target="#{caixaController.bancoSelecionado}" value="#{banco}" />
+							</p:commandButton>
+						</p:column>
+					</p:dataTable>
+				</h:form>
+			</p:dialog>
+
+			<p:dialog widgetVar="dialogIncludAltBancos" header="Bancos" width="500" height="105" modal="true" appendToBody="true" showEffect="fade" hideEffect="fade">
+				<h:form id="formIncludAltBancos">
+					<h:panelGrid columns="2">
+						<h:outputText value="Descrição:" />
+						<p:inputText id="descricao" value="#{caixaController.bancos.descricao}" required="true" size="50" />
+					</h:panelGrid>
+					<p:separator></p:separator>
+					<p:commandButton value="Salvar" action="#{caixaController.salvarBanco}" update=":itens:messages :formBancos:tabelaBancos" oncomplete="PF('dialogIncludAltBancos').hide();"
+						icon="fa fa-plus Fs14 white">
+						<f:setPropertyActionListener target="#{caixaController.bancoSelecionado}" value="#{caixaController.bancos}" />
+					</p:commandButton>
+					<p:spacer width="4"></p:spacer>
+					<p:commandButton value="Cancelar" oncomplete="PF('dialogIncludAltBancos').hide();" icon="fa fa-times Fs14 white" />
+				</h:form>
+			</p:dialog>
+
+			<p:dialog widgetVar="dialogTPContas" header="Manutenção de Tipo de Contas" modal="true" width="565" resizable="true" appendToBody="true" showEffect="fade" hideEffect="fade">
+				<h:form id="formTPContas">
+					<p:commandButton value="Incluir Tipo de Conta" update=":formIncludAltTPContas" actionListener="#{caixaController.prepararInclusaoTpConta}" oncomplete="PF('dialogIncludAltTpContas').show();"
+						icon="fa fa-plus Fs14 white" />
+					<p:spacer width="6"></p:spacer>
+					<p:commandButton value="Fechar" onclick="PF('dialogTPContas').hide();" icon="fa fa-times Fs14 white" />
+					<p:separator></p:separator>
+					<p:dataTable id="tabelaTPContas" var="tpConta" value="#{caixaController.listTpContas}" paginator="true" paginatorPosition="bottom" rows="7" filteredValue="#{caixaController.listaTPContasFiltro}"
+						rowsPerPageTemplate="5,10,15" emptyMessage="Não há Tipo de Contas">
+
+						<p:column headerText="Código" sortBy="#{tpConta.id}">
+							<h:outputText value="#{tpConta.id}" />
+						</p:column>
+
+						<p:column headerText="Descrição" sortBy="#{tpConta.descricao}">
+							<h:outputText value="#{tpConta.descricao}" />
+						</p:column>
+
+						<p:column>
+							<p:commandButton value="Alterar" action="#{caixaController.prepararAlteracaoTpConta}" update=":formIncludAltTPContas" oncomplete="PF('dialogIncludAltTpContas').show();"
+								icon="fa fa-pencil Fs14 white">
+								<f:setPropertyActionListener target="#{caixaController.tpContaSelecionada}" value="#{tpConta}" />
+							</p:commandButton>
+						</p:column>
+
+						<p:column>
+							<p:commandButton value="Excluir" action="#{caixaController.excluirTpConta}" update=":itens:messages :formTPContas:tabelaTPContas" icon="fa fa-trash Fs14 white">
+								<p:confirm header="Atenção" message="#{msg['excluir.registro']}" icon="fa fa-info Fs18" />
+								<f:setPropertyActionListener target="#{caixaController.tpContaSelecionada}" value="#{tpConta}" />
+							</p:commandButton>
+						</p:column>
+					</p:dataTable>
+				</h:form>
+			</p:dialog>
+
+			<p:dialog widgetVar="dialogIncludAltTpContas" header="Tipo de Contas" width="500" height="110" modal="true" appendToBody="true" showEffect="fade" hideEffect="fade">
+				<h:form id="formIncludAltTPContas">
+					<h:panelGrid columns="2">
+						<h:outputText value="Descrição:" />
+						<p:inputText id="descricao" value="#{caixaController.tpContas.descricao}" required="true" size="50" />
+					</h:panelGrid>
+					<p:separator></p:separator>
+					<p:commandButton value="Salvar" action="#{caixaController.salvarTpConta}" update=":itens:messages :formTPContas:tabelaTPContas" oncomplete="PF('dialogIncludAltTpContas').hide();"
+						icon="fa fa-floppy-o Fs14 white">
+						<f:setPropertyActionListener target="#{caixaController.tpContaSelecionada}" value="#{caixaController.tpContas}" />
+					</p:commandButton>
+					<p:commandButton value="Cancelar" oncomplete="PF('dialogIncludAltTpContas').hide();" icon="fa fa-times Fs14 white" />
+				</h:form>
+			</p:dialog>
+
+			<p:dialog widgetVar="dialogContas" header="Manutenção de Contas" width="1040" height="620" modal="true" appendToBody="true" showEffect="fade" hideEffect="fade">
+				<h:form id="formContas">
+					<p:commandButton value="Incluir Conta" actionListener="#{caixaController.prepararInclusaoContas}" oncomplete="PF('dialogIncludAltContas').show();"
+						update=":manterIncludAltContas:gridIncludAltContas" icon="fa fa-plus Fs14 white" />
+					<p:spacer width="6"></p:spacer>
+					<p:commandButton value="Fechar" onclick="PF('dialogContas').hide();" icon="fa fa-times Fs14 white" />
+					<p:separator></p:separator>
+
+					<p:dataTable id="tabelaContas" var="contas" value="#{caixaController.listaContas}" paginator="true" paginatorPosition="bottom" rows="7" filteredValue="#{caixaController.listaContasFiltro}"
+						rowsPerPageTemplate="5,10,15" emptyMessage="Não há Contas">
+
+
+
+						<p:column headerText="Código" sortBy="#{contas.idConta}" filterBy="#{contas.idConta}">
+							<h:outputText value="#{contas.idConta}" />
+						</p:column>
+
+						<p:column headerText="Conta" sortBy="#{contas.conta}" filterBy="#{contas.conta}">
+							<h:outputText value="#{contas.conta}" />
+						</p:column>
+
+						<p:column headerText="Descrição" sortBy="#{contas.descricao}" filterBy="#{contas.descricao}">
+							<h:outputText value="#{contas.descricao}" />
+						</p:column>
+
+						<p:column headerText="Compõe Saldo" sortBy="#{contas.compSaldo}" filterBy="#{contas.compSaldo}">
+							<h:outputText value="#{contas.compSaldo == 1 ? 'Sim':'Não'}  " />
+						</p:column>
+
+						<p:column headerText="Tipo" sortBy="#{contas.tpConta.descricao}" filterBy="#{contas.tpConta.descricao}">
+							<h:outputText value="#{contas.tpConta.descricao}" />
+						</p:column>
+
+						<p:column headerText="Banco" sortBy="#{contas.banco.descricao}" filterBy="#{contas.banco.descricao}">
+							<h:outputText value="#{contas.banco.descricao}" />
+						</p:column>
+
+						<p:column>
+							<p:commandButton value="Alterar" icon="fa fa-pencil  Fs14 white" action="#{caixaController.prepararAlteracaoContas}" update=":manterIncludAltContas:gridIncludAltContas"
+								oncomplete="PF('dialogIncludAltContas').show();">
+								<f:setPropertyActionListener target="#{caixaController.contaSelecionada}" value="#{contas}" />
+							</p:commandButton>
+						</p:column>
+
+						<p:column>
+							<p:commandButton value="Excluir" icon="fa fa-trash Fs14 white" oncomplete="PF('confirmaExclusao').show();" />
+						</p:column>
+					</p:dataTable>
+				</h:form>
+			</p:dialog>
+
+			<p:confirmDialog id="confirmaExclusao" message="Deseja realmente excluir o registro?" header="Atenção" severity="alert" widgetVar="confirmaExclusao" appendToBody="true" closable="true">
+				<p:commandButton id="confirmaBtn" value="Sim" action="#{caixaController.excluirConta}" icon="ui-icon-check" process="@this" onclick="PF('confirmaExclusao').hide();"
+					update=":itens:messages :formContas:tabelaContas :formContas">
+					<f:setPropertyActionListener target="#{caixaController.contaSelecionada}" value="#{contas}" />
+				</p:commandButton>
+				<p:commandButton id="recusaBtn" value="Não" onclick="PF('confirmaExclusao').hide();" icon="fa fa-times Fs14 white" />
+			</p:confirmDialog>
+
+			<p:dialog widgetVar="dialogIncludAltContas" header="Contas" modal="true" appendToBody="true" width="480" height="275" showEffect="fade" hideEffect="fade">
+				<h:form id="manterIncludAltContas">
+					<style>
+.semBorda tr, .semBorda td {
+	border: none !important;
+}
+</style>
+					<h:panelGrid id="gridIncludAltContas" columns="2" styleClass="semBorda">
+						<h:outputText value="Conta:" />
+						<p:inputText value="#{caixaController.contas.conta}" maxlength="20" />
+
+						<h:outputText value="Descrição:" />
+						<p:inputText id="descricao" value="#{caixaController.contas.descricao}" size="50" required="true" />
+
+						<h:outputText value="Compõe Saldo:" />
+						<p:selectBooleanCheckbox id="compSaldo" value="#{caixaController.compSaldo}" />
+
+						<h:outputText value="Tipo:" />
+						<p:selectOneMenu value="#{caixaController.contas.tpConta.id}" effect="fade" effectSpeed="500">
+							<f:selectItem itemLabel="Selecione" itemValue="" />
+							<f:selectItems value="#{caixaController.listTpContas}" var="tpContas" itemLabel="#{tpContas.descricao}" itemValue="#{tpContas.id}" />
+						</p:selectOneMenu>
+
+						<h:outputText value="Banco:" />
+						<p:selectOneMenu value="#{caixaController.contas.banco.id}" effect="fade" effectSpeed="500">
+							<f:selectItem itemLabel="Selecione" itemValue="" />
+							<f:selectItems value="#{caixaController.listBancos}" var="bancos" itemLabel="#{bancos.descricao}" itemValue="#{bancos.id}" />
+						</p:selectOneMenu>
+
+					</h:panelGrid>
+					<p:separator></p:separator>
+					<h:panelGrid columns="2">
+						<p:commandButton value="Salvar" action="#{caixaController.salvarConta}" update=":itens:messages :formContas:tabelaContas" oncomplete="PF('dialogIncludAltContas').hide();"
+							icon="fa fa-floppy-o Fs14 white">
+							<f:setPropertyActionListener target="#{caixaController.contaSelecionada}" value="#{caixaController.contas}" />
+						</p:commandButton>
+						<p:commandButton value="Cancelar" oncomplete="PF('dialogIncludAltContas').hide();" icon="fa fa-times Fs14 white" />
+					</h:panelGrid>
+				</h:form>
+			</p:dialog>
+
+		</ui:define>
+	</ui:composition>
+</h:body>
+</html>

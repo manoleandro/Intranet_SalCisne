@@ -1,0 +1,178 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.org/ui">
+<h:head>
+	<f:loadBundle basename="messages_pt_BR" var="msg" />
+		
+</h:head>
+
+<h:body>
+	<f:metadata>
+		<f:event listener="#{portariaConsultaController.initDetalhe()}" type="preRenderView"></f:event>
+	</f:metadata>
+
+	<ui:composition template="../../template/commonLayout.xhtml">
+		<ui:define name="content">
+			<div class="ContainerIndent">
+				<h:form id="form">
+					<p:confirmDialog global="true" showEffect="puff" hideEffect="puff"
+						appendTo="@(body)">
+						<p:commandButton value="Sim" type="button"
+							styleClass="ui-confirmdialog-yes" icon="fa fa-check Fs18 white" />
+						<p:commandButton value="Não" type="button"
+							styleClass="ui-confirmdialog-no" icon="fa fa-times Fs18 white" />
+					</p:confirmDialog>
+
+					<p:panel styleClass="panel">
+						<p:growl id="messages" autoUpdate="true" escape="false" life="1500" />
+						<div class="container">
+							<h:outputText value="Detalhes"
+								styleClass="title-page hardblue" />
+
+							<div class="right" style="text-align: right">
+							
+							
+
+								<p:commandLink styleClass="commandLinkIcone"
+									title="Apresentação para carregamento"
+									action="#{portariaConsultaController.redirecionaPaginaPrincipal()}">
+									<i class="fa icon-left-bold title-page button" />
+								</p:commandLink>
+								
+								<p:commandLink styleClass="commandLinkIcone"
+									title="Atualizar"
+									onclick="location.reload();"
+									update="@form">
+									<i class="fa icon-arrows-cw title-page button" />
+								</p:commandLink>
+							</div>
+
+						</div>
+						<p:separator />
+						
+						<h:form id="form-detalhes-aguar-ord-carreg">
+
+						<p:fieldset legend="Campos para alteração"
+							style="margin-bottom:20px" toggleable="true" toggleSpeed="500">
+
+							<h:panelGrid columns="2">
+
+								<h:outputText value="Data: " />
+								<p:inputMask value="#{portariaConsultaController.movPortaria.data}"
+									mask="99/99/9999 99:99:99" readonly="true"
+									style="text-align:center">
+									<f:convertDateTime pattern="dd/MM/yyyy HH:mm:ss" />
+								</p:inputMask>
+
+								<h:outputLabel value="Placa: " />
+								<p:inputText id="placa"
+									value="#{portariaConsultaController.movPortaria.placa}"
+									style="text-transform:uppercase" />
+
+								<h:outputLabel value="Peso: " />
+								<p:inputText id="peso"
+									value="#{portariaConsultaController.movPortaria.peso}" dir="rtl"
+									onkeypress="FormataValor(this,8,event,3); return CheckNumerico(this,8,event);"
+									onkeyup="FormataValor(this,8,event,3); return CheckNumerico(this,8,event);">
+									<f:convertNumber for="peso" locale="pt_BR"
+										maxFractionDigits="3" maxIntegerDigits="20"
+										pattern="###,##0.00" minFractionDigits="3" />
+								</p:inputText>
+
+								<h:outputLabel value="Peso 2: " />
+								<p:inputText id="peso2"
+									value="#{portariaConsultaController.movPortaria.peso2}" dir="rtl"
+									onkeypress="FormataValor(this,8,event,3); return CheckNumerico(this,8,event);"
+									onkeyup="FormataValor(this,8,event,3); return CheckNumerico(this,8,event);">
+									<f:convertNumber for="peso2" locale="pt_BR"
+										maxFractionDigits="3" maxIntegerDigits="20"
+										pattern="###,##0.00" minFractionDigits="3" />
+								</p:inputText>
+
+							</h:panelGrid>
+
+						</p:fieldset>
+
+
+						<p:fieldset legend="Horários" style="margin-bottom:20px"
+							toggleable="true" toggleSpeed="500">
+
+							<h:panelGrid columns="2">
+								<h:outputText value="Hora de Apresentação" />
+								<p:calendar id="horaApresentacao"
+									value="#{portariaConsultaController.movPortaria.data}"
+									pattern="dd/MM/yyyy HH:mm:ss" locale="pt" />
+
+								<h:outputText value="Hora da Ordem de Carregamento:" />
+								<p:calendar id="horaOrdermCarregamento"
+									value="#{portariaConsultaController.movPortaria.horaOrdemCarrega}"
+									pattern="dd/MM/yyyy HH:mm:ss" locale="pt" />
+
+								<h:outputText value="Hora de Entrada:" />
+								<p:calendar id="horaEntrada"
+									value="#{portariaConsultaController.movPortaria.horaEntrada}"
+									pattern="dd/MM/yyyy HH:mm:ss" locale="pt" />
+
+								<h:outputText value="Hora Inicio de Carregamento:" />
+								<p:calendar id="horaInicioCarregamento"
+									value="#{portariaConsultaController.movPortaria.horaInicioCarregamento}"
+									pattern="dd/MM/yyyy HH:mm:ss" locale="pt" />
+
+								<h:outputText value="Hora Fim de Carregamento:" />
+								<p:calendar id="horaTerminoCarregamento"
+									value="#{portariaConsultaController.movPortaria.horaTerminoCarregamento}"
+									pattern="dd/MM/yyyy HH:mm:ss" locale="pt" />
+
+								<h:outputText value="Hora de Saída:" />
+								<p:calendar id="horaSaida"
+									value="#{portariaConsultaController.movPortaria.horaSaida}"
+									pattern="dd/MM/yyyy HH:mm:ss" locale="pt" />
+							</h:panelGrid>
+
+						</p:fieldset>
+
+						<p:spacer width="0" height="5" />
+
+						<p:fieldset legend="Justificativa" toggleable="true"
+							toggleSpeed="500">
+							<h:panelGroup>
+								<p:inputTextarea id="fmensagem" rows="7" style="width:98%;!important;"
+									counter="counter" maxlength="300"
+									label="mensagem"
+									counterTemplate="{0} caracteres permitidos." autoResize="false"
+									value="#{portariaConsultaController.movPortaria.justificativa}" />
+								<br />
+								<h:outputText id="counter" />
+							</h:panelGroup>
+						</p:fieldset>
+
+						<p:spacer height="15" width="100%" />
+
+						<p:commandButton value="Salvar" icon="fa fa-check Fs18 white"
+							update=":form" action="#{portariaConsultaController.salvarDetalhe}">
+							<f:setPropertyActionListener
+								target="#{portariaConsultaController.movPortariaSelecionado}"
+								value="#{portariaConsultaController.movPortaria}" />
+						</p:commandButton>
+						
+						<p:spacer width="10"></p:spacer>
+						<p:commandButton value="Cancelar" icon="fa fa-times Fs18 white" actionListener="#{portariaConsultaController.redirecionaPaginaPrincipal()}" />
+					</h:form>
+
+					</p:panel>
+				</h:form>
+
+
+			
+
+
+
+			</div>
+		</ui:define>
+	</ui:composition>
+</h:body>
+</html>
